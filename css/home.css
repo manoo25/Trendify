@@ -14,3 +14,48 @@
     background-color:var(--main-color);  
     color: white;
 }
+
+
+
+
+
+
+
+
+
+/* asmaa css */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: fit-content; 
+    background-image: url('../imgs/unsplash_nimElTcTNyY.png'); 
+    background-size: cover;
+    background-position: center top 9% ;
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; */
+}
+
+.hero-section .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* الطبقة السوداء الشفافة */
+    z-index: 1;
+}
+
+.hero-section .content {
+    position: relative;
+    z-index: 2;
+    
+    
+}
+
+
+
+
+
+
