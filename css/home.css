@@ -1,0 +1,16 @@
+.nav-links{
+    background-color: var(--bg-light);
+    padding: 3px;
+}
+.nav-tabs .nav-link {
+    background-color:transparent;
+    padding: 5px 20px;
+    border-radius: 25px;
+    color: var(--second-text);
+    cursor: pointer;
+    
+}
+.nav-tabs .nav-link.active {
+    background-color:var(--main-color);  
+    color: white;
+}

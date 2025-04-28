@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/global.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,11 +26,306 @@
 
 
    <!-- Mohamed session -->
-<section>
+<section class="graySessions py-4" >
+   <div class="container">
     <div class="title text-center">
         <p>Products</p>
         <h1>Best Selling Product</h1>
     </div>
+              <nav>
+                <div class="nav nav-tabs border-0 mt-3 mb-5" id="nav-tab" role="tablist">
+                  <div class="nav-links d-flex m-auto gap-1 rounded-5">
+                    <button class="nav-link active" id="nav-All-tab" data-bs-toggle="tab" data-bs-target="#nav-All" type="button" role="tab" aria-controls="nav-All" aria-selected="true">All</button>
+                    <button class="nav-link" id="nav-Skirt-tab" data-bs-toggle="tab" data-bs-target="#nav-Skirt" type="button" role="tab" aria-controls="nav-Skirt" aria-selected="false">Skirt</button>
+                    <button class="nav-link" id="nav-Bags-tab" data-bs-toggle="tab" data-bs-target="#nav-Bags" type="button" role="tab" aria-controls="nav-Bags" aria-selected="false">Bags</button>
+                    <button class="nav-link" id="nav-FullOutfit-tab" data-bs-toggle="tab" data-bs-target="#nav-FullOutfit" type="button" role="tab" aria-controls="nav-FullOutfit" aria-selected="false">FullOutfit</button>
+                    <button class="nav-link" id="nav-Watches-tab" data-bs-toggle="tab" data-bs-target="#nav-Watches" type="button" role="tab" aria-controls="nav-Watches" aria-selected="false">Watches</button>
+                  </div>
+                </div>
+              </nav>
+              
+              <div class="tab-content" id="nav-tabContent" >
+              <!-- All-Best   -->
+                <div class="tab-pane fade show active" id="nav-All" role="tabpanel" aria-labelledby="nav-All-tab" tabindex="0">
+                  <div class="row gy-4 gx-2">
+                    
+                    <div class="contain-item col-lg-3 col-md-6 pe-4 pb-2">
+                      <div class="Product">
+                        <div class="pic position-relative">
+                          <img class="w-100" src="./imgs/unsplash_5gkYsrH_ebY.png" alt="skirt">
+                          <span class="discount">-50%</span>
+                          <span class="fa-regular fa-heart position-absolute"></span>
+                        </div>
+                        <div class="disc">
+                          <h3>Full Outfit</h3>
+                          <div class="rate d-flex align-items-center gap-1">
+                            <span class="fa-solid fa-star"></span>
+                            <span>4.8</span>
+                            <span class="simi">(+500)</span>
+                          </div>
+                          <div class="price d-flex justify-content-between align-items-center">
+                            <div>5000 <span class="text-decoration-line-through afterSale">10000 Egp</span></div>
+                            <button class="btnAddToCart fa-solid fa-plus"></button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="contain-item col-lg-3 col-md-6 pe-4 pb-2">
+                      <div class="Product">
+                        <div class="pic position-relative">
+                          <img class="w-100" src="./imgs/unsplash_BqoyzXdINdg.png" alt="skirt">
+                          <span class="discount">-50%</span>
+                          <span class="fa-regular fa-heart position-absolute"></span>
+                        </div>
+                        <div class="disc">
+                          <h3>Full Outfit</h3>
+                          <div class="rate d-flex align-items-center gap-1">
+                            <span class="fa-solid fa-star"></span>
+                            <span>4.8</span>
+                            <span class="simi">(+500)</span>
+                          </div>
+                          <div class="price d-flex justify-content-between align-items-center">
+                            <div>5000 <span class="text-decoration-line-through afterSale">10000 Egp</span></div>
+                            <button class="btnAddToCart fa-solid fa-plus"></button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="contain-item col-lg-3 col-md-6 pe-4 pb-2">
+                      <div class="Product">
+                        <div class="pic position-relative">
+                          <img class="w-100" src="./imgs/unsplash_N2CiCNWba-Y.png" alt="skirt">
+                          <span class="discount">-50%</span>
+                          <span class="fa-regular fa-heart position-absolute"></span>
+                        </div>
+                        <div class="disc">
+                          <h3>Full Outfit</h3>
+                          <div class="rate d-flex align-items-center gap-1">
+                            <span class="fa-solid fa-star"></span>
+                            <span>4.8</span>
+                            <span class="simi">(+500)</span>
+                          </div>
+                          <div class="price d-flex justify-content-between align-items-center">
+                            <div>5000 <span class="text-decoration-line-through afterSale">10000 Egp</span></div>
+                            <button class="btnAddToCart fa-solid fa-plus"></button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="contain-item col-lg-3 col-md-6 pe-4 pb-2">
+                      <div class="Product">
+                        <div class="pic position-relative">
+                          <img class="w-100" src="./imgs/unsplash_Dli2lIXQiJc.png" alt="skirt">
+                          <span class="discount">-50%</span>
+                          <span class="fa-regular fa-heart position-absolute"></span>
+                        </div>
+                        <div class="disc">
+                          <h3>Full Outfit</h3>
+                          <div class="rate d-flex align-items-center gap-1">
+                            <span class="fa-solid fa-star"></span>
+                            <span>4.8</span>
+                            <span class="simi">(+500)</span>
+                          </div>
+                          <div class="price d-flex justify-content-between align-items-center">
+                            <div>5000 <span class="text-decoration-line-through afterSale">10000 Egp</span></div>
+                            <button class="btnAddToCart fa-solid fa-plus"></button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+
+              <!-- Skirt -->
+                <div class="tab-pane fade" id="nav-Skirt" role="tabpanel" aria-labelledby="nav-Skirt-tab" tabindex="0">
+                  <div class="row gy-4 gx-2">
+
+                    <div class="contain-item col-lg-3 col-md-6 pe-4 pb-2">
+                      <div class="Product">
+                        <div class="pic position-relative">
+                          <img class="w-100" src="./imgs/unsplash_5A9cFNtWav0.png" alt="skirt">
+                          <span class="discount">-50%</span>
+                          <span class="fa-regular fa-heart position-absolute"></span>
+                        </div>
+                        <div class="disc">
+                          <h3>Full Outfit</h3>
+                          <div class="rate d-flex align-items-center gap-1">
+                            <span class="fa-solid fa-star"></span>
+                            <span>4.8</span>
+                            <span class="simi">(+500)</span>
+                          </div>
+                          <div class="price d-flex justify-content-between align-items-center">
+                            <div>5000 <span class="text-decoration-line-through afterSale">10000 Egp</span></div>
+                            <button class="btnAddToCart fa-solid fa-plus"></button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                
+                  </div>
+                </div>
+              
+              <!-- Bags -->
+                <div class="tab-pane fade" id="nav-Bags" role="tabpanel" aria-labelledby="nav-Bags-tab" tabindex="0">
+                    <div class="row gy-4 gx-2">
+                    
+                        <div class="contain-item col-lg-3 col-md-6 pe-4 pb-2">
+                          <div class="Product">
+                            <div class="pic position-relative">
+                              <img class="w-100" src="./imgs/unsplash_5gkYsrH_ebY.png" alt="skirt">
+                              <span class="discount">-50%</span>
+                              <span class="fa-regular fa-heart position-absolute"></span>
+                            </div>
+                            <div class="disc">
+                              <h3>Full Outfit</h3>
+                              <div class="rate d-flex align-items-center gap-1">
+                                <span class="fa-solid fa-star"></span>
+                                <span>4.8</span>
+                                <span class="simi">(+500)</span>
+                              </div>
+                              <div class="price d-flex justify-content-between align-items-center">
+                                <div>5000 <span class="text-decoration-line-through afterSale">10000 Egp</span></div>
+                                <button class="btnAddToCart fa-solid fa-plus"></button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                       
+                        <div class="contain-item col-lg-3 col-md-6 pe-4 pb-2">
+                          <div class="Product">
+                            <div class="pic position-relative">
+                              <img class="w-100" src="./imgs/unsplash_N2CiCNWba-Y.png" alt="skirt">
+                              <span class="discount">-50%</span>
+                              <span class="fa-regular fa-heart position-absolute"></span>
+                            </div>
+                            <div class="disc">
+                              <h3>Full Outfit</h3>
+                              <div class="rate d-flex align-items-center gap-1">
+                                <span class="fa-solid fa-star"></span>
+                                <span>4.8</span>
+                                <span class="simi">(+500)</span>
+                              </div>
+                              <div class="price d-flex justify-content-between align-items-center">
+                                <div>5000 <span class="text-decoration-line-through afterSale">10000 Egp</span></div>
+                                <button class="btnAddToCart fa-solid fa-plus"></button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                       
+                        
+                      </div>
+                </div>
+
+                <!-- Full-OutFit -->
+                <div class="tab-pane fade" id="nav-FullOutfit" role="tabpanel" aria-labelledby="nav-FullOutfit-tab" tabindex="0">
+                    <div class="row gy-4 gx-2">
+                    
+                        <div class="contain-item col-lg-3 col-md-6 pe-4 pb-2">
+                          <div class="Product">
+                            <div class="pic position-relative">
+                              <img class="w-100" src="./imgs/unsplash_5gkYsrH_ebY.png" alt="skirt">
+                              <span class="discount">-50%</span>
+                              <span class="fa-regular fa-heart position-absolute"></span>
+                            </div>
+                            <div class="disc">
+                              <h3>Full Outfit</h3>
+                              <div class="rate d-flex align-items-center gap-1">
+                                <span class="fa-solid fa-star"></span>
+                                <span>4.8</span>
+                                <span class="simi">(+500)</span>
+                              </div>
+                              <div class="price d-flex justify-content-between align-items-center">
+                                <div>5000 <span class="text-decoration-line-through afterSale">10000 Egp</span></div>
+                                <button class="btnAddToCart fa-solid fa-plus"></button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                       
+                        <div class="contain-item col-lg-3 col-md-6 pe-4 pb-2">
+                          <div class="Product">
+                            <div class="pic position-relative">
+                              <img class="w-100" src="./imgs/unsplash_N2CiCNWba-Y.png" alt="skirt">
+                              <span class="discount">-50%</span>
+                              <span class="fa-regular fa-heart position-absolute"></span>
+                            </div>
+                            <div class="disc">
+                              <h3>Full Outfit</h3>
+                              <div class="rate d-flex align-items-center gap-1">
+                                <span class="fa-solid fa-star"></span>
+                                <span>4.8</span>
+                                <span class="simi">(+500)</span>
+                              </div>
+                              <div class="price d-flex justify-content-between align-items-center">
+                                <div>5000 <span class="text-decoration-line-through afterSale">10000 Egp</span></div>
+                                <button class="btnAddToCart fa-solid fa-plus"></button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                       
+                        
+                      </div>
+                </div>
+
+              <!-- Watches -->
+                <div class="tab-pane fade" id="nav-Watches" role="tabpanel" aria-labelledby="nav-Watches-tab" tabindex="0">
+                    <div class="row gy-4 gx-2">
+                    
+                        <div class="contain-item col-lg-3 col-md-6 pe-4 pb-2">
+                          <div class="Product">
+                            <div class="pic position-relative">
+                              <img class="w-100" src="./imgs/unsplash_5gkYsrH_ebY.png" alt="skirt">
+                              <span class="discount">-50%</span>
+                              <span class="fa-regular fa-heart position-absolute"></span>
+                            </div>
+                            <div class="disc">
+                              <h3>Full Outfit</h3>
+                              <div class="rate d-flex align-items-center gap-1">
+                                <span class="fa-solid fa-star"></span>
+                                <span>4.8</span>
+                                <span class="simi">(+500)</span>
+                              </div>
+                              <div class="price d-flex justify-content-between align-items-center">
+                                <div>5000 <span class="text-decoration-line-through afterSale">10000 Egp</span></div>
+                                <button class="btnAddToCart fa-solid fa-plus"></button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                       
+                        <div class="contain-item col-lg-3 col-md-6 pe-4 pb-2">
+                          <div class="Product">
+                            <div class="pic position-relative">
+                              <img class="w-100" src="./imgs/unsplash_N2CiCNWba-Y.png" alt="skirt">
+                              <span class="discount">-50%</span>
+                              <span class="fa-regular fa-heart position-absolute"></span>
+                            </div>
+                            <div class="disc">
+                              <h3>Full Outfit</h3>
+                              <div class="rate d-flex align-items-center gap-1">
+                                <span class="fa-solid fa-star"></span>
+                                <span>4.8</span>
+                                <span class="simi">(+500)</span>
+                              </div>
+                              <div class="price d-flex justify-content-between align-items-center">
+                                <div>5000 <span class="text-decoration-line-through afterSale">10000 Egp</span></div>
+                                <button class="btnAddToCart fa-solid fa-plus"></button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                       
+                        
+                      </div>
+                </div>
+              </div>
+<div class="d-flex justify-content-center mt-4">
+<a class="seeAllbtn d-flex gap-3 text-decoration-none" href="#">See All <span>></span></a>
+</div>
+   </div>
 </section>
 
 

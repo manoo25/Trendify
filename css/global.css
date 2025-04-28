@@ -10,6 +10,7 @@
     
     /* back-colors*/
     --bg-color: #F6F6F6;
+    --bg-light: #95aab133;
     --card-color: #FFFFFF;
     --footer-bg: #2E2E2E;
     
@@ -33,9 +34,15 @@
      --body-regular: 15px;
      --body-small: 14px;
      --caption: 12px;
+     --simi: 10px;
   }
   *{
-    font-family: var(--font-family)
+    font-family: var(--font-family);
+    transition: all ease 0.5s;
+    box-sizing: border-box;
+  }
+  h3{
+    font-size: var(--heading-2);
   }
   .title h1{
     color: var(--text-color);
@@ -50,4 +57,80 @@
   }
   .graySessions{
     background-color: var(--bg-color);
+  }
+ 
+.discount{
+    background-color: var(--main-color);
+    color: white;
+    padding: 3px 10px;
+    position: absolute;
+    left: 5px;
+    bottom: 8px;
+  }
+  section .row .Product{
+    background-color: white;
+    padding: 8px;
+    border-radius: 10px;
+    
+  }
+  section .row .Product img{
+    border-radius: 10px;
+  }
+  section .row .Product .pic .fa-heart{
+    top: 15px;
+    right: 15px;
+    font-size:23px;
+    padding: 5px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--main-color);
+  }
+  section .row .Product .pic .fa-heart:hover{
+    top: 15px;
+    right: 15px;
+    font-size:23px;
+    padding: 5px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--main-color);
+  }
+  section .row .Product .disc{
+
+   padding: 10px;
+  }
+  section .row .Product .disc .afterSale{
+color: var(--second-text);
+font-size: var(--body-small);
+  }
+  .rate .fa-star{
+    color: var(--review);
+    font-size: var(--caption);
+  }
+  .rate .simi{
+    color:var(--second-text);
+    font-size: var(--simi);
+  }
+  .btnAddToCart{
+    border: none;
+    color: white;
+    background-color: var(--main-color);
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .btnAddToCart:hover{
+    background-color: var(--text-color);
+  }
+  .seeAllbtn{
+    border: solid 0.1rem var(--main-color);
+    padding: 5px 18px;
+    border-radius: 20px;
+    color: var(--main-color);
+  }
+  .seeAllbtn:hover{
+background-color: var(--main-color);
+    color:white;
   }
