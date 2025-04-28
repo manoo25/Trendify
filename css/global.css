@@ -75,6 +75,7 @@
   }
   section .row .Product img{
     border-radius: 10px;
+    height: 35vh;
   }
   section .row .Product .pic .fa-heart{
     top: 15px;
