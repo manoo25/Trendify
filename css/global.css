@@ -37,4 +37,17 @@
   *{
     font-family: var(--font-family)
   }
-  
+  .title h1{
+    color: var(--text-color);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--heading-1);
+  }
+  .title p{
+    color: var(--main-color);
+   font-weight: var(--font-weight-medium);
+   font-style: italic;
+
+  }
+  .graySessions{
+    background-color: var(--bg-color);
+  }
