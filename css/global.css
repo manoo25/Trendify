@@ -1,0 +1,40 @@
+
+:root {
+    /* main colors*/
+    --main-color: #8B5E35;
+    --second-color: #9B7E5C;
+    
+    /* Text Colors*/
+    --text-color: #090F41;
+    --second-text: #9D9DAA;
+    
+    /* back-colors*/
+    --bg-color: #F6F6F6;
+    --card-color: #FFFFFF;
+    --footer-bg: #2E2E2E;
+    
+    /* Primary colors*/
+    --review: #FFC000;
+    --error: #D00439;
+
+     /* Global fonts  */
+     --font-family: 'Poppins', sans-serif;
+  
+     /* Font-Width*/
+     --font-weight-bold: 700;
+     --font-weight-semibold: 600;
+     --font-weight-medium: 500;
+     --font-weight-regular: 400;
+   
+     /* Font-size*/
+     --heading-1: 24px;
+     --heading-2: 22px;
+     --button-text: 16px;
+     --body-regular: 15px;
+     --body-small: 14px;
+     --caption: 12px;
+  }
+  *{
+    font-family: var(--font-family)
+  }
+  
