@@ -382,7 +382,9 @@ nav div.container-fluid ul.navbar-nav li.nav-item a.nav-link.active {
   width: 39%;
   margin: auto;
 }
-
+.imgcont a {
+  color: black;
+}
 .imgcont img {
 width:70px;
 height:70px;
@@ -395,7 +397,7 @@ margin-bottom: 10px;
 }
 
 .imgcont:hover {
-  color: var(--second-color);
+  color: var(--second-color) !important;
 }
 @media (max-width: 991px) {
   .offcanvas-body,.offcanvas-header {
