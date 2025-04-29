@@ -26,15 +26,13 @@
 /* asmaa css */
 .hero-section {
     position: relative;
-    width: 100%;
-    height: fit-content; 
+   height: 60vh;
     background-image: url('../imgs/unsplash_nimElTcTNyY.png'); 
+    background-repeat: no-repeat;
     background-size: cover;
-    background-position: center top 9% ;
-    /* display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden; */
+    background-position: center top 28% ;
+    
+
 }
 
 .hero-section .overlay {
@@ -43,12 +41,13 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5); /* الطبقة السوداء الشفافة */
+    background: rgba(0, 0, 0, 0.452); /* الطبقة السوداء الشفافة */
     z-index: 1;
 }
 
 .hero-section .content {
     position: relative;
+    top: 3vh;
     z-index: 2;
     
     
