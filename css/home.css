@@ -175,6 +175,39 @@
 
 
 
+  
+  .splide__arrows {
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  .splide__arrow {
+    background-color:var(--main-color);
+    pointer-events: auto;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .splide__arrow svg {
+    fill:white;
+}
+  
+  .splide__arrow--prev {
+    left: -3rem;
+  }
+  
+  .splide__arrow--next {
+    right: -3rem;
+  }
+  
+  @media (max-width: 768px) {
+    .splide-container {
+      padding: 0 1.5rem;
+    }
+   
+  }
 
 
 
