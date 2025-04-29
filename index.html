@@ -34,7 +34,7 @@
     <!-- Gaafer section -->
     <section class="home position-relative">
       <div class="container">
-        <nav class="navbar navbar-expand-lg bg-transparent py-3">
+        <nav class="navbar navbar-expand-lg bg-transparent py-3 ">
           <div class="container-fluid">
             <a class="navbar-brand" href="#">Trendify</a>
             <button
@@ -111,7 +111,8 @@
             </ul>
           </div>
         </nav>
-        <div class="hero-content position-absolute">
+    
+        <div class="hero-content position-absolute ">
           <h1 class="my-0">
             Elevate Your Home with <br />
             Stylish Furniture
@@ -132,24 +133,95 @@
           </div>
           <span class="total">150k Total Review</span>
         </div>
+ 
       </div>
     </section>
 <!-- end nav and main section -->
 <!-- Categories -->
-<section id="categories">
-  <div class="container">
-    <div class="imgcont">
-      <img src="imgs/unsplash_ezdrvzA1hZw.png" class="w-100 rounded-circle" alt="shoesimg">
-      <p class="h6 text-center">Shoes</p>
-    </div>
-    <div class="imgcont">
-      <img src="imgs/unsplash_g-9b4W7N67U.png" class="w-100 rounded-circle" alt="bags">
-      <p class="h6 text-center">Bags</p>
-    </div>
-    <div class="imgcont">
-      <img src="imgs/unsplash_DvIMVdLQinU.png" class="w-100 rounded-circle" alt="shirts">
-      <p class="h6 text-center">Shirts</p>
-    </div>
+<section  class=" categories d-flex align-items-center justify-content-center" id="categories ">
+
+
+<div class="container">
+   <!-- Splide container -->
+ <div class="splide w-100" id="Cat-carousel">
+  <div class="splide__track">
+    <ul style="box-sizing: border-box;" class="splide__list ">
+      <li class="splide__slide">
+        <div class="imgcont d-flex flex-column align-items-center">
+          <img src="imgs/unsplash_ezdrvzA1hZw.png" class=" rounded-circle" alt="shoesimg">
+          <p class="h6 text-center">Shoes</p>
+        </div>
+      </li>
+      <li class="splide__slide">
+        <div class="imgcont d-flex flex-column align-items-center">
+          <img src="imgs/unsplash_g-9b4W7N67U.png" class=" rounded-circle" alt="shoesimg">
+          <p class="h6 text-center">Bags</p>
+        </div>
+      </li>
+      <li class="splide__slide">
+        <div class="imgcont d-flex flex-column align-items-center">
+          <img src="imgs/unsplash_DvIMVdLQinU.png" class=" rounded-circle" alt="shoesimg">
+          <p class="h6 text-center">T-Shirts</p>
+        </div>
+      </li>
+      <li class="splide__slide">
+        <div class="imgcont d-flex flex-column align-items-center">
+          <img src="imgs/unsplash_12V36G17IbQ.png" class=" rounded-circle" alt="shoesimg">
+          <p class="h6 text-center">Watches</p>
+        </div>
+      </li>
+      <li class="splide__slide">
+        <div class="imgcont d-flex flex-column align-items-center">
+          <img src="imgs/unsplash_ezdrvzA1hZw.png" class=" rounded-circle" alt="shoesimg">
+          <p class="h6 text-center">Shoes</p>
+        </div>
+      </li>
+      <li class="splide__slide">
+        <div class="imgcont d-flex flex-column align-items-center">
+          <img src="imgs/unsplash_ezdrvzA1hZw.png" class=" rounded-circle" alt="shoesimg">
+          <p class="h6 text-center">Shoes</p>
+        </div>
+      </li>
+      <li class="splide__slide">
+        <div class="imgcont d-flex flex-column align-items-center">
+          <img src="imgs/unsplash_ezdrvzA1hZw.png" class=" rounded-circle" alt="shoesimg">
+          <p class="h6 text-center">Shoes</p>
+        </div>
+      </li>
+      <li class="splide__slide">
+        <div class="imgcont d-flex flex-column align-items-center">
+          <img src="imgs/unsplash_ezdrvzA1hZw.png" class=" rounded-circle" alt="shoesimg">
+          <p class="h6 text-center">Shoes</p>
+        </div>
+      </li>
+      <li class="splide__slide">
+        <div class="imgcont d-flex flex-column align-items-center">
+          <img src="imgs/unsplash_ezdrvzA1hZw.png" class=" rounded-circle" alt="shoesimg">
+          <p class="h6 text-center">Shoes</p>
+        </div>
+      </li>
+      <li class="splide__slide">
+        <div class="imgcont d-flex flex-column align-items-center">
+          <img src="imgs/unsplash_ezdrvzA1hZw.png" class=" rounded-circle" alt="shoesimg">
+          <p class="h6 text-center">Shoes</p>
+        </div>
+      </li>
+      <li class="splide__slide">
+        <div class="imgcont d-flex flex-column align-items-center">
+          <img src="imgs/unsplash_ezdrvzA1hZw.png" class=" rounded-circle" alt="shoesimg">
+          <p class="h6 text-center">Shoes</p>
+        </div>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+</div>
+
+
+  <!-- <div class="container">
+   
+    
     <div class="imgcont">
       <img src="imgs/unsplash_12V36G17IbQ.png" class="w-100 rounded-circle" alt="watches">
       <p class="h6 text-center">Watches</p>
@@ -170,7 +242,7 @@
       <img src="imgs/unsplash_N2CiCNWba-Y.png" class="w-100 rounded-circle" alt="shirts">
       <p class="h6 text-center">Shirts</p>
     </div>
-  </div>
+  </div> -->
 </section>
 
 <!-- end categories -->
@@ -1275,6 +1347,25 @@
             },
             768: { 
               perPage: 1,
+              arrows: false,
+            }
+          }
+        }).mount();
+      });
+      document.addEventListener('DOMContentLoaded', function() {
+        new Splide('#Cat-carousel', {
+          type: 'slide',
+          perPage: 8, 
+          perMove: 1,
+          gap: '1.5rem',
+          arrows: true,
+          pagination: false,
+          breakpoints: {
+            992: { 
+              perPage: 5
+            },
+            768: { 
+              perPage: 3,
               arrows: false,
             }
           }
