@@ -1,137 +1,259 @@
-
 :root {
-    /* main colors*/
-    --main-color: #8B5E35;
-    --second-color: #9B7E5C;
-    
-    /* Text Colors*/
-    --text-color: #090F41;
-    --second-text: #9D9DAA;
-    
-    /* back-colors*/
-    --bg-color: #F6F6F6;
-    --bg-light: #95aab133;
-    --card-color: #FFFFFF;
-    --footer-bg: #2E2E2E;
-    
-    /* Primary colors*/
-    --review: #FFC000;
-    --error: #D00439;
+  /* main colors*/
+  --main-color: #8b5e35;
+  --second-color: #9b7e5c;
 
-     /* Global fonts  */
-     --font-family: 'Poppins', sans-serif;
+  /* Text Colors*/
+  --text-color: #090f41;
+  --second-text: #9d9daa;
+
+  /* back-colors*/
+  --bg-color: #f6f6f6;
+  --bg-light: #95aab133;
+  --card-color: #ffffff;
+  --footer-bg: #2e2e2e;
+
+  /* Primary colors*/
+  --review: #ffc000;
+  --error: #d00439;
+
+  /* Global fonts  */
+  --font-family: "Poppins", sans-serif;
+
+  /* Font-Width*/
+  --font-weight-bold: 700;
+  --font-weight-semibold: 600;
+  --font-weight-medium: 500;
+  --font-weight-regular: 400;
+
+  /* Font-size*/
+  --heading-1: 24px;
+  --heading-2: 22px;
+  --button-text: 16px;
+  --body-regular: 15px;
+  --body-small: 14px;
+  --caption: 12px;
+  --simi: 10px;
+}
+* {
+  font-family: var(--font-family);
+  transition: all ease 0.5s;
+  box-sizing: border-box;
+}
+h3 {
+  font-size: var(--heading-2);
+}
+.title h1 {
+  color: var(--text-color);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--heading-1);
+}
+.title p {
+  color: var(--main-color);
+  font-weight: var(--font-weight-medium);
+  font-style: italic;
+}
+.graySessions {
+  background-color: var(--bg-color);
+}
+
+.discount {
+  background-color: var(--main-color);
+  color: white;
+  padding: 3px 10px;
+  position: absolute;
+  left: 5px;
+  bottom: 8px;
+}
+section .row .Product {
+  background-color: white;
+  padding: 8px;
+  border-radius: 10px;
+}
+section .row .Product img {
+  border-radius: 10px;
+  height: 35vh;
+}
+section .row .Product .pic .fa-heart {
+  top: 15px;
+  right: 15px;
+  font-size: 23px;
+  padding: 5px;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--main-color);
+}
+section .row .Product .pic .fa-heart:hover {
+  top: 15px;
+  right: 15px;
+  font-size: 23px;
+  padding: 5px;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--main-color);
+}
+section .row .Product .disc {
+  padding: 10px;
+}
+section .row .Product .disc .afterSale {
+  color: var(--second-text);
+  font-size: var(--body-small);
+}
+.rate .fa-star {
+  color: var(--review);
+  font-size: var(--caption);
+}
+.rate .simi {
+  color: var(--second-text);
+  font-size: var(--simi);
+}
+.btnAddToCart {
+  border: none;
+  color: white;
+  background-color: var(--main-color);
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btnAddToCart:hover {
+  background-color: var(--text-color);
+}
+.seeAllbtn {
+  border: solid 0.1rem var(--main-color);
+  padding: 5px 18px;
+  border-radius: 20px;
+  color: var(--main-color);
+}
+.seeAllbtn:hover {
+  background-color: var(--main-color);
+  color: white;
+}
+
+/* Gaafer section nav+home+caruosel */
+
+nav div.container-fluid a.navbar-brand {
+  font-family: var(--font-family);
+  color: var(--main-color);
+}
+
+nav div.container-fluid ul.navbar-nav li.nav-item .nav-link {
+  color: var(--bg-color);
+  font-size: var(--body-regular);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+nav div.container-fluid ul.navbar-nav li.nav-item a.nav-link.active {
+  color: var(--second-color);
+}
+.home {
+  background-image: url(../imgs/image.png);
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.hero-content {
+  max-width: 600px;
+  top: 240px;
+  left: 120px;
+}
+
+.hero-content h1 {
+  font-size: var(--heading-1);
+  color: var(--bg-color);
+  line-height: 1.6;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: var(--body-regular);
+  color: var(--bg-color);
+  margin-bottom: 2rem;
+}
+
+.btn-shop {
+  background-color: var(--main-color);
+  color: var(--bg-color);
+  padding: 0.8rem 4rem;
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+}
+
+.btn-and-decor {
+  position: relative;
+  display: inline-block;
+}
+
+.decor-arrow {
+  position: absolute;
+  left: 15px;
+  top: -20px;
+  width: 220px;
+  z-index: 1;
+}
+
+.review-box {
+  width: 39%;
+  margin: 4.2rem auto 0 auto;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.review-box .stars {
+  color: white;
+}
+.total {
+  display: block;
+  color: white;
+  width: 39%;
+  margin: auto;
+}
+.imgcont {
+  width: 4.5%;
+  transition: all 0.5s;
+}
+.imgcont img {
+  transition: all 0.5s;
+}
+.imgcont img:hover {
+  transform: scale(0.9);
+  opacity: 0.65;
+}
+
+.imgcont:hover {
+  color: var(--second-color);
+}
+@media (max-width: 991px) {
+  .offcanvas-body,.offcanvas-header {
+    background-color: var(--second-color);
+  }
+  .offcanvas-title {
+    color: var(--bg-color);
+  }
+  nav div.container-fluid ul.navbar-nav li.nav-item a.nav-link.active{
+    color: var(--main-color);
+  }
+  .btn-dotted{
+    color: white;
+  }
+  .review-box{
+    margin: 7.2rem auto 0 auto;
+  }
+  .hero-content {
+    max-width: 600px;
+    top: 240px;
+    left: 40px;
+  }
+
   
-     /* Font-Width*/
-     --font-weight-bold: 700;
-     --font-weight-semibold: 600;
-     --font-weight-medium: 500;
-     --font-weight-regular: 400;
-   
-     /* Font-size*/
-     --heading-1: 24px;
-     --heading-2: 22px;
-     --button-text: 16px;
-     --body-regular: 15px;
-     --body-small: 14px;
-     --caption: 12px;
-     --simi: 10px;
-  }
-  *{
-    font-family: var(--font-family);
-    transition: all ease 0.5s;
-    box-sizing: border-box;
-  }
-  h3{
-    font-size: var(--heading-2);
-  }
-  .title h1{
-    color: var(--text-color);
-    font-weight: var(--font-weight-bold);
-    font-size: var(--heading-1);
-  }
-  .title p{
-    color: var(--main-color);
-   font-weight: var(--font-weight-medium);
-   font-style: italic;
+}
 
-  }
-  .graySessions{
-    background-color: var(--bg-color);
-  }
- 
-.discount{
-    background-color: var(--main-color);
-    color: white;
-    padding: 3px 10px;
-    position: absolute;
-    left: 5px;
-    bottom: 8px;
-  }
-  section .row .Product{
-    background-color: white;
-    padding: 8px;
-    border-radius: 10px;
-    
-  }
-  section .row .Product img{
-    border-radius: 10px;
-    height: 35vh;
-  }
-  section .row .Product .pic .fa-heart{
-    top: 15px;
-    right: 15px;
-    font-size:23px;
-    padding: 5px;
-    background-color: white;
-    border-radius: 50%;
-    cursor: pointer;
-    color: var(--main-color);
-  }
-  section .row .Product .pic .fa-heart:hover{
-    top: 15px;
-    right: 15px;
-    font-size:23px;
-    padding: 5px;
-    background-color: white;
-    border-radius: 50%;
-    cursor: pointer;
-    color: var(--main-color);
-  }
-  section .row .Product .disc{
-
-   padding: 10px;
-  }
-  section .row .Product .disc .afterSale{
-color: var(--second-text);
-font-size: var(--body-small);
-  }
-  .rate .fa-star{
-    color: var(--review);
-    font-size: var(--caption);
-  }
-  .rate .simi{
-    color:var(--second-text);
-    font-size: var(--simi);
-  }
-  .btnAddToCart{
-    border: none;
-    color: white;
-    background-color: var(--main-color);
-    width: 30px;
-    height: 30px;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  .btnAddToCart:hover{
-    background-color: var(--text-color);
-  }
-  .seeAllbtn{
-    border: solid 0.1rem var(--main-color);
-    padding: 5px 18px;
-    border-radius: 20px;
-    color: var(--main-color);
-  }
-  .seeAllbtn:hover{
-background-color: var(--main-color);
-    color:white;
-  }
+/* End  */

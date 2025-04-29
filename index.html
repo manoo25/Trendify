@@ -9,15 +9,171 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
     <link rel="stylesheet" href="./css/global.css" />
     <link rel="stylesheet" href="./css/home.css" />
     <title>Document</title>
-  </head>
-  <body class="graySessions">
-    <!-- Gaafer section -->
 
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Trendify</title>
+
+  </head>
+  <body
+    class="graySessions"
+    data-bs-spy="scroll"
+    data-bs-target=".navbar"
+    data-bs-offset="100"
+    tabindex="0"
+  >
+    <!-- Gaafer section -->
+    <section class="home position-relative">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg bg-transparent py-3">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">Trendify</a>
+            <button
+              class="navbar-toggler d-lg-none"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#mobileMenu"
+              aria-controls="mobileMenu"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div
+              class="offcanvas offcanvas-start justify-content-between"
+              tabindex="-1"
+              id="mobileMenu"
+              aria-labelledby="mobileMenuLabel"
+            >
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="mobileMenuLabel">Menu</h5>
+              </div>
+              <div class="offcanvas-body d-flex justify-content-between">
+                <ul class="navbar-nav me-auto mx-lg-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#"
+                      >Home</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#service">Services</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#product">Products</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#about">About Us</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#blog">Blog</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact Us</a>
+                  </li>
+                </ul>
+                <div class="mt-5">
+                  <span
+                    type="button"
+                    class="btn-dotted mt-5 fa-regular fa-eye-slash d-lg-none"
+                    data-bs-dismiss="offcanvas"
+                    aria-label="Close"
+                  ></span>
+                </div>
+              </div>
+            </div>
+
+            <ul class="navbar-nav mb-2 mb-lg-0 d-none d-lg-flex">
+              <li class="nav-item">
+                <span
+                  class="nav-link fa-solid fa-magnifying-glass"
+                  role="button"
+                ></span>
+              </li>
+              <li class="nav-item">
+                <span
+                  class="nav-link fa-solid fa-cart-shopping"
+                  role="button"
+                ></span>
+              </li>
+
+              <li class="nav-item">
+                <span class="nav-link fa-regular fa-user" role="button"></span>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div class="hero-content position-absolute">
+          <h1 class="my-0">
+            Elevate Your Home with <br />
+            Stylish Furniture
+          </h1>
+          <img src="imgs/1lastsvg.svg" class="w-25 ms-5" alt="" />
+          <p class="my-3">
+            Explore a range of high-quality, affordable furniture designed to
+            transform any room. Discover the perfect blend of style, comfort,
+            and functionality for your space.
+          </p>
+          <div class="btn-and-decor mt-4">
+            <a href="#" class="btn-shop rounded-5">Shop Now</a>
+            <img src="imgs/arrowupdate.svg" alt="arrow" class="decor-arrow" />
+          </div>
+          <div class="review-box">
+            <span class="rating">4.8 | </span>
+            <span class="stars">★★★★★</span> <br />
+          </div>
+          <span class="total">150k Total Review</span>
+        </div>
+      </div>
+    </section>
+<!-- end nav and main section -->
+<!-- Categories -->
+<section id="categories">
+  <div class="container">
+    <div class="imgcont">
+      <img src="imgs/unsplash_ezdrvzA1hZw.png" class="w-100 rounded-circle" alt="shoesimg">
+      <p class="h6 text-center">Shoes</p>
+    </div>
+    <div class="imgcont">
+      <img src="imgs/unsplash_g-9b4W7N67U.png" class="w-100 rounded-circle" alt="bags">
+      <p class="h6 text-center">Bags</p>
+    </div>
+    <div class="imgcont">
+      <img src="imgs/unsplash_DvIMVdLQinU.png" class="w-100 rounded-circle" alt="shirts">
+      <p class="h6 text-center">Shirts</p>
+    </div>
+    <div class="imgcont">
+      <img src="imgs/unsplash_12V36G17IbQ.png" class="w-100 rounded-circle" alt="watches">
+      <p class="h6 text-center">Watches</p>
+    </div>
+    <div class="imgcont">
+      <img src="imgs/unsplash_Dli2lIXQiJc.png" class="w-100 rounded-circle" alt="Accesories">
+      <p class="h6 text-center">Accessories</p>
+    </div>
+    <div class="imgcont">
+      <img src="imgs/unsplash_BqoyzXdINdg.png" class="w-100 rounded-circle" alt="skirts">
+      <p class="h6 text-center">Skirts</p>
+    </div>
+    <div class="imgcont">
+      <img src="imgs/Group2168.png" class="w-100 rounded-circle" alt="dresses">
+      <p class="h6 text-center">Dresses</p>
+    </div>
+    <div class="imgcont">
+      <img src="imgs/unsplash_N2CiCNWba-Y.png" class="w-100 rounded-circle" alt="shirts">
+      <p class="h6 text-center">Shirts</p>
+    </div>
+  </div>
+</section>
+
+<!-- end categories -->
     <!-- Samar section -->
     <!-- شغلنا هنبدا ب section class=" py-5" -->
     <!-- دا ال العنوان غيرى الكونتنت بس  -->
@@ -801,20 +957,59 @@
 
     <!-- Asmaa section -->
 
+
     
   
+
+    <!-- شغلنا هنبدا ب section class=" py-5" -->
+
+    <!--  دا ال العنوان غيرى الكونتنت بس  -->
+    <!-- <div class="title text-center">
+    <p>Products</p>
+    <h1>Best Selling Product</h1>
+</div> -->
+    <!-- 
+    <section class="py-5 my-sec">
+      <div class="overlayer">
+        <div class="container">
+        
+          <div class="title text-center mysec-content">
+            <h1>Discover Fashion That Speaks To You.</h1>
+            <p>
+              Explore a range of high-quality, affordable furniture designed to
+              transform any room. Discover the perfect blend of style, comfort,
+              and functionality for your space.
+            </p>
+            <div class="d-flex justify-content-center mt-4">
+              <a class="seeAllbtn d-flex gap-3 text-decoration-none" href="#"
+                >See All <span>></span></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
 
     <section class="py-5 hero-section d-flex align-items-center">
       <div class="overlay"></div>
       <div class="title container text-center content">
         <h1 class="text-white">Discover Fashion That Speaks To You.</h1>
-        <p class="text-white">Explore a range of high-quality, affordable furniture designed to transform any room. Discover the perfect blend of style, comfort, and functionality for your space.</p>
+        <p class="text-white">
+          Explore a range of high-quality, affordable furniture designed to
+          transform any room. Discover the perfect blend of style, comfort, and
+          functionality for your space.
+        </p>
         <div class="d-flex justify-content-center mt-4">
-          <a class="seeAllbtn text-white border-white d-flex gap-3 text-decoration-none" href="#">See All <span>></span></a
+          <a
+            class="seeAllbtn text-white border-white d-flex gap-3 text-decoration-none"
+            href="#"
+            >See All <span>></span></a
           >
         </div>
       </div>
     </section>
+
 
 
 
@@ -992,6 +1187,7 @@
     </section>
     
     
+
 
     <!-- الفوتر يبقى footer -->
     <footer class="footer mt-5 pb-0">
