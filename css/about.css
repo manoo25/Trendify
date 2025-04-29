@@ -1,0 +1,35 @@
+.comment{
+   width:35%;
+    height: 60vh;
+    background: rgba(255, 255, 255, 0.52); 
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); 
+  border-radius: 10px; 
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+  border: 1px solid rgba(255, 255, 255, 0.3); 
+
+}
+ .testimonial-card{
+    z-index: 1;
+    top:50%;
+    transform: translateY(-50%);
+    left:0;
+ }
+.pic{
+    opacity: 0.8;
+    width: 77%;
+    height: 80vh;
+    border-radius: 30px;
+    overflow: hidden;
+}
+@media (max-width: 991px) {
+    .comment{
+    width:60%;
+    }
+}
+@media (max-width: 900px) {
+    .comment{
+        margin-left: 10px;
+    width:75%;
+    }
+}
