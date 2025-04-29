@@ -18,6 +18,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -813,34 +814,8 @@
 
     <!-- Asmaa section -->
 
-    <!-- شغلنا هنبدا ب section class=" py-5" -->
-
-    <!--  دا ال العنوان غيرى الكونتنت بس  -->
-    <!-- <div class="title text-center">
-    <p>Products</p>
-    <h1>Best Selling Product</h1>
-</div> -->
-<!-- 
-    <section class="py-5 my-sec">
-      <div class="overlayer">
-        <div class="container">
-        
-          <div class="title text-center mysec-content">
-            <h1>Discover Fashion That Speaks To You.</h1>
-            <p>
-              Explore a range of high-quality, affordable furniture designed to
-              transform any room. Discover the perfect blend of style, comfort,
-              and functionality for your space.
-            </p>
-            <div class="d-flex justify-content-center mt-4">
-              <a class="seeAllbtn d-flex gap-3 text-decoration-none" href="#"
-                >See All <span>></span></a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
+    
+  
 
     <section class="py-5 hero-section d-flex align-items-center">
       <div class="overlay"></div>
@@ -853,9 +828,221 @@
         </div>
       </div>
     </section>
+
+
+
+    <section class="services-section py-5 graySessions">
+      <div class="container">
+        <div class="text-center mb-5 title">
+          <p>Services</p>
+          <h1>Benefits when using<br> our services</h1>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <div class="service-card text-start">
+              <div class="service-icon">
+                <i class="bi bi-lightbulb"></i>
+              </div>
+              <h6>Inspiration</h6>
+              <p>Lorem ipsum dolor sit amet consectetur. Est vel risus hendrerit laoreet purus malesuada dignissim.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="service-card text-start">
+              <div class="service-icon">
+                <i class="bi bi-headset"></i>
+              </div>
+              <h6>24/7 Customer Services</h6>
+              <p>Lorem ipsum dolor sit amet consectetur. Est vel risus hendrerit laoreet purus malesuada dignissim.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="service-card text-start">
+              <div class="service-icon">
+                <i class="bi bi-truck"></i>
+              </div>
+              <h6>Express Shipping</h6>
+              <p>Lorem ipsum dolor sit amet consectetur. Est vel risus hendrerit laoreet purus malesuada dignissim.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <section id="testimonials" class="py-5 graySessions">
+      <div class="container">
+        <div class="text-center mb-5 title">
+          <p>Testimonials</p>
+          <h1>What Our Customers Say</h1>
+        </div>
+        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+    
+            <div class="carousel-item active">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card testimonial-card">
+                    <div class="card-body">
+                      <div class="quote mb-3">
+                        <i class="bi bi-quote"></i>
+                      </div>
+                      <p class="card-text">Amazing service! I will definitely come back.</p>
+                      <div class="d-flex align-items-center mt-4">
+                        <img src="../Trendify/imgs" class="rounded-circle me-3 w-100" alt="Customer">
+                        <div>
+                          <h6 class="mb-0 fw-bold">Berry Gunawan</h6>
+                          <div class="d-flex align-items-center rate">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                            <span class="simi ms-1">3.5</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="col-md-4 d-none d-md-block">
+                  <div class="card testimonial-card">
+                    <div class="card-body">
+                      <div class="quote mb-3">
+                        <i class="bi bi-quote"></i>
+                      </div>
+                      <p class="card-text">Excellent quality and fast delivery!</p>
+                      <div class="d-flex align-items-center mt-4">
+                        <img src="https://via.placeholder.com/40" class="rounded-circle me-3" alt="Customer">
+                        <div>
+                          <h6 class="mb-0 fw-bold">Sarah Johnson</h6>
+                          <div class="d-flex align-items-center rate">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span class="simi ms-1">4.0</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="col-md-4 d-none d-md-block">
+                  <div class="card testimonial-card">
+                    <div class="card-body">
+                      <div class="quote mb-3">
+                        <i class="bi bi-quote"></i>
+                      </div>
+                      <p class="card-text">Friendly staff and great atmosphere!</p>
+                      <div class="d-flex align-items-center mt-4">
+                        <img src="https://via.placeholder.com/40" class="rounded-circle me-3" alt="Customer">
+                        <div>
+                          <h6 class="mb-0 fw-bold">Alex Smith</h6>
+                          <div class="d-flex align-items-center rate">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span class="simi ms-1">3.0</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+    
+              </div>
+            </div>
+    
+          
+    
+          </div>
+    
+          <!-- Controls -->
+          <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev" aria-label="Previous">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next" aria-label="Next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
+    
+        </div>
+      </div>
+    </section>
+    
     
 
     <!-- الفوتر يبقى footer -->
+    <footer class="footer mt-5">
+      <div class="container py-5">
+        <div class="row gy-4">
+         
+          <div class="col-lg-4 col-md-6">
+            <h4 class="footer-title">Trendify</h4>
+            <p class="mb-3">Join our newsletter to stay up to date on features and releases.</p>
+            <div class="d-flex">
+              <input type="email" class="form-control me-2 subscribe-input" placeholder="Enter your email">
+              <button class="subscribe-btn">Subscribe</button>
+            </div>
+            <small class="d-block mt-2" style="color: var(--second-text); font-size: var(--simi);">
+              By subscribing you agree with our Privacy Policy and provide consent to receive updates from our company.
+            </small>
+          </div>
+    
+          <!-- About Us -->
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">About Us</h5>
+            <ul class="list-unstyled">
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">Returns</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Shipping</a></li>
+            </ul>
+          </div>
+    
+          <!-- Customer Support -->
+          <div class="col-lg-3 col-md-6">
+            <h5 class="footer-title">Customer Support</h5>
+            <ul class="list-unstyled">
+              <li><a href="#">Affiliates</a></li>
+              <li><a href="#">Apple Pay Payments</a></li>
+              <li><a href="#">Returns</a></li>
+              <li><a href="#">Returns Policy</a></li>
+              <li><a href="#">Returns</a></li>
+            </ul>
+          </div>
+    
+          <!-- Social Media -->
+          <div class="col-lg-3 col-md-6">
+            <h5 class="footer-title">Follow Us</h5>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a><br>
+              <a href="#"><i class="fab fa-instagram"></i> Instagram</a><br>
+              <a href="#"><i class="fab fa-twitter"></i> Twitter</a><br>
+              <a href="#"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+            </div>
+          </div>
+        </div>
+    
+       
+        <div class="footer-bottom mt-4 d-flex flex-column flex-md-row justify-content-between text-center text-md-start">
+          <p>© 2025 Trendify. All rights reserved.</p>
+          <div>
+            <a href="#" class="me-3">Privacy Policy</a>
+            <a href="#" class="me-3">Terms of Service</a>
+            <a href="#">Cookies Settings</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+
+
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"

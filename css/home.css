@@ -56,5 +56,212 @@
 
 
 
+/* .services-section {
+    background-color: var(--bg-color);
+  } */
+  
+  .service-card {
+    background: var(--card-color);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .service-icon {
+    background: var(--bg-light);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    font-size: var(--heading-1);
+    color: var(--main-color);
+  }
+  
+  .service-card h6 {
+    font-weight: var(--font-weight-bold);
+    font-size: var(--body-regular);
+    margin-bottom: 15px;
+    color: var(--text-color);
+  }
+  
+  .service-card p {
+    color: var(--second-text);
+    font-size: var(--body-small);
+  }
+  
+  .title p {
+    color: var(--main-color);
+    font-weight: var(--font-weight-medium);
+    font-style: italic;
+  }
+  
+  .title h1 {
+    color: var(--text-color);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--heading-1);
+  }
+
+
+
+
+  #testimonials {
+    background-color: var(--bg-color);
+}
+
+.testimonial-card {
+    background-color: var(--card-color);
+    border: none;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    height: 100%;
+}
+
+.testimonial-card .quote i {
+    font-size: 30px;
+    color: var(--main-color);
+}
+
+.testimonial-card p {
+    color: var(--second-text);
+    font-size: var(--body-regular);
+    font-weight: var(--font-weight-regular);
+    min-height: 80px;
+}
+
+.testimonial-card h6 {
+    color: var(--text-color);
+    font-size: var(--body-regular);
+    font-weight: var(--font-weight-bold);
+}
+
+.rate .fa-star {
+    color: var(--review);
+    font-size: var(--caption);
+}
+
+.rate .simi {
+    color: var(--second-text);
+    font-size: var(--simi);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: var(--main-color);
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+}
+
+@media (max-width: 768px) {
+    .testimonial-card {
+        margin-bottom: 20px;
+    }
+}
+
+
+
+
+
+
+.footer {
+    background-color: var(--footer-bg);
+    color: white;
+    padding: 40px 0;
+    font-family: var(--font-family);
+    font-size: var(--body-small);
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+    font-weight: var(--font-weight-regular);
+}
+
+.footer a:hover {
+    color: var(--main-color);
+    text-decoration: underline;
+}
+
+.footer .footer-title {
+    font-size: var(--heading-2);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 15px;
+}
+
+.footer .subscribe-input {
+    background-color: white;
+    color: var(--text-color);
+    border: none;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: var(--body-regular);
+    width: 100%;
+}
+
+.footer .subscribe-btn {
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: var(--button-text);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.footer .subscribe-btn:hover {
+    background-color: var(--text-color);
+}
+
+.footer .social-icons a {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: white;
+    font-size: var(--body-regular);
+}
+
+.footer .social-icons i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.footer .social-icons a:hover {
+    color: var(--main-color);
+}
+
+.footer .footer-bottom {
+    border-top: 1px solid #444;
+    margin-top: 30px;
+    padding-top: 20px;
+    font-size: var(--simi);
+    color: var(--second-text);
+}
+
+.footer .footer-bottom a {
+    color: var(--second-text);
+    margin-left: 15px;
+    font-size: var(--simi);
+}
+
+.footer .footer-bottom a:hover {
+    color: var(--main-color);
+}
+
 
 
