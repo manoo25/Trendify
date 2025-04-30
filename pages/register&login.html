@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/register&login.css" />
+ 
+</head>
+
+<body class="graySessions gx-0">
+    <section class="container-fluid  gx-0" style="height: 100vh;">
+        <div class="row col-md-12 justify-content-center gx-0 h-100">
+            <!-- login -->
+            <div class="col-md-6 h-100 p-5 d-block login">
+                <div class="container p-5">
+                    <div class="row title">
+                        <h1 class="">Welcome Back!</h1>
+                        <h6 class="form-subtitle">Plese login or sign up to continue in our website</h6>
+                    </div>
+                    <form action="" class="needs-validation " novalidate="" method="">
+                        <div class="form-group my-3">
+                            <label for="email" class="form-label form-title">E-mail</label>
+                            <div class="position-relative form-icon">
+                                <input type="email" class="form-control ps-5" id="email" placeholder="Ahmed@gmail.com"
+                                    required>
+                                <i class="fas fa-envelope position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                            </div>
+                            <div class="invalid-feedback">
+                                Please provide a valid email.
+                            </div>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="form-group my-3">
+                            <label for="password" class="form-label form-title">Password</label>
+                            <div class="position-relative form-icon">
+                                <input type="password" class="form-control ps-5 pe-5" id="password"
+                                    placeholder="••••••••••••" required>
+                                <i class="fas fa-lock position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                                <i class="fas fa-eye-slash position-absolute top-50 end-0 translate-middle-y me-3 "
+                                    onclick="togglePassword()" style="cursor: pointer;"></i>
+                            </div>
+                            <div class="invalid-feedback">
+                                invalid password!
+                            </div>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+
+                        </div>
+                        <div class="row my-3 p-4">
+                            <button type="submit" class="btn btn-form " onclick="showSpinner()">Log in
+                                <!-- <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> -->
+                            </button>
+                        </div>
+
+                    </form>
+                    <div class="row text-center form-subtitle">
+                        <p>Or continue with</p>
+                        <div class="icons py-2">
+                            <a href="#" class="text-decoration-none me-3" style="color: #db4437;">
+                                <i class="fab fa-google fa-2x"></i>
+                            </a>
+                            <a href="#" class="text-decoration-none me-3" style="color: #3b5998;">
+                                <i class="fab fa-facebook fa-2x"></i>
+                            </a>
+                            <a href="#" class="text-decoration-none me-3" style="color: #1da1f2;">
+                                <i class="fab fa-twitter fa-2x"></i>
+                            </a>
+
+                        </div>
+                        <p>Don't have an account? <a href="#" id="signUupBtn">Sign up</a></p>
+                    </div>
+                    <!-- <div class="row my-3 p-2 text-center">
+                       
+                    </div> -->
+                </div>
+            </div>
+
+            <!-- register -->
+            <div class="col-md-6 h-100 p-5 d-none signUp">
+                <div class="container p-5">
+                    <div class="row title">
+                        <h1 class="">Create a Account</h1>
+                        <h6 class="form-subtitle">Create a new account</h6>
+                    </div>
+                    <form action="" class="needs-validation " novalidate="" method="">
+                        <div class="form-group my-3">
+                            <label for="username" class="form-label form-title">User Name</label>
+                            <div class="position-relative form-icon">
+                                <input type="text" class="form-control ps-5" id="username" placeholder="Ahmed" required>
+                                <i
+                                    class="fa-solid fa-user position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                            </div>
+
+                            <div class="invalid-feedback">
+                                Please provide a valid email.
+                            </div>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="form-group my-3">
+                            <label for="email" class="form-label form-title">E-mail</label>
+                            <div class="position-relative form-icon">
+                                <input type="email" class="form-control ps-5" id="email" placeholder="Ahmed@gmail.com"
+                                    required>
+                                <i class="fas fa-envelope position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                            </div>
+                            <div class="invalid-feedback">
+                                Please provide a valid email.
+                            </div>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="form-group my-3">
+                            <label for="password" class="form-label form-title">Password</label>
+                            <div class="position-relative form-icon">
+                                <input type="password" class="form-control ps-5 pe-5" id="password2"
+                                    placeholder="••••••••••••" required>
+                                <i class="fas fa-lock position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                                <i class="fas fa-eye-slash position-absolute top-50 end-0 translate-middle-y me-3 "
+                                onclick="togglePassword2()" style="cursor: pointer;"></i>
+                            </div>
+                            <div class="invalid-feedback">
+                                invalid password!
+                            </div>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+
+                        </div>
+                        <div class="form-group my-3">
+                            <label for="confirmPassword" class="form-label form-title">Confirm Password</label>
+                            <div class="position-relative form-icon">
+                                <input type="password" class="form-control ps-5 pe-5" id="confirmPassword"
+                                    placeholder="••••••••••••" required>
+                                <i class="fas fa-lock position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                                <i class="fas fa-eye-slash position-absolute top-50 end-0 translate-middle-y me-3 "
+                                    onclick="togglePassword()" style="cursor: pointer;"></i>
+                            </div>
+                            <div class="invalid-feedback">
+                                invalid password!
+                            </div>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required="">
+                            <label class="form-check-label" for="invalidCheck">
+                                Agree to terms and conditions
+                            </label>
+                            <div class="invalid-feedback">
+                                You must agree before submitting.
+                            </div>
+                        </div>
+                        <div class="row my-3 p-4">
+                            <button type="submit" class="btn btn-form">Sign up</button>
+                        </div>
+                    </form>
+                    <div class="row text-center form-subtitle">
+                        <p>Or continue with</p>
+                        <div class="icons py-2">
+                            <a href="#" class="text-decoration-none me-3" style="color: #db4437;">
+                                <i class="fab fa-google fa-2x"></i>
+                            </a>
+                            <a href="#" class="text-decoration-none me-3" style="color: #3b5998;">
+                                <i class="fab fa-facebook fa-2x"></i>
+                            </a>
+                            <a href="#" class="text-decoration-none me-3" style="color: #1da1f2;">
+                                <i class="fab fa-twitter fa-2x"></i>
+                            </a>
+
+                        </div>
+                        <p>Aready have an account? <a href="#" id="loginBtn">Log in</a></p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- slider -->
+            <div class="col-md-6 gx-0 h-100">
+                <div class="container-fluid  h-100">
+                    <div style="min-height: 40vh;" id="carouselIndicators" class="carousel slide carousel-fade h-100"
+                        data-bs-ride="carousel">
+                        <div class="carousel-indicators carousel-bg">
+                            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner h-100 ">
+                            <div style="min-height: 45vh; ;" class="carousel-item active h-100 w-100"
+                                data-bs-interval="3000">
+                                <img style="min-height: 45vh;" src="../imgs/unsplash_SXck496Sg54.png"
+                                    class="d-block w-100 h-100 " alt="image1">
+                                <div class="carousel-caption text-center">
+                                    <h1 class="fw-bold">Welcome To Trendify</h1>
+                                    <h3 class="login-text">discover the latest trends<br> express your unique style</h3>
+
+                                </div>
+                            </div>
+                            <div style="min-height: 45vh; ;" class="carousel-item h-100 w-100" data-bs-interval="3000">
+                                <img style="min-height: 45vh;" src="../imgs/unsplash_Q-72wa9-7Dg.png"
+                                    class="d-block w-100 h-100 " alt="image2">
+                                <div class="carousel-caption text-center">
+                                    <h1 class="fw-bold">Welcome To Trendify</h1>
+                                    <h3 class="login-text">discover the latest trends<br> express your unique style</h3>
+
+                                </div>
+                            </div>
+                            <div style="min-height: 45vh; ;" class="carousel-item h-100 w-100" data-bs-interval="3000">
+                                <img style="min-height: 45vh;" src="../imgs/unsplash_N2CiCNWba-Y.png"
+                                    class="d-block w-100 h-100 " alt="image2">
+                                <div class="carousel-caption text-center">
+                                    <h1 class="fw-bold">Welcome To Trendify</h1>
+                                    <h3 class="login-text">discover the latest trends<br> express your unique style</h3>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    <script>
+       
+        // JavaScript to toggle password visibility 
+        function togglePassword() {
+            const input = document.getElementById("password");
+            const icon = event.target;
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.replace("fa-eye-slash", "fa-eye");
+            } else {
+                input.type = "password";
+                icon.classList.replace("fa-eye", "fa-eye-slash");
+            }
+        }
+        function togglePassword2() {
+            const input = document.getElementById("password2");
+            const icon = event.target;
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.replace("fa-eye-slash", "fa-eye");
+            } else {
+                input.type = "password";
+                icon.classList.replace("fa-eye", "fa-eye-slash");
+            }
+        }
+        //toggle signup & loggin
+        let signUp = document.querySelector(".signUp");
+        let login = document.querySelector(".login");
+
+        let signUupBtn = document.querySelector("#signUupBtn");
+        signUupBtn.addEventListener("click", () => {
+            signUp.classList.remove("d-none");
+            login.classList.add("d-none");
+        })
+        let loginBtn = document.querySelector("#loginBtn");
+        loginBtn.addEventListener("click", () => {
+            login.classList.remove("d-none");
+            signUp.classList.add("d-none");
+        })
+
+        //show spinner
+        // function showSpinner() {
+        //     const btn = document.querySelector("button[type=sumbit]")
+        //     btn.innerHTML = `<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Logging in...`;
+        //     btn.disabled = true;
+        //     setTimeout(() => {
+        //         btn.innerHTML = "Login";
+        //         btn.disabled = false;
+        //     }, 3000);
+        // }
+
+    </script>
+
+</body>
+
+</html>
