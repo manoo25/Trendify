@@ -301,16 +301,25 @@
 nav div.container-fluid a.navbar-brand {
 font-family: var(--font-family);
 color: var(--main-color);
+font-size: var(--heading-1);
+font-weight: var(--font-weight-bold);
+}
+nav{
+  background-color: #38271719;
 }
 
 nav div.container-fluid ul.navbar-nav li.nav-item .nav-link {
 color: var(--bg-color);
-font-size: var(--body-regular);
+font-size: var(--button-text);
 padding: 0.5rem 1rem;
 cursor: pointer;
+font-weight: var(--font-weight-bold);
+}
+nav div.container-fluid ul.navbar-nav li.nav-item .nav-link:hover {
+  color: var(--main-color);
 }
 nav div.container-fluid ul.navbar-nav li.nav-item a.nav-link.active {
-color: var(--second-color);
+color: var(--main-color);
 }
 .home {
 background-image: url(../imgs/image.png);
@@ -347,6 +356,14 @@ color: var(--bg-color);
 padding: 0.8rem 4rem;
 text-decoration: none;
 font-weight: var(--font-weight-medium);
+border: solid 0.15rem transparent;
+}
+.btn-shop:hover {
+  background-color: transparent;
+  font-size: var(--button-text);
+  color: var(--main-color);
+  font-weight: var(--font-weight-bold);
+  border: solid 0.15rem var(--main-color);
 }
 
 .btn-and-decor {
@@ -400,10 +417,12 @@ color: var(--second-color) !important;
 }
 @media (max-width: 991px) {
 .offcanvas-body,.offcanvas-header {
-  background-color: var(--second-color);
+  background-color: #13131351;
 }
 .offcanvas-title {
-  color: var(--bg-color);
+  color: var(--main-color);
+  font-size: var(--heading-1);
+  font-weight: var(--font-weight-bold);
 }
 nav div.container-fluid ul.navbar-nav li.nav-item a.nav-link.active{
   color: var(--main-color);
