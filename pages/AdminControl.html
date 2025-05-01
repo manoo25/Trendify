@@ -15,8 +15,11 @@
         
        
     </style>
+   
 </head>
-<body>
+
+<body class="d-none">
+   
     <!-- Custom Alert Modal -->
     <div class="custom-alert" id="deleteAlert">
         <div class="alert-content">
@@ -80,10 +83,10 @@
                             Admin
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li ><a  class="dropdown-item d-flex justify-content-between align-items-center " href="#"><i class="fas fa-user me-1"></i>Profile</a></li>
+                            <li ><a  class="dropdown-item d-flex justify-content-between align-items-center " ><i class="fas fa-user me-1"></i>Profile</a></li>
                            
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#"><i class="fas fa-sign-out-alt me-1"></i>Log Out</a></li>
+                            <li><a id="logoutBtn" class="dropdown-item d-flex justify-content-between align-items-center" ><i class="fas fa-sign-out-alt me-1"></i>Log Out</a></li>
                         </ul>
                     </div>
                 </div>
@@ -387,17 +390,19 @@
                         <thead  >
                             <tr>
                                 <th> Name </th>
-                                <th> Phone </th>
-                                <th> Role </th>
+                                <th> Products Qty </th>
+                                <th> Total Price </th>
+                                <th> State </th>
                                 <th> Process </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>Mohamed Salama</td>
-                                <td>01023363248</td>
+                                <td>3</td>
                              
-                                <td>Customer</td>
+                                <td>550</td>
+                                <td><span class="badge bg-secondary">in progress</span></td>
                                 <td >
                                     <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
                                     <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
@@ -407,9 +412,10 @@
                             </tr>
                             <tr>
                                 <td>Mohamed Salama</td>
-                                <td>01023363248</td>
+                                <td>3</td>
                              
-                                <td>Customer</td>
+                                <td>550</td>
+                                <td><span class="badge bg-danger">Cancel</span></td>
                                 <td >
                                     <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
                                     <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
@@ -419,9 +425,10 @@
                             </tr>
                             <tr>
                                 <td>Mohamed Salama</td>
-                                <td>01023363248</td>
+                                <td>3</td>
                              
-                                <td>Customer</td>
+                                <td>550</td>
+                                <td><span class="badge bg-warning">Pending</span></td>
                                 <td >
                                     <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
                                     <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
@@ -431,9 +438,10 @@
                             </tr>
                             <tr>
                                 <td>Mohamed Salama</td>
-                                <td>01023363248</td>
+                                <td>3</td>
                              
-                                <td>Customer</td>
+                                <td>550</td>
+                                <td><span class="badge bg-success">Done</span></td>
                                 <td >
                                     <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
                                     <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
@@ -443,9 +451,10 @@
                             </tr>
                             <tr>
                                 <td>Mohamed Salama</td>
-                                <td>01023363248</td>
+                                <td>3</td>
                              
-                                <td>Customer</td>
+                                <td>550</td>
+                                <td><span class="badge bg-secondary">in progress</span></td>
                                 <td >
                                     <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
                                     <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
@@ -455,9 +464,10 @@
                             </tr>
                             <tr>
                                 <td>Mohamed Salama</td>
-                                <td>01023363248</td>
+                                <td>3</td>
                              
-                                <td>Customer</td>
+                                <td>550</td>
+                                <td><span class="badge bg-danger">Cancel</span></td>
                                 <td >
                                     <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
                                     <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
@@ -467,9 +477,10 @@
                             </tr>
                             <tr>
                                 <td>Mohamed Salama</td>
-                                <td>01023363248</td>
+                                <td>3</td>
                              
-                                <td>Customer</td>
+                                <td>550</td>
+                                <td><span class="badge bg-warning">Pending</span></td>
                                 <td >
                                     <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
                                     <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
@@ -479,9 +490,10 @@
                             </tr>
                             <tr>
                                 <td>Mohamed Salama</td>
-                                <td>01023363248</td>
+                                <td>3</td>
                              
-                                <td>Customer</td>
+                                <td>550</td>
+                                <td><span class="badge bg-success">Done</span></td>
                                 <td >
                                     <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
                                     <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
@@ -489,42 +501,7 @@
                                    
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>01023363248</td>
-                             
-                                <td>Customer</td>
-                                <td >
-                                    <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>01023363248</td>
-                             
-                                <td>Customer</td>
-                                <td >
-                                    <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>01023363248</td>
-                             
-                                <td>Customer</td>
-                                <td >
-                                    <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                                   
-                                </td>
-                            </tr>
+                          
                           
                            
                         </tbody>
@@ -729,5 +706,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/admin.js"></script>
+    <script type="module">
+        import { accessPage } from '../js/auth.js'; 
+        accessPage('admin');
+      </script>
 </body>
 </html>

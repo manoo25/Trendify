@@ -55,3 +55,9 @@ function showDataTbl(name) {
     $('.DataTable').addClass('d-none');  
  $(`#${name}`).removeClass('d-none');
 }
+$('#logoutBtn').click(
+function() {
+    localStorage.removeItem('userRole');
+    window.location.replace('/pages/register&login.html')
+}
+)
