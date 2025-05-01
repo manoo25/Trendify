@@ -55,7 +55,7 @@
           <div class="row mb-3">
             <div class="col-md-6">
               <label for="firstName" class="form-label">First name</label>
-              <input type="text" class="form-control" id="firstName"pattern="^[A-Za-z\s]+$"
+              <input type="text" class="form-control" id="firstName" pattern="^[A-Za-z\s]+$"
               required />
               <div class="valid-feedback">Valid FirstName</div>
               <div class="invalid-feedback">First Name must contain letters only (no numbers or symbols)</div>
@@ -63,21 +63,21 @@
 
             <div class="col-md-6">
               <label for="lastName" class="form-label">Last name</label>
-              <input type="text" class="form-control" id="lastName"pattern="^[A-Za-z\s]+$"
+              <input type="text" class="form-control" id="lastName" pattern="^[A-Za-z\s]+$"
               required />
               <div class="valid-feedback">Valid LastName</div>
               <div class="invalid-feedback">Last Name must contain letters only (no numbers or symbols)</div>
             </div>
          
-            <div class="col-md-6">
+            <div class="col-md-6 mt-2">
               <label for="email" class="form-label">Email</label>
               <input type="email" class="form-control" id="email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$"
               required/>
-              <div class="valid-feedback">Valid Data</div>
+              <div class="valid-feedback">Valid Email</div>
               <div class="invalid-feedback">Please enter a valid email</div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6 mt-2">
               <label for="phonenumber" class="form-label">Phone number</label>
               <input type="text" class="form-control" id="phonenumber" pattern="^01[0,1,2,5][0-9]{8}$"
               required />
@@ -85,7 +85,7 @@
               <div class="invalid-feedback">Please enter a valid Egyptian mobile number</div>
             </div>
          
-            <div class="col-md-12">
+            <div class="col-md-12 mt-2">
               <label for="topic" class="form-label">Choose a topic</label>
               <select class="form-select gray-placeholder" id="topic"  required>
                 <option value="" selected disabled hidden >Select one...</option>
@@ -93,11 +93,11 @@
                 <option value="2">Support</option>
                 <option value="3">Feedback</option>
               </select>
-              <div class="valid-feedback">Looks good!</div>
+              <div class="valid-feedback">Valid Data</div>
               <div class="invalid-feedback">Please select a topic</div>
             </div>
           
-            <div class="col-md-12">
+            <div class="col-md-12 mt-2">
               <label for="message" class="form-label ">Message</label>
               <textarea
                 class="form-control custom-placeholder"
@@ -106,7 +106,7 @@
                 placeholder="Type your message..."
                 required
               ></textarea>
-              <div class="valid-feedback">Looks good!</div>
+              <div class="valid-feedback">Valid Data</div>
               <div class="invalid-feedback">Please enter your message</div>
             </div>
           </div>
@@ -129,10 +129,10 @@
         </p>
         <form class="row g-2 justify-content-center needs-validation" novalidate>
           <div class="col-auto">
-            <input type="email" class="form-control secondd" placeholder="Enter your email"   pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$"
+            <input type="email" class="form-control " placeholder="Enter your email"   pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$"
 
             required>
-            <div class="valid-feedback">Valid Data</div>
+            <div class="valid-feedback">Valid Email</div>
             <div class="invalid-feedback">Please enter a valid email</div>
           </div>
           <div class="col-auto">
