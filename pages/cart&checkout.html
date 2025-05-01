@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/home.css" />
+</head>
+
+<body class="graySessions ">
+  <div class="container-fluid py-5 bg-danger">
+    <div class="row bg-success">
+      <!--details-->
+      <section class="container-fluid py-5 col-sm-6 col-md-6 col-lg-6 ">
+        <div class="row ">
+          <h1>Cart</h1>
+          <div class="container">
+
+            <div class=" d-flex card-body bg-light border rounded-4 justify-content-between align-items-center ">
+              <div class=" d-flex col-md-5 col-lg-5 align-items-center">
+                <img src="../imgs/unsplash_N2CiCNWba-Y.png" class="card-img rounded-4  "
+                  style="height: 100%; width: 10rem;" alt="item1">
+                <div class=" container">
+                  <div class="flex-column ">
+                    <h1>funny shirt</h1>
+                    <div class="container">
+                      <div class="flex-row ">
+
+                        <div class="d-flex justify-content-between px-2 align-items-center border "
+                          style="background-color: #e9e6e6; min-width: fit-content">
+                          <h1 role="button">-</h1>
+                          <h1>1</h1>
+                          <h1 role="button">+</h1>
+                        </div>
+                        <div class="">
+                          <i role="button" class="fa-solid fa-trash fs-3"></i>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <div>
+                <h1>5000Egp</h1>
+              </div>
+
+            </div>
+          </div>
+          <!-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault"> -->
+        </div>
+      </section>
+
+      <!-- order summary-->
+      <section class="container-fluid py-5 col-sm-5 col-md-3 col-lg-3 ">
+        <div class="">
+          <div class=" card-body shadow border rounded-4 bg-light p-5 darkblueText">
+            <h1 class="card-title pb-5">
+              Order summary
+            </h1>
+            <div class="d-flex justify-content-between form-title">
+              <p>Price</p>
+              <p>5000 Egp</p>
+            </div>
+            <div class="d-flex justify-content-between">
+              <p>Discount</p>
+              <p>200Egp</p>
+            </div>
+            <div class="d-flex justify-content-between">
+              <p>shipping</p>
+              <span>free</span>
+            </div>
+            <div class="d-flex justify-content-between">
+              <p>Coupon Applied</p>
+              <p>0.00Egp</p>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between">
+              <p>Total</p>
+              <p>4800 Egp</p>
+            </div>
+            <div class="d-flex justify-content-between">
+              <p>Estimated delivery</p>
+              <p>01 May, 2025</p>
+            </div>
+            <div class="position-relative">
+              <input type="text" placeholder="Coupon Code" class="form-control mt-3" style="height:70px; ">
+              <button class="btn mb-3 mx-3 p-2 position-absolute top-50 end-0 translate-middle-y">Apply</button>
+            </div>
+            <button class="btn w-100 mt-3 p-2 rounded-5">Checkout</button>
+          </div>
+
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- <section class ="py-1 d-flex ">
+        <div class ="container">
+            <div class="row gy-4 px-5 px-md-2 px-lg-0 gx-4">
+                <div class="contain-item col-lg-3 col-md-6  pb-2">
+                  <div class="Product">
+                    <div class="pic position-relative">
+                      <img class="w-100" src="../imgs/unsplash_5gkYsrH_ebY.png" alt="skirt" />
+                      <span class="discount">-50%</span>
+                    </div>
+                    <div class="disc">
+                      <h3>Full Outfit</h3>
+                      <div class="rate d-flex align-items-center gap-1">
+                        <span>4.8</span>
+                        <span class="simi">(+500)</span>
+                      </div>
+                      <div class="price d-flex justify-content-between align-items-center">
+                        <div>
+                          5000
+                          <span class="text-decoration-line-through afterSale">10000 Egp</span>
+                        </div>
+                        <button class="btnAddToCart fa-solid fa-plus"></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="contain-item col-lg-3 col-md-6  pb-2">
+                  <div class="Product">
+                    <div class="pic position-relative">
+                      <img class="w-100" src="../imgs/unsplash_BqoyzXdINdg.png" alt="skirt" />
+                      <span class="discount">-50%</span>
+                    </div>
+                    <div class="disc">
+                      <h3>Full Outfit</h3>
+                      <div class="rate d-flex align-items-center gap-1">
+                        <span>4.8</span>
+                        <span class="simi">(+500)</span>
+                      </div>
+                      <div class="price d-flex justify-content-between align-items-center">
+                        <div>
+                          5000
+                          <span class="text-decoration-line-through afterSale">10000 Egp</span>
+                        </div>
+                        <button class="btnAddToCart fa-solid fa-plus"></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="contain-item col-lg-3 col-md-6  pb-2">
+                  <div class="Product">
+                    <div class="pic position-relative">
+                      <img class="w-100" src="../imgs/unsplash_N2CiCNWba-Y.png" alt="skirt" />
+                      <span class="discount">-50%</span>
+                    </div>
+                    <div class="disc">
+                      <h3>Full Outfit</h3>
+                      <div class="rate d-flex align-items-center gap-1">
+                        <span>4.8</span>
+                        <span class="simi">(+500)</span>
+                      </div>
+                      <div class="price d-flex justify-content-between align-items-center">
+                        <div>
+                          5000
+                          <span class="text-decoration-line-through afterSale">10000 Egp</span>
+                        </div>
+                        <button class="btnAddToCart fa-solid fa-plus"></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="contain-item col-lg-3 col-md-6  pb-2">
+                  <div class="Product">
+                    <div class="pic position-relative">
+                      <img class="w-100" src="../imgs/unsplash_Dli2lIXQiJc.png" alt="skirt" />
+                      <span class="discount">-50%</span>
+                    </div>
+                    <div class="disc">
+                      <h3>Full Outfit</h3>
+                      <div class="rate d-flex align-items-center gap-1">
+                        <span>4.8</span>
+                        <span class="simi">(+500)</span>
+                      </div>
+                      <div class="price d-flex justify-content-between align-items-center">
+                        <div>
+                          5000
+                          <span class="text-decoration-line-through afterSale">10000 Egp</span>
+                        </div>
+                        <button class="btnAddToCart fa-solid fa-plus"></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>        
+        </div>
+
+    </section> -->
+</body>
+
+</html>
