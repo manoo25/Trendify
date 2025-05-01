@@ -11,10 +11,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
-    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
@@ -24,11 +20,10 @@
     />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
-    <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/home.css" />
-    <link rel="stylesheet" href="../css/about.css" />
+    <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/proddetails.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
@@ -37,444 +32,820 @@
       crossorigin="anonymous"
     />
     <style>
-      .carousel-img {
-        height: 60vh;
+      .main-swiper {
+        width: 100% !important;
+      }
+
+      @media (min-width: 992px) {
+        .main-swiper {
+          width: 85% !important;
+        }
+
+        .thumbs-swiper {
+          display: block !important;
+        }
+      }
+      .main-swiper .swiper-slide {
+        transition: transform 0.3s ease;
+      }
+      .main-swiper .active-slide {
+        transform: scale(1.125);
+        z-index: 10;
+      }
+      .main-swiper img {
+        width: 100%;
+        height: 100%;
         object-fit: cover;
-        border-radius: 20px;
+        border-radius: 8px;
+      }
+      .main-swiper {
+        position: relative;
       }
 
-      .carousel-control-prev-icon,
-      .carousel-control-next-icon {
-        background-color: rgba(0, 0, 0, 0.5);
-        background-size: 60% 60%;
-        padding: 20px;
+      .main-next,
+      .main-prev {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        background: white;
         border-radius: 50%;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
-      .carousel-indicators [data-bs-target] {
+      .main-swiper:hover .main-next,
+      .main-swiper:hover .main-prev {
+        opacity: 1;
+      }
+
+      .main-next {
+        right: 15px;
+      }
+
+      .main-prev {
+        left: 15px;
+      }
+      .main-prev::after {
+        content: "";
         width: 12px;
         height: 12px;
-        border-radius: 50%;
-        background-color: #bbb;
-        opacity: 1;
-        margin: 0 5px;
-        border: none;
+        border-right: 2px solid #333;
+        border-bottom: 2px solid #333;
+        position: absolute;
+        left: 50%;
+      }
+      .main-next::after {
+        content: "";
+        width: 12px;
+        height: 12px;
+        border-right: 2px solid #333;
+        border-bottom: 2px solid #333;
+        position: absolute;
+        right: 50%;
       }
 
-      .carousel-indicators .active {
-        background-color: #333;
+      .main-next::after {
+        transform: rotate(-45deg);
+        margin-right: -3px;
       }
+
+      .main-prev::after {
+        transform: rotate(135deg);
+        margin-left: -3px;
+      }
+      .main-swiper .swiper-button-disabled {
+        opacity: 0.3 !important;
+        cursor: not-allowed;
+      }
+      .thumbs-swiper {
+        height: 400px !important;
+      }
+
+      .thumbs-swiper .swiper-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .thumbs-swiper .swiper-slide {
+        height: auto !important;
+        opacity: 0.6;
+        transition: opacity 0.3s ease;
+      }
+
+      .thumbs-swiper .swiper-slide-thumb-active {
+        opacity: 1;
+        border: 2px solid #8b5e35;
+      }
+
+      .thumbs-swiper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+      .accordion-button::after {
+  display: none !important;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* تنسيقات علامات + و - */
+.accordion-button:not(.collapsed) .toggle-icon {
+  content: '-';
+}
+
+/* إخفاء hr عند الفتح */
+.accordion-collapse.show + hr {
+  display: none;
+}
     </style>
   </head>
   <body>
     <section id="proddetails">
-        <div class="container">
-            <div class="row mt-2">
-              <div class="left col-6">
-                <div class="row">
-                  <div class="col-2 me-4 d-none d-lg-block">
-                    <div class="card rounded-2 my-2" role="button">
-                      <img src="../imgs/about us Svg.png" alt="" />
-                    </div>
-                    <div class="card rounded-2 my-2" role="button">
-                      <img src="../imgs/testi-3.jpg" alt="" />
-                    </div>
-                    <div class="card rounded-2 my-2" role="button">
-                      <img src="../imgs/unsplash_ezdrvzA1hZw.png" alt="" />
-                    </div>
-                    <div class="card rounded-2 my-2" role="button">
-                      <img src="../imgs/Group 2167.png" alt="" />
-                    </div>
-                  </div>
-      
-                  <div class="left col-6">
-                    <div class="row h-100">
-                      <div class="col-12 d-flex flex-column justify-content-center">
-                        <div class="container-fluid p-0 h-100">
-                          <div
-                            id="carouselIndicators"
-                            class="carousel slide carousel-fade h-100"
-                            data-bs-ride="carousel"
-                          >
-                            <div class="carousel-indicators">
-                              <button
-                                type="button"
-                                data-bs-target="#carouselIndicators"
-                                data-bs-slide-to="0"
-                                class="active"
-                                aria-current="true"
-                                aria-label="Slide 1"
-                              ></button>
-                              <button
-                                type="button"
-                                data-bs-target="#carouselIndicators"
-                                data-bs-slide-to="1"
-                                aria-label="Slide 2"
-                              ></button>
-                              <button
-                                type="button"
-                                data-bs-target="#carouselIndicators"
-                                data-bs-slide-to="2"
-                                aria-label="Slide 3"
-                              ></button>
-                            </div>
-      
-                            <div class="carousel-inner">
-                              <div
-                                class="carousel-item active"
-                                data-bs-interval="4000"
-                              >
-                                <img
-                                  src="../imgs/image1.png"
-                                  class="d-block w-100 carousel-img"
-                                  alt="image1"
-                                />
-                              </div>
-                              <div class="carousel-item" data-bs-interval="4000">
-                                <img
-                                  src="../imgs/unsplash_vHVfpi3h5xk.png"
-                                  class="d-block w-100 carousel-img"
-                                  alt="image2"
-                                />
-                              </div>
-                              <div class="carousel-item" data-bs-interval="4000">
-                                <img
-                                  src="../imgs/image.png"
-                                  class="d-block w-100 carousel-img"
-                                  alt="image3"
-                                />
-                              </div>
-                            </div>
-      
-                            <button
-                              class="carousel-control-prev"
-                              type="button"
-                              data-bs-target="#carouselIndicators"
-                              data-bs-slide="prev"
-                            >
-                              <span
-                                class="carousel-control-prev-icon"
-                                aria-hidden="true"
-                              ></span>
-                              <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button
-                              class="carousel-control-next"
-                              type="button"
-                              data-bs-target="#carouselIndicators"
-                              data-bs-slide="next"
-                            >
-                              <span
-                                class="carousel-control-next-icon"
-                                aria-hidden="true"
-                              ></span>
-                              <span class="visually-hidden">Next</span>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-      
-                  <div class="col-2 offset-1 my-3 mx-auto">
-                    <span
-                      role="button"
-                      style="
-                        display: inline-block;
-                        width: 45px;
-                        height: 45px;
-                        border-radius: 50%;
-                        background-color: transparent;
-                        border: 1px solid var(--main-color);
-                      "
-                      class="d-flex justify-content-center align-items-center"
-                    >
-                      <i class="fa-regular fa-heart main" style="font-size: 20px"></i>
-                    </span>
-                  </div>
+      <div class="container">
+        <!-- carousel -->
+        <div class="row mt-2">
+          <div class="left col-12 col-lg-7 d-flex flex-column flex-lg-row">
+            <!-- Thumbnails -->
+            <div
+              class="swiper thumbs-swiper d-none d-lg-block"
+              style="width: 15%; height: 400px"
+            >
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="../imgs/T1.jpg" class="img-fluid" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="../imgs/T2.jpg" class="img-fluid" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="../imgs/T3.jpg" class="img-fluid" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="../imgs/T4.jpg" class="img-fluid" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="../imgs/T5.jpg" class="img-fluid" />
                 </div>
               </div>
-              <div class="right col-6">
-                <p class="maincolor"><span class="stars">★</span> 4.5 (102)</p>
-                <h3 class="maincolor">Blue Button Down 100% Listen T- <br />Shirt</h3>
-                <p class="secondcolor">
-                  Our best-selling stretch twill origingal shorts with an elastic
-                  <br />
-                  waistband
-                </p>
-                <p class="maincolor">Color : <span class="secondcolor">Blue</span></p>
-                <div class="colorpallet">
-                  <span class="circ c1 active" role="button"></span>
-                  <span class="circ c2" role="button"></span>
-                  <span class="circ c3" role="button"></span>
-                  <span class="circ c4" role="button"></span>
-                  <span class="circ c5" role="button"></span>
-                  <span class="circ c6" role="button"></span>
+            </div>
+
+            <!-- Main Slider -->
+            <div class="swiper main-swiper" style="width: 85%; height: 500px">
+              <div class="swiper-button-next main-next"></div>
+              <div class="swiper-button-prev main-prev"></div>
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img
+                    src="../imgs/T1.jpg"
+                    class="img-fluid w-100 h-100 object-fit-contain"
+                  />
                 </div>
-                <div class="d-flex justify-content-between align-items-center my-3">
-                  <div class="l w-25">
-                    <p class="maincolor">Size : <span class="main">Meduim</span></p>
-                  </div>
-                  <div class="r w-25">
-                    <u class="main" role="button">Size Guide</u>
-                  </div>
+                <div class="swiper-slide">
+                  <img
+                    src="../imgs/T2.jpg"
+                    class="img-fluid w-100 h-100 object-fit-contain"
+                  />
                 </div>
-                <div class="sizes d-flex justify-content-center align-items-center">
-                  <div class="me-auto">
-                    <span
-                      role="button"
-                      class="size d-flex align-items-center justify-content-center"
-                    >
-                      Xs</span
-                    >
-                  </div>
-                  <div class="me-auto">
-                    <span
-                      role="button"
-                      class="size d-flex align-items-center justify-content-center"
-                    >
-                      S</span
-                    >
-                  </div>
-                  <div class="me-auto">
-                    <span
-                      role="button"
-                      class="main d-flex align-items-center justify-content-center"
-                    >
-                      M</span
-                    >
-                  </div>
-                  <div class="me-auto">
-                    <span
-                      role="button"
-                      class="size d-flex align-items-center justify-content-center"
-                    >
-                      L</span
-                    >
-                  </div>
-                  <div class="me-auto">
-                    <span
-                      role="button"
-                      class="size d-flex align-items-center justify-content-center"
-                    >
-                      XL</span
-                    >
-                  </div>
-                  <div class="me-auto">
-                    <span
-                      role="button"
-                      class="size d-flex align-items-center justify-content-center"
-                    >
-                      XXL</span
-                    >
-                  </div>
-                  <div class="me-auto">
-                    <span
-                      role="button"
-                      class="size d-flex align-items-center justify-content-center"
-                    >
-                      XXXL</span
-                    >
-                  </div>
+                <div class="swiper-slide">
+                  <img
+                    src="../imgs/T3.jpg"
+                    class="img-fluid w-100 h-100 object-fit-contain"
+                  />
                 </div>
-      
-                <p class="maincolor my-2">Quantity : <span class="main">01</span></p>
-      
-                <div class="row">
-                  <div class="col-4">
-                    <div class="btn-group">
-                      <button class="btn btn-light bl p-2 px-4">-</button>
-                      <button class="btn btn-light by p-2 px-4">1</button>
-                      <button class="btn btn-light br p-2 px-4">+</button>
-                    </div>
-                  </div>
-                  <div class="col-8">
-                    <div class="btn bt">450 Egp . add To Cart</div>
-                  </div>
+                <div class="swiper-slide">
+                  <img
+                    src="../imgs/T4.jpg"
+                    class="img-fluid w-100 h-100 object-fit-contain"
+                  />
                 </div>
-      
-                <p class="secondcolor my-3">
-                  <i class="fa-solid fa-truck-fast"></i> Estimated Delivery :
-                  <span class="main"> 01 Jan 2023 - 03 Jan 2023</span>
+                <div class="swiper-slide">
+                  <img
+                    src="../imgs/T5.jpg"
+                    class="img-fluid w-100 h-100 object-fit-contain"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="right col-12 col-lg-5">
+            <p
+              class="maincolor d-flex justify-content-center justify-content-lg-start align-items-center"
+            >
+              <span class="stars fs-2">★</span> 4.5 (102)
+            </p>
+            <h3 class="maincolor">Blue Button Down 100%<br />Listen T-Shirt</h3>
+            <p class="secondcolor">
+              Our best-selling stretch twill origingal shorts with an elastic
+              <br />
+              waistband
+            </p>
+            <p class="maincolor">
+              Color : <span class="secondcolor">Blue</span>
+            </p>
+            <div class="colorpallet">
+              <span class="circ c1 active" role="button"></span>
+              <span class="circ c2" role="button"></span>
+              <span class="circ c3" role="button"></span>
+              <span class="circ c4" role="button"></span>
+              <span class="circ c5" role="button"></span>
+              <span class="circ c6" role="button"></span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center my-3">
+              <div class="l w-25">
+                <p class="maincolor">
+                  Size : <span class="main sizeee">Meduim</span>
                 </p>
               </div>
-              <div
-                class="col-12 d-flex justify-content-between align-items-center mt-3"
-              >
-                <h2 class="maincolor">Details</h2>
-                <span>+</span>
+              <div class="r w-25">
+                <u class="main" role="button">Size Guide</u>
               </div>
-              <hr />
-              <div
-                class="col-12 d-flex justify-content-between align-items-center mt-3"
-              >
-                <h2 class="maincolor">Dimensions</h2>
-                <span>+</span>
-              </div>
-              <hr />
-              <div class="col-12">
-                <div
-                  class="top d-flex justify-content-between align-items-center mt-3"
+            </div>
+            <div class="sizes d-flex justify-content-center align-items-center">
+              <div class="me-auto sizee">
+                <span
+                  role="button"
+                  class="size d-flex align-items-center justify-content-center"
                 >
-                  <h2 class="maincolor">Reviews</h2>
-                  <span>-</span>
+                  Xs</span
+                >
+              </div>
+              <div class="me-auto sizee">
+                <span
+                  role="button"
+                  class="size d-flex align-items-center justify-content-center"
+                >
+                  S</span
+                >
+              </div>
+              <div class="me-auto sizee">
+                <span
+                  role="button"
+                  class="main d-flex align-items-center justify-content-center"
+                >
+                  M</span
+                >
+              </div>
+              <div class="me-auto sizee">
+                <span
+                  role="button"
+                  class="size d-flex align-items-center justify-content-center"
+                >
+                  L</span
+                >
+              </div>
+              <div class="me-auto sizee">
+                <span
+                  role="button"
+                  class="size d-flex align-items-center justify-content-center"
+                >
+                  XL</span
+                >
+              </div>
+              <div class="me-auto sizee">
+                <span
+                  role="button"
+                  class="size d-flex align-items-center justify-content-center"
+                >
+                  XXL</span
+                >
+              </div>
+              <div class="me-auto sizee">
+                <span
+                  role="button"
+                  class="size d-flex align-items-center justify-content-center"
+                >
+                  XXXL</span
+                >
+              </div>
+            </div>
+
+            <p class="maincolor my-2">
+              Quantity : <span class="main quantity">01</span>
+            </p>
+
+            <div class="row">
+              <div class="col-2 col-lg-3">
+                <div class="btn-group">
+                  <button class="btn btn-light bl p-2 px-4">-</button>
+                  <button class="counter btn-light bg-light by p-2 px-4">
+                    1
+                  </button>
+                  <button class="btn btn-light br p-2 px-4">+</button>
                 </div>
-                <div class="row g-2">
-                  <div class="col-12 col-lg-4">
-                    <div class="revcont">
-                      <div class="container bg-white rounded-4 py-2">
-                        <div class="col-12">
-                          <p class="maincolor my-2 fw-bold">Employee Reviews</p>
-                          <p class="h1 maincolor">4.7</p>
-                          <span class="stars fs-1">★★★★</span
-                          ><span class="star fs-1">★</span>
-                          <p class="text-muted">(578 Reviews)</p>
-                        </div>
-                        <div class="col-12">
-                          <div class="row align-items-center mb-2">
-                            <div class="col-2 col-sm-1 text-end pe-0">5</div>
-                            <div class="col-1 ps-1 pe-0">
-                              <i class="bi bi-star-fill text-warning"></i>
-                            </div>
-                            <div class="col-7 col-sm-8 px-2">
-                              <div class="progress" style="height: 10px">
-                                <div
-                                  class="progress-bar"
-                                  style="width: 80%; background-color: #ffc000"
-                                ></div>
-                              </div>
-                            </div>
-                            <div class="col-2 text-muted small">488</div>
-                          </div>
-      
-                          <div class="row align-items-center mb-2">
-                            <div class="col-2 col-sm-1 text-end pe-0">4</div>
-                            <div class="col-1 ps-1 pe-0">
-                              <i class="bi bi-star-fill text-warning"></i>
-                            </div>
-                            <div class="col-7 col-sm-8 px-2">
-                              <div class="progress" style="height: 10px">
-                                <div
-                                  class="progress-bar"
-                                  style="width: 60%; background-color: #ffc000"
-                                ></div>
-                              </div>
-                            </div>
-                            <div class="col-2 text-muted small">74</div>
-                          </div>
-                          <div class="row align-items-center mb-2">
-                            <div class="col-2 col-sm-1 text-end pe-0">3</div>
-                            <div class="col-1 ps-1 pe-0">
-                              <i class="bi bi-star-fill text-warning"></i>
-                            </div>
-                            <div class="col-7 col-sm-8 px-2">
-                              <div class="progress" style="height: 10px">
-                                <div
-                                  class="progress-bar"
-                                  style="width: 35%; background-color: #ffc000"
-                                ></div>
-                              </div>
-                            </div>
-                            <div class="col-2 text-muted small">14</div>
-                          </div>
-                          <div class="row align-items-center mb-2">
-                            <div class="col-2 col-sm-1 text-end pe-0">2</div>
-                            <div class="col-1 ps-1 pe-0">
-                              <i class="bi bi-star-fill text-warning"></i>
-                            </div>
-                            <div class="col-7 col-sm-8 px-2">
-                              <div class="progress" style="height: 10px">
-                                <div
-                                  class="progress-bar"
-                                  style="width: 0%; background-color: #ffc000"
-                                ></div>
-                              </div>
-                            </div>
-                            <div class="col-2 text-muted small">0</div>
-                          </div>
-                          <div class="row align-items-center mb-2">
-                            <div class="col-2 col-sm-1 text-end pe-0">1</div>
-                            <div class="col-1 ps-1 pe-0">
-                              <i class="bi bi-star-fill text-warning"></i>
-                            </div>
-                            <div class="col-7 col-sm-8 px-2">
-                              <div class="progress" style="height: 10px">
-                                <div
-                                  class="progress-bar"
-                                  style="width: 0%; background-color: #ffc000"
-                                ></div>
-                              </div>
-                            </div>
-                            <div class="col-2 text-muted small">0</div>
+              </div>
+              <div class="col-7 offset-3 col-lg-7 offset-lg-2">
+                <div class="btn bt">450 Egp . add To Cart</div>
+              </div>
+            </div>
+
+            <p class="secondcolor my-3">
+              <i class="fa-solid fa-truck-fast"></i> Estimated Delivery :
+              <span class="main"> 01 Jan 2023 - 03 Jan 2023</span>
+            </p>
+          </div>
+       
+        </div>
+<!-- end of carousel % -->
+
+<!-- accordion -->
+        <div class="row mt-2">
+          <!-- main accordion  -->
+            <div class="col-12 accordion " id="productAccordion">
+              
+              <!-- Details Section -->
+              <div class="accordion-item border-0  bg-transparent">
+                <div class="accordion-header d-flex justify-content-between align-items-center">
+                  <h2 class="maincolor m-0">Details</h2>
+                  <span class="toggle-icon"  data-bs-toggle="collapse" 
+                  data-bs-target="#collapseDetails"
+                  aria-expanded="false" role="button">+</span>
+                </div>
+                <div id="collapseDetails" class="accordion-collapse collapse bg-white rounded-1 " 
+                     data-bs-parent="#productAccordion">
+                  <div class="accordion-body p-4 rounded-5">
+                    <div class="row g-2">
+                      <div class="col-12 col-lg-8">
+                        <div class="container bg-white py-2 rounded-4">
+                          <div class="col-12">
+                            <p class="my-3">
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                              Cumque vitae blanditiis assumenda, magni saepe repellendus
+                              consectetur eaque corrupti cupiditate velit!
+                            </p>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="col-12 col-lg-8">
-                    <div class="container bg-white py-2 rounded-4">
-                      <div class="col-12">
-                        <span class="text-muted">Jan 20,2024</span> <br />
-                        <span class="stars fs-3">★★★★</span
-                        ><span class="star fs-3">★</span>
-                        <div class="icon d-flex align-items-center gap-4">
-                          <span class="prof mb-3">AK</span> <span>Alex K.</span>
+                </div>
+              </div>
+              <hr />
+              <!-- Dimensions Section -->
+              <div class="accordion-item border-0  bg-transparent">
+                <div class="accordion-header d-flex justify-content-between align-items-center">
+                  <h2 class="maincolor m-0">Dimensions</h2>
+                  <span class="toggle-icon"  data-bs-toggle="collapse" 
+                  data-bs-target="#collapseDimensions"
+                  aria-expanded="false" role="button">+</span>
+                </div>
+                <div id="collapseDimensions" class="accordion-collapse collapse bg-white rounded-1 " 
+                     data-bs-parent="#productAccordion">
+                  <div class="accordion-body p-4 rounded-5">
+              <div class="row g-2">
+                <div class="col-12 col-lg-8">
+                  <div class="container bg-white py-2 rounded-4">
+                    <div class="col-12">
+                      <span class="text-muted">Jan 20,2024</span> <br />
+                      <span class="stars fs-3">★★★★</span
+                      ><span class="star fs-3">★</span>
+                      <div class="icon d-flex align-items-center gap-4">
+                        <span class="prof mb-3">AK</span> <span>Alex K.</span>
+                      </div>
+                      <span class="text-muted my-3">Senior analyst</span>
+                      <p class="my-3">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Cumque vitae blanditiis assumenda, magni saepe repellendus
+                        consectetur eaque corrupti cupiditate velit!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                  </div>
+                </div>
+              </div>
+              <hr />
+
+              <!-- Reviews Section -->
+              <div class="accordion-item border-0  bg-transparent mb-3">
+                <div class="accordion-header d-flex justify-content-between align-items-center">
+                  <h2 class="maincolor m-0">Reviews</h2>
+                  <span class="toggle-icon"  data-bs-toggle="collapse" 
+                  data-bs-target="#collapseRiviews"
+                  aria-expanded="false" role="button">+</span>
+                </div>
+                <div id="collapseRiviews" class="accordion-collapse collapse  " 
+                     data-bs-parent="#productAccordion">
+                  <div class="accordion-body p-4 rounded-4">
+                    <div class="row g-2">
+                      <div class="col-12 col-lg-4">
+                        <div class="revcont">
+                          <div class="container bg-white rounded-4 py-2">
+                            <div class="col-12">
+                              <p class="maincolor my-2 fw-bold">Employee Reviews</p>
+                              <p class="h1 maincolor">4.7</p>
+                              <span class="stars fs-1">★★★★</span
+                              ><span class="star fs-1">★</span>
+                              <p class="text-muted">(578 Reviews)</p>
+                            </div>
+                            <div class="col-12">
+                              <div class="row align-items-center mb-2">
+                                <div class="col-2 col-sm-1 text-end pe-0">5</div>
+                                <div class="col-1 ps-1 pe-0">
+                                  <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <div class="col-7 col-sm-8 px-2">
+                                  <div class="progress" style="height: 10px">
+                                    <div
+                                      class="progress-bar"
+                                      style="width: 80%; background-color: #ffc000"
+                                    ></div>
+                                  </div>
+                                </div>
+                                <div class="col-2 text-muted small">488</div>
+                              </div>
+                    
+                              <div class="row align-items-center mb-2">
+                                <div class="col-2 col-sm-1 text-end pe-0">4</div>
+                                <div class="col-1 ps-1 pe-0">
+                                  <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <div class="col-7 col-sm-8 px-2">
+                                  <div class="progress" style="height: 10px">
+                                    <div
+                                      class="progress-bar"
+                                      style="width: 60%; background-color: #ffc000"
+                                    ></div>
+                                  </div>
+                                </div>
+                                <div class="col-2 text-muted small">74</div>
+                              </div>
+                              <div class="row align-items-center mb-2">
+                                <div class="col-2 col-sm-1 text-end pe-0">3</div>
+                                <div class="col-1 ps-1 pe-0">
+                                  <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <div class="col-7 col-sm-8 px-2">
+                                  <div class="progress" style="height: 10px">
+                                    <div
+                                      class="progress-bar"
+                                      style="width: 35%; background-color: #ffc000"
+                                    ></div>
+                                  </div>
+                                </div>
+                                <div class="col-2 text-muted small">14</div>
+                              </div>
+                              <div class="row align-items-center mb-2">
+                                <div class="col-2 col-sm-1 text-end pe-0">2</div>
+                                <div class="col-1 ps-1 pe-0">
+                                  <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <div class="col-7 col-sm-8 px-2">
+                                  <div class="progress" style="height: 10px">
+                                    <div
+                                      class="progress-bar"
+                                      style="width: 0%; background-color: #ffc000"
+                                    ></div>
+                                  </div>
+                                </div>
+                                <div class="col-2 text-muted small">0</div>
+                              </div>
+                              <div class="row align-items-center mb-2">
+                                <div class="col-2 col-sm-1 text-end pe-0">1</div>
+                                <div class="col-1 ps-1 pe-0">
+                                  <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <div class="col-7 col-sm-8 px-2">
+                                  <div class="progress" style="height: 10px">
+                                    <div
+                                      class="progress-bar"
+                                      style="width: 0%; background-color: #ffc000"
+                                    ></div>
+                                  </div>
+                                </div>
+                                <div class="col-2 text-muted small">0</div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <span class="text-muted my-3">Senior analyst</span>
-                        <p class="my-3">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Cumque vitae blanditiis assumenda, magni saepe repellendus
-                          consectetur eaque corrupti cupiditate velit!
-                        </p>
-                        <hr />
-                        <span class="text-muted">Nov 13,2023</span> <br />
-                        <span class="stars fs-3">★★★★</span
-                        ><span class="star fs-3">★</span>
-                        <div class="icon d-flex align-items-center gap-4">
-                          <span class="prof mb-3">ER</span> <span>Emily R.</span>
+                      </div>
+                      <div class="col-12 col-lg-8">
+                        <div class="container bg-white py-2 rounded-4">
+                          <div class="col-12">
+                            <span class="text-muted">Jan 20,2024</span> <br />
+                            <span class="stars fs-3">★★★★</span
+                            ><span class="star fs-3">★</span>
+                            <div class="icon d-flex align-items-center gap-4">
+                              <span class="prof mb-3">AK</span> <span>Alex K.</span>
+                            </div>
+                            <span class="text-muted my-3">Senior analyst</span>
+                            <p class="my-3">
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                              Cumque vitae blanditiis assumenda, magni saepe repellendus
+                              consectetur eaque corrupti cupiditate velit!
+                            </p>
+                            <hr />
+                            <span class="text-muted">Nov 13,2023</span> <br />
+                            <span class="stars fs-3">★★★★</span
+                            ><span class="star fs-3">★</span>
+                            <div class="icon d-flex align-items-center gap-4">
+                              <span class="prof mb-3">ER</span> <span>Emily R.</span>
+                            </div>
+                            <span class="text-muted my-3">Front-End Engineer</span>
+                            <p class="my-3">
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                              Cumque vitae blanditiis assumenda, magni saepe repellendus
+                              consectetur eaque corrupti cupiditate velit!
+                            </p>
+                          </div>
                         </div>
-                        <span class="text-muted my-3">Front-End Engineer</span>
-                        <p class="my-3">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                          Cumque vitae blanditiis assumenda, magni saepe repellendus
-                          consectetur eaque corrupti cupiditate velit!
-                        </p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+</div>
+<!-- end of accordion % -->
+
+
+<!-- foot from another section -->
+<section class="py-5 ">
+  <div class="container">
+    <div class="title text-center">
+      <p>Top Products</p>
+      <h1>Top Picks For You !"</h1>
+    </div>
+    <div class="row gy-4 px-5 px-md-2 px-lg-0 gx-4 pt-4  ">
+      <div class="contain-item    col-lg-3 col-md-6  pb-2">
+        <div class="Product">
+          <div class="pic position-relative">
+            <img
+              class="w-100"
+              src="../imgs/unsplash_5gkYsrH_ebY.png"
+              alt="skirt"
+            />
+            <span class="discount">-50%</span>
+            <span class="fa-regular fa-heart position-absolute"></span>
           </div>
+          <div class="disc">
+            <h3>Full Outfit</h3>
+            <div class="rate d-flex align-items-center gap-1">
+              <span class="fa-solid fa-star"></span>
+              <span>4.8</span>
+              <span class="simi">(+500)</span>
+            </div>
+            <div
+              class="price d-flex justify-content-between align-items-center"
+            >
+              <div>
+                5000
+                <span class="text-decoration-line-through afterSale"
+                  >10000 Egp</span
+                >
+              </div>
+              <button class="btnAddToCart fa-solid fa-plus"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contain-item  col-lg-3 col-md-6  pb-2">
+        <div class="Product">
+          <div class="pic position-relative">
+            <img
+              class="w-100"
+              src="../imgs/unsplash_BqoyzXdINdg.png"
+              alt="skirt"
+            />
+            <span class="discount">-50%</span>
+            <span class="fa-regular fa-heart position-absolute"></span>
+          </div>
+          <div class="disc">
+            <h3>Full Outfit</h3>
+            <div class="rate d-flex align-items-center gap-1">
+              <span class="fa-solid fa-star"></span>
+              <span>4.8</span>
+              <span class="simi">(+500)</span>
+            </div>
+            <div
+              class="price d-flex justify-content-between align-items-center"
+            >
+              <div>
+                5000
+                <span class="text-decoration-line-through afterSale"
+                  >10000 Egp</span
+                >
+              </div>
+              <button class="btnAddToCart fa-solid fa-plus"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contain-item    col-lg-3 col-md-6  pb-2">
+        <div class="Product">
+          <div class="pic position-relative">
+            <img
+              class="w-100"
+              src="../imgs/unsplash_N2CiCNWba-Y.png"
+              alt="skirt"
+            />
+            <span class="discount">-50%</span>
+            <span class="fa-regular fa-heart position-absolute"></span>
+          </div>
+          <div class="disc">
+            <h3>Full Outfit</h3>
+            <div class="rate d-flex align-items-center gap-1">
+              <span class="fa-solid fa-star"></span>
+              <span>4.8</span>
+              <span class="simi">(+500)</span>
+            </div>
+            <div
+              class="price d-flex justify-content-between align-items-center"
+            >
+              <div>
+                5000
+                <span class="text-decoration-line-through afterSale"
+                  >10000 Egp</span
+                >
+              </div>
+              <button class="btnAddToCart fa-solid fa-plus"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contain-item    col-lg-3 col-md-6  pb-2">
+        <div class="Product">
+          <div class="pic position-relative">
+            <img
+              class="w-100"
+              src="../imgs/unsplash_Dli2lIXQiJc.png"
+              alt="skirt"
+            />
+            <span class="discount">-50%</span>
+            <span class="fa-regular fa-heart position-absolute"></span>
+          </div>
+          <div class="disc">
+            <h3>Full Outfit</h3>
+            <div class="rate d-flex align-items-center gap-1">
+              <span class="fa-solid fa-star"></span>
+              <span>4.8</span>
+              <span class="simi">(+500)</span>
+            </div>
+            <div
+              class="price d-flex justify-content-between align-items-center"
+            >
+              <div>
+                5000
+                <span class="text-decoration-line-through afterSale"
+                  >10000 Egp</span
+                >
+              </div>
+              <button class="btnAddToCart fa-solid fa-plus"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- end of foot % -->
+     
     </section>
-    
-   
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
       crossorigin="anonymous"
     ></script>
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
+
+
+// swiper carousel
       document.addEventListener("DOMContentLoaded", function () {
-        new Splide("#main-carousel", {
-          type: "slide",
-          perPage: 3,
-          perMove: 1,
-          gap: "1.5rem",
-          arrows: true,
-          pagination: false,
+        const thumbsSwiper = new Swiper(".thumbs-swiper", {
+          direction: "vertical",
+          slidesPerView: "auto",
+          spaceBetween: 20,
+          watchSlidesProgress: true,
+          freeMode: true,
+          mousewheel: true,
+          slideToClickedSlide: true,
           breakpoints: {
             992: {
-              perPage: 2,
-            },
-            768: {
-              perPage: 1,
-              arrows: false,
+              direction: "vertical",
+              slidesPerView: "auto",
+              spaceBetween: 20,
             },
           },
-        }).mount();
+        });
+
+        const swiper = new Swiper(".main-swiper", {
+          slidesPerView: 1.5,
+          centeredSlides: false,
+          spaceBetween: 1,
+          loop: true,
+          slideActiveClass: "active-slide",
+          thumbs: {
+            swiper: thumbsSwiper,
+          },
+          navigation: {
+            nextEl: ".main-next",
+            prevEl: ".main-prev",
+          },
+          breakpoints: {
+            0: {
+              slidesPerView: 1,
+              spaceBetween: 0,
+              centeredSlides: true,
+            },
+            1200: {
+              slidesPerView: 1.5,
+              spaceBetween: 20,
+              centeredSlides: false,
+            },
+          },
+        });
       });
+
+
+      // icrement and decrement
+      const icrementbtn = document.querySelector(".br");
+      const decrementbtn = document.querySelector(".bl");
+      const quantity = document.querySelector(".quantity");
+      let counter = document.querySelector(".counter");
+      let counterval = parseInt(counter.textContent) || 1;
+      const circs= document.querySelectorAll('.circ');
+
+      icrementbtn.onclick = function () {
+        counter.textContent = ++counterval;
+        quantity.textContent = counterval;
+        console.log(counterval);
+      };
+      decrementbtn.onclick = function () {
+        if (counterval > 1) {
+          counter.textContent = --counterval;
+          quantity.textContent = counterval;
+          console.log(counterval);
+        }
+      };
+
+
+      // size
+      document.querySelectorAll(".sizee").forEach((element) => {
+        element.addEventListener("click", function () {
+          const spanElement = element.querySelector("span");
+
+          document.querySelectorAll(".sizee span").forEach((span) => {
+            span.classList.add("size");
+            span.classList.remove("main");
+          });
+
+          spanElement.classList.remove("size");
+          spanElement.classList.add("main");
+
+          const displayElement = document.querySelector(".sizeee");
+          if (displayElement) {
+            displayElement.textContent = spanElement.textContent;
+          }
+        });
+      });
+
+      // color picking  by delegation
+      document.querySelector('.colorpallet').addEventListener('click', function(e) {
+  if (e.target.classList.contains('circ')) {
+    document.querySelector('.circ.active')?.classList.remove('active');
+    e.target.classList.add('active');
+  }
+});
+    
+// switch + for accordion to -
+
+
+  document.querySelectorAll('.accordion-collapse').forEach(function(collapseEl) {
+    
+    collapseEl.addEventListener('show.bs.collapse', function () {
+      const toggleIcon = collapseEl
+        .previousElementSibling
+        .querySelector('.toggle-icon');
+      if (toggleIcon) toggleIcon.textContent = '-';
+    });
+
+    collapseEl.addEventListener('hide.bs.collapse', function () {
+      const toggleIcon = collapseEl
+        .previousElementSibling
+        .querySelector('.toggle-icon');
+      if (toggleIcon) toggleIcon.textContent = '+';
+    });
+  });
+
     </script>
   </body>
 </html>
