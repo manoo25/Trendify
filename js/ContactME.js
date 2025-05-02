@@ -13,6 +13,9 @@ let comentObj={}
         if (localStorage.getItem('Comments')) {
         CommentsArr=JSON.parse(localStorage.getItem('Comments')) 
     } 
+    else{
+        CommentsArr=[];
+    }
     }
 const SubBtn=document.getElementById('SubBtn');
     const forms = document.querySelectorAll('.needs-validation');
@@ -22,7 +25,7 @@ const SubBtn=document.getElementById('SubBtn');
         if (form.checkValidity()) {   
             pullDAta();
              SendComment();
-            clearTxt(); 
+            clearTxt();
             form.classList.remove('was-validated');
         }
         else{

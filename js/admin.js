@@ -64,36 +64,66 @@ function() {
 
 // comments 
 let adminComments=document.getElementById('adminComments')
+let CustomerComments=document.getElementById('CustomerComments')
 let CommentsArr=[];
-if (localStorage.getItem('Comments')) {
-    CommentsArr=JSON.parse(localStorage.getItem('Comments')) 
+const CustomerId=JSON.parse(localStorage.getItem('LogedUser')).userId;
+
+function pullComments() {
+    if (localStorage.getItem('Comments')) {
+        CommentsArr=JSON.parse(localStorage.getItem('Comments')) 
+    } 
+    else{
+        CommentsArr=[];
+    }
 }
-displayComments();
+pullComments();
+
+
 function displayComments() {
+    pullComments();
     adminComments.innerHTML=''
     CommentsArr.forEach(comment => {
         adminComments.innerHTML+=`
          <tr>
-                                    <td>${comment.fname}</td>
-                                    <td>${comment.phonenumber}</td>
+    <td>${comment.fname}</td>
+   <td>${comment.phonenumber}</td>
                                  
-                                    <td>${comment.message}</td>
-                                    <td>
-                                        <label class="switch">
-                                        <input type="checkbox">
-                                        <span class="slider"></span>
-                                      </label></td>
-                                    <td >
-                                        <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                        <button onclick="deleteComment(${comment.commentId})" class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
+   <td>${comment.message}</td>
+    <td>
+          <label class="switch">
+          <input type="checkbox">
+         <span class="slider"></span>
+        </label></td>
+     <td >
+        <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
+        <button onclick="deleteComment(${comment.commentId})" class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
                                        
-                                    </td>
-                                </tr>
+    </td>    </tr>
         
         `
     });
 }
+function displayCustomerComments() {
+    pullComments();
+    CommentsArr=CommentsArr.filter(x=>x.userId==CustomerId);
+    CustomerComments.innerHTML=''
+    CommentsArr.forEach(comment => {
+        CustomerComments.innerHTML+=`
+         <tr>
+  
+                                 
+   <td>${comment.message}</td>
+   <td>${comment.reply}</td>
 
+     <td >
+      
+        <button onclick="deleteComment(${comment.commentId})" class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
+                                       
+    </td>    </tr>
+        
+        `
+    });
+}
 function deleteComment(comId) {
     $('#deleteAlert').fadeIn();
     $('.alert-content').css({
@@ -104,12 +134,11 @@ function deleteComment(comId) {
       $('#confirmDelete').on('click', function() {
        let UpdateComments = CommentsArr.filter(x => x.commentId !== comId);
     CommentsArr=UpdateComments;
+localStorage.setItem('Comments',JSON.stringify(CommentsArr));
     if (CommentsArr.length==0) {
         localStorage.removeItem('Comments');
     }
-    else{
-        localStorage.setItem('Comments',JSON.stringify(CommentsArr));
-    }
+   
 
 
     displayComments();

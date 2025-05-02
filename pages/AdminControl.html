@@ -55,7 +55,7 @@
                 <a onclick="showDataTbl('UserId')"  href="#"><i class="fas fa-users"></i>View Users</a>
             </li>
             <li>
-                <a onclick="showDataTbl('CommentsId')"  href="#"><i class="fas fa-comment"></i>View Comments</a>
+                <a onclick="showDataTbl('CommentsId');displayComments()"  href="#"><i class="fas fa-comment"></i>View Comments</a>
             </li>
           
           
@@ -552,6 +552,9 @@
     <script type="module">
         import { accessPage } from '../js/auth.js'; 
         accessPage('admin');
+      </script>
+      <script>
+         displayComments();
       </script>
 </body>
 </html>
