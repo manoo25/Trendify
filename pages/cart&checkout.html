@@ -10,66 +10,312 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link rel="stylesheet" href="../css/global.css" />
   <link rel="stylesheet" href="../css/home.css" />
+  <link rel="stylesheet" href="../css/cart&checkout.css" />
 </head>
+<script>
+  window.onload = function () {
+    //TODO: display coustomer details
+    let checkoutBtn = document.getElementById("checkout");
+    let customerDetails = document.querySelector(".customer-details");
+    let orderDetail = document.querySelector(".order-details");
+    let orderBtn = document.getElementById("order");
+    checkoutBtn.addEventListener("click", function () {
+      customerDetails.classList.remove("d-none");
+      orderDetail.classList.add("d-none");
+      checkoutBtn.style.display = "none";
+      orderBtn.style.display = "block";
+    });
+
+    //TODO: display order details 
+    let reviweBtn = document.getElementById("reviwe");
+    reviweBtn.addEventListener("click", function () {
+      customerDetails.classList.add("d-none");
+      orderDetail.classList.remove("d-none");
+      checkoutBtn.style.display = "block";
+      orderBtn.style.display = "none";
+    })
+
+
+    //TODO: increment & decrement items
+    let count = document.getElementById("count");
+    let decButton = document.getElementById("decrement");
+    decButton.addEventListener("click", decrement);
+    let incButton = document.getElementById("increment");
+    incButton.addEventListener("click", increment);
+    let counter = 1;
+    function increment() {
+      counter++;
+      count.innerHTML = counter;
+    };
+    function decrement() {
+      if (counter > 1) {
+        counter--;
+        count.innerHTML = counter;
+      }
+
+    };
+  }
+</script>
 
 <body class="graySessions ">
-  <div class="container-fluid py-5 bg-danger">
-    <div class="row bg-success">
-      <!--details-->
-      <section class="container-fluid py-5 col-sm-6 col-md-6 col-lg-6 ">
-        <div class="row ">
-          <h1>Cart</h1>
-          <div class="container">
+  <div class="container-fluid py-5 ">
 
-            <div class=" d-flex card-body bg-light border rounded-4 justify-content-between align-items-center ">
-              <div class=" d-flex col-md-5 col-lg-5 align-items-center">
+    <div class="row ">
+      <!--customer details-->
+      <section class="container-fluid  customer-details py-5 col-sm-12 col-md-6 col-lg-6 p-sm-5 d-none">
+        <form action="#" class="needs-validation" novalidate>
+          <div class="mb-3">
+            <label for="customer-name" class="form-label">Your Name</label>
+            <input type="text" class="form-control" id="customer-name" pattern="^[A-Za-z\s]{2,}$" required>
+            <div class="invalid-feedback">
+              Please enter your name.
+            </div>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="customer-address" class="form-label">Address</label>
+            <input type="text" class="form-control" id="customer-address" pattern="^\d+\s+[A-Za-z0-9\s.,'-]+$
+            " required>
+            <div class="invalid-feedback">
+              Please enter your address.
+            </div>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="customerPhone" class="form-label">Phone Number</label>
+            <input type="text" class="form-control" id="customerPhone" pattern="^01[0,1,2,5][0-9]{8}$" required>
+            <div class="invalid-feedback">
+              Please enter your phone number.
+            </div>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="anotherCustomerPhone" class="form-label">Another Phone Number</label>
+            <input type="text" class="form-control" id="anotherCustomerPhone" pattern="^01[0,1,2,5][0-9]{8}$" required>
+            <div class="invalid-feedback">
+              Please enter your phone number.
+            </div>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+
+          <button id="submit" type="submit" class="btn">Submit</button>
+          <button id="reviwe" type="reset" class="btn">Reviwe</button>
+        </form>
+
+        <div id="congratMsg" class="title text-center pt-5 d-none">
+          <p> "congratulation your order has been placed"</p>
+        </div>
+      </section><!--end customer details-->
+
+      <!--order details-->
+      <section class="container-fluid order-details py-5 col-sm-10 col-md-6 col-lg-6 d-block">
+        <div class="row ">
+          <div class="d-flex mx-2 px-4 title">
+            <h1>Cart</h1>
+            <p class="mx-2 "> 2 item</p>
+          </div>
+          <!--firstCart-->
+          <div class="container pb-3">
+
+            <div class=" d-flex card-body bg-light border rounded-4 justify-content-between align-items-center "
+              style="min-width: fit-content">
+              <div class=" d-flex align-items-center">
                 <img src="../imgs/unsplash_N2CiCNWba-Y.png" class="card-img rounded-4  "
                   style="height: 100%; width: 10rem;" alt="item1">
                 <div class=" container">
-                  <div class="flex-column ">
+                  <div class="flex-column px-5 title">
                     <h1>funny shirt</h1>
-                    <div class="container">
-                      <div class="flex-row ">
+                    <div class="d-flex">
+                      <div class="container gx-0">
 
-                        <div class="d-flex justify-content-between px-2 align-items-center border "
-                          style="background-color: #e9e6e6; min-width: fit-content">
-                          <h1 role="button">-</h1>
-                          <h1>1</h1>
-                          <h1 role="button">+</h1>
-                        </div>
-                        <div class="">
-                          <i role="button" class="fa-solid fa-trash fs-3"></i>
+                        <div class="flex-row  justify-content-between ">
+                          <div class="d-flex justify-content-between px-2 align-items-center border "
+                            style="background-color: #e9e6e6; min-width:5rem">
+                            <button id="decrement" type="button" class="lightBtn p-2 px-4"> <i
+                                class="fa-solid fa-minus"></i></button>
+
+                            <h1 id="count" class=" p-2 px-4">1</h1>
+                            <button id="increment" type="button" class="lightBtn p-2 px-4"><i
+                                class="fa-solid fa-plus"></i></button>
+                          </div>
+
                         </div>
                       </div>
+                      <div class="px-2 mt-3 ">
+                        <i id="delete" role="button" class="fa-solid fa-trash fs-3"></i>
+                      </div>
+
                     </div>
 
                   </div>
                 </div>
 
               </div>
-              <div>
+              <div class="px-2 title">
                 <h1>5000Egp</h1>
               </div>
 
             </div>
-          </div>
-          <!-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault"> -->
+          </div><!--end firstCart-->
+
+          <!--secCart-->
+          <div class="container pb-3">
+
+            <div class=" d-flex card-body bg-light border rounded-4 justify-content-between align-items-center "
+              style="min-width: fit-content">
+              <div class=" d-flex align-items-center">
+                <img src="../imgs/unsplash_5gkYsrH_ebY.png" class="card-img rounded-4  "
+                  style="height: 100%; width: 10rem;" alt="item1">
+                <!--cart data-->
+                <div class=" container">
+                  <div class="flex-column px-5 title">
+                    <h1>funny shirt</h1>
+                    <div class="d-flex">
+                      <div class="container gx-0">
+
+                        <div class="flex-row  justify-content-between ">
+                          <div class="d-flex justify-content-between px-2 align-items-center border "
+                            style="background-color: #e9e6e6; min-width:5rem">
+                            <button id="decrement" type="button" class="lightBtn p-2 px-4"> <i
+                                class="fa-solid fa-minus"></i></button>
+
+                            <h1 id="count" class=" p-2 px-4">1</h1>
+                            <button id="increment" type="button" class="lightBtn p-2 px-4"><i
+                                class="fa-solid fa-plus"></i></button>
+                          </div>
+
+                        </div>
+                      </div>
+                      <!--delete icon-->
+                      <div class="px-2 mt-3 ">
+                        <i id="delete" role="button" class="fa-solid fa-trash fs-3"></i>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="px-2 title">
+                <h1>5000Egp</h1>
+              </div>
+
+            </div>
+          </div><!--end secCart-->
+
+          <!--secCart-->
+          <div class="container pb-3">
+
+            <div class=" d-flex card-body bg-light border rounded-4 justify-content-between align-items-center "
+              style="min-width: fit-content">
+              <div class=" d-flex align-items-center">
+                <img src="../imgs/unsplash_5gkYsrH_ebY.png" class="card-img rounded-4  "
+                  style="height: 100%; width: 10rem;" alt="item1">
+                <!--cart data-->
+                <div class=" container">
+                  <div class="flex-column px-5 title">
+                    <h1>funny shirt</h1>
+                    <div class="d-flex">
+                      <div class="container gx-0">
+
+                        <div class="flex-row  justify-content-between ">
+                          <div class="d-flex justify-content-between px-2 align-items-center border "
+                            style="background-color: #e9e6e6; min-width:5rem">
+                            <button id="decrement" type="button" class="lightBtn p-2 px-4"> <i
+                                class="fa-solid fa-minus"></i></button>
+
+                            <h1 id="count" class=" p-2 px-4">1</h1>
+                            <button id="increment" type="button" class="lightBtn p-2 px-4"><i
+                                class="fa-solid fa-plus"></i></button>
+                          </div>
+
+                        </div>
+                      </div>
+                      <!--delete icon-->
+                      <div class="px-2 mt-3 ">
+                        <i id="delete" role="button" class="fa-solid fa-trash fs-3"></i>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="px-2 title">
+                <h1>5000Egp</h1>
+              </div>
+
+            </div>
+          </div><!--end secCart-->
+          <!--secCart-->
+          <div class="container pb-3">
+
+            <div class=" d-flex card-body bg-light border rounded-4 justify-content-between align-items-center "
+              style="min-width: fit-content">
+              <div class=" d-flex align-items-center">
+                <img src="../imgs/unsplash_5gkYsrH_ebY.png" class="card-img rounded-4  "
+                  style="height: 100%; width: 10rem;" alt="item1">
+                <!--cart data-->
+                <div class=" container">
+                  <div class="flex-column px-5 title">
+                    <h1>funny shirt</h1>
+                    <div class="d-flex">
+                      <div class="container gx-0">
+
+                        <div class="flex-row  justify-content-between ">
+                          <div class="d-flex justify-content-between px-2 align-items-center border "
+                            style="background-color: #e9e6e6; min-width:5rem">
+                            <button id="decrement" type="button" class="lightBtn p-2 px-4"> <i
+                                class="fa-solid fa-minus"></i></button>
+
+                            <h1 id="count" class=" p-2 px-4">1</h1>
+                            <button id="increment" type="button" class="lightBtn p-2 px-4"><i
+                                class="fa-solid fa-plus"></i></button>
+                          </div>
+
+                        </div>
+                      </div>
+                      <!--delete icon-->
+                      <div class="px-2 mt-3 ">
+                        <i id="delete" role="button" class="fa-solid fa-trash fs-3"></i>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="px-2 title">
+                <h1>5000Egp</h1>
+              </div>
+
+            </div>
+          </div><!--end secCart-->
         </div>
-      </section>
+      </section> <!--order details-->
 
       <!-- order summary-->
-      <section class="container-fluid py-5 col-sm-5 col-md-3 col-lg-3 ">
+      <section class="container-fluid py-5 col-sm-7  col-md-7 col-lg-4">
         <div class="">
-          <div class=" card-body shadow border rounded-4 bg-light p-5 darkblueText">
+          <div class=" card-body shadow border rounded-4 bg-light p-5 title">
             <h1 class="card-title pb-5">
               Order summary
             </h1>
-            <div class="d-flex justify-content-between form-title">
+            <div class="d-flex justify-content-between ">
               <p>Price</p>
               <p>5000 Egp</p>
             </div>
@@ -98,109 +344,143 @@
               <input type="text" placeholder="Coupon Code" class="form-control mt-3" style="height:70px; ">
               <button class="btn mb-3 mx-3 p-2 position-absolute top-50 end-0 translate-middle-y">Apply</button>
             </div>
-            <button class="btn w-100 mt-3 p-2 rounded-5">Checkout</button>
+            <button id="checkout" class="btn w-100 mt-3 p-2 rounded-5" style="display: block;">proced to
+              checkout</button>
+            <button id="order" class="btn w-100 mt-3 p-2 rounded-5 " style="display: none;">Place Order</button>
           </div>
 
         </div>
-      </section>
+      </section><!-- end order summary-->
     </div>
   </div>
 
-  <!-- <section class ="py-1 d-flex ">
-        <div class ="container">
-            <div class="row gy-4 px-5 px-md-2 px-lg-0 gx-4">
-                <div class="contain-item col-lg-3 col-md-6  pb-2">
-                  <div class="Product">
-                    <div class="pic position-relative">
-                      <img class="w-100" src="../imgs/unsplash_5gkYsrH_ebY.png" alt="skirt" />
-                      <span class="discount">-50%</span>
-                    </div>
-                    <div class="disc">
-                      <h3>Full Outfit</h3>
-                      <div class="rate d-flex align-items-center gap-1">
-                        <span>4.8</span>
-                        <span class="simi">(+500)</span>
-                      </div>
-                      <div class="price d-flex justify-content-between align-items-center">
-                        <div>
-                          5000
-                          <span class="text-decoration-line-through afterSale">10000 Egp</span>
-                        </div>
-                        <button class="btnAddToCart fa-solid fa-plus"></button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="contain-item col-lg-3 col-md-6  pb-2">
-                  <div class="Product">
-                    <div class="pic position-relative">
-                      <img class="w-100" src="../imgs/unsplash_BqoyzXdINdg.png" alt="skirt" />
-                      <span class="discount">-50%</span>
-                    </div>
-                    <div class="disc">
-                      <h3>Full Outfit</h3>
-                      <div class="rate d-flex align-items-center gap-1">
-                        <span>4.8</span>
-                        <span class="simi">(+500)</span>
-                      </div>
-                      <div class="price d-flex justify-content-between align-items-center">
-                        <div>
-                          5000
-                          <span class="text-decoration-line-through afterSale">10000 Egp</span>
-                        </div>
-                        <button class="btnAddToCart fa-solid fa-plus"></button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="contain-item col-lg-3 col-md-6  pb-2">
-                  <div class="Product">
-                    <div class="pic position-relative">
-                      <img class="w-100" src="../imgs/unsplash_N2CiCNWba-Y.png" alt="skirt" />
-                      <span class="discount">-50%</span>
-                    </div>
-                    <div class="disc">
-                      <h3>Full Outfit</h3>
-                      <div class="rate d-flex align-items-center gap-1">
-                        <span>4.8</span>
-                        <span class="simi">(+500)</span>
-                      </div>
-                      <div class="price d-flex justify-content-between align-items-center">
-                        <div>
-                          5000
-                          <span class="text-decoration-line-through afterSale">10000 Egp</span>
-                        </div>
-                        <button class="btnAddToCart fa-solid fa-plus"></button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="contain-item col-lg-3 col-md-6  pb-2">
-                  <div class="Product">
-                    <div class="pic position-relative">
-                      <img class="w-100" src="../imgs/unsplash_Dli2lIXQiJc.png" alt="skirt" />
-                      <span class="discount">-50%</span>
-                    </div>
-                    <div class="disc">
-                      <h3>Full Outfit</h3>
-                      <div class="rate d-flex align-items-center gap-1">
-                        <span>4.8</span>
-                        <span class="simi">(+500)</span>
-                      </div>
-                      <div class="price d-flex justify-content-between align-items-center">
-                        <div>
-                          5000
-                          <span class="text-decoration-line-through afterSale">10000 Egp</span>
-                        </div>
-                        <button class="btnAddToCart fa-solid fa-plus"></button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>        
-        </div>
+  <section class="py-2 ">
+    <div class="container">
+      <div class="title px-2">
+        <h1>Related Products</h1>
+      </div>
 
-    </section> -->
+      <div class="row gy-4 px-5 px-md-2 px-lg-0 gx-4">
+        <div class="contain-item col-lg-3 col-md-6  pb-2">
+          <div class="Product">
+            <div class="pic position-relative">
+              <img class="w-100" src="../imgs/unsplash_5gkYsrH_ebY.png" alt="skirt" />
+              <span class="discount">-50%</span>
+            </div>
+            <div class="disc">
+              <h3>Full Outfit</h3>
+              <div class="rate d-flex align-items-center gap-1">
+                <span>4.8</span>
+                <span class="simi">(+500)</span>
+              </div>
+              <div class="price d-flex justify-content-between align-items-center">
+                <div>
+                  5000
+                  <span class="text-decoration-line-through afterSale">10000 Egp</span>
+                </div>
+                <button class="btnAddToCart fa-solid fa-plus"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contain-item col-lg-3 col-md-6  pb-2">
+          <div class="Product">
+            <div class="pic position-relative">
+              <img class="w-100" src="../imgs/unsplash_BqoyzXdINdg.png" alt="skirt" />
+              <span class="discount">-50%</span>
+            </div>
+            <div class="disc">
+              <h3>Full Outfit</h3>
+              <div class="rate d-flex align-items-center gap-1">
+                <span>4.8</span>
+                <span class="simi">(+500)</span>
+              </div>
+              <div class="price d-flex justify-content-between align-items-center">
+                <div>
+                  5000
+                  <span class="text-decoration-line-through afterSale">10000 Egp</span>
+                </div>
+                <button class="btnAddToCart fa-solid fa-plus"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contain-item col-lg-3 col-md-6  pb-2">
+          <div class="Product">
+            <div class="pic position-relative">
+              <img class="w-100" src="../imgs/unsplash_N2CiCNWba-Y.png" alt="skirt" />
+              <span class="discount">-50%</span>
+            </div>
+            <div class="disc">
+              <h3>Full Outfit</h3>
+              <div class="rate d-flex align-items-center gap-1">
+                <span>4.8</span>
+                <span class="simi">(+500)</span>
+              </div>
+              <div class="price d-flex justify-content-between align-items-center">
+                <div>
+                  5000
+                  <span class="text-decoration-line-through afterSale">10000 Egp</span>
+                </div>
+                <button class="btnAddToCart fa-solid fa-plus"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contain-item col-lg-3 col-md-6  pb-2">
+          <div class="Product">
+            <div class="pic position-relative">
+              <img class="w-100" src="../imgs/unsplash_Dli2lIXQiJc.png" alt="skirt" />
+              <span class="discount">-50%</span>
+            </div>
+            <div class="disc">
+              <h3>Full Outfit</h3>
+              <div class="rate d-flex align-items-center gap-1">
+                <span>4.8</span>
+                <span class="simi">(+500)</span>
+              </div>
+              <div class="price d-flex justify-content-between align-items-center">
+                <div>
+                  5000
+                  <span class="text-decoration-line-through afterSale">10000 Egp</span>
+                </div>
+                <button class="btnAddToCart fa-solid fa-plus"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-..."
+    crossorigin="anonymous"></script>
+
+  <script>
+      (() => {
+        'use strict';
+        const forms = document.querySelectorAll('.needs-validation');
+        Array.from(forms).forEach((form) => {
+          form.addEventListener('submit', (event) => {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            } {
+              //TODO: display MSG
+              let msg = document.getElementById("congratMsg");
+              let msgBtn = document.getElementById("submit");
+              msgBtn.addEventListener("click", function () {
+                msg.classList.remove("d-none");
+              })
+            }
+            form.classList.add('was-validated');
+          });
+        });
+      })();
+  </script>
+
+
 </body>
 
 </html>
