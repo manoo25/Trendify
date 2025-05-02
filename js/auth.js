@@ -6,7 +6,9 @@ function PullData() {
 }
  export function SignUp(name,phone,Email,address,img,role,Password) {
     PullData();
+let Id=Math.floor(Math.random() * 1000*(usersData.length)+1)
     let userObj={
+        userId:Id,
         name:name,
         phone:phone,
         Email:Email,
