@@ -11,7 +11,7 @@ body {
 }
 
 /* Sidebar Styles */
-#offcanvasRight {
+#offcanvasLeft {
   
 
     background: linear-gradient(180deg, var(--primary-color) 50%, #5b5a13a9 100%);
@@ -19,17 +19,17 @@ body {
     transition: all 0.3s;
 }
 
-#offcanvasRight .offcanvasRight-header {
+#offcanvasLeft .offcanvasLeft-header {
     padding: 20px;
     background: rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
-#offcanvasRight ul.components {
+#offcanvasLeft ul.components {
     padding: 20px 0;
 }
 
-#offcanvasRight ul li a {
+#offcanvasLeft ul li a {
     padding: 15px 20px;
     font-size: 1.1em;
     display: block;
@@ -42,15 +42,15 @@ body {
     align-items: center;
 }
 
-#offcanvasRight ul li a:hover {
+#offcanvasLeft ul li a:hover {
     background: var(--main-color);
 }
 
-#offcanvasRight ul li a i {
+#offcanvasLeft ul li a i {
     margin-left: 10px;
 }
 
-#offcanvasRight ul li.active > a {
+#offcanvasLeft ul li.active > a {
     color: #fff;
     background:var(--main-color);
 }

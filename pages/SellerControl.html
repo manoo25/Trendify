@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control Panel</title>
-    <!-- Bootstrap 5 RTL -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/global.css" />
@@ -31,10 +31,10 @@
     </div>
 
     <!-- Sidebar -->
-   <nav style="max-width: 60%;"  class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+   <nav style="max-width: 60%;"  class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
    
     <div class="sidebar-header mt-4  ">
-            <h3 class=" pe-4 pt-2 fw-bolder">Admin Panel</h3>
+            <h3 class=" ps-4 pt-2 fw-bolder">Seller Panel</h3>
         </div>
         
         <ul class="list-unstyled components">
@@ -57,19 +57,18 @@
 
     <!-- Page Content -->
     <div id="content" class="w-100">
-      
         <!-- head btns  -->
         <header class="navbar navbar-expand-lg navbar-light bg-light mb-4 rounded">
             <div class="container-fluid">
                 <button type="button" id="sidebarCollapse" class="btn headBtn "
-                data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft"
                 >
                     <i class="fas fa-bars"></i>
                    
                 </button>
                 
                 <div class="d-flex align-items-center">
-                    <div class=" dropdown ms-3">
+                    <div class=" dropdown me-3">
                         <button class="headBtn px-3 py-2  dropdown-toggle " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-user me-1 ps-2"></i>
                             Seller

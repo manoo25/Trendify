@@ -38,25 +38,41 @@
       orderBtn.style.display = "none";
     })
 
+//TODO: delete item 
+let deleteButtons = document.querySelectorAll(".fa-trash");
+
+deleteButtons.forEach((btn) => {
+  btn.addEventListener("click", function () {
+    const itemElement = this.closest(".item");
+    if (itemElement) {
+      itemElement.remove();
+    }
+  });
+});
 
     //TODO: increment & decrement items
-    let count = document.getElementById("count");
-    let decButton = document.getElementById("decrement");
-    decButton.addEventListener("click", decrement);
-    let incButton = document.getElementById("increment");
-    incButton.addEventListener("click", increment);
-    let counter = 1;
-    function increment() {
-      counter++;
-      count.innerHTML = counter;
-    };
-    function decrement() {
-      if (counter > 1) {
-        counter--;
-        count.innerHTML = counter;
-      }
+    document.querySelectorAll(".increment").forEach(button => {
+  button.addEventListener("click", () => {
+    const targetId = button.getAttribute("data-bs-target").replace("#", "");
+    const counterEl = document.getElementById(targetId);
+    let count = parseInt(counterEl.textContent);
+    count++;
+    counterEl.textContent = count;
+  });
+});
 
-    };
+document.querySelectorAll(".decrement").forEach(button => {
+  button.addEventListener("click", () => {
+    const targetId = button.getAttribute("data-bs-target").replace("#", "");
+    const counterEl = document.getElementById(targetId);
+    let count = parseInt(counterEl.textContent);
+    if (count > 1) {
+      count--;
+      counterEl.textContent = count;
+    }
+  });
+});
+
   }
 </script>
 
@@ -114,7 +130,7 @@
         </form>
 
         <div id="congratMsg" class="title text-center pt-5 d-none">
-          <p> "congratulation your order has been placed"</p>
+          <p> "congratulation your information has been stored you can place your order"</p>
         </div>
       </section><!--end customer details-->
 
@@ -126,7 +142,7 @@
             <p class="mx-2 "> 2 item</p>
           </div>
           <!--firstCart-->
-          <div class="container pb-3">
+          <div class="container pb-3 item" >
 
             <div class=" d-flex card-body bg-light border rounded-4 justify-content-between align-items-center "
               style="min-width: fit-content">
@@ -140,14 +156,15 @@
                       <div class="container gx-0">
 
                         <div class="flex-row  justify-content-between ">
-                          <div class="d-flex justify-content-between px-2 align-items-center border "
-                            style="background-color: #e9e6e6; min-width:5rem">
-                            <button id="decrement" type="button" class="lightBtn p-2 px-4"> <i
-                                class="fa-solid fa-minus"></i></button>
+                          <div class=" d-flex justify-content-between px-2 align-items-center "
+                            style="min-width:5rem">
 
-                            <h1 id="count" class=" p-2 px-4">1</h1>
-                            <button id="increment" type="button" class="lightBtn p-2 px-4"><i
-                                class="fa-solid fa-plus"></i></button>
+                            <button  type="button"  data-bs-target="#countitem1"  class=" decrement btn p-2 px-4 bg-light shadow-sm border-0 rounded-3"> <i
+                                class="fa-solid fa-minus" style="color: var(--main-color);"></i></button>
+
+                            <h1 id="countitem1" class="p-2 px-4">1</h1>
+                            <button type="button" data-bs-target="#countitem1" class=" increment btn p-2 px-4 bg-light shadow-sm border-0 rounded-3"> <i
+                              class="fa-solid fa-plus"  style="color: var(--main-color);"></i></button>
                           </div>
 
                         </div>
@@ -170,14 +187,14 @@
           </div><!--end firstCart-->
 
           <!--secCart-->
-          <div class="container pb-3">
-
+           
+           <div class="container pb-3 item">
             <div class=" d-flex card-body bg-light border rounded-4 justify-content-between align-items-center "
               style="min-width: fit-content">
               <div class=" d-flex align-items-center">
                 <img src="../imgs/unsplash_5gkYsrH_ebY.png" class="card-img rounded-4  "
                   style="height: 100%; width: 10rem;" alt="item1">
-                <!--cart data-->
+               
                 <div class=" container">
                   <div class="flex-column px-5 title">
                     <h1>funny shirt</h1>
@@ -185,21 +202,22 @@
                       <div class="container gx-0">
 
                         <div class="flex-row  justify-content-between ">
-                          <div class="d-flex justify-content-between px-2 align-items-center border "
-                            style="background-color: #e9e6e6; min-width:5rem">
-                            <button id="decrement" type="button" class="lightBtn p-2 px-4"> <i
-                                class="fa-solid fa-minus"></i></button>
+                          <div class=" d-flex justify-content-between px-2 align-items-center "
+                            style="min-width:5rem">
 
-                            <h1 id="count" class=" p-2 px-4">1</h1>
-                            <button id="increment" type="button" class="lightBtn p-2 px-4"><i
-                                class="fa-solid fa-plus"></i></button>
+                            <button type="button" data-bs-target="#countitem2" class="decrement btn p-2 px-4 bg-light shadow-sm border-0 rounded-3"> <i
+                                class="fa-solid fa-minus"  style="color: var(--main-color);"></i></button>
+
+                            <h1 id="countitem2" class=" p-2 px-4">1</h1>
+                            <button type="button"  data-bs-target="#countitem2" class="increment btn p-2 px-4 bg-light shadow-sm border-0 rounded-3"> <i
+                              class="fa-solid fa-plus" style="color: var(--main-color);"></i></button>
                           </div>
 
                         </div>
                       </div>
-                      <!--delete icon-->
+                      
                       <div class="px-2 mt-3 ">
-                        <i id="delete" role="button" class="fa-solid fa-trash fs-3"></i>
+                        <i role="button" class="fa-solid fa-trash fs-3"></i>
                       </div>
 
                     </div>
@@ -213,98 +231,10 @@
               </div>
 
             </div>
-          </div><!--end secCart-->
+          </div>
+      
+          <!--end secCart-->
 
-          <!--secCart-->
-          <div class="container pb-3">
-
-            <div class=" d-flex card-body bg-light border rounded-4 justify-content-between align-items-center "
-              style="min-width: fit-content">
-              <div class=" d-flex align-items-center">
-                <img src="../imgs/unsplash_5gkYsrH_ebY.png" class="card-img rounded-4  "
-                  style="height: 100%; width: 10rem;" alt="item1">
-                <!--cart data-->
-                <div class=" container">
-                  <div class="flex-column px-5 title">
-                    <h1>funny shirt</h1>
-                    <div class="d-flex">
-                      <div class="container gx-0">
-
-                        <div class="flex-row  justify-content-between ">
-                          <div class="d-flex justify-content-between px-2 align-items-center border "
-                            style="background-color: #e9e6e6; min-width:5rem">
-                            <button id="decrement" type="button" class="lightBtn p-2 px-4"> <i
-                                class="fa-solid fa-minus"></i></button>
-
-                            <h1 id="count" class=" p-2 px-4">1</h1>
-                            <button id="increment" type="button" class="lightBtn p-2 px-4"><i
-                                class="fa-solid fa-plus"></i></button>
-                          </div>
-
-                        </div>
-                      </div>
-                      <!--delete icon-->
-                      <div class="px-2 mt-3 ">
-                        <i id="delete" role="button" class="fa-solid fa-trash fs-3"></i>
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-
-              </div>
-              <div class="px-2 title">
-                <h1>5000Egp</h1>
-              </div>
-
-            </div>
-          </div><!--end secCart-->
-          <!--secCart-->
-          <div class="container pb-3">
-
-            <div class=" d-flex card-body bg-light border rounded-4 justify-content-between align-items-center "
-              style="min-width: fit-content">
-              <div class=" d-flex align-items-center">
-                <img src="../imgs/unsplash_5gkYsrH_ebY.png" class="card-img rounded-4  "
-                  style="height: 100%; width: 10rem;" alt="item1">
-                <!--cart data-->
-                <div class=" container">
-                  <div class="flex-column px-5 title">
-                    <h1>funny shirt</h1>
-                    <div class="d-flex">
-                      <div class="container gx-0">
-
-                        <div class="flex-row  justify-content-between ">
-                          <div class="d-flex justify-content-between px-2 align-items-center border "
-                            style="background-color: #e9e6e6; min-width:5rem">
-                            <button id="decrement" type="button" class="lightBtn p-2 px-4"> <i
-                                class="fa-solid fa-minus"></i></button>
-
-                            <h1 id="count" class=" p-2 px-4">1</h1>
-                            <button id="increment" type="button" class="lightBtn p-2 px-4"><i
-                                class="fa-solid fa-plus"></i></button>
-                          </div>
-
-                        </div>
-                      </div>
-                      <!--delete icon-->
-                      <div class="px-2 mt-3 ">
-                        <i id="delete" role="button" class="fa-solid fa-trash fs-3"></i>
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-
-              </div>
-              <div class="px-2 title">
-                <h1>5000Egp</h1>
-              </div>
-
-            </div>
-          </div><!--end secCart-->
         </div>
       </section> <!--order details-->
 
@@ -466,13 +396,13 @@
             if (!form.checkValidity()) {
               event.preventDefault();
               event.stopPropagation();
-            } {
+            }
+            if(form.checkValidity()){
               //TODO: display MSG
               let msg = document.getElementById("congratMsg");
-              let msgBtn = document.getElementById("submit");
-              msgBtn.addEventListener("click", function () {
                 msg.classList.remove("d-none");
-              })
+                let reviweBtn = document.getElementById("reviwe");
+                reviweBtn.style.display = "none";
             }
             form.classList.add('was-validated');
           });

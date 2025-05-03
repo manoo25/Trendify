@@ -48,7 +48,7 @@ const SubBtn=document.getElementById('SubBtn');
                 email:email.value,
                 phonenumber:phonenumber.value,
                 message:message.value,
-                reply:'No Reply',
+                reply:'',
             }
             CommentsArr.push(comentObj);
             localStorage.setItem('Comments',JSON.stringify(CommentsArr))

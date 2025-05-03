@@ -3,8 +3,7 @@
 .invalid-feedback {
   position: absolute;
   bottom: -1.25rem; /* or adjust based on spacing */
-  /* left: 0;
-  font-size: 0.875rem; */
+ 
 }
 .form-group {
     margin-bottom: 2.5rem !important; 
@@ -56,6 +55,5 @@
 }
 .form-icon i{
     color: var(--main-color);
-    pointer-events: none;
   z-index: 1;
 }
