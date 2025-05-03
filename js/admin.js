@@ -128,13 +128,14 @@ if (PublishedCommentArr.some(x => x.commentId == comment.commentId)) {
 // display user admin comments 
 function displayCustomerComments() {
     pullComments();
-    let Reply=comment.reply;
-    if (comment.reply=='') {
-        Reply="No Reply"
-    }
+   
     CommentsArr=CommentsArr.filter(x=>x.userId==CustomerId);
     CustomerComments.innerHTML=''
     CommentsArr.forEach(comment => {
+         let Reply=comment.reply;
+    if (comment.reply=='') {
+        Reply="No Reply"
+    }
         CustomerComments.innerHTML+=`
          <tr>
   
