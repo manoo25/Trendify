@@ -23,6 +23,10 @@
 
     <title>Trendify</title>
 
+
+    <style>
+
+    </style>
   </head>
   <body
     class="graySessions"
@@ -32,9 +36,9 @@
     tabindex="0"
   >
     <!-- Gaafer section -->
-    <section class="home position-relative">
+    <section class="home position-relative" id="home">
       <div class="container">
-        <nav class="navbar navbar-expand-lg  py-3 fixed-top px-3 px-lg-5  ">
+        <nav class="navbar navbar-expand-lg  py-3 fixed-top px-3 px-lg-5" id="mainNavbar">
           <div class="container-fluid ">
             <a class="navbar-brand" href="#">Trendify</a>
             <button
@@ -56,29 +60,29 @@
               aria-labelledby="mobileMenuLabel"
             >
               <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="mobileMenuLabel">Trendify</h5>
+                <h5 class="offcanvas-title" id="mobileMenuLabel"></h5>
               </div>
               <div  class="offcanvas-body d-flex justify-content-between">
                 <ul class="navbar-nav me-auto mx-lg-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#"
-                      >Home</a
+                  <li class="nav-item ">
+                    <a class="nav-link active" aria-current="page" href="#home"
+                      ><span class="fa-solid fa-house d-lg-none"></span> Home</a
                     >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#service">Services</a>
+                    <a class="nav-link" href="#products"><span class="d-lg-none fa-brands fa-shopify"></span> Products</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#product">Products</a>
+                  <a class="nav-link" href="#services"><span class="d-lg-none fa-solid fa-screwdriver-wrench"></span> Services</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#about">About Us</a>
+                    <a class="nav-link" href="./pages/AboutUs.html"><span class="d-lg-none fa-solid fa-circle-exclamation"></span> AboutUs</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#blog">Blog</a>
+                    <a class="nav-link" href="./pages/blog.html"><span class="d-lg-none fa-solid fa-blog"></span> Blog</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact Us</a>
+                    <a class="nav-link" href="./pages/contact.html"><span class="d-lg-none fa-solid fa-phone"></span> ContactUs</a>
                   </li>
                 </ul>
                 <div class="mt-5">
@@ -95,9 +99,12 @@
 
             <ul class="navbar-nav mb-2 mb-lg-0 d-none d-lg-flex">
               <li class="nav-item">
+                <a class="nav-link btn log" href="./pages/register&login.html"><span class="fa-solid fa-user-plus"></span> Login | Register</a>
+              </li>
+              <li class="nav-item">
                 <span
                   class="nav-link fa-solid fa-magnifying-glass"
-                  role="button"
+                  role="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"
                 ></span>
               </li>
               <li class="nav-item">
@@ -113,6 +120,137 @@
             </ul>
           </div>
         </nav>
+
+    <!-- ofcanvas for search icon -->
+        <div class="offcanvas offcanvas-top " tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+          <div class="offcanvas-header">
+            <button type="button" class="btn-close closee" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+             <div class="container"> 
+       <div class="row justify-content-center"> 
+        <div class="col-12 position-relative">
+        <div class="srchinp  position-relative " >
+         <div class="d-flex align-items-center">
+          <input class="search w-100 m-auto" type="search" placeholder="Search Products...." aria-label="Search" id="searchInput" >
+           <span class="fa-solid fa-magnifying-glass"></span>
+              </div>
+<!-- list from search input -->
+         <div id="searchResults" class="search-results-box card mt-2" style="display: none; position: absolute; top: 82%; left: 0; width: 100%; z-index: 1055; max-height: 450px; overflow-y: auto;">
+         <div class="card-body">
+        <div class="row g-2">
+          <div class="trendingnow"  style="border-bottom: 1px solid #e7e7e7;">
+            <h3 class="mb-3 ">Trending now </h3>
+          </div>
+          <!-- trending buttons for suggest -->
+         <ul class="suggestedtopics  ">
+          <div class="row g-2">
+            <div class="col-5 col-md-5 d-flex align-items-center col-lg-2 "> 
+              <li class="bg-light p-2 mx-2 ">
+              <a href="#" class="text-muted"><span class="fa-solid fa-magnifying-glass"></span>MenJacets</a>
+            </li>
+          </div>
+            <div class="col-5 col-md-5 d-flex align-items-center col-lg-2 "> 
+              <li class="bg-light p-2 mx-2">
+                <a href="#" class="text-muted"><span class="fa-solid fa-magnifying-glass"></span>Pullover</a>
+              </li>
+            </div>
+            <div class="col-5 col-md-5 d-flex align-items-center col-lg-2 "> 
+              <li class="bg-light p-2 mx-2">
+                <a href="#" class="text-muted"><span class="fa-solid fa-magnifying-glass"></span>Sweatshirts</a>
+              </li>
+            </div>
+            <div class="col-5 col-md-5 d-flex align-items-center col-lg-2 "> 
+              <li class="bg-light p-2 mx-2">
+                <a href="#" class="text-muted"><span class="fa-solid fa-magnifying-glass"></span>Shirts</a>
+              </li>
+            </div>
+            <div class="col-5 col-md-5 d-flex align-items-center col-lg-2 "> 
+              <li class="bg-light p-2 mx-2">
+                <a href="#" class="text-muted"><span class="fa-solid fa-magnifying-glass"></span>Poloshirts</a>
+              </li>
+            </div>
+          </div>
+         
+          
+         
+         
+         
+         </ul>
+          <div class="catigname">
+            <h3>Popular products</h3>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+<div class="card" role="button">
+ <div class="pic">
+  <img src="./imgs/T3.jpg" class="w-100" alt="productpic">
+ </div>
+  <h6 class="prodname">FSH23ACCR19822TM1 - Olive*White</h6>
+  <div class="product-price d-flex">
+    <div class="price">
+      <del class="oldprice"> 1,499.00LE  </del>  <p class="newprice d-inline"> 449.00LE</p>
+    </div>
+  </div>
+</div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+<div class="card" role="button">
+ <div class="pic">
+  <img src="./imgs/T4.jpg" class="w-100" alt="productpic">
+ </div>
+  <h6 class="prodname">FSH23ACCR19822TM1 - Olive*White</h6>
+  <div class="product-price d-flex">
+    <div class="price">
+      <del class="oldprice"> 1,499.00LE  </del>  <p class="newprice d-inline"> 449.00LE</p>
+    </div>
+  </div>
+</div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+<div class="card" role="button">
+ <div class="pic">
+  <img src="./imgs/T5.jpg" class="w-100" alt="productpic">
+ </div>
+  <h6 class="prodname">FSH23ACCR19822TM1 - Olive*White</h6>
+  <div class="product-price d-flex">
+    <div class="price">
+      <del class="oldprice"> 1,499.00LE  </del>  <p class="newprice d-inline"> 449.00LE</p>
+    </div>
+  </div>
+</div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+          <div class="card" role="button">
+ <div class="pic">
+  <img src="./imgs/T1.jpg" class="w-100" alt="productpic">
+ </div>
+  <h6 class="prodname">FSH23ACCR19822TM1 - Olive*White</h6>
+  <div class="product-price d-flex">
+    <div class="price">
+      <del class="oldprice"> 1,499.00LE  </del>  <p class="newprice d-inline"> 449.00LE</p>
+    </div>
+  </div>
+          </div>
+          </div>
+
+          <div class="seeallprod w-100  text-center mt-2">
+           <a href="#" class="text-decoration-none  h3"> VIEW ALL RESULTS</a>
+          </div>
+        </div>
+      
+         </div>
+      </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+          
+       
+
+     
     
         <div class="hero-content position-absolute ">
           <h1 class="my-0">
@@ -455,7 +593,7 @@
     <!-- Mohamed section -->
 
     <!-- Best-Selling -->
-    <section class="py-5">
+    <section class="py-5" id="products">
       <div class="container">
         <div class="title text-center">
           <p>Products</p>
@@ -958,7 +1096,7 @@
 
     <!-- ToP-Products -->
 
-    <section class="py-5 ">
+    <section class="py-5 " >
       <div class="container">
         <div class="title text-center">
           <p>Top Products</p>
@@ -1250,7 +1388,7 @@
 
 
 
-    <section class="services-section py-5 graySessions">
+    <section class="services-section py-5 graySessions" id="services">
       <div class="container">
         <div class="text-center mb-5 title">
           <p>Services</p>
@@ -1536,6 +1674,39 @@
           }
         }).mount();
       });
+
+
+      // edit nav height
+      window.addEventListener('scroll', function() {
+    const navbar = document.getElementById('mainNavbar');
+    if (window.scrollY > window.innerHeight) { 
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// list of search input
+const searchInput = document.getElementById("searchInput");
+const searchResults = document.getElementById("searchResults");
+
+// عند التركيز على حقل البحث
+searchInput.addEventListener("focus", function() {
+  searchResults.style.display = "block";
+});
+
+// عند النقر خارج حقل البحث
+document.addEventListener("click", function(event) {
+  // إذا كان النقر ليس داخل حقل البحث أو نتائج البحث
+  if (!searchInput.contains(event.target) && !searchResults.contains(event.target)) {
+    searchResults.style.display = "none";
+  }
+});
+
+// لمنع إغلاق النتائج عند النقر عليها مباشرة
+searchResults.addEventListener("mousedown", function(event) {
+  event.preventDefault();
+});
     </script>
   </body>
 </html>

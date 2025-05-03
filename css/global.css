@@ -2,6 +2,7 @@
   /* main colors*/
   --main-color: #8b5e35;
   --second-color: #9b7e5c;
+  --third-color: #e4dab9;
 
   /* Text Colors*/
   --text-color: #090f41;
@@ -137,6 +138,6 @@ input:focus,
 select:focus,
 textarea:focus {
   outline: none !important;
-  box-shadow: 0 0 0 2px 2px var(--second-color) !important  ; 
-  border-color: var(--second-color) !important; 
+  box-shadow: 0 0 0 2px 2px var(--second-color) !important  ;
+  border-color: var(--second-color) !important;
 }
