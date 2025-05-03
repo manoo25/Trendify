@@ -163,9 +163,14 @@
               Get 15% off your first purchase! Plus, be the first to know about
               sales,<br> new product launches and exclusive offers!
             </p>
-            <form class="row g-2 justify-content-center">
+            <form class="row g-2 justify-content-center needs-validation" novalidate>
               <div class="col-auto">
-                <input type="email" class="form-control secondd" placeholder="Enter your email">
+                <input type="email" class="form-control secondd" placeholder="Enter your email" 
+                 pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$"
+
+                required>
+                <div class="valid-feedback">Valid Email</div>
+            <div class="invalid-feedback">Please enter a valid email</div>
               </div>
               <div class="col-auto">
                 <button type="submit" class="btn">Subscribe</button>
@@ -175,6 +180,24 @@
 
     </section>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
+
+    <script>
+      (() => {
+        'use strict';
+        const forms = document.querySelectorAll('.needs-validation');
+        Array.from(forms).forEach((form) => {
+          form.addEventListener('submit', (event) => {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          });
+        });
+      })();
+    </script>
+    
 
   </body>
 </html>

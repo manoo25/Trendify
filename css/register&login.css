@@ -1,6 +1,21 @@
-/* .login-text{
-    color: var(--bg-color);
-} */
+
+.valid-feedback,
+.invalid-feedback {
+  position: absolute;
+  bottom: -1.25rem; /* or adjust based on spacing */
+ 
+}
+.form-group {
+    margin-bottom: 2.5rem !important; 
+}
+.fa-eye-slash, .fa-eye {
+    z-index: 1;
+    pointer-events: auto;
+}
+.fa-eye-slash, .fa-eye {
+    z-index: 1;
+    pointer-events: auto;
+}
 .form-title{
    color: var( --text-color);
    font-family: var( --font-family);  
@@ -31,9 +46,14 @@
     transition: all 0.3s ease-in-out;
   }
   .form-icon input{
-    border: none;
+   border:  solid 0.1rem var(--main-color);
     height: 3rem;;
   }
+  .form-icon {
+
+    min-height: 3.5rem; /* or whatever fits your input + feedback */
+}
 .form-icon i{
     color: var(--main-color);
+  z-index: 1;
 }
