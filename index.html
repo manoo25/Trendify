@@ -1590,6 +1590,46 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-    <script src="./js/home.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        new Splide('#main-carousel', {
+          type: 'slide',
+          perPage: 3, 
+          perMove: 1,
+          gap: '1.5rem',
+          arrows: true,
+          pagination: false,
+          breakpoints: {
+            992: { 
+              perPage: 2
+            },
+            768: { 
+              perPage: 1,
+              arrows: false,
+            }
+          }
+        }).mount();
+      });
+      document.addEventListener('DOMContentLoaded', function() {
+        new Splide('#Cat-carousel', {
+          type: 'slide',
+          perPage: 8, 
+          perMove: 1,
+          gap: '1.5rem',
+          arrows: true,
+          pagination: false,
+          breakpoints: {
+            992: { 
+              perPage: 5
+            },
+            768: { 
+              perPage: 3,
+              arrows: false,
+            }
+          }
+        }).mount();
+      });
+    </script>
+   <script type="module" src="./js/login&Register.js"></script>
   </body>
 </html>
