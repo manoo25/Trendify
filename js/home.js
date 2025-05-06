@@ -60,12 +60,12 @@ $('#ViewCPanelId').click(function(){
   
   switch (role) {
 
-    case 'customer':window.location=('../pages/UserControl.html')
+    case 'customer':window.location=('../docs/UserControl.html')
       break;
 
-    case 'seller':window.location=('../pages/SellerControl.html')
+    case 'seller':window.location=('../docs/SellerControl.html')
       break;
-    case 'admin':window.location=('../pages/AdminControl.html')
+    case 'admin':window.location=('../docs/AdminControl.html')
       break;
   }
   
