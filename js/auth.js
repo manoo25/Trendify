@@ -32,7 +32,7 @@ export function SignUp(name, Email, Password) {
     localStorage.setItem('usersData', JSON.stringify(usersData));
     sessionStorage.setItem('LogedUser', JSON.stringify(userObj));
    
-    window.location.replace('../index.html'); 
+    window.location.replace('./index.html'); 
     return true;
 }
  export function login(email, password) {
@@ -43,7 +43,7 @@ export function SignUp(name, Email, Password) {
         sessionStorage.setItem('userRole',(user.role))
         sessionStorage.setItem('LogedUser',(JSON.stringify(user)))
         checkAuth(user); 
-        window.location.replace('../index.html');
+        window.location.replace('./index.html');
        return true;
     } 
     else {
@@ -53,7 +53,7 @@ export function SignUp(name, Email, Password) {
 
 function checkAuth(data) {
     if(data.role=='customer'){
-        window.location.replace ("../index.html");
+        window.location.replace ("./index.html");
         
     }
     else if(data.role=='seller'){
@@ -81,7 +81,7 @@ if(pageRole!=role){
    <div class="d-flex flex-column align-items-center">
     <h2 class="text-center text-danger">No access</h2>
     <p class="text-center text-danger">You do not have permission to access this page!!</p>
-  <a href="../index.html" style="cursor:pointer ;" class="d-flex align-items-center gap-2 headBtn px-3 py-1 text-decoration-none fw-bold  "><span class="fa-solid fa-house"></span> GO to Home</a>
+  <a href="./index.html" style="cursor:pointer ;" class="d-flex align-items-center gap-2 headBtn px-3 py-1 text-decoration-none fw-bold  "><span class="fa-solid fa-house"></span> GO to Home</a>
    </div>
  </section>
  `
