@@ -24,110 +24,27 @@ async function initialize() {
 }
 
 
-  // favorite
-    // let heart = document.querySelectorAll('.fa-heart');
-    // heart.forEach((btn) => {
-    //     btn.addEventListener('click', function() {
-    //         btn.classList.toggle('fa-regular');
-    //         btn.classList.toggle('fa-solid');
-    //     });
-    // });
-
-// function setupEventListeners() {
-  
-
-//     document.addEventListener('click', async function(e) {
-      
-//         const btn = e.target.closest('.fa-heart') || 
-//                     (e.target.classList.contains('fa-regular') ? e.target : null) || 
-//                     (e.target.classList.contains('fa-solid') ? e.target : null);
-        
-        
-//         if (btn) {
-//             try {
-                
-//                 if (!sessionStorage.getItem('LogedUser') || !userId) {
-//                     alert('You should login or register first!');
-//                     return;
-//                 }
-               
-//                 btn.classList.toggle('fa-regular');
-//                 btn.classList.toggle('fa-solid');
-      
-//                 if (btn.dataset.product) {
-//                     await addToCart(btn.dataset.product);
-//                 } 
-//                 else {
-//                     btn.classList.toggle('fa-plus');
-//                     btn.classList.toggle('fa-check');
-//                 }
-//             } 
-//             catch (error) {
-//                 if (btn.classList.contains('fa-plus') || btn.classList.contains('fa-check')) {
-//                     btn.classList.toggle('fa-plus');
-//                     btn.classList.toggle('fa-check');
-//                 }
-//             }
-//         }
-//     });
-
-//     document.addEventListener('click', async function(e) {
-      
-//       const btn = e.target.closest('.btnAddToCart') || 
-//                   (e.target.classList.contains('fa-plus') ? e.target : null) || 
-//                   (e.target.classList.contains('fa-check') ? e.target : null);
-      
-      
-//       if (btn) {
-//           try {
-              
-//               if (!sessionStorage.getItem('LogedUser') || !userId) {
-//                   alert('You should login or register first!');
-//                   return;
-//               }
-             
-//               btn.classList.toggle('fa-plus');
-//               btn.classList.toggle('fa-check');
-    
-//               if (btn.dataset.product) {
-//                   await addToCart(btn.dataset.product);
-//               } 
-//               else {
-//                   btn.classList.toggle('fa-plus');
-//                   btn.classList.toggle('fa-check');
-//               }
-//           } 
-//           catch (error) {
-//               if (btn.classList.contains('fa-plus') || btn.classList.contains('fa-check')) {
-//                   btn.classList.toggle('fa-plus');
-//                   btn.classList.toggle('fa-check');
-//               }
-//           }
-//       }
-//   });
-// }
 function setupEventListeners() {
     document.addEventListener('click', async function(e) {
 
         // Handle heart buttons
-        const heartBtn = e.target.closest('.fa-heart') ;
-                       
-                       
-        
+        const heartBtn = e.target.closest('.fa-heart') ;                          
         // Handle add to cart buttons
         const cartBtn = e.target.closest('.btnAddToCart') ; 
                       
-
-
-                       if (!sessionStorage.getItem('LogedUser') || !userId) {
-                                          alert('You should login or register first!');
-                                          return;
-                                      }
                                       
         if (heartBtn) {
+            if (!sessionStorage.getItem('LogedUser') || !userId) {
+                alert('You should login or register first!');
+                return;
+            }
             await addToWhishList(heartBtn);
         } 
         else if (cartBtn) {
+            if (!sessionStorage.getItem('LogedUser') || !userId) {
+                alert('You should login or register first!');
+                return;
+            }
             await addToCart(cartBtn);
         }
     });
