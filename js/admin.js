@@ -68,8 +68,9 @@ let adminComments=document.getElementById('adminComments')
 let CustomerComments=document.getElementById('CustomerComments')
 let CommentsArr=[];
 
+let CustomerId
 try{
-    const CustomerId=JSON.parse(sessionStorage.getItem('LogedUser')).userId;
+    CustomerId =JSON.parse(sessionStorage.getItem('LogedUser')).userId;
 }
 catch{};
 
