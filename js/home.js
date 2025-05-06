@@ -1,10 +1,7 @@
 
 
 
-//     let addetWhishList='fa-regular';
-if (sessionStorage.getItem('LogedUser')) {
-   userId=JSON.parse(sessionStorage.getItem('LogedUser')).userId;
-}
+
 
 
 

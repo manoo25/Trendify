@@ -10,6 +10,9 @@ async function initialize() {
 }
 var userId;
 
+if (sessionStorage.getItem('LogedUser')) {
+  userId=JSON.parse(sessionStorage.getItem('LogedUser')).userId;
+}
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -65,13 +68,6 @@ document.addEventListener('DOMContentLoaded', function() {
         navbar.classList.remove('scrolled');
     }
     });
-
-
-
-
-
-
-
 
 
 let category = ["Men", "Women", "Kids"];
@@ -584,6 +580,7 @@ const FlashSale=document.getElementById('FlashSale');
   let averageDis=Math.round((product.Discount/product.real_price)*100);
   let existPro;
 if(userId){
+  
    existPro = CartArr.some(x => 
     x.userId.toString() === userId.toString() && 
     x.ProId.toString() === product.id.toString()
