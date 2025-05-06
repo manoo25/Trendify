@@ -76,30 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 let category = ["Men", "Women", "Kids"];
 let subcategory = ["Dreesses", "Jackets", "T-shirts", "Shoeses", "jeans"];
-let ProductsArr = [
-  {
-    id: "16",
-    ratingsAverage: 4.8,
-    name: "TOWELLING  SWEATSHIRT WITH LABEL",
-    category: category[2],
-    subcategory: subcategory[2],
-    description: `Long sleeve sweatshirt with a round neck. Ribbed trims. Stripe print and label appliqué on the chest.`,
-    quantity: 150,
-    real_price: 1190,
-    Discount: 0,
-    EndPrice: 1190,
-    imageCover: "../imgs/products/KT1.jpg",
-    images: [
-      "../imgs/products/KT1.jpg",
-      "../imgs/products/KT12.jpg",
-      "../imgs/products/KT13.jpg",
-      "../imgs/products/KT14.jpg",
-    ],
-    seller_id: 5,
-    Colors: ["USAFA Blue"],
-    Colorscode: ["#024997"],
-  }
-];
+let ProductsArr = [];
 
  if (localStorage.getItem('Products')) {
 ProductsArr=JSON.parse(localStorage.getItem('Products'))
