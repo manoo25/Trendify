@@ -38,8 +38,8 @@ const SubBtn=document.getElementById('SubBtn');
     });
 
     function SendComment() {
-        if(localStorage.getItem('LogedUser')){
-            Id=JSON.parse(localStorage.getItem('LogedUser')).userId;
+        if(sessionStorage.getItem('LogedUser')){
+            Id=JSON.parse(sessionStorage.getItem('LogedUser')).userId;
             comentObj={
                 userId:Id,
                 commentId:Math.floor(Math.random() * 1000*(Id)+1),

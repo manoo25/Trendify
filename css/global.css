@@ -53,6 +53,7 @@ h3 {
   color: var(--main-color);
   font-weight: var(--font-weight-medium);
   font-style: italic;
+  /* font-family: "Caveat Brush", cursive; */
 }
 .graySessions {
   background-color: var(--bg-color);
@@ -141,5 +142,29 @@ textarea:focus {
   box-shadow: 0 0 0 2px 2px var(--second-color) !important  ;
   border-color: var(--second-color) !important;
 }
+ nav .dropdown-menu .dropdown-item {
+  cursor: pointer;
+  color: var(--main-color);
+}
+ nav .dropdown-menu .dropdown-item:hover {
+background-color: var(--second-color);
+color: white;
+}
+
+
+section .row .Product > .pic {
+  overflow: hidden;
+  transition: all 0.5s ease; 
+  cursor: pointer;
+}
+
+section .row .Product > .pic img {
+  transition: all 0.5s ease; 
+}
+
+section .row .Product:hover > .pic img {
+  transform: scale(1.2);
+}
+
 
 

@@ -20,6 +20,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet"> -->
 
     <title>Trendify</title>
 
@@ -70,7 +71,7 @@
                     >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#products"><span class="d-lg-none fa-brands fa-shopify"></span> Products</a>
+                    <a class="nav-link" href="./pages/category.html"><span class="d-lg-none fa-brands fa-shopify"></span> Products</a>
                   </li>
                   <li class="nav-item">
                   <a class="nav-link" href="#services"><span class="d-lg-none fa-solid fa-screwdriver-wrench"></span> Services</a>
@@ -97,25 +98,34 @@
               </div>
             </div>
 
-            <ul class="navbar-nav mb-2 mb-lg-0 d-none d-lg-flex">
-              <li class="nav-item">
-                <a class="nav-link btn log" href="./pages/register&login.html"><span class="fa-solid fa-user-plus"></span> Login | Register</a>
-              </li>
+            <ul class="navbar-nav mb-2 mb-lg-0 d-none d-lg-flex align-items-lg-center">
+            
               <li class="nav-item">
                 <span
                   class="nav-link fa-solid fa-magnifying-glass"
                   role="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"
                 ></span>
+              </li> 
+               <li class="nav-item ">
+                <a class="nav-link btn log " id="logandRegBtn" href="./pages/register&login.html"><span class="fa-solid fa-user-plus me-1"></span> Login | Register</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item d-none authBtn">
+               <a href="./pages/cart&checkout.html">
                 <span
-                  class="nav-link fa-solid fa-cart-shopping"
-                  role="button"
-                ></span>
+                class="nav-link fa-solid fa-cart-shopping"
+                role="button"
+              ></span>
+               </a>
               </li>
 
-              <li class="nav-item">
-                <span class="nav-link fa-regular fa-user" role="button"></span>
+              <li class="nav-item d-none authBtn position-relative">
+                <span class="nav-link fa-regular fa-user" role="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"></span>
+                <ul style="left:-115px;" class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                  <li ><a id="ViewCPanelId" class="dropdown-item d-flex justify-content-between align-items-center " ><i class="fas fa-user me-1"></i>Profile</a></li>
+                 
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a id="LogOutandClear"  class="dropdown-item d-flex justify-content-between align-items-center" ><i class="fas fa-sign-out-alt me-1"></i>Log Out</a></li>
+              </ul>
               </li>
             </ul>
           </div>
@@ -397,52 +407,56 @@
 
 <!-- Samar session -->
    
- <!-- start slider -->
-<section class="pb-5">
-  <div class="container-fluid p-0">
-    <div style="min-height: 45vh;" id="carouselIndicators" class="carousel slide carousel-fade " data-bs-ride="carousel"  >
-      <div class="carousel-indicators carousel-bg">
-        <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button class="Slide2Indecators" type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button class="Slide2Indecators" type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      </div>
-      <div class="carousel-inner">
-        <div style="min-height: 45vh;" class="carousel-item active" data-bs-interval="4000">
-          <img style="height: 60vh;" src="imgs/Frame 74.png" class="d-block w-100" alt="image1">
-          <div class="carousel-caption text-start">
-            <h1>Upgrade your style</h1>
-            <h3>Up to 50% off <br> Clothing and accessories</h3>
-            <a href="#" class="btn mb-3">Shop Now </a>
+  <!-- start slider -->
+  <section class="pb-5">
+    <div class="container-fluid p-0">
+      <div style="min-height: 45vh;" id="carouselIndicators" class="carousel slide carousel-fade "
+        data-bs-ride="carousel">
+        <div class="carousel-indicators carousel-bg">
+          <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+          <button class="Slide2Indecators" type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+          <button class="Slide2Indecators" type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div style="min-height: 45vh;" class="carousel-item active" data-bs-interval="4000">
+            <img style="height: 60vh;" src="imgs/Frame 74.png" class="d-block w-100" alt="image1">
+            <div class="carousel-caption text-start">
+              <h1>Upgrade your style</h1>
+              <h3>Up to 50% off <br> Clothing and accessories</h3>
+              <a href="#" class="btn mb-3">Shop Now </a>
+            </div>
+          </div>
+          <div style="min-height: 45vh;" class="carousel-item" data-bs-interval="4000">
+            <img style="height: 60vh;" src="imgs/frame6.png" class="d-block w-100" alt="image2">
+            <div class="carousel-caption text-start">
+              <h1>Upgrade your style</h1>
+              <h3>Up to 50% off <br> Clothing and accessories</h3>
+              <a href="#" class="btn mb-3">Shop Now </a>
+            </div>
+          </div>
+          <div style="min-height: 45vh;" class="carousel-item" data-bs-interval="4000">
+            <img style="height: 60vh;" src="imgs/frame5.png" class="d-block w-100" alt="image23">
+            <div class="carousel-caption text-start">
+              <h1>Upgrade your style</h1>
+              <h3>Up to 50% off <br> Clothing and accessories</h3>
+              <a href="#" class="btn mb-3">Shop Now </a>
+            </div>
           </div>
         </div>
-        <div  style="min-height: 45vh;" class="carousel-item" data-bs-interval="4000">
-          <img  style="height: 60vh;" src="imgs/image.jpeg" class="d-block w-100" alt="image2">
-          <div class="carousel-caption text-start">
-            <h1>Upgrade your style</h1>
-            <h3>Up to 50% off <br> Clothing and accessories</h3>
-            <a href="#" class="btn mb-3">Shop Now </a>
-          </div>
-        </div>
-        <div  style="min-height: 45vh;" class="carousel-item" data-bs-interval="4000">
-          <img  style="height: 60vh;" src="imgs/Frame 74.png" class="d-block w-100" alt="image23">
-          <div class="carousel-caption text-start">
-            <h1>Upgrade your style</h1>
-            <h3>Up to 50% off <br> Clothing and accessories</h3>
-            <a href="#" class="btn mb-3">Shop Now </a>
-          </div>
-        </div>
-      </div>
-      <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
+        <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button> -->
-      <!-- <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
+        <!-- <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button> -->
+      </div>
     </div>
-  </div>
-</section><!-- end slider -->
+  </section><!-- end slider -->
 
   
   <section class="py-3">
@@ -452,95 +466,8 @@
         <h1>Grab them before they're gone</h1>
       </div>
 
-      <div class="row gy-4 px-5 px-md-2 px-lg-0 gx-4">
-        <div class="contain-item col-lg-3 col-md-6  pb-2">
-          <div class="Product">
-            <div class="pic position-relative">
-              <img class="w-100" src="../imgs/unsplash_5gkYsrH_ebY.png" alt="skirt" />
-              <span class="discount">-50%</span>
-            </div>
-            <div class="disc">
-              <h3>Full Outfit</h3>
-              <div class="rate d-flex align-items-center gap-1">
-                <span>4.8</span>
-                <span class="simi">(+500)</span>
-              </div>
-              <div class="price d-flex justify-content-between align-items-center">
-                <div>
-                  5000
-                  <span class="text-decoration-line-through afterSale">10000 Egp</span>
-                </div>
-                <button class="btnAddToCart fa-solid fa-plus"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="contain-item col-lg-3 col-md-6  pb-2">
-          <div class="Product">
-            <div class="pic position-relative">
-              <img class="w-100" src="../imgs/unsplash_BqoyzXdINdg.png" alt="skirt" />
-              <span class="discount">-50%</span>
-            </div>
-            <div class="disc">
-              <h3>Full Outfit</h3>
-              <div class="rate d-flex align-items-center gap-1">
-                <span>4.8</span>
-                <span class="simi">(+500)</span>
-              </div>
-              <div class="price d-flex justify-content-between align-items-center">
-                <div>
-                  5000
-                  <span class="text-decoration-line-through afterSale">10000 Egp</span>
-                </div>
-                <button class="btnAddToCart fa-solid fa-plus"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="contain-item col-lg-3 col-md-6  pb-2">
-          <div class="Product">
-            <div class="pic position-relative">
-              <img class="w-100" src="../imgs/unsplash_N2CiCNWba-Y.png" alt="skirt" />
-              <span class="discount">-50%</span>
-            </div>
-            <div class="disc">
-              <h3>Full Outfit</h3>
-              <div class="rate d-flex align-items-center gap-1">
-                <span>4.8</span>
-                <span class="simi">(+500)</span>
-              </div>
-              <div class="price d-flex justify-content-between align-items-center">
-                <div>
-                  5000
-                  <span class="text-decoration-line-through afterSale">10000 Egp</span>
-                </div>
-                <button class="btnAddToCart fa-solid fa-plus"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="contain-item col-lg-3 col-md-6  pb-2">
-          <div class="Product">
-            <div class="pic position-relative">
-              <img class="w-100" src="../imgs/unsplash_Dli2lIXQiJc.png" alt="skirt" />
-              <span class="discount">-50%</span>
-            </div>
-            <div class="disc">
-              <h3>Full Outfit</h3>
-              <div class="rate d-flex align-items-center gap-1">
-                <span>4.8</span>
-                <span class="simi">(+500)</span>
-              </div>
-              <div class="price d-flex justify-content-between align-items-center">
-                <div>
-                  5000
-                  <span class="text-decoration-line-through afterSale">10000 Egp</span>
-                </div>
-                <button class="btnAddToCart fa-solid fa-plus"></button>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div id="FlashSale" class="row gy-4 px-5 px-md-2 px-lg-0 gx-4 mt-3">
+      
       </div>
 
     </div>
@@ -558,26 +485,27 @@
       </div>
       <div class="row g-4 mt-4">
         <div class="col-md-6">
-          <div class="card text-white rounded-4 overflow-hidden ">
-            <img style="height: 80vh;" src="./imgs/unsplash_mB-SwZFP1kQ.png" class="card-img  object-fit-cover" alt="Shoes">
+          <div class="card  home-card text-white rounded-4 overflow-hidden ">
+            <img style="height: 80vh;" src="./imgs/shose1.jpg" class="card-img  object-fit-center"
+              alt="Shoes">
             <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center">
               <h1 class="card-title">Shoes</h1>
               <h3 class="card-text">Up to 50% Off</h3>
             </div>
           </div>
         </div>
-        <div class="col-md-6  d-flex flex-column justify-content-between">
-          <div style="height: 39vh;" class="card text-white rounded-4 overflow-hidden  ">
-            <img  src="./imgs/unsplash_5gkYsrH_ebY.png" class="card-img  object-fit-cover" alt="Bags">
+        <div class="col-md-6  d-flex flex-column justify-content-between  py-2 mt-3 ">
+          <div style="height: 39vh;" class="card home-card text-white rounded-4 overflow-hidden  ">
+            <img src="./imgs/bag5.jpg" class="card-img  object-fit-center object-fit-content w-100 h-100" alt="Bags">
             <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center">
               <h1 class="card-title">Bags</h1>
               <h3 class="card-text">Up to 50% Off</h3>
             </div>
           </div>
-          <div style="height: 39vh;" class="card text-white rounded-4 overflow-hidden ">
-            <img  src="./imgs/unsplash_krZnZodbOy4.png" class="card-img  object-fit-cover" alt="Accessories">
+          <div style="height: 39vh;" class="card home-card text-white rounded-4 overflow-hidden mt-4 mt-md-3">
+            <img src="./imgs/unsplash_krZnZodbOy4.png" class="card-img  object-fit-center w-100 h-100" alt="Accessories">
             <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center">
-              <h1 class="card-title">Accessories</h1>
+              <h1 class="card-title">Shirts</h1>
               <h3 class="card-text">Up to 50% Off</h3>
             </div>
           </div>
@@ -585,7 +513,7 @@
 
       </div>
     </div>
-  </section> 
+  </section>
   <!-- end new collection -->
   
 </div> 
@@ -605,7 +533,7 @@
             id="nav-tab"
             role="tablist"
           >
-            <div class="nav-links d-flex m-auto gap-1 rounded-5">
+            <div id="NavLinksBest" class="nav-links d-flex m-auto gap-1 rounded-5">
               <button
                 class="nav-link active"
                 id="nav-All-tab"
@@ -618,7 +546,7 @@
               >
                 All
               </button>
-              <button
+              <!-- <button
                 class="nav-link"
                 id="nav-Skirt-tab"
                 data-bs-toggle="tab"
@@ -665,7 +593,7 @@
                 aria-selected="false"
               >
                 Watches
-              </button>
+              </button> -->
             </div>
           </div>
         </nav>
@@ -679,415 +607,17 @@
             aria-labelledby="nav-All-tab"
             tabindex="0"
           >
-            <div class="row gy-4 px-5 px-md-2 px-lg-0 gx-4">
-              <div class="contain-item col-lg-3 col-md-6  pb-2">
-                <div class="Product">
-                  <div class="pic position-relative">
-                    <img
-                      class="w-100"
-                      src="./imgs/unsplash_5gkYsrH_ebY.png"
-                      alt="skirt"
-                    />
-                    <span class="discount">-50%</span>
-                    <span class="fa-regular fa-heart position-absolute"></span>
-                  </div>
-                  <div class="disc">
-                    <h3>Full Outfit</h3>
-                    <div class="rate d-flex align-items-center gap-1">
-                      <span class="fa-solid fa-star"></span>
-                      <span>4.8</span>
-                      <span class="simi">(+500)</span>
-                    </div>
-                    <div
-                      class="price d-flex justify-content-between align-items-center"
-                    >
-                      <div>
-                        5000
-                        <span class="text-decoration-line-through afterSale"
-                          >10000 Egp</span
-                        >
-                      </div>
-                      <button class="btnAddToCart fa-solid fa-plus"></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="contain-item col-lg-3 col-md-6  pb-2">
-                <div class="Product">
-                  <div class="pic position-relative">
-                    <img
-                      class="w-100"
-                      src="./imgs/unsplash_BqoyzXdINdg.png"
-                      alt="skirt"
-                    />
-                    <span class="discount">-50%</span>
-                    <span class="fa-regular fa-heart position-absolute"></span>
-                  </div>
-                  <div class="disc">
-                    <h3>Full Outfit</h3>
-                    <div class="rate d-flex align-items-center gap-1">
-                      <span class="fa-solid fa-star"></span>
-                      <span>4.8</span>
-                      <span class="simi">(+500)</span>
-                    </div>
-                    <div
-                      class="price d-flex justify-content-between align-items-center"
-                    >
-                      <div>
-                        5000
-                        <span class="text-decoration-line-through afterSale"
-                          >10000 Egp</span
-                        >
-                      </div>
-                      <button class="btnAddToCart fa-solid fa-plus"></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="contain-item col-lg-3 col-md-6  pb-2">
-                <div class="Product">
-                  <div class="pic position-relative">
-                    <img
-                      class="w-100"
-                      src="./imgs/unsplash_N2CiCNWba-Y.png"
-                      alt="skirt"
-                    />
-                    <span class="discount">-50%</span>
-                    <span class="fa-regular fa-heart position-absolute"></span>
-                  </div>
-                  <div class="disc">
-                    <h3>Full Outfit</h3>
-                    <div class="rate d-flex align-items-center gap-1">
-                      <span class="fa-solid fa-star"></span>
-                      <span>4.8</span>
-                      <span class="simi">(+500)</span>
-                    </div>
-                    <div
-                      class="price d-flex justify-content-between align-items-center"
-                    >
-                      <div>
-                        5000
-                        <span class="text-decoration-line-through afterSale"
-                          >10000 Egp</span
-                        >
-                      </div>
-                      <button class="btnAddToCart fa-solid fa-plus"></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="contain-item col-lg-3 col-md-6  pb-2">
-                <div class="Product">
-                  <div class="pic position-relative">
-                    <img
-                      class="w-100"
-                      src="./imgs/unsplash_Dli2lIXQiJc.png"
-                      alt="skirt"
-                    />
-                    <span class="discount">-50%</span>
-                    <span class="fa-regular fa-heart position-absolute"></span>
-                  </div>
-                  <div class="disc">
-                    <h3>Full Outfit</h3>
-                    <div class="rate d-flex align-items-center gap-1">
-                      <span class="fa-solid fa-star"></span>
-                      <span>4.8</span>
-                      <span class="simi">(+500)</span>
-                    </div>
-                    <div
-                      class="price d-flex justify-content-between align-items-center"
-                    >
-                      <div>
-                        5000
-                        <span class="text-decoration-line-through afterSale"
-                          >10000 Egp</span
-                        >
-                      </div>
-                      <button class="btnAddToCart fa-solid fa-plus"></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div id="allBestTab" class="row gy-4 px-5 px-md-2 px-lg-0 gx-4">
+              
             </div>
           </div>
 
-          <!-- Skirt -->
-          <div
-            class="tab-pane fade"
-            id="nav-Skirt"
-            role="tabpanel"
-            aria-labelledby="nav-Skirt-tab"
-            tabindex="0"
-          >
-            <div class="row gy-4 px-5 px-md-2 px-lg-0 gx-4">
-              <div class="contain-item col-lg-3 col-md-6  pb-2">
-                <div class="Product">
-                  <div class="pic position-relative">
-                    <img
-                      class="w-100"
-                      src="./imgs/unsplash_5A9cFNtWav0.png"
-                      alt="skirt"
-                    />
-                    <span class="discount">-50%</span>
-                    <span class="fa-regular fa-heart position-absolute"></span>
-                  </div>
-                  <div class="disc">
-                    <h3>Full Outfit</h3>
-                    <div class="rate d-flex align-items-center gap-1">
-                      <span class="fa-solid fa-star"></span>
-                      <span>4.8</span>
-                      <span class="simi">(+500)</span>
-                    </div>
-                    <div
-                      class="price d-flex justify-content-between align-items-center"
-                    >
-                      <div>
-                        5000
-                        <span class="text-decoration-line-through afterSale"
-                          >10000 Egp</span
-                        >
-                      </div>
-                      <button class="btnAddToCart fa-solid fa-plus"></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+         
 
-          <!-- Bags -->
-          <div
-            class="tab-pane fade"
-            id="nav-Bags"
-            role="tabpanel"
-            aria-labelledby="nav-Bags-tab"
-            tabindex="0"
-          >
-            <div class="row gy-4 px-5 px-md-2 px-lg-0 gx-4">
-              <div class="contain-item col-lg-3 col-md-6  pb-2">
-                <div class="Product">
-                  <div class="pic position-relative">
-                    <img
-                      class="w-100"
-                      src="./imgs/unsplash_5gkYsrH_ebY.png"
-                      alt="skirt"
-                    />
-                    <span class="discount">-50%</span>
-                    <span class="fa-regular fa-heart position-absolute"></span>
-                  </div>
-                  <div class="disc">
-                    <h3>Full Outfit</h3>
-                    <div class="rate d-flex align-items-center gap-1">
-                      <span class="fa-solid fa-star"></span>
-                      <span>4.8</span>
-                      <span class="simi">(+500)</span>
-                    </div>
-                    <div
-                      class="price d-flex justify-content-between align-items-center"
-                    >
-                      <div>
-                        5000
-                        <span class="text-decoration-line-through afterSale"
-                          >10000 Egp</span
-                        >
-                      </div>
-                      <button class="btnAddToCart fa-solid fa-plus"></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="contain-item col-lg-3 col-md-6  pb-2">
-                <div class="Product">
-                  <div class="pic position-relative">
-                    <img
-                      class="w-100"
-                      src="./imgs/unsplash_N2CiCNWba-Y.png"
-                      alt="skirt"
-                    />
-                    <span class="discount">-50%</span>
-                    <span class="fa-regular fa-heart position-absolute"></span>
-                  </div>
-                  <div class="disc">
-                    <h3>Full Outfit</h3>
-                    <div class="rate d-flex align-items-center gap-1">
-                      <span class="fa-solid fa-star"></span>
-                      <span>4.8</span>
-                      <span class="simi">(+500)</span>
-                    </div>
-                    <div
-                      class="price d-flex justify-content-between align-items-center"
-                    >
-                      <div>
-                        5000
-                        <span class="text-decoration-line-through afterSale"
-                          >10000 Egp</span
-                        >
-                      </div>
-                      <button class="btnAddToCart fa-solid fa-plus"></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Full-OutFit -->
-          <div
-            class="tab-pane fade"
-            id="nav-FullOutfit"
-            role="tabpanel"
-            aria-labelledby="nav-FullOutfit-tab"
-            tabindex="0"
-          >
-            <div class="row gy-4 px-5 px-md-2 px-lg-0 gx-4">
-              <div class="contain-item col-lg-3 col-md-6  pb-2">
-                <div class="Product">
-                  <div class="pic position-relative">
-                    <img
-                      class="w-100"
-                      src="./imgs/unsplash_5gkYsrH_ebY.png"
-                      alt="skirt"
-                    />
-                    <span class="discount">-50%</span>
-                    <span class="fa-regular fa-heart position-absolute"></span>
-                  </div>
-                  <div class="disc">
-                    <h3>Full Outfit</h3>
-                    <div class="rate d-flex align-items-center gap-1">
-                      <span class="fa-solid fa-star"></span>
-                      <span>4.8</span>
-                      <span class="simi">(+500)</span>
-                    </div>
-                    <div
-                      class="price d-flex justify-content-between align-items-center"
-                    >
-                      <div>
-                        5000
-                        <span class="text-decoration-line-through afterSale"
-                          >10000 Egp</span
-                        >
-                      </div>
-                      <button class="btnAddToCart fa-solid fa-plus"></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="contain-item col-lg-3 col-md-6  pb-2">
-                <div class="Product">
-                  <div class="pic position-relative">
-                    <img
-                      class="w-100"
-                      src="./imgs/unsplash_N2CiCNWba-Y.png"
-                      alt="skirt"
-                    />
-                    <span class="discount">-50%</span>
-                    <span class="fa-regular fa-heart position-absolute"></span>
-                  </div>
-                  <div class="disc">
-                    <h3>Full Outfit</h3>
-                    <div class="rate d-flex align-items-center gap-1">
-                      <span class="fa-solid fa-star"></span>
-                      <span>4.8</span>
-                      <span class="simi">(+500)</span>
-                    </div>
-                    <div
-                      class="price d-flex justify-content-between align-items-center"
-                    >
-                      <div>
-                        5000
-                        <span class="text-decoration-line-through afterSale"
-                          >10000 Egp</span
-                        >
-                      </div>
-                      <button class="btnAddToCart fa-solid fa-plus"></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Watches -->
-          <div
-            class="tab-pane fade"
-            id="nav-Watches"
-            role="tabpanel"
-            aria-labelledby="nav-Watches-tab"
-            tabindex="0"
-          >
-            <div class="row gy-4 px-5 px-md-2 px-lg-0 gx-4">
-              <div class="contain-item col-lg-3 col-md-6  pb-2">
-                <div class="Product">
-                  <div class="pic position-relative">
-                    <img
-                      class="w-100"
-                      src="./imgs/unsplash_5gkYsrH_ebY.png"
-                      alt="skirt"
-                    />
-                    <span class="discount">-50%</span>
-                    <span class="fa-regular fa-heart position-absolute"></span>
-                  </div>
-                  <div class="disc">
-                    <h3>Full Outfit</h3>
-                    <div class="rate d-flex align-items-center gap-1">
-                      <span class="fa-solid fa-star"></span>
-                      <span>4.8</span>
-                      <span class="simi">(+500)</span>
-                    </div>
-                    <div
-                      class="price d-flex justify-content-between align-items-center"
-                    >
-                      <div>
-                        5000
-                        <span class="text-decoration-line-through afterSale"
-                          >10000 Egp</span
-                        >
-                      </div>
-                      <button class="btnAddToCart fa-solid fa-plus"></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="contain-item col-lg-3 col-md-6  pb-2">
-                <div class="Product">
-                  <div class="pic position-relative">
-                    <img
-                      class="w-100"
-                      src="./imgs/unsplash_N2CiCNWba-Y.png"
-                      alt="skirt"
-                    />
-                    <span class="discount">-50%</span>
-                    <span class="fa-regular fa-heart position-absolute"></span>
-                  </div>
-                  <div class="disc">
-                    <h3>Full Outfit</h3>
-                    <div class="rate d-flex align-items-center gap-1">
-                      <span class="fa-solid fa-star"></span>
-                      <span>4.8</span>
-                      <span class="simi">(+500)</span>
-                    </div>
-                    <div
-                      class="price d-flex justify-content-between align-items-center"
-                    >
-                      <div>
-                        5000
-                        <span class="text-decoration-line-through afterSale"
-                          >10000 Egp</span
-                        >
-                      </div>
-                      <button class="btnAddToCart fa-solid fa-plus"></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          
         </div>
         <div class="d-flex justify-content-center mt-4">
-          <a class="seeAllbtn d-flex gap-3 text-decoration-none" href="#"
+          <a class="seeAllbtn d-flex gap-3 text-decoration-none" href="./pages/category.html"
             >See All <span>></span></a
           >
         </div>
@@ -1102,263 +632,9 @@
           <p>Top Products</p>
           <h1>Top Picks For You !"</h1>
         </div>
-        <div class="row gy-4 px-5 px-md-2 px-lg-0 gx-4 pt-4  ">
-          <div class="contain-item    col-lg-3 col-md-6  pb-2">
-            <div class="Product">
-              <div class="pic position-relative">
-                <img
-                  class="w-100"
-                  src="./imgs/unsplash_5gkYsrH_ebY.png"
-                  alt="skirt"
-                />
-                <span class="discount">-50%</span>
-                <span class="fa-regular fa-heart position-absolute"></span>
-              </div>
-              <div class="disc">
-                <h3>Full Outfit</h3>
-                <div class="rate d-flex align-items-center gap-1">
-                  <span class="fa-solid fa-star"></span>
-                  <span>4.8</span>
-                  <span class="simi">(+500)</span>
-                </div>
-                <div
-                  class="price d-flex justify-content-between align-items-center"
-                >
-                  <div>
-                    5000
-                    <span class="text-decoration-line-through afterSale"
-                      >10000 Egp</span
-                    >
-                  </div>
-                  <button class="btnAddToCart fa-solid fa-plus"></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="contain-item  col-lg-3 col-md-6  pb-2">
-            <div class="Product">
-              <div class="pic position-relative">
-                <img
-                  class="w-100"
-                  src="./imgs/unsplash_BqoyzXdINdg.png"
-                  alt="skirt"
-                />
-                <span class="discount">-50%</span>
-                <span class="fa-regular fa-heart position-absolute"></span>
-              </div>
-              <div class="disc">
-                <h3>Full Outfit</h3>
-                <div class="rate d-flex align-items-center gap-1">
-                  <span class="fa-solid fa-star"></span>
-                  <span>4.8</span>
-                  <span class="simi">(+500)</span>
-                </div>
-                <div
-                  class="price d-flex justify-content-between align-items-center"
-                >
-                  <div>
-                    5000
-                    <span class="text-decoration-line-through afterSale"
-                      >10000 Egp</span
-                    >
-                  </div>
-                  <button class="btnAddToCart fa-solid fa-plus"></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="contain-item    col-lg-3 col-md-6  pb-2">
-            <div class="Product">
-              <div class="pic position-relative">
-                <img
-                  class="w-100"
-                  src="./imgs/unsplash_N2CiCNWba-Y.png"
-                  alt="skirt"
-                />
-                <span class="discount">-50%</span>
-                <span class="fa-regular fa-heart position-absolute"></span>
-              </div>
-              <div class="disc">
-                <h3>Full Outfit</h3>
-                <div class="rate d-flex align-items-center gap-1">
-                  <span class="fa-solid fa-star"></span>
-                  <span>4.8</span>
-                  <span class="simi">(+500)</span>
-                </div>
-                <div
-                  class="price d-flex justify-content-between align-items-center"
-                >
-                  <div>
-                    5000
-                    <span class="text-decoration-line-through afterSale"
-                      >10000 Egp</span
-                    >
-                  </div>
-                  <button class="btnAddToCart fa-solid fa-plus"></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="contain-item    col-lg-3 col-md-6  pb-2">
-            <div class="Product">
-              <div class="pic position-relative">
-                <img
-                  class="w-100"
-                  src="./imgs/unsplash_Dli2lIXQiJc.png"
-                  alt="skirt"
-                />
-                <span class="discount">-50%</span>
-                <span class="fa-regular fa-heart position-absolute"></span>
-              </div>
-              <div class="disc">
-                <h3>Full Outfit</h3>
-                <div class="rate d-flex align-items-center gap-1">
-                  <span class="fa-solid fa-star"></span>
-                  <span>4.8</span>
-                  <span class="simi">(+500)</span>
-                </div>
-                <div
-                  class="price d-flex justify-content-between align-items-center"
-                >
-                  <div>
-                    5000
-                    <span class="text-decoration-line-through afterSale"
-                      >10000 Egp</span
-                    >
-                  </div>
-                  <button class="btnAddToCart fa-solid fa-plus"></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="contain-item    col-lg-3 col-md-6  pb-2">
-            <div class="Product">
-              <div class="pic position-relative">
-                <img
-                  class="w-100"
-                  src="./imgs/unsplash_mB-SwZFP1kQ.png"
-                  alt="skirt"
-                />
-                <span class="discount">-50%</span>
-                <span class="fa-regular fa-heart position-absolute"></span>
-              </div>
-              <div class="disc">
-                <h3>Full Outfit</h3>
-                <div class="rate d-flex align-items-center gap-1">
-                  <span class="fa-solid fa-star"></span>
-                  <span>4.8</span>
-                  <span class="simi">(+500)</span>
-                </div>
-                <div
-                  class="price d-flex justify-content-between align-items-center"
-                >
-                  <div>
-                    5000
-                    <span class="text-decoration-line-through afterSale"
-                      >10000 Egp</span
-                    >
-                  </div>
-                  <button class="btnAddToCart fa-solid fa-plus"></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="contain-item    col-lg-3 col-md-6  pb-2">
-            <div class="Product">
-              <div class="pic position-relative">
-                <img
-                  class="w-100"
-                  src="./imgs/unsplash_vYeWwcfzQWE.png"
-                  alt="skirt"
-                />
-                <span class="discount">-50%</span>
-                <span class="fa-regular fa-heart position-absolute"></span>
-              </div>
-              <div class="disc">
-                <h3>Full Outfit</h3>
-                <div class="rate d-flex align-items-center gap-1">
-                  <span class="fa-solid fa-star"></span>
-                  <span>4.8</span>
-                  <span class="simi">(+500)</span>
-                </div>
-                <div
-                  class="price d-flex justify-content-between align-items-center"
-                >
-                  <div>
-                    5000
-                    <span class="text-decoration-line-through afterSale"
-                      >10000 Egp</span
-                    >
-                  </div>
-                  <button class="btnAddToCart fa-solid fa-plus"></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="contain-item    col-lg-3 col-md-6  pb-2">
-            <div class="Product">
-              <div class="pic position-relative">
-                <img
-                  class="w-100"
-                  src="./imgs/unsplash_krZnZodbOy4.png"
-                  alt="skirt"
-                />
-                <span class="discount">-50%</span>
-                <span class="fa-regular fa-heart position-absolute"></span>
-              </div>
-              <div class="disc">
-                <h3>Full Outfit</h3>
-                <div class="rate d-flex align-items-center gap-1">
-                  <span class="fa-solid fa-star"></span>
-                  <span>4.8</span>
-                  <span class="simi">(+500)</span>
-                </div>
-                <div
-                  class="price d-flex justify-content-between align-items-center"
-                >
-                  <div>
-                    5000
-                    <span class="text-decoration-line-through afterSale"
-                      >10000 Egp</span
-                    >
-                  </div>
-                  <button class="btnAddToCart fa-solid fa-plus"></button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="contain-item    col-lg-3 col-md-6  pb-2">
-            <div class="Product">
-              <div class="pic position-relative">
-                <img
-                  class="w-100"
-                  src="./imgs/unsplash_mB-SwZFP1kQ.png"
-                  alt="skirt"
-                />
-                <span class="discount">-50%</span>
-                <span class="fa-regular fa-heart position-absolute"></span>
-              </div>
-              <div class="disc">
-                <h3>Full Outfit</h3>
-                <div class="rate d-flex align-items-center gap-1">
-                  <span class="fa-solid fa-star"></span>
-                  <span>4.8</span>
-                  <span class="simi">(+500)</span>
-                </div>
-                <div
-                  class="price d-flex justify-content-between align-items-center"
-                >
-                  <div>
-                    5000
-                    <span class="text-decoration-line-through afterSale"
-                      >10000 Egp</span
-                    >
-                  </div>
-                  <button class="btnAddToCart fa-solid fa-plus"></button>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div id="TopPicksContainer" class="row gy-4 px-5 px-md-2 px-lg-0 gx-4 pt-4  ">
+      
+         
         </div>
       </div>
     </section>
@@ -1366,24 +642,26 @@
     <!-- Asmaa section -->
 
 
-    <section class="py-5 hero-section d-flex align-items-center">
-      <div class="overlay"></div>
-      <div class="title container text-center content">
-        <h1 class="text-white">Discover Fashion That Speaks To You.</h1>
-        <p class="text-white">
-          Explore a range of high-quality, affordable furniture designed to
-          transform any room. Discover the perfect blend of style, comfort, and
-          functionality for your space.
-        </p>
-        <div class="d-flex justify-content-center mt-4">
-          <a
-            class="seeAllbtn text-white border-white d-flex gap-3 text-decoration-none"
-            href="#"
-            >See All <span>></span></a
-          >
-        </div>
-      </div>
-    </section>
+ <!--our video section-->
+ <section class="py-5 hero-section d-flex align-items-center ">
+  <video autoplay muted loop playsinline  class="w-100 ">
+    <source src="./video/clothes.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <div class="title container text-center content">
+    <h1 class="text-white">Discover Fashion That Speaks To You.</h1>
+    <p class="text-white">
+      Explore a range of high-quality, affordable furniture designed to
+      transform any room. Discover the perfect blend of style, comfort, and
+      functionality for your space.
+    </p>
+    <div class="d-flex justify-content-center mt-4">
+      <a class="seeAllbtn text-white border-white d-flex gap-3 text-decoration-none" href="#">See All
+        <span>></span></a>
+    </div>
+  </div>
+</section>
+<!--our video section-->
 
 
 
@@ -1445,7 +723,7 @@
                                 <div class="quote mb-3">
                                   <i class="bi bi-quote"></i>
                                 </div>
-                                <p class="card-text">Excellent quality and fast delivery!</p>
+                                <p class="card-text testimonial-feedback">Excellent quality and fast delivery!</p>
                                 <div class="d-flex align-items-center mt-4">
                                   <img style="width: 45px;height: 45px;" src="./imgs/1_New1.jpg" class="rounded-circle me-3" alt="Customer">
                                   <div>
@@ -1468,7 +746,7 @@
                                 <div class="quote mb-3">
                                   <i class="bi bi-quote"></i>
                                 </div>
-                                <p class="card-text">Excellent quality and fast delivery!</p>
+                                <p class="card-text testimonial-feedback">Excellent quality and fast delivery!</p>
                                 <div class="d-flex align-items-center mt-4">
                                   <img style="width: 45px;height: 45px;" src="./imgs/testi-2.jpg" class="rounded-circle me-3" alt="Customer">
                                   <div>
@@ -1491,7 +769,7 @@
                                 <div class="quote mb-3">
                                   <i class="bi bi-quote"></i>
                                 </div>
-                                <p class="card-text">Excellent quality and fast delivery!</p>
+                                <p class="card-text testimonial-feedback">Excellent quality and fast delivery!</p>
                                 <div class="d-flex align-items-center mt-4">
                                   <img style="width: 45px;height: 45px;" src="./imgs/testi-3.jpg" class="rounded-circle me-3" alt="Customer">
                                   <div>
@@ -1576,9 +854,9 @@
         <div class="footer-bottom mt-4 d-flex flex-column flex-md-row justify-content-between text-center text-md-start">
           <p>© 2025 Trendify. All rights reserved.</p>
           <div>
-            <a href="#" class="me-3">Privacy Policy</a>
+            <a href="#" class="me-3 ">Privacy Policy</a>
             <a href="#" class="me-3">Terms of Service</a>
-            <a href="#">Cookies Settings</a>
+            <a  href="#">Cookies Settings</a>
           </div>
         </div>
       </div>
@@ -1590,10 +868,14 @@
  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-    <script  src="./js/home.js"></script>
-    <script type="module" src="./js/login&Register.js"></script>
-    <script  src="./js/Products.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script   src="./js/home.js"></script>   
+     <!-- <script  src="./js/Products.js"></script> -->
+    <script type="module"  src="./js/DisplayHome.js"></script>
+
     <script  src="./js/seller.js"></script>
+    <script  src="./js/admin.js"></script>
+    <script type="module"  src="./js/cart.js"></script>
 
   </body>
 </html>

@@ -1,12 +1,8 @@
-/* .lightBtn{
-    border: none !important;
-} */
-.darkBlueText p{  
-      color: var(--text-color);
-    font-weight: var(--font-weight-medium);
+.darkBlueText ,.darkBlueText p {  
+    color: var(--text-color);
+  font-weight: var(--font-weight-medium);
 }
-.congratulation{
-    font-size: var(--heading-1);
-    color: rgb(202, 117, 117);
-    font-weight: var(--font-weight-bold);
+.fa-trash{
+  cursor: pointer;
+  color: var(--main-color);
 }

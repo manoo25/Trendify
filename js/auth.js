@@ -4,36 +4,50 @@ function PullData() {
         usersData=JSON.parse(localStorage.getItem('usersData'))
      } 
 }
- export function SignUp(name,phone,Email,address,img,role,Password) {
-    PullData();
-let Id=Math.floor(Math.random() * 1000*(usersData.length)+1)
-    let userObj={
-        userId:Id,
-        name:name,
-        phone:phone,
-        Email:Email,
-        address:address,
-        img:img,
-        role:role,
-        Password:Password
-    }
-    usersData.push(userObj);
-    localStorage.setItem('userRole',(userObj.role))
-    localStorage.setItem('usersData',JSON.stringify(usersData))
-    localStorage.setItem('LogedUser',(JSON.stringify(userObj)))
+
+export function SignUp(name, Email, Password) {
+    PullData(); 
+
+    const emailExists = usersData.some(user => user.Email === Email);
     
+    if (emailExists) {
+        return false; 
+    }
+    
+    let Id = Math.floor(Math.random() * 1000 * (usersData.length + 1));
+    
+    let userObj = {
+        userId: Id,
+        name: name,
+        img: '',
+        phone: '',
+        Email: Email,
+        address: '',
+        role: "customer",
+        Password: Password
+    };
+    
+    usersData.push(userObj);
+    sessionStorage.setItem('userRole', userObj.role);
+    localStorage.setItem('usersData', JSON.stringify(usersData));
+    sessionStorage.setItem('LogedUser', JSON.stringify(userObj));
+   
+    window.location.replace('../index.html'); 
+    return true;
 }
  export function login(email, password) {
     PullData();
     const user = usersData.find(user => user.Email === email && user.Password === password);
    
     if (user) {
-        localStorage.setItem('userRole',(user.role))
-        localStorage.setItem('LogedUser',(JSON.stringify(user)))
+        sessionStorage.setItem('userRole',(user.role))
+        sessionStorage.setItem('LogedUser',(JSON.stringify(user)))
         checkAuth(user); 
+        window.location.replace('../index.html');
+       return true;
     } 
     else {
-       console.log("Invalid Email OR Password !!");
+        return false; 
     }
 }
 
@@ -55,7 +69,7 @@ function checkAuth(data) {
   export function accessPage(pageRole) {
 
     document.addEventListener("DOMContentLoaded", function() {
-       let role=localStorage.getItem('userRole');
+       let role=sessionStorage.getItem('userRole');
 if(pageRole!=role){
    
 

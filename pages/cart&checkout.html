@@ -15,73 +15,232 @@
   <link rel="stylesheet" href="../css/home.css" />
   <link rel="stylesheet" href="../css/cart&checkout.css" />
 </head>
-<script>
-  window.onload = function () {
-    //TODO: display coustomer details
-    let checkoutBtn = document.getElementById("checkout");
-    let customerDetails = document.querySelector(".customer-details");
-    let orderDetail = document.querySelector(".order-details");
-    let orderBtn = document.getElementById("order");
-    checkoutBtn.addEventListener("click", function () {
-      customerDetails.classList.remove("d-none");
-      orderDetail.classList.add("d-none");
-      checkoutBtn.style.display = "none";
-      orderBtn.style.display = "block";
-    });
 
-    //TODO: display order details 
-    let reviweBtn = document.getElementById("reviwe");
-    reviweBtn.addEventListener("click", function () {
-      customerDetails.classList.add("d-none");
-      orderDetail.classList.remove("d-none");
-      checkoutBtn.style.display = "block";
-      orderBtn.style.display = "none";
-    })
+<body class="graySessions  ">
 
-//TODO: delete item 
-let deleteButtons = document.querySelectorAll(".fa-trash");
+  <nav style="background-color: var(--main-color);" class="navbar navbar-expand-lg  py-3 fixed-top px-3 px-lg-5" id="mainNavbar">
+    <div class="container-fluid ">
+      <a class="navbar-brand" href="#">Trendify</a>
+      <button
+        class="navbar-toggler d-lg-none"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#mobileMenu"
+        aria-controls="mobileMenu"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-deleteButtons.forEach((btn) => {
-  btn.addEventListener("click", function () {
-    const itemElement = this.closest(".item");
-    if (itemElement) {
-      itemElement.remove();
-    }
-  });
-});
+      <div 
+      style="background-color: transparent;border:none;max-width: 50%;"
+        class="offcanvas offcanvas-start justify-content-between"
+        tabindex="-1"
+        id="mobileMenu"
+        aria-labelledby="mobileMenuLabel"
+      >
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="mobileMenuLabel"></h5>
+        </div>
+        <div  class="offcanvas-body d-flex justify-content-between">
+          <ul class="navbar-nav me-auto mx-lg-auto mb-2 mb-lg-0">
+            <li class="nav-item ">
+              <a class="nav-link active" aria-current="page" href="../index.html"
+                ><span class="fa-solid fa-house d-lg-none"></span> Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./pages/category.html"><span class="d-lg-none fa-brands fa-shopify"></span> Products</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#services"><span class="d-lg-none fa-solid fa-screwdriver-wrench"></span> Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./pages/AboutUs.html"><span class="d-lg-none fa-solid fa-circle-exclamation"></span> AboutUs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./pages/blog.html"><span class="d-lg-none fa-solid fa-blog"></span> Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./pages/contact.html"><span class="d-lg-none fa-solid fa-phone"></span> ContactUs</a>
+            </li>
+          </ul>
+          <div class="mt-5">
+            <span
+              type="button"
+              class="btn-dotted mt-5 fa-solid fa-arrows-up-to-line d-lg-none"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+              style="transform:rotate(-90deg) "
+            ></span>
+          </div>
+        </div>
+      </div>
 
-    //TODO: increment & decrement items
-    document.querySelectorAll(".increment").forEach(button => {
-  button.addEventListener("click", () => {
-    const targetId = button.getAttribute("data-bs-target").replace("#", "");
-    const counterEl = document.getElementById(targetId);
-    let count = parseInt(counterEl.textContent);
-    count++;
-    counterEl.textContent = count;
-  });
-});
+      <ul class="navbar-nav mb-2 mb-lg-0 d-none d-lg-flex align-items-lg-center">
+      
+        <li class="nav-item">
+          <span
+            class="nav-link fa-solid fa-magnifying-glass"
+            role="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"
+          ></span>
+        </li> 
+         <li class="nav-item ">
+          <a class="nav-link btn log " id="logandRegBtn" href="./register&login.html"><span class="fa-solid fa-user-plus me-1"></span> Login | Register</a>
+        </li>
+        <li class="nav-item d-none authBtn">
+          <span
+            class="nav-link fa-solid fa-cart-shopping"
+            role="button"
+          ></span>
+        </li>
 
-document.querySelectorAll(".decrement").forEach(button => {
-  button.addEventListener("click", () => {
-    const targetId = button.getAttribute("data-bs-target").replace("#", "");
-    const counterEl = document.getElementById(targetId);
-    let count = parseInt(counterEl.textContent);
-    if (count > 1) {
-      count--;
-      counterEl.textContent = count;
-    }
-  });
-});
+        <li class="nav-item d-none authBtn position-relative">
+          <span class="nav-link fa-regular fa-user" role="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"></span>
+          <ul style="left:-115px;" class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+            <li ><a id="ViewCPanelId" class="dropdown-item d-flex justify-content-between align-items-center " ><i class="fas fa-user me-1"></i>Profile</a></li>
+           
+            <li><hr class="dropdown-divider"></li>
+            <li><a id="LogOutandClear"  class="dropdown-item d-flex justify-content-between align-items-center" ><i class="fas fa-sign-out-alt me-1"></i>Log Out</a></li>
+        </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-  }
-</script>
+<!-- ofcanvas for search icon -->
+  <div class="offcanvas offcanvas-top " tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+    <div class="offcanvas-header">
+      <button type="button" class="btn-close closee" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+       <div class="container"> 
+ <div class="row justify-content-center"> 
+  <div class="col-12 position-relative">
+  <div class="srchinp  position-relative " >
+   <div class="d-flex align-items-center">
+    <input class="search w-100 m-auto" type="search" placeholder="Search Products...." aria-label="Search" id="searchInput" >
+     <span class="fa-solid fa-magnifying-glass"></span>
+        </div>
+<!-- list from search input -->
+   <div  id="searchResults" class="search-results-box card mt-2" style="display: none; position: absolute; top: 82%; left: 0; width: 100%; z-index: 1055; max-height: 450px; overflow-y: auto;">
+   <div class="card-body">
+  <div class="row g-2">
+    <div class="trendingnow"  style="border-bottom: 1px solid #e7e7e7;">
+      <h3 class="mb-3 ">Trending now </h3>
+    </div>
+    <!-- trending buttons for suggest -->
+   <ul class="suggestedtopics  ">
+    <div class="row g-2">
+      <div class="col-5 col-md-5 d-flex align-items-center col-lg-2 "> 
+        <li class="bg-light p-2 mx-2 ">
+        <a href="#" class="text-muted"><span class="fa-solid fa-magnifying-glass"></span>MenJacets</a>
+      </li>
+    </div>
+      <div class="col-5 col-md-5 d-flex align-items-center col-lg-2 "> 
+        <li class="bg-light p-2 mx-2">
+          <a href="#" class="text-muted"><span class="fa-solid fa-magnifying-glass"></span>Pullover</a>
+        </li>
+      </div>
+      <div class="col-5 col-md-5 d-flex align-items-center col-lg-2 "> 
+        <li class="bg-light p-2 mx-2">
+          <a href="#" class="text-muted"><span class="fa-solid fa-magnifying-glass"></span>Sweatshirts</a>
+        </li>
+      </div>
+      <div class="col-5 col-md-5 d-flex align-items-center col-lg-2 "> 
+        <li class="bg-light p-2 mx-2">
+          <a href="#" class="text-muted"><span class="fa-solid fa-magnifying-glass"></span>Shirts</a>
+        </li>
+      </div>
+      <div class="col-5 col-md-5 d-flex align-items-center col-lg-2 "> 
+        <li class="bg-light p-2 mx-2">
+          <a href="#" class="text-muted"><span class="fa-solid fa-magnifying-glass"></span>Poloshirts</a>
+        </li>
+      </div>
+    </div>
+   
+    
+   
+   
+   
+   </ul>
+    <div class="catigname ">
+      <h3>Popular products</h3>
+    </div>
+    <div class="col-6 col-md-4 col-lg-3">
+<div class="card" role="button">
+<div class="pic">
+<img src="../imgs/T3.jpg" class="w-100" alt="productpic">
+</div>
+<h6 class="prodname">FSH23ACCR19822TM1 - Olive*White</h6>
+<div class="product-price d-flex">
+<div class="price">
+<del class="oldprice"> 1,499.00LE  </del>  <p class="newprice d-inline"> 449.00LE</p>
+</div>
+</div>
+</div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-3">
+<div class="card" role="button">
+<div class="pic">
+<img src="../imgs/T4.jpg" class="w-100" alt="productpic">
+</div>
+<h6 class="prodname">FSH23ACCR19822TM1 - Olive*White</h6>
+<div class="product-price d-flex">
+<div class="price">
+<del class="oldprice"> 1,499.00LE  </del>  <p class="newprice d-inline"> 449.00LE</p>
+</div>
+</div>
+</div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-3">
+<div class="card" role="button">
+<div class="pic">
+<img src="../imgs/T5.jpg" class="w-100" alt="productpic">
+</div>
+<h6 class="prodname">FSH23ACCR19822TM1 - Olive*White</h6>
+<div class="product-price d-flex">
+<div class="price">
+<del class="oldprice"> 1,499.00LE  </del>  <p class="newprice d-inline"> 449.00LE</p>
+</div>
+</div>
+</div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-3">
+    <div class="card" role="button">
+<div class="pic">
+<img src="../imgs/T1.jpg" class="w-100" alt="productpic">
+</div>
+<h6 class="prodname">FSH23ACCR19822TM1 - Olive*White</h6>
+<div class="product-price d-flex">
+<div class="price">
+<del class="oldprice"> 1,499.00LE  </del>  <p class="newprice d-inline"> 449.00LE</p>
+</div>
+</div>
+    </div>
+    </div>
 
-<body class="graySessions ">
-  <div class="container-fluid py-5 ">
+    <div class="seeallprod w-100  text-center mt-2">
+     <a href="#" class="text-decoration-none  h3"> VIEW ALL RESULTS</a>
+    </div>
+  </div>
 
-    <div class="row ">
+   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+  <div class="container-fluid py-5 mt-5">
+
+    <div class="row">
       <!--customer details-->
-      <section class="container-fluid  customer-details py-5 col-sm-12 col-md-6  p-sm-5 d-none ">
+      <section class="container-fluid  customer-details py-5 px-5 col-sm-12 col-md-6 d-none">
         <form action="#" class="needs-validation" novalidate>
           <div class="mb-3">
             <label for="customer-name" class="form-label">Your Name</label>
@@ -135,42 +294,40 @@ document.querySelectorAll(".decrement").forEach(button => {
       </section><!--end customer details-->
 
       <!--order details-->
-      <section class="container-fluid order-details py-5 col-sm-10  col-lg-6 d-block bg-danger ">
+      <section class="container-fluid order-details py-5 col-sm-12 px-5 col-md-6 gx-sm-0 d-block">
         <div class="row ">
-          <div class="d-flex mx-2 px-4 title">
-            <h1>Cart</h1>
-            <p class="mx-2 "> 2 item</p>
+          <div class="d-flex mx-2 px-2">
+            <h1 class="darkBlueText">Cart</h1>
+            <h3 class="mx-2 darkBlueText"> 2 item</h3>
           </div>
           <!--firstCart-->
-          <div class="container pb-3 item" >
+          <div class="container pb-3 item " >
 
             <div class=" d-flex card-body bg-light border rounded-4 justify-content-between align-items-center "
               style="min-width: fit-content">
               <div class=" d-flex align-items-center">
                 <img src="../imgs/unsplash_N2CiCNWba-Y.png" class="card-img rounded-4  "
-                  style="height: 100%; width:20%;" alt="item1">
-                <div class=" container">
-                  <div class="flex-column px-5 title">
-                    <h1>funny shirt</h1>
+                  style="height: 100%; width: 100px;" alt="item1">
+                <div class=" container ">
+                  <div class="flex-column px-2 justify-content-center align-items-center">
+                    <h3 class="darkBlueText px-2">funny shirt</h3>
                     <div class="d-flex">
                       <div class="container gx-0">
-
-                        <div class="flex-row  justify-content-between ">
                           <div class=" d-flex justify-content-between px-2 align-items-center "
                             style="min-width:5rem">
 
                             <button  type="button"  data-bs-target="#countitem1"  class=" decrement btn p-2 px-4 bg-light shadow-sm border-0 rounded-3"> <i
                                 class="fa-solid fa-minus" style="color: var(--main-color);"></i></button>
 
-                            <h1 id="countitem1" class="p-2 px-4">1</h1>
+                            <h3 id="countitem1" class="pt-2 px-4">1</h3>
                             <button type="button" data-bs-target="#countitem1" class=" increment btn p-2 px-4 bg-light shadow-sm border-0 rounded-3"> <i
                               class="fa-solid fa-plus"  style="color: var(--main-color);"></i></button>
                           </div>
 
-                        </div>
+                     
                       </div>
                       <div class="px-2 mt-3 ">
-                        <i id="delete" role="button" class="fa-solid fa-trash fs-3"></i>
+                        <i id="delete" role="button" class="fa-solid fa-trash fs-4"></i>
                       </div>
 
                     </div>
@@ -179,11 +336,12 @@ document.querySelectorAll(".decrement").forEach(button => {
                 </div>
 
               </div>
-              <div class="px-2 title">
-                <h1>5000Egp</h1>
+              <div class="px-5 darkBlueText">
+                <h3>5000Egp</h3>
               </div>
+             
 
-            </div>
+            </div> <hr>
           </div><!--end firstCart-->
 
           <!--secCart-->
@@ -191,33 +349,32 @@ document.querySelectorAll(".decrement").forEach(button => {
            <div class="container pb-3 item">
             <div class=" d-flex card-body bg-light border rounded-4 justify-content-between align-items-center "
               style="min-width: fit-content">
-              <div class=" d-flex align-items-center">
+              <div class=" d-flex align-items-center ">
                 <img src="../imgs/unsplash_5gkYsrH_ebY.png" class="card-img rounded-4  "
-                  style="height: 100%; width: 10rem;" alt="item1">
+                  style="height: 100%; width:100px;" alt="item1">
                
                 <div class=" container">
-                  <div class="flex-column px-5 title">
-                    <h1>funny shirt</h1>
+                  <div class="flex-column px-2 ">
+                    <h3 class="darkBlueText px-2">funny shirt</h3>
                     <div class="d-flex">
                       <div class="container gx-0">
 
-                        <div class="flex-row  justify-content-between ">
                           <div class=" d-flex justify-content-between px-2 align-items-center "
                             style="min-width:5rem">
 
                             <button type="button" data-bs-target="#countitem2" class="decrement btn p-2 px-4 bg-light shadow-sm border-0 rounded-3"> <i
                                 class="fa-solid fa-minus"  style="color: var(--main-color);"></i></button>
 
-                            <h1 id="countitem2" class=" p-2 px-4">1</h1>
+                            <h3 id="countitem2" class="darkBlueText pt-2 px-4">1</h3>
                             <button type="button"  data-bs-target="#countitem2" class="increment btn p-2 px-4 bg-light shadow-sm border-0 rounded-3"> <i
                               class="fa-solid fa-plus" style="color: var(--main-color);"></i></button>
                           </div>
 
-                        </div>
+                      
                       </div>
                       
                       <div class="px-2 mt-3 ">
-                        <i role="button" class="fa-solid fa-trash fs-3"></i>
+                        <i role="button" class="fa-solid fa-trash fs-4"></i>
                       </div>
 
                     </div>
@@ -226,14 +383,14 @@ document.querySelectorAll(".decrement").forEach(button => {
                 </div>
 
               </div>
-              <div class="px-2 title">
-                <h1>5000Egp</h1>
+              <div class="px-5 darkBlueText">
+                <h3>5000Egp</h3>
               </div>
 
             </div>
           </div>
-      
-          <!--end secCart-->
+     
+          <!--end secCart  -->
 
         </div>
       </section> <!--order details-->
@@ -241,10 +398,12 @@ document.querySelectorAll(".decrement").forEach(button => {
       <!-- order summary-->
       <section class="container-fluid py-5 col-sm-7  col-md-7 col-lg-4">
         <div class="">
-          <div class=" card-body shadow border rounded-4 bg-light p-5 title">
-            <h1 class="card-title pb-5">
-              Order summary
-            </h1>
+          <div class=" card-body shadow border rounded-4 bg-light p-5 darkBlueText text-center">
+            <!-- <div class="title"> -->
+              <h1 class="card-title darkBlueText pb-5">
+                Order summary
+              </h1>
+            <!-- </div> -->
             <div class="d-flex justify-content-between ">
               <p>Price</p>
               <p>5000 Egp</p>
@@ -257,10 +416,6 @@ document.querySelectorAll(".decrement").forEach(button => {
               <p>shipping</p>
               <span>free</span>
             </div>
-            <div class="d-flex justify-content-between">
-              <p>Coupon Applied</p>
-              <p>0.00Egp</p>
-            </div>
             <hr>
             <div class="d-flex justify-content-between">
               <p>Total</p>
@@ -270,10 +425,10 @@ document.querySelectorAll(".decrement").forEach(button => {
               <p>Estimated delivery</p>
               <p>01 May, 2025</p>
             </div>
-            <div class="position-relative">
+            <!-- <div class="position-relative">
               <input type="text" placeholder="Coupon Code" class="form-control mt-3" style="height:70px; ">
               <button class="btn mb-3 mx-3 p-2 position-absolute top-50 end-0 translate-middle-y">Apply</button>
-            </div>
+            </div> -->
             <button id="checkout" class="btn w-100 mt-3 p-2 rounded-5" style="display: block;">proced to
               checkout</button>
             <button id="order" class="btn w-100 mt-3 p-2 rounded-5 " style="display: none;">Place Order</button>
@@ -284,22 +439,25 @@ document.querySelectorAll(".decrement").forEach(button => {
     </div>
   </div>
 
-  <section class="py-2 ">
-    <div class="container">
-      <div class="title px-2">
+  <section class="py-3">
+    <div class="container ">
+      <div class="title ">
+        
         <h1>Related Products</h1>
       </div>
 
       <div class="row gy-4 px-5 px-md-2 px-lg-0 gx-4">
         <div class="contain-item col-lg-3 col-md-6  pb-2">
           <div class="Product">
-            <div class="pic position-relative">
+            <div class="pic position-relative ">
               <img class="w-100" src="../imgs/unsplash_5gkYsrH_ebY.png" alt="skirt" />
+                 <span class="fa-regular fa-heart position-absolute"></span>
               <span class="discount">-50%</span>
-            </div>
+         </div>
             <div class="disc">
               <h3>Full Outfit</h3>
               <div class="rate d-flex align-items-center gap-1">
+                <span class="fa-solid fa-star"></span>
                 <span>4.8</span>
                 <span class="simi">(+500)</span>
               </div>
@@ -317,11 +475,13 @@ document.querySelectorAll(".decrement").forEach(button => {
           <div class="Product">
             <div class="pic position-relative">
               <img class="w-100" src="../imgs/unsplash_BqoyzXdINdg.png" alt="skirt" />
+              <span class="fa-regular fa-heart position-absolute"></span>
               <span class="discount">-50%</span>
             </div>
             <div class="disc">
               <h3>Full Outfit</h3>
               <div class="rate d-flex align-items-center gap-1">
+                <span class="fa-solid fa-star"></span>
                 <span>4.8</span>
                 <span class="simi">(+500)</span>
               </div>
@@ -337,13 +497,15 @@ document.querySelectorAll(".decrement").forEach(button => {
         </div>
         <div class="contain-item col-lg-3 col-md-6  pb-2">
           <div class="Product">
-            <div class="pic position-relative">
+            <div class="pic position-relative ">
               <img class="w-100" src="../imgs/unsplash_N2CiCNWba-Y.png" alt="skirt" />
+              <span class="fa-regular fa-heart position-absolute"></span>
               <span class="discount">-50%</span>
             </div>
             <div class="disc">
               <h3>Full Outfit</h3>
               <div class="rate d-flex align-items-center gap-1">
+                <span class="fa-solid fa-star"></span>
                 <span>4.8</span>
                 <span class="simi">(+500)</span>
               </div>
@@ -359,13 +521,15 @@ document.querySelectorAll(".decrement").forEach(button => {
         </div>
         <div class="contain-item col-lg-3 col-md-6  pb-2">
           <div class="Product">
-            <div class="pic position-relative">
+            <div class="pic position-relative ">
               <img class="w-100" src="../imgs/unsplash_Dli2lIXQiJc.png" alt="skirt" />
+              <span class="fa-regular fa-heart position-absolute"></span>
               <span class="discount">-50%</span>
             </div>
             <div class="disc">
               <h3>Full Outfit</h3>
               <div class="rate d-flex align-items-center gap-1">
+                <span class="fa-solid fa-star"></span>
                 <span>4.8</span>
                 <span class="simi">(+500)</span>
               </div>
@@ -380,36 +544,25 @@ document.querySelectorAll(".decrement").forEach(button => {
           </div>
         </div>
       </div>
+
     </div>
+
+
 
   </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-..."
-    crossorigin="anonymous"></script>
-
-  <script>
-      (() => {
-        'use strict';
-        const forms = document.querySelectorAll('.needs-validation');
-        Array.from(forms).forEach((form) => {
-          form.addEventListener('submit', (event) => {
-            if (!form.checkValidity()) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
-            if(form.checkValidity()){
-              //TODO: display MSG
-              let msg = document.getElementById("congratMsg");
-                msg.classList.remove("d-none");
-                let reviweBtn = document.getElementById("reviwe");
-                reviweBtn.style.display = "none";
-            }
-            form.classList.add('was-validated');
-          });
-        });
-      })();
-  </script>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script  src="../js/home.js"></script>
+  <script type="module"  src="../js/cart.js"></script>
+  <script src="../js/cart&checkout.js"></script>
+  <!-- <script  src="./js/Products.js"></script> -->
+  <!-- <script  src="./js/seller.js"></script> -->
+  <!-- <script  src="./js/admin.js"></script> -->
+  <!-- <script type="module"  src="./js/cart.js"></script> -->
+   
+    
 
 </body>
 

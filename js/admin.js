@@ -57,7 +57,8 @@ function showDataTbl(name) {
 }
 $('#logoutBtn').click(
 function() {
-    localStorage.removeItem('userRole');
+    sessionStorage.removeItem('userRole');
+    sessionStorage.removeItem('LogedUser');
     window.location.replace('/pages/register&login.html')
 }
 )
@@ -66,7 +67,11 @@ function() {
 let adminComments=document.getElementById('adminComments')
 let CustomerComments=document.getElementById('CustomerComments')
 let CommentsArr=[];
-const CustomerId=JSON.parse(localStorage.getItem('LogedUser')).userId;
+
+try{
+    const CustomerId=JSON.parse(sessionStorage.getItem('LogedUser')).userId;
+}
+catch{};
 
 function pullComments() {
     if (localStorage.getItem('Comments')) {

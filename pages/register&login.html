@@ -33,7 +33,7 @@
                         <h6 class="form-subtitle">Plese login or sign up to continue in our website</h6>
                     </div>
                     <!-- form -->
-                    <form id="loginForm" action="../index.html" class="needs-validation" novalidate>
+                    <form id="loginForm"  class="needs-validation" novalidate>
                         <div class="form-group position-relative my-3">
                             <!--email-->
                             <label for="emailLogin" class="form-label form-title">E-mail</label>
@@ -80,8 +80,8 @@
 
                     </form>
                     <div class="row text-center form-subtitle">
-                        <p>Or continue with</p>
-                        <div class="icons py-2">
+                        <p class="d-none">Or continue with</p>
+                        <div class="icons py-2 d-none">
                             <a href="#" class="text-decoration-none me-3" style="color: #db4437;">
                                 <i class="fab fa-google fa-2x"></i>
                             </a>
@@ -93,13 +93,15 @@
                             </a>
 
                         </div>
-                        <p>Don't have an account? <a href="#" id="signUupBtn">Sign up</a></p>
+                        <p>Don't have an account? <a onclick="emailLogin.value=''" href="#" id="signUupBtn">Sign up</a></p>
                     </div>
 
                 </div>
             </div>
             <!--end login -->
 
+
+            
             <!-- register -->
             <div class="col-md-6 h-100 p-lg-5 d-none signUp">
                 <div class="container p-5">
@@ -107,7 +109,9 @@
                         <h1 class="">Create a Account</h1>
                         <h6 class="form-subtitle">Create a new account</h6>
                     </div>
-                    <form action="../index.html" id="registerForm" class="needs-validation" novalidate>
+
+
+                    <form  id="registerForm" class="needs-validation" novalidate>
                         <!--name-->
                         <div class="form-group my-3">
                             <label for="username" class="form-label form-title">User Name</label>
@@ -182,12 +186,12 @@
                         </div>
 
                         <div class="row my-3 p-4">
-                            <button type="submit" class="btn btn-form">Sign up</button>
+                            <button  type="submit" class="btn btn-form">Sign up</button>
                         </div>
                     </form>
                     <div class="row text-center form-subtitle">
-                        <p>Or continue with</p>
-                        <div class="icons py-2">
+                        <p class="d-none">Or continue with</p>
+                        <div class="icons py-2 d-none">
                             <a href="#" class="text-decoration-none me-3" style="color: #db4437;">
                                 <i class="fab fa-google fa-2x"></i>
                             </a>
@@ -259,52 +263,29 @@
     </section>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-..."
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-..."crossorigin="anonymous"></script>
     <script>
-        (() => {
-            'use strict';
-            const forms = document.querySelectorAll('.needs-validation');
-            Array.from(forms).forEach((form) => {
-                form.addEventListener('submit', (event) => {
-                    if (!form.checkValidity()) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                });
-            });
-        })();
-        //TODO:toggle signup & loggin
-        let signUp = document.querySelector(".signUp");
-        let login = document.querySelector(".login");
-
-        let signUupBtn = document.querySelector("#signUupBtn");
-        signUupBtn.addEventListener("click", () => {
-            signUp.classList.remove("d-none");
-            login.classList.add("d-none");
-        })
-        let loginBtn = document.querySelector("#loginBtn");
-        loginBtn.addEventListener("click", () => {
-            login.classList.remove("d-none");
-            signUp.classList.add("d-none");
-        })
-
         //TODO: toggle password visibility 
-        function togglePassword(event) {
-            const icon = event.target;
-            let inputId = icon.getAttribute("data-bs-target");
-            inputId = inputId.replace("#", "");
-            const input = document.getElementById(inputId);
-            if (input.type === "password") {
-                input.type = "text";
-                icon.classList.replace("fa-eye-slash", "fa-eye");
-            } else {
-                input.type = "password";
-                icon.classList.replace("fa-eye", "fa-eye-slash");
-            }
-        }
-    </script>
+ function togglePassword(event) {
+    const icon = event.target;
+    if (!icon) return;
+    
+    const inputId = icon.getAttribute("data-bs-target")?.replace("#", "");
+    if (!inputId) return;
+    
+    const input = document.getElementById(inputId);
+    if (!input) return;
+    
+    if (input.type === "password") {
+      input.type = "text";
+      icon.classList.replace("fa-eye-slash", "fa-eye");
+    } else {
+      input.type = "password";
+      icon.classList.replace("fa-eye", "fa-eye-slash");
+    }
+  }
+    </script>  
+    <script type="module" src="../js/login&Register.js"></script>
 
 </body>
 

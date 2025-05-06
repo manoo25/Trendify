@@ -1,52 +1,15 @@
-document.addEventListener('DOMContentLoaded', function() {
-    new Splide('#main-carousel', {
-      type: 'slide',
-      perPage: 3, 
-      perMove: 1,
-      gap: '1.5rem',
-      arrows: true,
-      pagination: false,
-      breakpoints: {
-        992: { 
-          perPage: 2
-        },
-        768: { 
-          perPage: 1,
-          arrows: false,
-        }
-      }
-    }).mount();
-  });
-  document.addEventListener('DOMContentLoaded', function() {
-    new Splide('#Cat-carousel', {
-      type: 'slide',
-      perPage: 8, 
-      perMove: 1,
-      gap: '1.5rem',
-      arrows: true,
-      pagination: false,
-      breakpoints: {
-        992: { 
-          perPage: 5
-        },
-        768: { 
-          perPage: 3,
-          arrows: false,
-        }
-      }
-    }).mount();
-  });
 
 
-  // edit nav height
-  window.addEventListener('scroll', function() {
-const navbar = document.getElementById('mainNavbar');
-if (window.scrollY > window.innerHeight) { 
-    navbar.classList.add('scrolled');
-} else {
-    navbar.classList.remove('scrolled');
+
+//     let addetWhishList='fa-regular';
+if (sessionStorage.getItem('LogedUser')) {
+   userId=JSON.parse(sessionStorage.getItem('LogedUser')).userId;
 }
-});
+
+
+
+
+
 
 // list of search input
 const searchInput = document.getElementById("searchInput");
@@ -71,6 +34,56 @@ event.preventDefault();
 });
 
 
+function checkLogedUser() {
+  if (sessionStorage.getItem('LogedUser')) {
+    $('nav ul .authBtn').removeClass('d-none');
+    document.getElementById('logandRegBtn').classList.add('d-none')
+    
+  }
+  else{
+    $('nav ul .authBtn').addClass('d-none');
+    document.getElementById('logandRegBtn').classList.replace('d-none','d-block')
+  }
+}
+checkLogedUser();
+
+
+
+$('#LogOutandClear').click( function() {
+  sessionStorage.removeItem('LogedUser');
+  checkLogedUser();
+})
+
+$('#ViewCPanelId').click(function(){
+  const role=sessionStorage.getItem('userRole');
+  console.log(role);
+  
+  switch (role) {
+
+    case 'customer':window.location=('../pages/UserControl.html')
+      break;
+
+    case 'seller':window.location=('../pages/SellerControl.html')
+      break;
+    case 'admin':window.location=('../pages/AdminControl.html')
+      break;
+  }
+  
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Display Publish comments
 const CommentsContainer=document.getElementById('CommentsContainer');
 let  PublishCommentsArr=[];
@@ -92,7 +105,7 @@ function displayPublishComments() {
     <div class="quote mb-3">
          <i class="bi bi-quote"></i>
     </div>
-     <p class="card-text">${comment.message}</p>
+     <p class="card-text testimonial-feedback">${comment.message}</p>
      <div class="d-flex align-items-center mt-4">
             <img style="width: 45px;height: 45px;" src="./imgs/1_New1.jpg" class="rounded-circle me-3" alt="Customer">
         <div>
@@ -113,3 +126,6 @@ function displayPublishComments() {
         `
     });
 }
+
+
+ 
