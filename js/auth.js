@@ -57,11 +57,11 @@ function checkAuth(data) {
         
     }
     else if(data.role=='seller'){
-        window.location.replace ("../docs/SellerControl.html");
+        window.location.replace ("./SellerControl.html");
         
     }
     else if(data.role=='admin'){
-        window.location.replace ("../docs/AdminControl.html");
+        window.location.replace ("./AdminControl.html");
         
     }
 }

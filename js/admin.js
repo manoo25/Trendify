@@ -59,7 +59,7 @@ $('#logoutBtn').click(
 function() {
     sessionStorage.removeItem('userRole');
     sessionStorage.removeItem('LogedUser');
-    window.location.replace('/docs/register&login.html')
+    window.location.replace('./register&login.html')
 }
 )
 

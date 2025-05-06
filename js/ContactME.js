@@ -54,7 +54,7 @@ const SubBtn=document.getElementById('SubBtn');
             localStorage.setItem('Comments',JSON.stringify(CommentsArr))
         }
         else{
-            window.location.replace('../docs/register&login.html')
+            window.location.replace('./register&login.html')
         }
     }
 
