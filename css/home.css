@@ -459,7 +459,15 @@ nav div.container-fluid ul.navbar-nav li.nav-item a.nav-link.active {
     color: var(--third-color);
     border-bottom:  2px solid var(--bg-color);
   }
-
+  /* hight carasoul*/
+  @media (max-width: 767px) {
+    .carDiv{
+      min-width: fit-content;
+    }
+    .carDiv .carImg{
+    height: 200px;
+   }
+  }
   .btn-dotted {
     color: white;
   }

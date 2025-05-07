@@ -22,6 +22,7 @@ event.preventDefault();
 
 //disply login&signUp or hide  if user in session storage
 function checkLogedUser() {
+  
   if (sessionStorage.getItem('LogedUser')) {
     // $('nav ul .authBtn').removeClass('d-none');
     // document.getElementById('logandRegBtn').classList.add('d-none')
