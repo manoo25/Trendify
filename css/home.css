@@ -74,6 +74,7 @@ cursor: pointer;
   margin-bottom: 20px;
   font-size: var(--heading-1);
   color: var(--main-color);
+
 }
 
 .service-card h6 {
@@ -141,12 +142,15 @@ cursor: pointer;
   color: var(--second-text);
   font-size: var(--simi);
 }
-.splide__slide:hover {
+
+/* added */
+.testimonial-splide:hover  {
   cursor: pointer;
   transform: scale(1.05);
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s;
   box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.06);
 }
+
 .splide__slide:hover .testimonial-feedback{
   color: var(--main-color);
 }
@@ -172,8 +176,13 @@ cursor: pointer;
 .splide__arrows {
   z-index: 1;
   pointer-events: none;
+  /* added */
+  display: flex !important;
 }
-
+/* Prevent container from shrinking */
+.splide {
+  min-width: 100px;
+}
 .splide__arrow {
   background-color: var(--main-color);
   pointer-events: auto;
@@ -195,6 +204,7 @@ cursor: pointer;
 .splide__arrow--next {
   right: -3rem;
 }
+
 
 @media (max-width: 768px) {
   .splide-container {
@@ -407,16 +417,20 @@ nav div.container-fluid ul.navbar-nav li.nav-item a.nav-link.active {
   height: 70px;
   cursor: pointer;
   margin-bottom: 10px;
+  padding: 2px;
 }
-
-.imgcont img:hover {
-  transform: scale(0.9);
-  opacity: 0.65;
+/* add hover to first splide **/
+.top_slide:hover .splide_img {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+  /* opacity: 1.65; */
 }
-
-.imgcont:hover {
+.top_slide:hover p{
   color: var(--second-color) !important;
 }
+/* .imgcont:hover {
+  color: var(--second-color) !important;
+} */
 
 @media (max-width: 991px) {
 
@@ -444,6 +458,7 @@ nav div.container-fluid ul.navbar-nav li.nav-item a.nav-link.active {
 
   nav div.container-fluid ul.navbar-nav li.nav-item a.nav-link.active {
     color: var(--third-color);
+    border-bottom:  2px solid var(--bg-color);
   }
 
   .btn-dotted {
@@ -462,11 +477,24 @@ nav div.container-fluid ul.navbar-nav li.nav-item a.nav-link.active {
 /* End  */
 
 /* samar css */
-.btn {
+
+
+/* Style mobile login link to match other nav items */
+#mobilelogandRegBtn {
+  padding: 0.5rem 1rem;
+  /* color: var(--bs-nav-link-color); Match Bootstrap's nav link color */
+ 
+  border: none!important;
+}
+
+.btn , .btnscroll {
   color: var(--bg-color);
   background-color: var(--main-color);
 }
-
+.btnscroll:hover{
+  color: var(--main-color);
+  background-color: var(--third-color);
+}
 .btn:hover {
   color: var(--main-color);
   border: solid 0.1rem var(--main-color);
@@ -515,13 +543,16 @@ nav div.container-fluid ul.navbar-nav li.nav-item a.nav-link.active {
 @media (max-width: 992px) {
   span[class="btn-dotted mt-5 fa-solid fa-arrows-up-to-line d-lg-none"]:hover {
     color: var(--third-color) !important;
+   
   }
 
   .navbar-toggler:focus {
+ 
     box-shadow: 0 0 0 3px rgba(139, 94, 53, 0.2);
   }
 
   span[class="navbar-toggler-icon"] {
+    
     color: white !important;
   }
 }
@@ -529,6 +560,7 @@ nav div.container-fluid ul.navbar-nav li.nav-item a.nav-link.active {
 .navbar-toggler {
   color: white !important;
   border-color: rgba(139, 94, 53, 0.2) !important;
+ 
 }
 
 .navbar-toggler-icon {
@@ -622,4 +654,7 @@ nav div.container-fluid ul.navbar-nav li.nav-item a.nav-link.active {
 .seeallprod {
   border-top: 1px solid #e7e7e7;
   padding-top: 20px !important;
+}
+.Product:hover {
+  transform: translateY(-5px);
 }

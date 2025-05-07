@@ -73,8 +73,10 @@
                         </div>
                         <!--login btn-->
                         <div class="row my-3 p-4">
-                            <button id="confirmLogin" type="submit" class="btn btn-form ">Log in
-                                <!-- <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> -->
+                            <button id="confirmLogin" type="submit" class="btn btn-form ">
+                                <span class="fa-solid fa-spinner fa-spin me-2 d-none"></span>
+                                Log in
+                               
                             </button>
                         </div>
 
@@ -186,7 +188,9 @@
                         </div>
 
                         <div class="row my-3 p-4">
-                            <button  type="submit" class="btn btn-form">Sign up</button>
+                            <button id="confirmRegister"  type="submit" class="btn btn-form">
+                                <span class="fa-solid fa-spinner fa-spin me-2 d-none"></span>
+                                Sign up</button>
                         </div>
                     </form>
                     <div class="row text-center form-subtitle">
@@ -286,7 +290,8 @@
   }
     </script>  
     <script type="module" src="./js/login&Register.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

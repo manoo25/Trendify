@@ -804,7 +804,7 @@ if(userId){
                ${product.EndPrice}
                
              </div>
-             <button class="btnAddToCart fa-solid fa-plus"></button>
+              <button  data-product='${JSON.stringify(product)}'  class="btnAddToCart fa-solid ${buttonClass}"></button>
            </div>
          </div>
        </div>

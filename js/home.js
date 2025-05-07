@@ -1,4 +1,3 @@
-
 // list of search input
 const searchInput = document.getElementById("searchInput");
 const searchResults = document.getElementById("searchResults");
@@ -21,28 +20,32 @@ searchResults.addEventListener("mousedown", function(event) {
 event.preventDefault();
 });
 
-
+//disply login&signUp or hide  if user in session storage
 function checkLogedUser() {
   if (sessionStorage.getItem('LogedUser')) {
-    $('nav ul .authBtn').removeClass('d-none');
-    document.getElementById('logandRegBtn').classList.add('d-none')
+    // $('nav ul .authBtn').removeClass('d-none');
+    // document.getElementById('logandRegBtn').classList.add('d-none')
+    $('.log').addClass('d-none');
+    $('.authBtn').removeClass('d-none');
     
   }
   else{
-    $('nav ul .authBtn').addClass('d-none');
-    document.getElementById('logandRegBtn').classList.replace('d-none','d-block')
+    // $('nav ul .authBtn').addClass('d-none');
+    // document.getElementById('logandRegBtn').classList.replace('d-none','d-block')
+    $('.log').removeClass('d-none');
+    $('.authBtn').addClass('d-none');
   }
-}
+};
 checkLogedUser();
 
-
-
-$('#LogOutandClear').click( function() {
+//remove account
+$(document).on('click', '#LogOutandClear, #mobileLogOutandClear', function() {
   sessionStorage.removeItem('LogedUser');
   checkLogedUser();
-})
+});
 
-$('#ViewCPanelId').click(function(){
+//open control pannel
+$(document).on('click', '#ViewCPanelId, #mobileViewCPanelId', function() {
   const role=sessionStorage.getItem('userRole');
   console.log(role);
   
@@ -56,8 +59,57 @@ $('#ViewCPanelId').click(function(){
     case 'admin':window.location=('./AdminControl.html')
       break;
   }
+});
+
+document.addEventListener('DOMContentLoaded',function (){
+  const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+  const vh = window.innerHeight;
+  function checkScroll(){
+    if(window.scrollY > vh){
+      scrollToTopBtn.style.opacity = '1';
+    }else{
+      scrollToTopBtn.style.opacity = '0';
+    }
+  };
+
+   // Scroll to top function
+   scrollToTopBtn.addEventListener('click', function() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+ 
+  // Check scroll position on scroll
+  window.addEventListener('scroll', checkScroll);
   
-})
+  // Initial check
+  checkScroll();
+
+});
+
+
+// $('#LogOutandClear').click( function() {
+//   sessionStorage.removeItem('LogedUser');
+//   checkLogedUser();
+// })
+
+// $('#ViewCPanelId').click(function(){
+//   const role=sessionStorage.getItem('userRole');
+//   console.log(role);
+  
+//   switch (role) {
+
+//     case 'customer':window.location=('./UserControl.html')
+//       break;
+
+//     case 'seller':window.location=('./SellerControl.html')
+//       break;
+//     case 'admin':window.location=('./AdminControl.html')
+//       break;
+//   }
+  
+// })
 
 
 
@@ -81,7 +133,7 @@ function pullPublishComments() {
     } 
 }
 pullPublishComments();
-displayPublishComments();
+
 function displayPublishComments() {
  
     pullPublishComments();

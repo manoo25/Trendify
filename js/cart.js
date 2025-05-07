@@ -58,11 +58,13 @@ export async function addToCart(btn) {
         let productCartObj = {
             userId: userId,
             ProId: pro.id,
+            OrderId: 0,
             id: Math.floor(Math.random() * 1000 * (userId) + 1),
             name: pro.name,
             real_price: pro.real_price,
             EndPrice: pro.EndPrice,
             imageCover: pro.imageCover,
+            qty: 1,
             Color: pro.Colors[0],
         };
 
@@ -70,16 +72,50 @@ export async function addToCart(btn) {
 
         if (!existPro) {
             CartArr.push(productCartObj);
-            alert('Product added to cart successfully');
+            Swal.fire({
+                icon: 'success',
+                title: 'added successfully !',
+                text: `added to cart successfully`,
+                showConfirmButton: false,
+                timer: 1600,
+                toast: true,
+                position: 'top-end',
+                position: 'top-end',
+                background: 'var(--card-color)', 
+                color: 'var(--main-color)',      
+                iconColor: 'var(--main-color)',  
+                customClass: {
+                  popup: 'custom-swal-popup',
+                  title: 'custom-swal-title',
+                  content: 'custom-swal-content'
+                }
+              });
         } else {
             CartArr = CartArr.filter(item => !(item.userId === userId && item.ProId === pro.id));
-            alert('Product removed from cart successfully');
+            Swal.fire({
+                icon: 'success',
+                title: 'Removed from cart',
+                text: 'Remove from cart successfully',
+                showConfirmButton: false,
+                timer: 1600,
+                toast: true,
+                position: 'top-end',
+                background: 'var(--card-color)',
+                color: 'var(--error)', // أو خليه main-color لو حابب يكون نفس الثيم
+                iconColor: 'var(--error)',
+                customClass: {
+                  popup: 'custom-swal-popup',
+                  title: 'custom-swal-title',
+                  content: 'custom-swal-content'
+                }
+              });
         }
         
         await indexedDB.setItem('Cart', CartArr);
         btn.classList.toggle('fa-plus');
         btn.classList.toggle('fa-check');
-    } catch (error) {
+    } 
+    catch (error) {
         console.error('Error in addToCart:', error);
     }
 }

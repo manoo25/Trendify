@@ -1,3 +1,4 @@
+
 let category = ["Men", "Women", "Kids"];
 let subcategory = ["Dresses", "Jackets", "Tshirts","Shoeses", "Jeans"];
 let ProductsArr = [
@@ -93,7 +94,7 @@ Main Fabric Content : Cotton 59%,Viscose 13%,Polyester 28%`,
     EndPrice: 559,
     imageCover: "./imgs/products/MT43.jpg",
     images: [
-      "./imgs/products/MT41.jpg",
+      "./imgs/products/MT4.jpg",
       "./imgs/products/MT42.jpg",
       "./imgs/products/MT43.jpg",
       "./imgs/products/MT44.jpg",
@@ -117,9 +118,9 @@ Main Fabric Content : Cotton 100%`,
     EndPrice: 419,
     imageCover: "./imgs/products/MT53.jpg",
     images: [
-      "./imgs/products/MT51.jpg",
       "./imgs/products/MT52.jpg",
       "./imgs/products/MT53.jpg",
+      "./imgs/products/MT5.jpg",
       "./imgs/products/MT54.jpg",
       "./imgs/products/MT55.jpg",
     ],
@@ -142,7 +143,7 @@ Main Fabric Content : Cotton 100%`,
     EndPrice: 559,
     imageCover: "./imgs/products/MT6.jpg",
     images: [
-      "./imgs/products/MT61.jpg",
+      "./imgs/products/MT6.jpg",
       "./imgs/products/MT62.jpg",
       "./imgs/products/MT63.jpg",
       "./imgs/products/MT64.jpg",
@@ -479,6 +480,9 @@ Heel height: 10.5 cm / 4.1`,
 
 
 
+
+
+
 // set at local storage
 // mostala7 maigration
 if (localStorage.getItem('Products')) {
@@ -505,7 +509,7 @@ function createProductElement(product) {
 
   return `
       <div class="contain-item col-lg-3 col-md-6 pb-2">
-        <div class="Product">
+        <div class="Product" data-id="${product.id}">
           <div class="pic position-relative">
             <img class="w-100" src="${product.imageCover}" alt="${
     product.name
@@ -537,7 +541,7 @@ function createProductElement(product) {
                     : ""
                 }
               </div>
-              <button class="btnAddToCart fa-solid fa-plus"></button>
+              <button class="btnAddToCart fa-solid fa-plus" data-id="${product.id}"></button>
             </div>
           </div>
         </div>
@@ -545,18 +549,81 @@ function createProductElement(product) {
     `;
 }
 
-// دالة لعرض جميع المنتجات في تبويب معين
-function displayProducts(products, tabId) {
+// function of display as implement and make pagination
+function displayProducts(products, tabId , currentPage = 1 , itemsPerPage = 8) {
   const tabContent = document.querySelector(`#${tabId} .row`);
   if (!tabContent) return;
 
-  tabContent.innerHTML = products
-    .map((product) => createProductElement(product))
-    .join("");
+  const totalPages = Math.ceil(products.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedProducts = products.slice(startIndex, endIndex);
+
+  tabContent.innerHTML = paginatedProducts
+  .map((product) => createProductElement(product))
+  .join("");
+  if (totalPages > 1) {
+    createPagination(tabContent.parentElement, totalPages, currentPage, (page) => {
+      displayProducts(products, tabId, page, itemsPerPage);
+    });
+  } else {
+    const existingPagination = tabContent.parentElement.querySelector('.pagination');
+    if (existingPagination) {
+      existingPagination.remove();
+    }
+  }
+  function createPagination(container, totalPages, currentPage, onPageChange) {
+    // إزالة pagination السابق إذا كان موجوداً
+    const existingPagination = container.querySelector('.pagination');
+    if (existingPagination) {
+      existingPagination.remove();
+    }
+  
+    const paginationContainer = document.createElement('div');
+    paginationContainer.className = 'pagination';
+  
+    // زر الصفحة السابقة
+    if (currentPage > 1) {
+      const prevButton = document.createElement('button');
+      prevButton.innerHTML = '&laquo;';
+      prevButton.addEventListener('click', () => onPageChange(currentPage - 1));
+      paginationContainer.appendChild(prevButton);
+    }
+  
+    // أزرار الصفحات
+    for (let i = 1; i <= totalPages; i++) {
+      const pageButton = document.createElement('button');
+      pageButton.textContent = i;
+      if (i === currentPage) {
+        pageButton.classList.add('active');
+      }
+      pageButton.addEventListener('click', () => onPageChange(i));
+      paginationContainer.appendChild(pageButton);
+    }
+  
+   
+    if (currentPage < totalPages) {
+      const nextButton = document.createElement('button');
+      nextButton.innerHTML = '&raquo;';
+      nextButton.addEventListener('click', () => onPageChange(currentPage + 1));
+      paginationContainer.appendChild(nextButton);
+    }
+  
+    container.appendChild(paginationContainer);
+  }
+  // tabContent.innerHTML = products
+  //   .map((product) => createProductElement(product))
+  //   .join("");
 }
 
-// عند تحميل الصفحة، عرض المنتجات
+
+
+
+// displaying data in event onload and all next code in onload event cause of creation is in function at js .
+
 document.addEventListener("DOMContentLoaded", function () {
+
+
  //display all products
   displayProducts(ProductsArr, "nav-All");
 
@@ -584,55 +651,43 @@ document.addEventListener("DOMContentLoaded", function () {
           );
     }
   }
+// send filtered data to product details when clicked
+let filtereddata =[];
+
+  let products =document.querySelectorAll('.Product');
+  products.forEach((element) => {
+    element.addEventListener('click', function(e) {
+      let id = this.dataset.id;
+    window.location.href=`./productdetails.html?id=${id}`;
+    
+    });
+  });
+  document.querySelectorAll(".btnAddToCart").forEach((i)=>{
+    i.addEventListener('click', function(e){
+      let iid=this.dataset.id;
+      e.stopPropagation();
+      Swal.fire({
+        icon: 'success',
+        title: 'added successfully !',
+        text: `${ProductsArr.find((i) =>i.id==iid).name} added to cart `,
+        showConfirmButton: false,
+        timer: 1600,
+        toast: true,
+        position: 'top-end',
+        position: 'top-end',
+        background: 'var(--card-color)', 
+        color: 'var(--main-color)',      
+        iconColor: 'var(--main-color)',  
+        customClass: {
+          popup: 'custom-swal-popup',
+          title: 'custom-swal-title',
+          content: 'custom-swal-content'
+        }
+      });
+      })
+  })
 
 });
-// End of ahmed section
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// calculate your localstorage usage
-
-// function getLocalStorageUsage() {
-//     let total = 0;
-//     for (let key in localStorage) {
-//       if (localStorage.hasOwnProperty(key)) {
-//         let value = localStorage.getItem(key);
-//         total += key.length + value.length;
-//       }
-//     }
-
-//     // الحجم بالبايت، نحوله لكيلو بايت أو ميجا بايت
-//     let usedBytes = total;
-//     let usedKB = (usedBytes / 1024).toFixed(2);
-//     let usedMB = (usedBytes / (1024 * 1024)).toFixed(2);
-
-//     console.log(`المستخدم: ${usedKB} KB (${usedMB} MB)`);
-//     return usedMB;
-//   }
-
-//   let used = parseFloat(getLocalStorageUsage());
-// let remaining = (5 - used).toFixed(2);
-// console.log(`المتبقي: ${remaining} MB`);
-//   getLocalStorageUsage();
-
-
-
 
 
  
