@@ -1,10 +1,15 @@
 import indexedDB from './indexedDb.js';
 
 let CartArr = [];
+let WhishListtArr = [];
 async function initialize() {
   const cartData = await indexedDB.getItem('Cart');
   if (cartData) {
       CartArr = cartData;
+  }
+  const WhishListData = await indexedDB.getItem('WhishList');
+  if (WhishListData) {
+    WhishListtArr = WhishListData;
   }
 
 }
@@ -579,21 +584,27 @@ const FlashSale=document.getElementById('FlashSale');
      filteredProducts.forEach(product => {
   let averageDis=Math.round((product.Discount/product.real_price)*100);
   let existPro;
+  let existWhishlist;
 if(userId){
   
    existPro = CartArr.some(x => 
     x.userId.toString() === userId.toString() && 
     x.ProId.toString() === product.id.toString()
  );
+   existWhishlist = WhishListtArr.some(x => 
+    x.userId.toString() === userId.toString() && 
+    x.ProId.toString() === product.id.toString()
+ );
    
 }
   const buttonClass = existPro ? 'fa-check' : 'fa-plus';
+  const WhishListClass = existWhishlist ? 'fa-solid' : 'fa-regular';
        FlashSale.innerHTML+=`
         <div class="contain-item col-lg-3 col-md-6  pb-2">
          <div class="Product">
            <div class="pic position-relative">
              <img class="w-100" src="${product.imageCover}" />
-                <span class="fa-regular fa-heart position-absolute"></span>
+                <span   data-product='${JSON.stringify(product)}' class="${WhishListClass} fa-heart position-absolute"></span>
              <span class="discount">-${averageDis}%</span>
            </div>
            <div class="disc">
@@ -653,15 +664,21 @@ function displayNavTabsLink() {
  filteredProducts.forEach(product => {
    let averageDis=Math.round((product.Discount/product.real_price)*100);
    let existPro;
-if(userId){
-   existPro = CartArr.some(x => 
-    x.userId.toString() === userId.toString() && 
-    x.ProId.toString() === product.id.toString()
- );
+   let existWhishlist;
+ if(userId){
    
-}
-   
- const buttonClass = existPro ? 'fa-check' : 'fa-plus';
+    existPro = CartArr.some(x => 
+     x.userId.toString() === userId.toString() && 
+     x.ProId.toString() === product.id.toString()
+  );
+    existWhishlist = WhishListtArr.some(x => 
+     x.userId.toString() === userId.toString() && 
+     x.ProId.toString() === product.id.toString()
+  );
+    
+ }
+   const buttonClass = existPro ? 'fa-check' : 'fa-plus';
+   const WhishListClass = existWhishlist ? 'fa-solid' : 'fa-regular';
    if(averageDis==0){
 
 
@@ -674,7 +691,7 @@ if(userId){
          <div class="pic position-relative">
            <img class="w-100" src="${product.imageCover}" alt="${product.name}" />
          
-           <span class="${addetWhishList} fa-heart position-absolute"></span>
+            <span   data-product='${JSON.stringify(product)}' class="${WhishListClass} fa-heart position-absolute"></span>
          </div>
          <div class="disc">
            <h3>${product.name.split(' ', 2).join(' ')}</h3>
@@ -703,7 +720,7 @@ if(userId){
          <div class="pic position-relative">
            <img class="w-100" src="${product.imageCover}" alt="${product.name}" />
            <span class="discount">-${averageDis}%</span>
-           <span class="fa-regular fa-heart position-absolute"></span>
+           <span   data-product='${JSON.stringify(product)}' class="${WhishListClass} fa-heart position-absolute"></span>
          </div>
          <div class="disc">
            <h3>${product.name.split(' ', 2).join(' ')}</h3>
@@ -751,15 +768,21 @@ if(userId){
    filteredProducts.forEach(product => {
      let averageDis=Math.round((product.Discount/product.real_price)*100);
      let existPro;
+  let existWhishlist;
 if(userId){
+  
    existPro = CartArr.some(x => 
+    x.userId.toString() === userId.toString() && 
+    x.ProId.toString() === product.id.toString()
+ );
+   existWhishlist = WhishListtArr.some(x => 
     x.userId.toString() === userId.toString() && 
     x.ProId.toString() === product.id.toString()
  );
    
 }
-     
-   const buttonClass = existPro ? 'fa-check' : 'fa-plus';
+  const buttonClass = existPro ? 'fa-check' : 'fa-plus';
+  const WhishListClass = existWhishlist ? 'fa-solid' : 'fa-regular';
     if(averageDis==0){
      rowtabContent.innerHTML += `
      <div class="contain-item col-lg-3 col-md-6 pb-2">
@@ -767,7 +790,7 @@ if(userId){
          <div class="pic position-relative">
            <img class="w-100" src="${product.imageCover}" alt="${product.name}" />
          
-           <span class="fa-regular fa-heart position-absolute"></span>
+            <span   data-product='${JSON.stringify(product)}' class="${WhishListClass} fa-heart position-absolute"></span>
          </div>
          <div class="disc">
            <h3>${product.name.split(' ', 2).join(' ')}</h3>
@@ -795,7 +818,7 @@ else{
      <div class="pic position-relative">
        <img class="w-100" src="${product.imageCover}" alt="${product.name}" />
        <span class="discount">-${averageDis}%</span>
-       <span class="fa-regular fa-heart position-absolute"></span>
+       <span   data-product='${JSON.stringify(product)}' class="${WhishListClass} fa-heart position-absolute"></span>
      </div>
      <div class="disc">
        <h3>${product.name.split(' ', 2).join(' ')}</h3>
@@ -840,15 +863,21 @@ function displayTopPiks() {
  filteredProducts.forEach(product => {
 let averageDis=Math.round((product.Discount/product.real_price)*100);
 let existPro;
+let existWhishlist;
 if(userId){
-   existPro = CartArr.some(x => 
-    x.userId.toString() === userId.toString() && 
-    x.ProId.toString() === product.id.toString()
- );
-   
-}
+
+ existPro = CartArr.some(x => 
+  x.userId.toString() === userId.toString() && 
+  x.ProId.toString() === product.id.toString()
+);
+ existWhishlist = WhishListtArr.some(x => 
+  x.userId.toString() === userId.toString() && 
+  x.ProId.toString() === product.id.toString()
+);
  
+}
 const buttonClass = existPro ? 'fa-check' : 'fa-plus';
+const WhishListClass = existWhishlist ? 'fa-solid' : 'fa-regular';
 if(averageDis==0){
 
  TopPicksContainer.innerHTML+=`
@@ -858,7 +887,7 @@ if(averageDis==0){
       <div class="pic position-relative">
         <img class="w-100" src="${product.imageCover}" alt="${product.name}" />
       
-        <span class="fa-regular fa-heart position-absolute"></span>
+        <span   data-product='${JSON.stringify(product)}' class="${WhishListClass} fa-heart position-absolute"></span>
       </div>
       <div class="disc">
         <h3>${product.name.split(' ', 2).join(' ')}</h3>
@@ -887,7 +916,7 @@ else{
       <div class="pic position-relative">
         <img class="w-100" src="${product.imageCover}" alt="${product.name}" />
         <span class="discount">-${averageDis}%</span>
-        <span class="fa-regular fa-heart position-absolute"></span>
+         <span   data-product='${JSON.stringify(product)}' class="${WhishListClass} fa-heart position-absolute"></span>
       </div>
       <div class="disc">
         <h3>${product.name.split(' ', 2).join(' ')}</h3>
