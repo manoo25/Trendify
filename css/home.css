@@ -689,3 +689,6 @@ nav div.container-fluid ul.navbar-nav li.nav-item a.nav-link.active {
 .Product:hover {
   transform: translateY(-5px);
 }
+#scrollToTopBtn{
+  z-index: 2000;
+}

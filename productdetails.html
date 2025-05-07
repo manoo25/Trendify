@@ -178,10 +178,357 @@
   <body>
     <section id="proddetails">
       <div class="container">
+
+        <!-- if content not found -->
+        <div id="product-section"></div>
+
         <!-- carousel -->
         <div class="row mt-2">
           <div class="left col-12 col-lg-7 d-flex flex-column flex-lg-row">
             <!-- Thumbnails -->
+            <div
+              class="swiper thumbs-swiper d-none d-lg-block"
+              style="width: 10%; height: 400px"
+            >
+              <div class="swiper-wrapper" id="thumbnails-wrapper">
+                <!-- minor pics with JavaScript -->
+              </div>
+            </div>
+    
+            <!-- Main Slider -->
+            <div class="swiper main-swiper" style="width: 85%; height: 500px">
+              <div class="swiper-button-next main-next"></div>
+              <div class="swiper-button-prev main-prev"></div>
+              <div class="swiper-wrapper" id="main-slider-wrapper">
+                <!-- main pics with JavaScript -->
+              </div>
+            </div>
+          </div>
+          <div class="right col-12 col-lg-5">
+            <p
+              class="maincolor d-flex justify-content-center justify-content-lg-start align-items-center"
+            >
+              <span class="stars fs-2">★</span> 
+              <span id="product-rating">4.5</span> (<span id="review-count">102</span>)
+            </p>
+            <h3 class="maincolor" id="product-name">Blue Button Down 100%<br />Listen T-Shirt</h3>
+            <p class="secondcolor" id="product-description">
+              Our best-selling stretch twill origingal shorts with an elastic
+              <br />
+              waistband
+            </p>
+            <p class="maincolor">
+              Color : <span class="secondcolor" id="product-color">Blue</span>
+            </p>
+            <div class="colorpallet" id="color-palette">
+              <!--colors spans with JavaScript -->
+            </div>
+            
+            <div class="d-flex justify-content-between align-items-center my-3">
+              <div class="l w-25">
+                <p class="maincolor">
+                  Size : <span class="main sizeee">Meduim</span>
+                </p>
+              </div>
+              <div class="r w-25">
+                <u class="main" role="button">Size Guide</u>
+              </div>
+            </div>
+            <div class="sizes d-flex justify-content-center align-items-center">
+              <div class="me-auto sizee">
+                <span
+                  role="button"
+                  class="size d-flex align-items-center justify-content-center"
+                >
+                  Xs</span
+                >
+              </div>
+              <div class="me-auto sizee">
+                <span
+                  role="button"
+                  class="size d-flex align-items-center justify-content-center"
+                >
+                  S</span
+                >
+              </div>
+              <div class="me-auto sizee">
+                <span
+                  role="button"
+                  class="main d-flex align-items-center justify-content-center"
+                >
+                  M</span
+                >
+              </div>
+              <div class="me-auto sizee">
+                <span
+                  role="button"
+                  class="size d-flex align-items-center justify-content-center"
+                >
+                  L</span
+                >
+              </div>
+              <div class="me-auto sizee">
+                <span
+                  role="button"
+                  class="size d-flex align-items-center justify-content-center"
+                >
+                  XL</span
+                >
+              </div>
+              <div class="me-auto sizee">
+                <span
+                  role="button"
+                  class="size d-flex align-items-center justify-content-center"
+                >
+                  XXL</span
+                >
+              </div>
+              <div class="me-auto sizee">
+                <span
+                  role="button"
+                  class="size d-flex align-items-center justify-content-center"
+                >
+                  XXXL</span
+                >
+              </div>
+            </div>
+    
+            <p class="maincolor my-2">
+              Quantity : <span class="main quantity">01</span>
+            </p>
+    
+            <div class="row">
+              <div class="col-2 col-lg-3">
+                <div class="btn-group">
+                  <button class="btn btn-light bl p-2 px-4">-</button>
+                  <button class="counter btn-light bg-light by p-2 px-4">
+                    1
+                  </button>
+                  <button class="btn btn-light br p-2 px-4">+</button>
+                </div>
+              </div>
+              <div class="col-7 offset-3 col-lg-7 offset-lg-2">
+                <div class="btn bt">
+                  <span id="product-price">450</span> Egp . add To Cart
+                </div>
+              </div>
+            </div>
+    
+            <p class="secondcolor my-3">
+              <i class="fa-solid fa-truck-fast"></i> Estimated Delivery :
+              <span class="main"> 01 Jan 2023 - 03 Jan 2023</span>
+            </p>
+          </div>
+        </div>
+        <!-- end of carousel % -->
+    
+        <!-- accordion -->
+        <div class="row mt-2">
+          <!-- main accordion  -->
+          <div class="col-12 accordion" id="productAccordion">
+            <!-- Details Section -->
+            <div class="accordion-item border-0 bg-transparent">
+              <div class="accordion-header d-flex justify-content-between align-items-center">
+                <h2 class="maincolor m-0">Details</h2>
+                <span class="toggle-icon" data-bs-toggle="collapse" 
+                      data-bs-target="#collapseDetails"
+                      aria-expanded="false" role="button">+</span>
+              </div>
+              <div id="collapseDetails" class="accordion-collapse collapse bg-white rounded-1" 
+                   data-bs-parent="#productAccordion">
+                <div class="accordion-body p-4 rounded-5">
+                  <div class="row g-2">
+                    <div class="col-12 col-lg-8">
+                      <div class="container bg-white py-2 rounded-4">
+                        <div class="col-12">
+                          <p class="my-3" id="product-full-description">
+                            <!-- description-->
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <!-- Dimensions Section -->
+            <div class="accordion-item border-0 bg-transparent">
+              <div class="accordion-header d-flex justify-content-between align-items-center">
+                <h2 class="maincolor m-0">Dimensions</h2>
+                <span class="toggle-icon" data-bs-toggle="collapse" 
+                      data-bs-target="#collapseDimensions"
+                      aria-expanded="false" role="button">+</span>
+              </div>
+              <div id="collapseDimensions" class="accordion-collapse collapse bg-white rounded-1" 
+                   data-bs-parent="#productAccordion">
+                <div class="accordion-body p-4 rounded-5">
+                  <div class="row g-2">
+                    <div class="col-12 col-lg-8">
+                      <div class="container bg-white py-2 rounded-4">
+                        <div class="col-12">
+                          <p class="my-3">
+                            Model Measurements S Size - 1,88cm - 90/74/91
+                            <br>
+                            Sample size: S
+                            <br>
+                            Main Fabric Content: Cotton 100%
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr />
+    
+            <!-- Reviews Section -->
+            <div class="accordion-item border-0 bg-transparent mb-3">
+              <div class="accordion-header d-flex justify-content-between align-items-center">
+                <h2 class="maincolor m-0">Reviews</h2>
+                <span class="toggle-icon" data-bs-toggle="collapse" 
+                      data-bs-target="#collapseRiviews"
+                      aria-expanded="false" role="button">+</span>
+              </div>
+              <div id="collapseRiviews" class="accordion-collapse collapse" 
+                   data-bs-parent="#productAccordion">
+                <div class="accordion-body p-4 rounded-4">
+                  <div class="row g-2">
+                    <div class="col-12 col-lg-4">
+                      <div class="revcont">
+                        <div class="container bg-white rounded-4 py-2">
+                          <div class="col-12">
+                            <p class="maincolor my-2 fw-bold">customer Reviews</p>
+                            <p class="h1 maincolor">4.7</p>
+                            <span class="stars fs-1">★★★★</span
+                            ><span class="star fs-1">★</span>
+                            <p class="text-muted">(578 Reviews)</p>
+                          </div>
+                          <div class="col-12">
+                            <div class="row align-items-center mb-2">
+                              <div class="col-2 col-sm-1 text-end pe-0">5</div>
+                              <div class="col-1 ps-1 pe-0">
+                                <i class="bi bi-star-fill text-warning"></i>
+                              </div>
+                              <div class="col-7 col-sm-8 px-2">
+                                <div class="progress" style="height: 10px">
+                                  <div
+                                    class="progress-bar"
+                                    style="width: 80%; background-color: #ffc000"
+                                  ></div>
+                                </div>
+                              </div>
+                              <div class="col-2 text-muted small">488</div>
+                            </div>
+                  
+                            <div class="row align-items-center mb-2">
+                              <div class="col-2 col-sm-1 text-end pe-0">4</div>
+                              <div class="col-1 ps-1 pe-0">
+                                <i class="bi bi-star-fill text-warning"></i>
+                              </div>
+                              <div class="col-7 col-sm-8 px-2">
+                                <div class="progress" style="height: 10px">
+                                  <div
+                                    class="progress-bar"
+                                    style="width: 60%; background-color: #ffc000"
+                                  ></div>
+                                </div>
+                              </div>
+                              <div class="col-2 text-muted small">74</div>
+                            </div>
+                            <div class="row align-items-center mb-2">
+                              <div class="col-2 col-sm-1 text-end pe-0">3</div>
+                              <div class="col-1 ps-1 pe-0">
+                                <i class="bi bi-star-fill text-warning"></i>
+                              </div>
+                              <div class="col-7 col-sm-8 px-2">
+                                <div class="progress" style="height: 10px">
+                                  <div
+                                    class="progress-bar"
+                                    style="width: 35%; background-color: #ffc000"
+                                  ></div>
+                                </div>
+                              </div>
+                              <div class="col-2 text-muted small">14</div>
+                            </div>
+                            <div class="row align-items-center mb-2">
+                              <div class="col-2 col-sm-1 text-end pe-0">2</div>
+                              <div class="col-1 ps-1 pe-0">
+                                <i class="bi bi-star-fill text-warning"></i>
+                              </div>
+                              <div class="col-7 col-sm-8 px-2">
+                                <div class="progress" style="height: 10px">
+                                  <div
+                                    class="progress-bar"
+                                    style="width: 0%; background-color: #ffc000"
+                                  ></div>
+                                </div>
+                              </div>
+                              <div class="col-2 text-muted small">0</div>
+                            </div>
+                            <div class="row align-items-center mb-2">
+                              <div class="col-2 col-sm-1 text-end pe-0">1</div>
+                              <div class="col-1 ps-1 pe-0">
+                                <i class="bi bi-star-fill text-warning"></i>
+                              </div>
+                              <div class="col-7 col-sm-8 px-2">
+                                <div class="progress" style="height: 10px">
+                                  <div
+                                    class="progress-bar"
+                                    style="width: 0%; background-color: #ffc000"
+                                  ></div>
+                                </div>
+                              </div>
+                              <div class="col-2 text-muted small">0</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-lg-8">
+                      <div class="container bg-white py-2 rounded-4">
+                        <div class="col-12">
+                          <span class="text-muted">Jan 20,2024</span> <br />
+                          <span class="stars fs-3">★★★★</span
+                          ><span class="star fs-3">★</span>
+                          <div class="icon d-flex align-items-center gap-4">
+                            <span class="prof mb-3">TA</span> <span>Tarek </span>
+                          </div>
+                          <span class="text-muted my-3">Senior analyst</span>
+                          <p class="my-3">
+                            "The quality is amazing, and the fit is perfect. Definitely worth the purchase!"
+                          </p>
+                          <hr />
+                          <span class="text-muted">Nov 13,2023</span> <br />
+                          <span class="stars fs-3">★★★★</span
+                          ><span class="star fs-3">★</span>
+                          <div class="icon d-flex align-items-center gap-4">
+                            <span class="prof mb-3">MA</span> <span>Mohamed Adnan</span>
+                          </div>
+                          <span class="text-muted my-3">Front-End Engineer</span>
+                          <p class="my-3">
+                            Great experience overall! The fabric is soft, and the size fits just right."
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of accordion % -->
+      </div>
+    </section>
+
+    <!-- <section id="proddetails">
+      <div class="container">
+    
+        <div class="row mt-2">
+          <div class="left col-12 col-lg-7 d-flex flex-column flex-lg-row">
+    
             <div
               class="swiper thumbs-swiper d-none d-lg-block"
               style="width: 10%; height: 400px"
@@ -205,7 +552,7 @@
               </div>
             </div>
 
-            <!-- Main Slider -->
+      
             <div class="swiper main-swiper" style="width: 85%; height: 500px">
               <div class="swiper-button-next main-next"></div>
               <div class="swiper-button-prev main-prev"></div>
@@ -259,12 +606,7 @@
               Color : <span class="secondcolor">Blue</span>
             </p>
             <div class="colorpallet">
-              <span class="circ c1 active" role="button"></span>
-              <span class="circ c2" role="button"></span>
-              <span class="circ c3" role="button"></span>
-              <span class="circ c4" role="button"></span>
-              <span class="circ c5" role="button"></span>
-              <span class="circ c6" role="button"></span>
+            
             </div>
             <div class="d-flex justify-content-between align-items-center my-3">
               <div class="l w-25">
@@ -361,14 +703,14 @@
           </div>
        
         </div>
-<!-- end of carousel % -->
 
-<!-- accordion -->
+
+
         <div class="row mt-2">
-          <!-- main accordion  -->
+  
             <div class="col-12 accordion " id="productAccordion">
               
-              <!-- Details Section -->
+        
               <div class="accordion-item border-0  bg-transparent">
                 <div class="accordion-header d-flex justify-content-between align-items-center">
                   <h2 class="maincolor m-0">Details</h2>
@@ -396,7 +738,7 @@
                 </div>
               </div>
               <hr />
-              <!-- Dimensions Section -->
+    
               <div class="accordion-item border-0  bg-transparent">
                 <div class="accordion-header d-flex justify-content-between align-items-center">
                   <h2 class="maincolor m-0">Dimensions</h2>
@@ -432,7 +774,7 @@
               </div>
               <hr />
 
-              <!-- Reviews Section -->
+   
               <div class="accordion-item border-0  bg-transparent mb-3">
                 <div class="accordion-header d-flex justify-content-between align-items-center">
                   <h2 class="maincolor m-0">Reviews</h2>
@@ -717,137 +1059,15 @@
 
 <!-- end of foot % -->
      
-    </section>
-
+    </section>  
+<script src="js/proddetails.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
 
-
-// swiper carousel
-      document.addEventListener("DOMContentLoaded", function () {
-        const thumbsSwiper = new Swiper(".thumbs-swiper", {
-          direction: "vertical",
-          slidesPerView: "auto",
-          spaceBetween: 20,
-          watchSlidesProgress: true,
-          freeMode: true,
-          mousewheel: true,
-          slideToClickedSlide: true,
-          breakpoints: {
-            992: {
-              direction: "vertical",
-              slidesPerView: "auto",
-              spaceBetween: 20,
-            },
-          },
-        });
-
-        const swiper = new Swiper(".main-swiper", {
-          slidesPerView: 1.5,
-          centeredSlides: false,
-          spaceBetween: 1,
-          loop: true,
-          slideActiveClass: "active-slide",
-          thumbs: {
-            swiper: thumbsSwiper,
-          },
-          navigation: {
-            nextEl: ".main-next",
-            prevEl: ".main-prev",
-          },
-          breakpoints: {
-            0: {
-              slidesPerView: 1,
-              spaceBetween: 0,
-              centeredSlides: true,
-            },
-            1200: {
-              slidesPerView: 1.5,
-              spaceBetween: 20,
-              centeredSlides: false,
-            },
-          },
-        });
-      });
-
-
-      // icrement and decrement
-      const icrementbtn = document.querySelector(".br");
-      const decrementbtn = document.querySelector(".bl");
-      const quantity = document.querySelector(".quantity");
-      let counter = document.querySelector(".counter");
-      let counterval = parseInt(counter.textContent) || 1;
-      const circs= document.querySelectorAll('.circ');
-
-      icrementbtn.onclick = function () {
-        counter.textContent = ++counterval;
-        quantity.textContent = counterval;
-        console.log(counterval);
-      };
-      decrementbtn.onclick = function () {
-        if (counterval > 1) {
-          counter.textContent = --counterval;
-          quantity.textContent = counterval;
-          console.log(counterval);
-        }
-      };
-
-
-      // size
-      document.querySelectorAll(".sizee").forEach((element) => {
-        element.addEventListener("click", function () {
-          const spanElement = element.querySelector("span");
-
-          document.querySelectorAll(".sizee span").forEach((span) => {
-            span.classList.add("size");
-            span.classList.remove("main");
-          });
-
-          spanElement.classList.remove("size");
-          spanElement.classList.add("main");
-
-          const displayElement = document.querySelector(".sizeee");
-          if (displayElement) {
-            displayElement.textContent = spanElement.textContent;
-          }
-        });
-      });
-
-      // color picking  by delegation
-      document.querySelector('.colorpallet').addEventListener('click', function(e) {
-  if (e.target.classList.contains('circ')) {
-    document.querySelector('.circ.active')?.classList.remove('active');
-    e.target.classList.add('active');
-  }
-});
-    
-// switch + for accordion to -
-
-
-  document.querySelectorAll('.accordion-collapse').forEach(function(collapseEl) {
-    
-    collapseEl.addEventListener('show.bs.collapse', function () {
-      const toggleIcon = collapseEl
-        .previousElementSibling
-        .querySelector('.toggle-icon');
-      if (toggleIcon) toggleIcon.textContent = '-';
-    });
-
-    collapseEl.addEventListener('hide.bs.collapse', function () {
-      const toggleIcon = collapseEl
-        .previousElementSibling
-        .querySelector('.toggle-icon');
-      if (toggleIcon) toggleIcon.textContent = '+';
-    });
-  });
-
-    </script>
-    <script src="./js/proddetails.js"></script>
-    <script src="./js/Products.js"></script>
+  
   </body>
 </html>

@@ -1,10 +1,14 @@
 import indexedDB from './indexedDb.js';
+import DisCartNum from './DisplayHome.js';
+
+
+
 
 let userId;
 if (sessionStorage.getItem('LogedUser')) {
    userId = JSON.parse(sessionStorage.getItem('LogedUser')).userId;
 }
-
+let FilterCartArr=[];
 let CartArr = [];
 let WhishListArr = [];
 
@@ -72,6 +76,8 @@ export async function addToCart(btn) {
 
         if (!existPro) {
             CartArr.push(productCartObj);
+            FilterCartArr=CartArr.filter(item =>item.userId === userId );
+            GetNumOfCart(FilterCartArr.length)
             Swal.fire({
                 icon: 'success',
                 title: 'added successfully !',
@@ -92,6 +98,8 @@ export async function addToCart(btn) {
               });
         } else {
             CartArr = CartArr.filter(item => !(item.userId === userId && item.ProId === pro.id));
+            FilterCartArr=CartArr.filter(item =>item.userId === userId );
+            GetNumOfCart(FilterCartArr.length);
             Swal.fire({
                 icon: 'success',
                 title: 'Removed from cart',
@@ -156,5 +164,9 @@ export async function addToWhishList(btn) {
 
 // Initialize the application
 initialize();
+ 
+  function GetNumOfCart(num) {
+  
+    DisCartNum(num)
 
-
+}

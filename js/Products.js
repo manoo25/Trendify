@@ -1,4 +1,3 @@
-
 let category = ["Men", "Women", "Kids"];
 let subcategory = ["Dresses", "Jackets", "Tshirts","Shoeses", "Jeans"];
 let ProductsArr = [
@@ -651,44 +650,154 @@ document.addEventListener("DOMContentLoaded", function () {
           );
     }
   }
-// send filtered data to product details when clicked
-let filtereddata =[];
 
-  let products =document.querySelectorAll('.Product');
-  products.forEach((element) => {
-    element.addEventListener('click', function(e) {
-      let id = this.dataset.id;
-    window.location.href=`./productdetails.html?id=${id}`;
-    
-    });
-  });
-  document.querySelectorAll(".btnAddToCart").forEach((i)=>{
-    i.addEventListener('click', function(e){
-      let iid=this.dataset.id;
+
+// send filtered data to product details when clicked new
+
+  document.addEventListener('click', function(e) {
+    const productelement = e.target.closest('.Product');
+    const addToCartBtn = e.target.closest('.btnAddToCart');
+    if (addToCartBtn) {
+      e.preventDefault();
       e.stopPropagation();
-      Swal.fire({
-        icon: 'success',
-        title: 'added successfully !',
-        text: `${ProductsArr.find((i) =>i.id==iid).name} added to cart `,
-        showConfirmButton: false,
-        timer: 1600,
-        toast: true,
-        position: 'top-end',
-        position: 'top-end',
-        background: 'var(--card-color)', 
-        color: 'var(--main-color)',      
-        iconColor: 'var(--main-color)',  
-        customClass: {
-          popup: 'custom-swal-popup',
-          title: 'custom-swal-title',
-          content: 'custom-swal-content'
+      const products = JSON.parse(localStorage.getItem('Products')) || [];
+      const productId = addToCartBtn.dataset.id;
+      const product = products.find(p => p.id === productId);
+      // let iid=addToCartBtn.dataset.id;
+      if(product) {
+    
+        console.log('Product found:', product.name);
+        if (typeof Swal !== 'undefined') {
+          Swal.fire({
+            icon: 'success',
+            title: 'تمت الإضافة بنجاح!',
+            text: `${product.name} تمت إضافته إلى السلة`,
+            showConfirmButton: false,
+            timer: 1600,
+            toast: true,
+            position: 'top-end',
+            background: 'var(--card-color)',
+            color: 'var(--main-color)',
+            iconColor: 'var(--main-color)',
+            customClass: {
+              popup: 'custom-swal-popup',
+              title: 'custom-swal-title',
+              content: 'custom-swal-content'
+            }
+
+          });
+        } else {
+          console.error('SweetAlert is not defined');
+          alert(`${product.name} تمت إضافته إلى السلة`);
         }
-      });
-      })
+    
+    
+      } else {
+        console.error('Product not found with ID:', productId);
+      }
+      return ;
+    }
+    if(productelement) {
+      let id = productelement.dataset.id;
+      window.location.href=`./productdetails.html?id=${id}`;
+      // return;
+    
+    }
+
+
   })
-
-});
-
-
  
 
+
+
+
+
+});
+// end of filtering data
+
+
+
+
+
+
+
+
+
+
+// End of ahmed section
+
+
+
+
+
+
+
+
+
+
+
+// send filtered data to product details when clicked old
+
+
+// let products =document.querySelectorAll('.Product');
+  // products.forEach((element) => {
+  //   element.addEventListener('click', function(e) {
+  //     let id = this.dataset.id;
+  //   window.location.href=`./productdetails.html?id=${id}`;
+    
+  //   });
+  // });
+  // document.querySelectorAll(".btnAddToCart").forEach((i)=>{
+  //   i.addEventListener('click', function(e){
+  //     let iid=this.dataset.id;
+  //     e.stopPropagation();
+  //     Swal.fire({
+  //       icon: 'success',
+  //       title: 'added successfully !',
+  //       text: `${ProductsArr.find((i) =>i.id==iid).name} added to cart `,
+  //       showConfirmButton: false,
+  //       timer: 1600,
+  //       toast: true,
+  //       position: 'top-end',
+  //       position: 'top-end',
+  //       background: 'var(--card-color)', 
+  //       color: 'var(--main-color)',      
+  //       iconColor: 'var(--main-color)',  
+  //       customClass: {
+  //         popup: 'custom-swal-popup',
+  //         title: 'custom-swal-title',
+  //         content: 'custom-swal-content'
+  //       }
+  //     });
+  //     })
+  // })
+
+
+
+
+
+
+// calculate your localstorage usage
+
+// function getLocalStorageUsage() {
+//     let total = 0;
+//     for (let key in localStorage) {
+//       if (localStorage.hasOwnProperty(key)) {
+//         let value = localStorage.getItem(key);
+//         total += key.length + value.length;
+//       }
+//     }
+
+//     // الحجم بالبايت، نحوله لكيلو بايت أو ميجا بايت
+//     let usedBytes = total;
+//     let usedKB = (usedBytes / 1024).toFixed(2);
+//     let usedMB = (usedBytes / (1024 * 1024)).toFixed(2);
+
+//     console.log(`المستخدم: ${usedKB} KB (${usedMB} MB)`);
+//     return usedMB;
+//   }
+
+//   let used = parseFloat(getLocalStorageUsage());
+// let remaining = (5 - used).toFixed(2);
+// console.log(`المتبقي: ${remaining} MB`);
+//   getLocalStorageUsage();

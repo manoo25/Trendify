@@ -1,5 +1,8 @@
 import indexedDB from './indexedDb.js';
 
+
+
+
 let CartArr = [];
 let WhishListtArr = [];
 async function initialize() {
@@ -567,6 +570,19 @@ if (localStorage.getItem('Products')) {
 
 
 
+    async function GetasyncNum() {
+      const cartData = await indexedDB.getItem('Cart');
+      if (cartData) {
+        let cartd=[]
+        cartd = cartData;
+      let  FilterCartArr=cartd.filter(item =>item.userId === userId );
+      DisCartNum(FilterCartArr.length)
+      }
+  }
+  GetasyncNum();
+
+
+
 
 //Mohamed SAlama JS
 (initialize().then(  ()=>{
@@ -952,3 +968,8 @@ displayTopPiks();
 
 
 }));
+
+
+export default function DisCartNum(num){
+  document.getElementById('CartNum').innerText=num;
+}

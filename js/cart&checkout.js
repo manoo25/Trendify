@@ -61,8 +61,7 @@ async function initialize() {
  if (OrdersProData) {
       OrdersProtArr = OrdersProData;  
   }
-console.log( 'orders '+OrderstArr);
-console.log( 'orders pro '+OrdersProtArr);
+
 
 }
 initialize();
@@ -284,7 +283,7 @@ setTimeout(() => {
 }, 600);
       setTimeout(() => {  
         location.reload();
-      }, 1000);
+      }, 2000);
 
     
 }
