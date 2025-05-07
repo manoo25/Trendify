@@ -20,8 +20,9 @@
   transform: scale(1.05);
   transition: transform 0.3s ease-in-out;
 }
-.home-card:hover{
-cursor: pointer;
+
+.home-card:hover {
+  cursor: pointer;
 }
 
 /* asmaa css */
@@ -49,6 +50,7 @@ cursor: pointer;
   top: 3vh;
   z-index: 2;
 }
+
 .service-card {
   background: var(--card-color);
   border-radius: 12px;
@@ -143,14 +145,14 @@ cursor: pointer;
 }
 
 /* added */
-.testimonial-splide:hover  {
+.testimonial-splide:hover {
   cursor: pointer;
   transform: scale(1.05);
   transition: all 0.3s;
   box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.06);
 }
 
-.splide__slide:hover .testimonial-feedback{
+.splide__slide:hover .testimonial-feedback {
   color: var(--main-color);
 }
 
@@ -178,10 +180,12 @@ cursor: pointer;
   /* added */
   display: flex !important;
 }
+
 /* Prevent container from shrinking */
 .splide {
   min-width: 100px;
 }
+
 .splide__arrow {
   background-color: var(--main-color);
   pointer-events: auto;
@@ -418,15 +422,18 @@ nav div.container-fluid ul.navbar-nav li.nav-item a.nav-link.active {
   margin-bottom: 10px;
   padding: 2px;
 }
+
 /* add hover to first splide **/
 .top_slide:hover .splide_img {
   transform: scale(1.05);
   transition: transform 0.3s ease-in-out;
   /* opacity: 1.65; */
 }
-.top_slide:hover p{
+
+.top_slide:hover p {
   color: var(--second-color) !important;
 }
+
 /* .imgcont:hover {
   color: var(--second-color) !important;
 } */
@@ -457,17 +464,11 @@ nav div.container-fluid ul.navbar-nav li.nav-item a.nav-link.active {
 
   nav div.container-fluid ul.navbar-nav li.nav-item a.nav-link.active {
     color: var(--third-color);
-    border-bottom:  2px solid var(--bg-color);
+    border-bottom: 2px solid var(--bg-color);
   }
-  /* hight carasoul*/
-  @media (max-width: 767px) {
-    .carDiv{
-      min-width: fit-content;
-    }
-    .carDiv .carImg{
-    height: 200px;
-   }
-  }
+
+
+
   .btn-dotted {
     color: white;
   }
@@ -490,18 +491,20 @@ nav div.container-fluid ul.navbar-nav li.nav-item a.nav-link.active {
 #mobilelogandRegBtn {
   padding: 0.5rem 1rem;
   /* color: var(--bs-nav-link-color); Match Bootstrap's nav link color */
- 
-  border: none!important;
+  border: none !important;
 }
-
-.btn , .btnscroll {
+/*add btnscroll 07/05*/
+.btn,
+.btnscroll {
   color: var(--bg-color);
   background-color: var(--main-color);
 }
-.btnscroll:hover{
+
+.btnscroll:hover {
   color: var(--main-color);
   background-color: var(--third-color);
 }
+/*end btnscroll07/05 */
 .btn:hover {
   color: var(--main-color);
   border: solid 0.1rem var(--main-color);
@@ -550,16 +553,16 @@ nav div.container-fluid ul.navbar-nav li.nav-item a.nav-link.active {
 @media (max-width: 992px) {
   span[class="btn-dotted mt-5 fa-solid fa-arrows-up-to-line d-lg-none"]:hover {
     color: var(--third-color) !important;
-   
+
   }
 
   .navbar-toggler:focus {
- 
+
     box-shadow: 0 0 0 3px rgba(139, 94, 53, 0.2);
   }
 
   span[class="navbar-toggler-icon"] {
-    
+
     color: white !important;
   }
 }
@@ -567,7 +570,7 @@ nav div.container-fluid ul.navbar-nav li.nav-item a.nav-link.active {
 .navbar-toggler {
   color: white !important;
   border-color: rgba(139, 94, 53, 0.2) !important;
- 
+
 }
 
 .navbar-toggler-icon {
