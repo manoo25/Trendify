@@ -1,4 +1,3 @@
-
 // list of search input
 const searchInput = document.getElementById("searchInput");
 const searchResults = document.getElementById("searchResults");
@@ -135,7 +134,7 @@ function pullPublishComments() {
     } 
 }
 pullPublishComments();
-displayPublishComments();
+
 function displayPublishComments() {
  
     pullPublishComments();

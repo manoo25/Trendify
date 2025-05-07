@@ -1,3 +1,4 @@
+import { successAlert, FailAlert } from '../js/date.js';
 let usersData=[] 
 function PullData() {
     if (localStorage.getItem('usersData')) {
@@ -11,6 +12,9 @@ export function SignUp(name, Email, Password) {
     const emailExists = usersData.some(user => user.Email === Email);
     
     if (emailExists) {
+   
+            FailAlert('Email checke',"This Email is Already Exist !!")
+    
         return false; 
     }
     
@@ -31,10 +35,15 @@ export function SignUp(name, Email, Password) {
     sessionStorage.setItem('userRole', userObj.role);
     localStorage.setItem('usersData', JSON.stringify(usersData));
     sessionStorage.setItem('LogedUser', JSON.stringify(userObj));
-   
+   successAlert("Success Sign Up","")
+   setTimeout(() => {
     window.location.replace('./index.html'); 
+   }, 1000);
     return true;
 }
+
+
+
  export function login(email, password) {
     PullData();
     const user = usersData.find(user => user.Email === email && user.Password === password);
@@ -42,19 +51,23 @@ export function SignUp(name, Email, Password) {
     if (user) {
         sessionStorage.setItem('userRole',(user.role))
         sessionStorage.setItem('LogedUser',(JSON.stringify(user)))
+        successAlert('Login Success',"");
+      setTimeout(() => {
         checkAuth(user); 
-        window.location.replace('./index.html');
+      }, 1000);
        return true;
     } 
     else {
+        FailAlert('Login Failed',"");
         return false; 
     }
 }
 
 function checkAuth(data) {
     if(data.role=='customer'){
+       
         window.location.replace ("./index.html");
-        
+       
     }
     else if(data.role=='seller'){
         window.location.replace ("./SellerControl.html");

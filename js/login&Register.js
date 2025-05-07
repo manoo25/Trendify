@@ -31,28 +31,25 @@ Array.from(forms).forEach((form) => {
         }
         
       if (emailLogin.value==='') {
+        $('#confirmRegister .fa-spinner').removeClass('d-none'); 
         const signUpSuccess = authSignUp(Rusername.value, emailRegister.value, passwordRegister.value);
         
-        if (!signUpSuccess) {            
+        if (!signUpSuccess) {    
+            $('#confirmRegister .fa-spinner').addClass('d-none');        
             emailRegister.setCustomValidity('vv');
             form.classList.add('was-validated');
         } 
-        else {
-
-            authSignUp(Rusername.value, emailRegister.value, passwordRegister.value);
-        }
+      
       }
       else{
 
-        const LoginSuccess = authLogin( emailLogin.value, passwordLogin.value);
-        
+        $('#confirmLogin .fa-spinner').removeClass('d-none'); 
+            const LoginSuccess = authLogin( emailLogin.value, passwordLogin.value);
+
         if (!LoginSuccess) {
-         alert('invalid email or password !!');
+            $('#confirmLogin .fa-spinner').addClass('d-none');
          passwordLogin.value='';
          
-        }
-         else {
-            authLogin( emailLogin.value, passwordLogin.value);
         }
 
       }
