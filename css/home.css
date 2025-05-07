@@ -504,11 +504,31 @@ nav div.container-fluid ul.navbar-nav li.nav-item a.nav-link.active {
   color: var(--main-color);
   background-color: var(--third-color);
 }
-/*end btnscroll07/05 */
+/*end btnscroll 07/05 */
+
 .btn:hover {
   color: var(--main-color);
   border: solid 0.1rem var(--main-color);
 }
+/*style for tablet and phone for carousel*/
+@media (max-width: 1024px) {
+  #carouselIndicators .carousel-inner {
+    min-height: 20vh !important;
+    font-size: 16px !important;
+    padding-bottom: 5px !important;
+  }
+  #carouselIndicators .carDiv {
+    max-height: 15vh !important; 
+  }
+}
+@media (max-width:768px) {
+  #carouselIndicators .carousel-inner {
+    padding-bottom: 5px !important;
+    font-size: 10px !important;
+ 
+  }
+}
+/*end style for tablet and phone for carousel*/
 
 .carousel-bg {
   margin: 0px;
