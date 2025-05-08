@@ -1,4 +1,39 @@
+//change image
+const imageInput = document.getElementById('imageUpload');
+const profileImage = document.getElementById('profileImage');
+// Get users from localStorage
+let users = JSON.parse(localStorage.getItem('usersData'));
+var userId;
 
+if (users) { 
+    // Get id from session storage
+    userId = JSON.parse(sessionStorage.getItem('LogedUser')).userId;
+}
+
+imageInput.addEventListener('change', function () {
+    const file = this.files[0];
+    if (file) {
+        const reader = new FileReader();
+
+        reader.addEventListener('load', function () {
+            profileImage.src = reader.result;
+            // Find index of current user in localStorage
+            const userIndex = users.findIndex(user => user.userId === userId);
+            if (userIndex !== -1) {
+                let reply = confirm('Are you sure you want to update your image?');
+                if (reply) {
+                    users[userIndex].img = imageInput; // Update image in localStorage
+                    localStorage.setItem('usersData', JSON.stringify(users)); // Save back to localStorage
+                }
+
+            }
+            
+
+        });
+
+        reader.readAsDataURL(file);
+    }
+});
     // Initialize variables
     let currentRowToDelete = null;
     

@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./css/global.css" />
     <link rel="stylesheet" href="./css/adminControl.css" />
     <style>
@@ -33,23 +36,29 @@
     </div>
 
     <!-- Sidebar -->
-    <nav style="max-width: 60%;" class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft"
+    <nav style="width: 330px;" class="offcanvas offcanvas-start  " tabindex="-1" id="offcanvasLeft"
         aria-labelledby="offcanvasLeftLabel">
 
-        <div class="sidebar-header d-flex justify-content-center align-items-center pt-5">
-           
-                <img src="./imgs/beautiful-woman.jpg" alt="user" class=" rounded-circle"
-                    style="width: 100px; height: 100px;">
+        <div class="sidebar-header d-flex flex-column justify-content-center align-items-center pt-5 ">
+            <div class="mb-3 position-relative d-inline-block">
+                <img id="profileImage" src="./imgs/beautiful-woman.jpg" alt="user" class=" rounded-circle"
+                    style="width: 80px; height: 80px;">
+                <label id="imageUploadLabel" for="imageUpload" class="  position-absolute rounded-circle p-1">
+                    <i class="fa-solid fa-pen p-1"></i></i>
+                </label>
+                <input type="file" id="imageUpload" accept="image/*" class="d-none" />
+            </div>
 
-                    <h6 class="px-2 pt-2">Hi, <span id="userName" class="fw-bold">Samar</span></h6>
 
-      
+            <h6 class="px-2">Hi, <span id="userName" class="fw-bold">Samar</span></h6>
+
+
         </div>
-   <hr>
+        <hr>
         <ul class="list-unstyled components">
-            <!-- <li>
+            <li>
                 <a href="./index.html"><i class="fas fa-house"></i> Home</a>
-            </li> -->
+            </li>
 
 
             <li class="active">
@@ -72,7 +81,22 @@
     <!-- Page Content -->
 
     <!-- head btns  -->
-    <header class="navbar navbar-expand-lg navbar-light bg-light mb-4 rounded">
+    <header class="navbar navbar-expand-lg navbar-light bg-light mb-0 rounded">
+        <div class="container-fluid">
+            <button type="button" id="sidebarCollapse" class="btn headBtn " data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
+                <i class="fas fa-bars"></i>
+
+            </button>
+
+
+        </div>
+    </header>
+    <!-- End head btns  -->
+    <!-- Page Content -->
+
+    <!-- head btns  -->
+    <!-- <header class="navbar navbar-expand-lg navbar-light bg-light mb-4 rounded">
         <div class="container-fluid">
             <button type="button" id="sidebarCollapse" class="btn headBtn " data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
@@ -100,7 +124,7 @@
                 </div>
             </div>
         </div>
-    </header>
+    </header> -->
     <!-- End head btns  -->
 
     <!--added hero section-->
@@ -133,7 +157,7 @@
                 <div id="ordersTable" class="contain-item col-lg-3 col-md-6  pb-2">
                     <div class="Product">
                         <div class="pic position-relative">
-                            <img class="w-100" src="./imgs/products/MJ14.jpg"  alt="proImg">
+                            <img class="w-100" src="./imgs/products/MJ14.jpg" alt="proImg">
                             <span class="fa-regular fa-heart position-absolute"></span>
                             <span class="discount">-30%</span>
                         </div>
@@ -204,7 +228,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
 
@@ -322,18 +346,18 @@
             </div>
         </div>
     </div>  -->
-   
+
     <!-- Orders Table -->
-     <!-- Orders Table -->
-     <div id="OrdersId" class="DataTable card shadow mb-4 d-none">
+    <!-- Orders Table -->
+    <div id="OrdersId" class="DataTable card shadow mb-4 d-none">
         <div class="card-header py-3 ">
             <h6 class="m-0 font-weight-bold ">All Orders</h6>
-           
+
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-striped   overflow-hidden" id="ordersTable" width="100%" cellspacing="0">
-                    <thead  >
+                    <thead>
                         <tr>
                             <th> Name </th>
                             <th> Products Qty </th>
@@ -346,139 +370,155 @@
                         <tr>
                             <td>Mohamed Salama</td>
                             <td>3</td>
-                         
+
                             <td>550</td>
                             <td><span class="badge bg-secondary">in progress</span></td>
-                            <td >
+                            <td>
                                 <!-- <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
                                 <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
                                 <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button> -->
                                 <div class="d-flex justify-content-center align-items-center gap-2">
                                     <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
-                                   
-                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i class="fas fa-trash"></i></button>
-                                  </div>
+
+                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i
+                                            class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i
+                                            class="fas fa-trash"></i></button>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td>Mohamed Salama</td>
                             <td>3</td>
-                         
+
                             <td>550</td>
                             <td><span class="badge bg-danger">Cancel</span></td>
-                            <td >
+                            <td>
                                 <div class="d-flex justify-content-center align-items-center gap-2">
                                     <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
 
-                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i class="fas fa-trash"></i></button>
-                                  </div>
-                               
+                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i
+                                            class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i
+                                            class="fas fa-trash"></i></button>
+                                </div>
+
                             </td>
                         </tr>
                         <tr>
                             <td>Mohamed Salama</td>
                             <td>3</td>
-                         
+
                             <td>550</td>
                             <td><span class="badge bg-warning">Pending</span></td>
-                            <td >
+                            <td>
                                 <div class="d-flex justify-content-center align-items-center gap-2">
                                     <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
-                                 
-                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i class="fas fa-trash"></i></button>
-                                  </div>
-                               
+
+                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i
+                                            class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i
+                                            class="fas fa-trash"></i></button>
+                                </div>
+
                             </td>
                         </tr>
                         <tr>
                             <td>Mohamed Salama</td>
                             <td>3</td>
-                         
+
                             <td>550</td>
                             <td><span class="badge bg-success">Done</span></td>
-                            <td >
+                            <td>
                                 <div class="d-flex justify-content-center align-items-center gap-2">
                                     <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
-                                  
-                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i class="fas fa-trash"></i></button>
-                                  </div>
-                               
+
+                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i
+                                            class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i
+                                            class="fas fa-trash"></i></button>
+                                </div>
+
                             </td>
                         </tr>
                         <tr>
                             <td>Mohamed Salama</td>
                             <td>3</td>
-                         
+
                             <td>550</td>
                             <td><span class="badge bg-secondary">in progress</span></td>
-                            <td >
+                            <td>
                                 <div class="d-flex justify-content-center align-items-center gap-2">
                                     <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
-                                    
-                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i class="fas fa-trash"></i></button>
-                                  </div>
-                               
+
+                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i
+                                            class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i
+                                            class="fas fa-trash"></i></button>
+                                </div>
+
                             </td>
                         </tr>
                         <tr>
                             <td>Mohamed Salama</td>
                             <td>3</td>
-                         
+
                             <td>550</td>
                             <td><span class="badge bg-danger">Cancel</span></td>
-                            <td >
+                            <td>
                                 <div class="d-flex justify-content-center align-items-center gap-2">
                                     <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
-                                   
-                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i class="fas fa-trash"></i></button>
-                                  </div>
-                               
+
+                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i
+                                            class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i
+                                            class="fas fa-trash"></i></button>
+                                </div>
+
                             </td>
                         </tr>
                         <tr>
                             <td>Mohamed Salama</td>
                             <td>3</td>
-                         
+
                             <td>550</td>
                             <td><span class="badge bg-warning">Pending</span></td>
-                            <td >
+                            <td>
                                 <div class="d-flex justify-content-center align-items-center gap-2">
                                     <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
-                                    
-                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i class="fas fa-trash"></i></button>
-                                  </div>
-                               
+
+                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i
+                                            class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i
+                                            class="fas fa-trash"></i></button>
+                                </div>
+
                             </td>
                         </tr>
                         <tr>
                             <td>Mohamed Salama</td>
                             <td>3</td>
-                         
+
                             <td>550</td>
                             <td><span class="badge bg-success">Done</span></td>
-                            <td >
+                            <td>
                                 <div class="d-flex justify-content-center align-items-center gap-2">
                                     <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i class="fas fa-trash"></i></button>
-                                  </div>
-                               
+                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i
+                                            class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i
+                                            class="fas fa-trash"></i></button>
+                                </div>
+
                             </td>
                         </tr>
-                      
-                      
-                       
+
+
+
                     </tbody>
                 </table>
-                
-            
+
+
             </div>
         </div>
     </div>
@@ -631,8 +671,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-striped  overflow-hidden" id="ordersTable" width="100%"
-                    cellspacing="0">
+                <table class="table table-striped  overflow-hidden" id="ordersTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Your Comment</th>
