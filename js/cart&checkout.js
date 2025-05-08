@@ -42,7 +42,7 @@ async function initialize() {
                <img style="max-width:280px;" src="../imgs/emptyCart.png" class="w-50" alt="lock">
            </div>
           <div class="d-flex flex-column align-items-center">
-           <p class="text-center text-danger">Shopping Cart Is Empty !!</p>
+          
           <a href="../category.html" id="checkout" class="btn w-25 mt-3 p-2 rounded-5" style="display: block; ">
               View Products
               </a>
@@ -71,7 +71,9 @@ let OrderObj={
   address:'',
   phone:'',
   note:'',
+  state:'Pending',
   orderId:0,
+  userId:userId,
   TotalPrice:0,
   Date:DateDay()
 }
@@ -247,17 +249,13 @@ DisplayCart();
             OrderObj.phone = customerPhone.value;
             OrderObj.note = NotesOrder.value;   
             OrderstArr.push(OrderObj);
-            console.log(OrderstArr);
             
 FilterCartArr.forEach(pro => {
   pro.OrderId=OrderObj.orderId;
   OrdersProtArr.push(pro)
 }); 
-console.log( 'orders '+OrderstArr);
-console.log( 'orders pro '+OrdersProtArr);
+
  AddOrderDb();
- console.log( 'orders '+OrderstArr);
- console.log( 'orders pro '+OrdersProtArr);
 
             async function AddOrderDb() {
               const done1 =await indexedDB.setItem('Orders',OrderstArr);
@@ -267,8 +265,7 @@ console.log( 'orders pro '+OrdersProtArr);
 
               if (done1&&done2&&done3) {
                   initialize();
-                  console.log( 'orders '+OrderstArr);
-console.log( 'orders pro '+OrdersProtArr);
+
               }
 
              }
@@ -280,9 +277,10 @@ console.log( 'orders pro '+OrdersProtArr);
 setTimeout(() => {
   $('.fa-spinner').addClass('d-none')
   successAlert('Conferm Order','Order Added Successfully.')
+
 }, 600);
       setTimeout(() => {  
-        location.reload();
+        window.location.replace('../index.html')
       }, 2000);
 
     

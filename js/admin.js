@@ -123,8 +123,10 @@ if (PublishedCommentArr.some(x => x.commentId == comment.commentId)) {
          <span class="slider"></span>
         </label></td>
      <td >
+       <div class="class="d-flex  align-items-center justify-content-center gap-2"">
         <button onclick="ReplyComment(${comment.commentId})" class="btn btn-sm btn-warning m-1" data-bs-toggle="modal" data-bs-target="#personalInfoModal" ><i class="fas fa-edit"></i></button>
         <button onclick="deleteComment(${comment.commentId},'admin')" class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
+       </div>
                                        
     </td>    </tr>
         
