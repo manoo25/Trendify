@@ -1,3 +1,7 @@
+
+  AOS.init();
+
+
 // list of search input
 const searchInput = document.getElementById("searchInput");
 const searchResults = document.getElementById("searchResults");
@@ -77,9 +81,11 @@ document.addEventListener('DOMContentLoaded',function (){
    scrollToTopBtn.addEventListener('click', function() {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
+     
     });
   });
+
  
   // Check scroll position on scroll
   window.addEventListener('scroll', checkScroll);

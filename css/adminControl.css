@@ -7,16 +7,17 @@
 
 body {
     font-family: 'Tajawal', sans-serif;
-    background-color: #f8f9fc;
+    background-color: #f8f9fc !important;
+    
 }
 
 /* Sidebar Styles */
 #offcanvasLeft {
-  
+  width: var(--sidebar-width);
 
-    background: linear-gradient(180deg, var(--primary-color) 50%, #5b5a13a9 100%);
+    background: linear-gradient(180deg, var(--second-color) 50%, #5b5a13a9 100%);
     color: white;
-    transition: all 0.3s;
+    transition: all 0.3s ease-in-out;
 }
 
 #offcanvasLeft .offcanvasLeft-header {
@@ -30,20 +31,20 @@ body {
 }
 
 #offcanvasLeft ul li a {
-    padding: 15px 20px;
+    padding: 10px 10px;
     font-size: 1.1em;
     display: block;
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     transition: all 0.3s;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     display: flex;
-    gap: 20px;
+    gap: 15px;
     align-items: center;
 }
 
 #offcanvasLeft ul li a:hover {
-    background: var(--main-color);
+   color: var(--main-color);
 }
 
 #offcanvasLeft ul li a i {
@@ -51,8 +52,8 @@ body {
 }
 
 #offcanvasLeft ul li.active > a {
-    color: #fff;
-    background:var(--main-color);
+    color: var(--main-color);
+   font-weight: bold;
 }
 
 
@@ -150,13 +151,62 @@ body {
   background-color: var(--second-color);
   color: white;
 }
-.card-header{
-    background-color: var(--second-color);
-}
+
+/*  added style*/
 table tr td img{
     width: 100%;
-    height: 100px;
+    height: 50px;
+    border-radius: 10px;
 }
+/*  added style */
+/*asmaa update */
+.btn-new{
+    width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.btn-new1{
+    background-color: #e0f0ff;
+    color: #007bff;
+    
+}
+
+.btn-new1:hover{ 
+    /* background-color: #cce5ff; */
+    background-color: #007bff;
+  transform: scale(1.1);
+  color: white;
+}
+
+.btn-new2{
+    background-color: #f8bbbb;
+  color: #dc3545;
+}
+.btn-new2:hover{
+   color: white;
+   background-color: #dc3545;
+  transform: scale(1.1);
+}
+.btn-new3{
+    background-color: #f8efd2; 
+    color:#ffc107;
+}
+.btn-new3:hover{
+    color: white;
+   background-color: #ffc107;
+  transform: scale(1.1);
+}
+
+/* end asmaaaaaaaaaaaaaaaaaa */
 table tr td {
   align-content: center;
 }

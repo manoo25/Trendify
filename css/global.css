@@ -1,7 +1,9 @@
 :root {
   /* main colors*/
-  --main-color: #8b5e35;
-  --second-color: #9b7e5c;
+  /* --main-color: #8b5e35; */
+  --main-color: #D36C57;
+  /* --second-color: #9b7e5c; */
+  --second-color:#E5A79A;
   --third-color: #e4dab9;
 
   /* Text Colors*/
