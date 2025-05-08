@@ -281,3 +281,15 @@ input:checked+.slider {
 input:checked+.slider:before {
     transform: translateX(1.8em);
 }
+
+
+/* style text in modal */
+.modelText{
+    color: var(--main-color);
+    font-weight: var(--font-weight-medium);
+}
+
+.myprog{
+    width: 80px;
+    
+}
