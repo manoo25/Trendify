@@ -16,6 +16,18 @@
     <link rel="stylesheet" href="./css/adminControl.css">
 
 </head>
+<style>
+     #rolesForm label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+      #rolesForm  input {
+            padding: 8px;
+            width: 200px;
+            margin-bottom: 15px;
+        }
+</style>
 
 <body class="d-none">
    
@@ -99,12 +111,12 @@
         <!-- Users Table -->
         <div id="UserId" class="DataTable card shadow mb-4 d-none">
             <div class="card-header py-3 ">
-                <h6 class="m-0 font-weight-bold text-white text-center">All Users</h6>
+                <h6  class="m-0 font-weight-bold text-center ">All Users</h6>
                
             </div>
             <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover  overflow-hidden" id="ordersTable" width="100%" cellspacing="0">
+                <div  id="ContainerTableUserAdmin" class="table-responsive">
+                    <table   class="table table-striped   " id="ordersTable" width="100%" cellspacing="0">
                         <thead  >
                             <tr>
                                 <th> Name </th>
@@ -113,139 +125,10 @@
                                 <th> Process </th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>01023363248</td>
-                             
-                                <td>Customer</td>
-                                <td >
-                                    <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>01023363248</td>
-                             
-                                <td>Customer</td>
-                                <td >
-                                    <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>01023363248</td>
-                             
-                                <td>Customer</td>
-                                <td >
-                                    <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>01023363248</td>
-                             
-                                <td>Customer</td>
-                                <td >
-                                    <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>01023363248</td>
-                             
-                                <td>Customer</td>
-                                <td >
-                                    <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>01023363248</td>
-                             
-                                <td>Customer</td>
-                                <td >
-                                    <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>01023363248</td>
-                             
-                                <td>Customer</td>
-                                <td >
-                                    <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>01023363248</td>
-                             
-                                <td>Customer</td>
-                                <td >
-                                    <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>01023363248</td>
-                             
-                                <td>Customer</td>
-                                <td >
-                                    <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>01023363248</td>
-                             
-                                <td>Customer</td>
-                                <td >
-                                    <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>01023363248</td>
-                             
-                                <td>Customer</td>
-                                <td >
-                                    <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                                   
-                                </td>
-                            </tr>
+                        <tbody id="TableUserAdmin">
+                           
+                        
+                         
                           
                            
                         </tbody>
@@ -255,6 +138,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Product Table -->
         <div id="ProductId" class="DataTable card shadow mb-4 ">
             <div class="card-header py-3 ">
@@ -263,7 +147,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover  overflow-hidden" id="ordersTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered table-hover  " id="ordersTable" width="100%" cellspacing="0">
                         <thead  >
                             <tr>
                                 <th style="width:200px ;"> Img </th>
@@ -381,138 +265,38 @@
             </div>
         </div>
         <!-- Orders Table -->
-        <div id="OrdersId" class="DataTable card shadow mb-4 d-none">
-            <div class="card-header py-3 ">
-                <h6 class="m-0 font-weight-bold text-white text-center">All Orders</h6>
-               
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover  overflow-hidden" id="ordersTable" width="100%" cellspacing="0">
-                        <thead  >
-                            <tr>
-                                <th> Name </th>
-                                <th> Products Qty </th>
-                                <th> Total Price </th>
-                                <th> State </th>
-                                <th> Process </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>3</td>
-                             
-                                <td>550</td>
-                                <td><span class="badge bg-secondary">in progress</span></td>
-                                <td >
-                                    <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>3</td>
-                             
-                                <td>550</td>
-                                <td><span class="badge bg-danger">Cancel</span></td>
-                                <td >
-                                    <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>3</td>
-                             
-                                <td>550</td>
-                                <td><span class="badge bg-warning">Pending</span></td>
-                                <td >
-                                    <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>3</td>
-                             
-                                <td>550</td>
-                                <td><span class="badge bg-success">Done</span></td>
-                                <td >
-                                    <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>3</td>
-                             
-                                <td>550</td>
-                                <td><span class="badge bg-secondary">in progress</span></td>
-                                <td >
-                                    <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>3</td>
-                             
-                                <td>550</td>
-                                <td><span class="badge bg-danger">Cancel</span></td>
-                                <td >
-                                    <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>3</td>
-                             
-                                <td>550</td>
-                                <td><span class="badge bg-warning">Pending</span></td>
-                                <td >
-                                    <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>3</td>
-                             
-                                <td>550</td>
-                                <td><span class="badge bg-success">Done</span></td>
-                                <td >
-                                    <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                                    <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                                   
-                                </td>
-                            </tr>
-                          
-                          
-                           
-                        </tbody>
-                    </table>
+     <div id="OrdersId" class="DataTable card shadow mb-4 d-none">
+        <div class="card-header py-3 ">
+            <h6  class="m-0 font-weight-bold text-center ">All Orders</h6>
+           
+        </div>
+        <div class="card-body">
+            <div  id="TableOrdersDis" class="table-responsive">
+                <table   class="table table-striped   " id="ordersTable" width="100%" cellspacing="0">
+                    <thead  >
+                        <tr >
+                            <th> Name </th>
+                            <th> Phone </th>
+                            <th> Address </th>
+                            <th> Note </th>
+                            <th> Total Price </th>
+                            <th> State </th>
+                            <th> Process </th>
+                        </tr>
+                    </thead>
+                    <tbody id="tOrdersContainer">
+                       
                     
+                     
+                      
+                       
+                    </tbody>
+                </table>
                 
-                </div>
+            
             </div>
         </div>
+    </div>
 
 
         <!-- Comments Table -->
@@ -521,9 +305,9 @@
                 <h6 class="m-0 font-weight-bold text-white text-center">All Comments</h6>
                
             </div>
-            <div class="card-body">
+            <div id="CommentsContainerAdmin" class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover  overflow-hidden" id="ordersTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered table-hover  " id="ordersTable" width="100%" cellspacing="0">
                         <thead  >
                             <tr>
                                 <th> Name </th>
@@ -555,7 +339,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered table-hover  overflow-hidden" id="ordersTable" width="100%" cellspacing="0">
+            <table class="table table-bordered table-hover " id="ordersTable" width="100%" cellspacing="0">
                 <thead  >
                     <tr>
                         <th> Name </th>
@@ -566,110 +350,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Mohamed Salama</td>
-                        <td>3</td>
-                     
-                        <td>550</td>
-                        <td><span class="badge bg-secondary">in progress</span></td>
-                        <td >
-                            <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                            <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                            <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                           
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Mohamed Salama</td>
-                        <td>3</td>
-                     
-                        <td>550</td>
-                        <td><span class="badge bg-danger">Cancel</span></td>
-                        <td >
-                            <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                            <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                            <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                           
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Mohamed Salama</td>
-                        <td>3</td>
-                     
-                        <td>550</td>
-                        <td><span class="badge bg-warning">Pending</span></td>
-                        <td >
-                            <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                            <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                            <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                           
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Mohamed Salama</td>
-                        <td>3</td>
-                     
-                        <td>550</td>
-                        <td><span class="badge bg-success">Done</span></td>
-                        <td >
-                            <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                            <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                            <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                           
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Mohamed Salama</td>
-                        <td>3</td>
-                     
-                        <td>550</td>
-                        <td><span class="badge bg-secondary">in progress</span></td>
-                        <td >
-                            <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                            <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                            <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                           
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Mohamed Salama</td>
-                        <td>3</td>
-                     
-                        <td>550</td>
-                        <td><span class="badge bg-danger">Cancel</span></td>
-                        <td >
-                            <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                            <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                            <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                           
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Mohamed Salama</td>
-                        <td>3</td>
-                     
-                        <td>550</td>
-                        <td><span class="badge bg-warning">Pending</span></td>
-                        <td >
-                            <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                            <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                            <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                           
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Mohamed Salama</td>
-                        <td>3</td>
-                     
-                        <td>550</td>
-                        <td><span class="badge bg-success">Done</span></td>
-                        <td >
-                            <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-                            <button class="btn btn-sm btn-warning m-1"><i class="fas fa-edit"></i></button>
-                            <button class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
-                           
-                        </td>
-                    </tr>
+                   
                   
                   
                    
@@ -686,8 +367,63 @@
 
 
 
+<!-- Orders Modal  -->
+<!-- Modal -->
+<div class="modal fade" id="orderProductsModal" tabindex="-1" aria-labelledby="orderProductsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="orderProductsModalLabel">Order Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody id="modalProductsBody">
+                <!-- Products will be inserted here dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
+<!-- Role Of User Modal  -->
+  <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <h4  style="color: var(--main-color);" class="text-center mt-3">Change User Role</h4>
+    
+    <form id="rolesForm"class=" px-3 pt-2 pb-2 d-flex align-items-center justify-content-between">
+    
+        <input  style="margin-top:13px;border: solid 0.1rem var(--main-color);cursor: pointer; " class="rounded-3 w-75   me-3" list="roles" id="roleInput" name="roleInput" placeholder="Choose acount Role ?">
+        
+        <datalist id="roles">
+            <option value="admin">admin</option>
+            <option value="seller">seller</option>
+            <option value="customer">customer</option>
+        </datalist>
+        
+        <button id="ChangeUserRoleBtn" type="button" class="btn btn-success px-5">Save</button>
+    </form>
+      </div>
+    </div>
+  </div>
 
+<!-- Reply Coments Modal  -->
  <!-- Modal -->
  <div class="modal fade" id="personalInfoModal" tabindex="-1" aria-labelledby="personalInfoModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -756,6 +492,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./js/admin.js"></script>
+    <script type="module" src="./js/DisplayAdmin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module">
         import { accessPage } from './js/auth.js'; 
         accessPage('admin');

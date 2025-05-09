@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 let category = ["Men", "Women", "Kids"];
-let subcategory = ["Dreesses", "Jackets", "T-shirts", "Shoeses", "jeans"];
+let subcategory = ["Dresses", "Jackets", "Tshirts","Shoeses", "Jeans"];
 let ProductsArr = [
   {
    
@@ -617,7 +617,7 @@ if(userId){
   const WhishListClass = existWhishlist ? 'fa-solid' : 'fa-regular';
        FlashSale.innerHTML+=`
         <div class="contain-item col-lg-3 col-md-6  pb-2">
-         <div class="Product">
+         <div class="Product" data-id="${product.id}">
            <div class="pic position-relative">
              <img class="w-100" src="${product.imageCover}" />
                 <span   data-product='${JSON.stringify(product)}' class="${WhishListClass} fa-heart position-absolute"></span>
@@ -703,7 +703,7 @@ function displayNavTabsLink() {
   document.getElementById('allBestTab').innerHTML+=`
  
    <div class="contain-item col-lg-3 col-md-6 pb-2">
-       <div class="Product">
+       <div class="Product" data-id="${product.id}">
          <div class="pic position-relative">
            <img class="w-100" src="${product.imageCover}" alt="${product.name}" />
          
@@ -732,7 +732,7 @@ function displayNavTabsLink() {
    else{
      document.getElementById('allBestTab').innerHTML += `
      <div class="contain-item col-lg-3 col-md-6 pb-2">
-       <div class="Product">
+       <div class="Product" data-id="${product.id}">
          <div class="pic position-relative">
            <img class="w-100" src="${product.imageCover}" alt="${product.name}" />
            <span class="discount">-${averageDis}%</span>
@@ -802,7 +802,7 @@ if(userId){
     if(averageDis==0){
      rowtabContent.innerHTML += `
      <div class="contain-item col-lg-3 col-md-6 pb-2">
-       <div class="Product">
+       <div class="Product" data-id="${product.id}">
          <div class="pic position-relative">
            <img class="w-100" src="${product.imageCover}" alt="${product.name}" />
          
@@ -830,7 +830,7 @@ if(userId){
 else{
  rowtabContent.innerHTML += `
  <div class="contain-item col-lg-3 col-md-6 pb-2">
-   <div class="Product">
+   <div class="Product" data-id="${product.id}">
      <div class="pic position-relative">
        <img class="w-100" src="${product.imageCover}" alt="${product.name}" />
        <span class="discount">-${averageDis}%</span>
@@ -899,7 +899,7 @@ if(averageDis==0){
  TopPicksContainer.innerHTML+=`
 
 <div class="contain-item col-lg-3 col-md-6 pb-2">
-    <div class="Product">
+    <div class="Product" data-id="${product.id}">
       <div class="pic position-relative">
         <img class="w-100" src="${product.imageCover}" alt="${product.name}" />
       
@@ -928,7 +928,7 @@ if(averageDis==0){
 else{
  TopPicksContainer.innerHTML += `
   <div class="contain-item col-lg-3 col-md-6 pb-2">
-    <div class="Product">
+    <div class="Product" data-id="${product.id}">
       <div class="pic position-relative">
         <img class="w-100" src="${product.imageCover}" alt="${product.name}" />
         <span class="discount">-${averageDis}%</span>
@@ -971,5 +971,32 @@ displayTopPiks();
 
 
 export default function DisCartNum(num){
-  document.getElementById('CartNum').innerText=num;
+  if (num<1) {
+    document.getElementById('CartNum').classList.add('d-none')
+  }
+  else{
+    document.getElementById('CartNum').classList.remove('d-none')
+     document.getElementById('CartNum').innerText=num;
+  }
+ 
 }
+
+
+document.addEventListener('click', function(e) {
+  // تحديد العناصر المهمة
+  const productElement = e.target.closest('.Product');
+  const heartBtn = e.target.closest('.fa-heart');
+  const cartBtn = e.target.closest('.btnAddToCart');
+  
+  if (heartBtn || cartBtn) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    return false;
+  }
+  
+  if (productElement && !heartBtn && !cartBtn) {
+    const id = productElement.dataset.id;
+    window.location.href = `./productdetails.html?id=${id}`;
+  }
+});

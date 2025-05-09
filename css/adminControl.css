@@ -1,22 +1,32 @@
 :root {
-    --primary-color:#9b7e5cbf;
+    --primary-color: #9b7e5cbf;
     --secondary-color: #f8f9fc;
     --sidebar-width: 250px;
-    
+
 }
 
 body {
     font-family: 'Tajawal', sans-serif;
-    background-color: #f8f9fc;
+    background-color: #f8f9fc !important;
+
+}
+/* image upload icon style*/
+#imageUploadLabel {
+    color: var(--main-color);
+   
+    top: 10px;
+    right: -10px;
+    cursor: pointer;
+    background-color:var(--secondary-color);
 }
 
 /* Sidebar Styles */
 #offcanvasLeft {
-  width: var(--sidebar-width);
+    width: var(--sidebar-width);
 
     background: linear-gradient(180deg, var(--second-color) 50%, #5b5a13a9 100%);
     color: white;
-    transition: all 0.3s;
+    transition: all 0.3s ease-in-out;
 }
 
 #offcanvasLeft .offcanvasLeft-header {
@@ -43,16 +53,16 @@ body {
 }
 
 #offcanvasLeft ul li a:hover {
-    background: var(--main-color);
+    color: var(--main-color);
 }
 
 #offcanvasLeft ul li a i {
     margin-left: 10px;
 }
 
-#offcanvasLeft ul li.active > a {
-    color: #fff;
-    background:var(--main-color);
+#offcanvasLeft ul li.active>a {
+    color: var(--main-color);
+    font-weight: bold;
 }
 
 
@@ -87,9 +97,15 @@ body {
     border-bottom: 2px solid #e3e6f0;
     background-color: #f8f9fc;
     font-weight: 600;
+    text-align: center;
+}
+
+.table tbody tr {
+    text-align: center;
 }
 
 .table tbody tr:hover {
+   
     background-color: #f8f9fc;
 }
 
@@ -101,8 +117,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    z-index:20;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 20;
     justify-content: center;
     align-items: center;
     transition: none;
@@ -113,12 +129,12 @@ body {
     padding: 30px;
     border-radius: 10px;
     width: 400px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
     position: absolute;
     top: 40%;
     left: -50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
 
 
@@ -129,87 +145,96 @@ body {
     justify-content: center;
     gap: 15px;
 }
-.headBtn{
+
+.headBtn {
     background-color: var(--main-color);
     border-radius: 10px;
     color: white;
     border: solid 0.15rem transparent;
 }
-.headBtn:hover{
+
+.headBtn:hover {
     background-color: transparent;
     color: var(--main-color);
     border: solid 0.15rem var(--main-color);
 }
-.dropdown-menu a{
-   font-size: 18px;
-   font-weight: 600;
-   color: var(--main-color);
-   cursor: pointer;
+
+.dropdown-menu a {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--main-color);
+    cursor: pointer;
 }
-.dropdown-menu a:hover{
-  background-color: var(--second-color);
-  color: white;
+
+.dropdown-menu a:hover {
+    background-color: var(--second-color);
+    color: white;
 }
 
 /*  added style*/
-table tr td img{
-    width: 100%;
-    height: 50px;
+table tr td img {
+    width: 150px !important; 
+    height: 100px;
     border-radius: 10px;
 }
+
 /*  added style */
 /*asmaa update */
-.btn-new{
+.btn-new {
     width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: none;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.btn-new1{
+.btn-new1 {
     background-color: #e0f0ff;
     color: #007bff;
-    
+
 }
 
-.btn-new1:hover{ 
+.btn-new1:hover {
     /* background-color: #cce5ff; */
     background-color: #007bff;
-  transform: scale(1.1);
-  color: white;
+    transform: scale(1.1);
+    color: white;
 }
 
-.btn-new2{
+.btn-new2 {
     background-color: #f8bbbb;
-  color: #dc3545;
+    color: #dc3545;
 }
-.btn-new2:hover{
-   color: white;
-   background-color: #dc3545;
-  transform: scale(1.1);
-}
-.btn-new3{
-    background-color: #f8efd2; 
-    color:#ffc107;
-}
-.btn-new3:hover{
+
+.btn-new2:hover {
     color: white;
-   background-color: #ffc107;
-  transform: scale(1.1);
+    background-color: #dc3545;
+    transform: scale(1.1);
+}
+
+.btn-new3 {
+    background-color: #f8efd2;
+    color: #ffc107;
+}
+
+.btn-new3:hover {
+    color: white;
+    background-color: #ffc107;
+    transform: scale(1.1);
 }
 
 /* end asmaaaaaaaaaaaaaaaaaa */
 table tr td {
-  align-content: center;
+    align-content: center;
 }
-/* From Uiverse.io by mrhyddenn */ 
+
+/* From Uiverse.io by mrhyddenn */
 /* The switch - the box around the slider */
 .switch {
     font-size: 17px;
@@ -217,17 +242,17 @@ table tr td {
     display: inline-block;
     width: 62px;
     height: 30px;
-   }
-   
-   /* Hide default HTML checkbox */
-   .switch input {
+}
+
+/* Hide default HTML checkbox */
+.switch input {
     opacity: 1;
     width: 0;
     height: 0;
-   }
-   
-   /* The slider */
-   .slider {
+}
+
+/* The slider */
+.slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -238,9 +263,9 @@ table tr td {
     transition: .4s;
     border-radius: 30px;
     border: 1px solid #ccc;
-   }
-   
-   .slider:before {
+}
+
+.slider:before {
     position: absolute;
     content: "";
     height: 1.6em;
@@ -252,24 +277,46 @@ table tr td {
     background-color: white;
     box-shadow: 0 2px 5px #999999;
     transition: .4s;
-   }
-   
-   input:checked + .slider {
+}
+
+input:checked+.slider {
     background-color: #5fdd54;
     border: 1px solid transparent;
-   }
-   
-   input:checked + .slider:before {
+}
+
+input:checked+.slider:before {
     transform: translateX(1.8em);
-   }
+}
 
 
-   th,td{
-    text-align: center;
-
-   }
-   .card-header h6{
+/* style text in modal */
+.modelText{
     color: var(--main-color);
-   }
-   
+    font-weight: var(--font-weight-medium);
+}
 
+.myprog{
+    width: 80px;
+    
+}
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    margin-bottom: 20px;
+    
+}
+
+.card-header {
+    background-color: #f8f9fc;
+    border-bottom: 1px solid #e3e6f0;
+    padding: 15px 20px;
+    font-weight: bold;
+    border-radius: 10px 10px 0 0 !important;
+}
+
+.table-responsive {
+    border-radius: 0 0 10px 10px;
+    overflow-x: scroll;
+   width: 100%;
+}

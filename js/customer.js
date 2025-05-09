@@ -3,7 +3,6 @@ import { successAlert, RemoveAlert } from './date.js';
 
 let WhishListArr = [];
 let FilterWhishListArr = [];
-let FilterCartArr = [];
 let CartArr = [];
 let OrderstArr = [];
 let FilterOrderstArr = [];
@@ -154,7 +153,7 @@ function DisplayOrders() {
                                   
                                        <button   data-orderId="${order.orderId}"  class="btn btn-sm btn-new btn-new1 ShowDetailsBtn"><i class="fas fa-eye"  ></i></button>
     
-                                    <button class="btn btn-sm btn-new btn-new2 delete-btn" data-orderId="${order.orderId}"><i class="fas fa-trash"></i></button>
+                                    <button class="btn btn-sm btn-new btn-new2 delete-btn DEleteOrder" data-orderId="${order.orderId}"><i class="fas fa-trash"></i></button>
                                   </div>
                                
                             </td>
@@ -166,43 +165,51 @@ function DisplayOrders() {
 }
 
 
-
 async function deleteOrder(orderId) {
     try {
- 
         orderId = parseInt(orderId);
-        
+        const result = await Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to Delete this Order!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+            
+        });
 
-        if (!confirm("هل أنت متأكد أنك تريد حذف هذا الطلب؟")) return;
 
-   
-        OrderstArr = OrderstArr.filter(order => parseInt(order.orderId) != orderId);
-        
-     
-        if (OrdersProtArr && OrdersProtArr.length) {
-            OrdersProtArr = OrdersProtArr.filter(item => parseInt(item.OrderId) != orderId);
+        if (result.isConfirmed) {
+
+            OrderstArr = OrderstArr.filter(order => parseInt(order.orderId) !== orderId);
+            
+            if (OrdersProtArr && OrdersProtArr.length) {
+                OrdersProtArr = OrdersProtArr.filter(item => parseInt(item.OrderId) !== orderId);
+            }
+
+
+            await indexedDB.setItem('Orders', OrderstArr);
+            if (OrdersProtArr) {
+                await indexedDB.setItem('OrdersProducts', OrdersProtArr);
+            }
+
+
+            await initialize();
+
+            await Swal.fire({
+                title: "Deleted!",
+                text: "Your order has been deleted.",
+                icon: "success"
+            });
         }
-        
-     
-        await indexedDB.setItem('Orders', OrderstArr);
-        if (OrdersProtArr) {
-            await indexedDB.setItem('OrdersProducts', OrdersProtArr);
-        }
-        
-
-        if (typeof successAlert === 'function') {
-            successAlert('تم الحذف', 'تم حذف الطلب بنجاح');
-        } else {
-            alert('تم حذف الطلب بنجاح');
-        }
-        
-
-        await initialize();
-       
-        
     } catch (error) {
-        console.error('فشل في حذف الطلب:', error);
-        alert('حدث خطأ أثناء الحذف: ' + error.message);
+       
+        await Swal.fire({
+            title: "Error!",
+            text: "Failed to delete the order.",
+            icon: "error"
+        });
     }
 }
 
@@ -213,7 +220,7 @@ async function showOrderProducts(orderId) {
         const orderProducts = OrdersProtArr.filter(item => item.OrderId == orderId);
         
         if (!orderProducts || orderProducts.length === 0) {
-            alert('No products found for this order');
+         
             return;
         }
         
@@ -251,8 +258,7 @@ async function showOrderProducts(orderId) {
         modal.show();
         
     } catch (error) {
-        console.error('Error showing order products:', error);
-        alert('Failed to load order products: ' + error.message);
+       
     }
 }
 
@@ -311,8 +317,8 @@ document.addEventListener('click', async function(e) {
 
 
 
-    if (e.target.closest('.delete-btn')) {
-        const btn = e.target.closest('.delete-btn');
+    if (e.target.closest('.DEleteOrder')) {
+        const btn = e.target.closest('.DEleteOrder');
       
         
         const orderId = btn.dataset.orderid;
@@ -356,11 +362,11 @@ async function addToCart(btn) {
 
         if (!existPro) {
             CartArr.push(productCartObj);
-            successAlert('تم الإضافة إلى السلة', 'تمت إضافة المنتج إلى السلة بنجاح');
+            successAlert('added To Cart','Product added to cart successfully.')
         } 
         else {
             CartArr = CartArr.filter(item => !(item.userId === userId && item.ProId === pro.ProId));
-            RemoveAlert('تم الحذف من السلة', "تم إزالة المنتج بنجاح");
+            RemoveAlert('Remove From CArt',"Product Removed Successfully")
         }
         
         await indexedDB.setItem('Cart', CartArr);
@@ -392,10 +398,11 @@ async function addToWhishList(btn) {
 
         if (!existPro) {
             WhishListArr.push(productArrObj);
-            successAlert('تم الإضافة إلى المفضلة', 'تمت إضافة المنتج إلى المفضلة بنجاح');
+            successAlert('added To WhishList','Product added to WhishList successfully.')
         } else {
             WhishListArr = WhishListArr.filter(item => !(item.userId === userId && item.ProId === pro.ProId));
-            RemoveAlert('تم الحذف من المفضلة', "تم إزالة المنتج من المفضلة بنجاح");
+            RemoveAlert('Remove From WhishList',"Product Removed From WhishList Successfully")
+            
         }
         
         await indexedDB.setItem('WhishList', WhishListArr);
