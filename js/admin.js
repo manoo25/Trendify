@@ -64,6 +64,11 @@ if (users) {
     $(this).addClass('active');
     
 }) 
+   function setActive(i) {
+    $('#offcanvasLeft ul li').removeClass('active');
+    $(`#offcanvasLeft ul li:nth-child(${i})`).addClass('active');
+    
+} 
 
 
 function showDataTbl(name) {
@@ -146,6 +151,15 @@ function displayComments() {
     adminComments.innerHTML=''
     CommentsArr.forEach(comment => {
 
+ let image='../imgs/user.png';
+
+let user= JSON.parse(localStorage.getItem('usersData')).filter(x=>x.userId===comment.userId)[0]
+
+if(user.img){
+    image=user.img
+}
+
+
 var ispublish='';
 if (PublishedCommentArr.some(x => x.commentId == comment.commentId)) {
     ispublish='checked';
@@ -153,7 +167,16 @@ if (PublishedCommentArr.some(x => x.commentId == comment.commentId)) {
 
         adminComments.innerHTML+=`
          <tr>
-    <td>${comment.fname}</td>
+    <td>
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="${image}"
+                          class="customer-img"
+                          alt=""
+                        />
+                        ${comment.fname}
+                      </div>
+                    </td>
    <td>${comment.phonenumber}</td>
                                  
    <td>${comment.message}</td>
@@ -210,7 +233,7 @@ function displayCustomerComments() {
 
      <td >
       
-        <button onclick="deleteComment(${comment.commentId},'customer')" class="btn btn-sm btn-danger delete-btn m-1"><i class="fas fa-trash"></i></button>
+        <button onclick="deleteComment(${comment.commentId},'customer')" class="btn btn-sm btn-new btn-new2 delete-btn m-1"><i class="fas fa-trash"></i></button>
                                        
     </td>    </tr>
         

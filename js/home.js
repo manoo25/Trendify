@@ -139,6 +139,17 @@ function displayPublishComments() {
  
     pullPublishComments();
     PublishCommentsArr.forEach(comment => {
+
+
+ let image='../imgs/user.png';
+
+let user= JSON.parse(localStorage.getItem('usersData')).filter(x=>x.userId===comment.userId)[0]
+
+if(user.img){
+    image=user.img
+}
+
+      
         CommentsContainer.innerHTML+=`
     <li class="splide__slide">
  <div class="card testimonial-card">
@@ -148,7 +159,7 @@ function displayPublishComments() {
     </div>
      <p class="card-text testimonial-feedback">${comment.message}</p>
      <div class="d-flex align-items-center mt-4">
-            <img style="width: 45px;height: 45px;" src="./imgs/1_New1.jpg" class="rounded-circle me-3" alt="Customer">
+            <img style="width: 45px;height: 45px;" src="${image}" class="rounded-circle me-3" alt="Customer">
         <div>
          <h6 class="mb-0 fw-bold">${comment.fname} ${comment.lastName}</h6>
          <div class="d-flex align-items-center rate">

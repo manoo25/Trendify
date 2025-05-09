@@ -1,9 +1,20 @@
 import indexedDB from './indexedDb.js';
 import { successAlert, RemoveAlert, FailAlert } from './date.js'; 
+const TableOrdersDis = document.getElementById('TableOrdersDis');
+const OrdersContainer = document.getElementById('tOrdersContainer');
+const LastOrdersChart = document.getElementById('LastOrdersChart');
+const LastOrdersChartContainer = document.getElementById('LastOrdersChartContainer');
+const NumOfCustomer = document.getElementById('NumOfCustomer');
+const CommentsLength = document.getElementById('CommentsLength');
+const TotalsalesDash = document.getElementById('TotalsalesDash');
+const NumOfOrdersDash = document.getElementById('NumOfOrdersDash');
 
+
+let productsArr = JSON.parse(localStorage.getItem('Products')) || [];
 let OrderstArr = [];
 let OrdersProtArr = [];
 let UsersArr = [];
+let CommentsArr = [];
 var userId;
 let changeUserId;
 let roleInput=document.getElementById('roleInput');
@@ -12,6 +23,11 @@ if (sessionStorage.getItem('LogedUser')) {
 }
 if (localStorage.getItem('usersData')) {
     UsersArr = JSON.parse(localStorage.getItem('usersData'));
+    NumOfCustomer.innerText=UsersArr.filter(x=>x.role=='customer').length;
+}
+if (localStorage.getItem('Comments')) {
+    CommentsArr = JSON.parse(localStorage.getItem('Comments'));
+    CommentsLength.innerText=CommentsArr.length;
 }
 
 async function initialize() {
@@ -20,7 +36,11 @@ async function initialize() {
     
     if (OrdersData) {
         OrderstArr = OrdersData;
+TotalsalesDash.innerText=OrderstArr.reduce((sum, order) => sum + order.TotalPrice, 0);
+NumOfOrdersDash.innerText=OrderstArr.length;
+
         DisplayOrders();
+        DisplayLastOrders();
     }
   
     
@@ -29,8 +49,7 @@ async function initialize() {
     }
 }
 
-const TableOrdersDis = document.getElementById('TableOrdersDis');
-const OrdersContainer = document.getElementById('tOrdersContainer');
+
 
 // Display Orders 
 function DisplayOrders() {
@@ -51,14 +70,31 @@ function DisplayOrders() {
     }
 
     OrderstArr.forEach((order) => {
+  let image='../imgs/user.png';
+
+let user= UsersArr.filter(x=>x.userId===order.userId)[0]
+
+if(user.img){
+    image=user.img
+}
+
         OrdersContainer.innerHTML += `
             <tr>
-                <td>${order.name}</td>
+                <td>
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="${image}"
+                          class="customer-img"
+                          alt=""
+                        />
+                        ${order.name}
+                      </div>
+                    </td>
                 <td>${order.phone}</td>
                 <td>${order.address}</td>
                 <td>${order.note}</td>
                 <td>${order.TotalPrice}</td>
-                <td><span class="badge bg-danger">pending</span></td>
+                <td><span class="badge bg-danger">${order.state}</span></td>
                 <td>
                     <div class="d-flex align-items-center justify-content-center gap-2">
                         <button data-orderId="${order.orderId}" class="btn btn-sm btn-new btn-new1 ShowDetailsBtn">
@@ -73,6 +109,65 @@ function DisplayOrders() {
         `;
     });
 }
+function DisplayLastOrders() {
+   
+    
+    LastOrdersChart.innerHTML = '';
+   
+    
+    if (OrderstArr.length === 0) {
+        LastOrdersChartContainer.innerHTML = `
+           
+        `;
+        return;
+    }
+    OrderstArr.slice(-4).forEach((order) => {
+
+        let image='../imgs/user.png';
+
+let user= UsersArr.filter(x=>x.userId===order.userId)[0]
+
+if(user.img){
+    image=user.img
+}
+        LastOrdersChart.innerHTML += `
+
+             <tr>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="${image}"
+                          class="customer-img"
+                          alt=""
+                        />
+                        ${order.name}
+                      </div>
+                    </td>
+                    <td>${order.phone}</td>
+                    <td>${order.address}</td>
+                    <td>${order.TotalPrice}</td>
+                   <td><span class="badge bg-danger">${order.state}</span></td>
+                    <td>${order.Date}</td>
+                  </tr>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+            
+        `;
+    });
+}
+
+
+
+
 
 async function deleteOrder(orderId) {
     try {
@@ -218,6 +313,13 @@ else{
         roleInput.value=''
      }
     }
+
+    if (e.target.closest('.DeleteProAdmin1')) {
+        const btn = e.target.closest('.DeleteProAdmin1');
+     const  ProId=btn.dataset.proid;
+        deleteProduct(ProId);
+   }
+
 });
 
 // Initialize the application
@@ -237,6 +339,7 @@ function DisplayUsers() {
     console.log(UsersArr);
     
     if (UsersArr.length === 0) {
+
         ContainerTableUserAdmin.innerHTML = `
             <section class="mt-0 pt-0">
                 <div class="d-flex justify-content-center">
@@ -248,9 +351,26 @@ function DisplayUsers() {
     }
 
     UsersArr.forEach((user) => {
+
+         let image='../imgs/user.png';
+
+let userImg= user.img;
+
+if(userImg){
+    image=userImg
+}
         TableUserAdmin.innerHTML += `
            <tr>
-                                <td>${user.name}</td>
+                                <td>
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="${image}"
+                          class="customer-img"
+                          alt=""
+                        />
+                        ${user.name}
+                      </div>
+                    </td>
                                 <td>${user.Email}</td>
                                 <td>${user.role}</td>
 
@@ -298,9 +418,6 @@ function deleteUser(id) {
 
 
 
-
-
-
 async function changeUserRole(role) {
     const userIndex = UsersArr.findIndex(user => user.userId === changeUserId);
     
@@ -337,10 +454,58 @@ async function changeUserRole(role) {
 
 
 
+function displayProduct() {
+    const tableBody = $("#ProductContainerAdmin");
+    tableBody.empty();
+  
+    productsArr.forEach((product, i) => {
+      tableBody.append(`
+        <tr>
+          <td><img src="${product.imageCover}" alt="product" style="width: 50px;" /></td>
+          <td>${product.name.split(" ",2).join(" ")}</td>
+          <td>${product.category}</td>
+          <td>${product.subcategory}</td>
+          <td>${product.EndPrice}</td>
+          <td>
+           <div class="d-flex gap-2 justify-content-center">
+            <a href="./productdetails.html?id=${product.id}" class="btn btn-sm btn-new btn-new1 m-1"><i class="fas fa-eye" ></i></a>
+            
+            <button class="btn btn-sm btn-new btn-new2 DeleteProAdmin1" data-proid="${product.id}"><i class="fas fa-trash"></i></button>
+           </div>
+          </td>
+        </tr>
+      `);
+    });
+  }
+  displayProduct();
 
 
-
-
+  async function deleteProduct(PId) {
+    const { isConfirmed } = await Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to Delete this Product!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel'
+    });
+  
+    if (isConfirmed) {
+    productsArr=JSON.parse(localStorage.getItem("Products"));
+    productsArr=productsArr.filter(x=>x.id!==PId);
+    localStorage.setItem("Products",JSON.stringify(productsArr));      
+      displayProduct();
+      
+      // Show success message
+      Swal.fire(
+        'Deleted!',
+        'Your product has been deleted.',
+        'success'
+      );
+    }
+  }
 
 
 
