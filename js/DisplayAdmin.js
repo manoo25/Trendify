@@ -37,7 +37,7 @@ async function initialize() {
     const OrdersProData = await indexedDB.getItem('OrdersProducts');
     
     if (OrdersData) {
-        OrderstArr = JSON.parse(OrdersData);
+        OrderstArr = OrdersData;
         console.log(OrderstArr);
         
 TotalsalesDash.innerText=OrderstArr.reduce((sum, order) => sum + order.TotalPrice, 0);
@@ -49,7 +49,7 @@ NumOfOrdersDash.innerText=OrderstArr.length;
   
     
     if (OrdersProData) {
-        OrdersProtArr = JSON.parse(OrdersProData);  
+        OrdersProtArr = OrdersProData;  
     }
 }
 
@@ -378,7 +378,7 @@ else{
     if (e.target.id === 'ChangeOrderStateBtn') {
      if (stateInput.value!='') {
         
-if (stateInput.value=='Pending'||stateInput.value=='inProgress'||stateInput.value=='Done'||stateInput.value=='Cancel') {
+if (stateInput.value=='Pending'||stateInput.value=='inProgress'||stateInput.value=='Done') {
     changeOrderState(stateInput.value,ChangeOrderId)
     $('#exampleModalToggle3').modal('hide');
 }
@@ -555,7 +555,7 @@ async function changeOrderState(state,id) {
 
         if (isConfirmed) {
             OrderstArr[orderIndex].state = state;
-       await  indexedDB.setItem('Orders', JSON.stringify(OrderstArr));
+       await  indexedDB.setItem('Orders', OrderstArr);
           initialize();
             Swal.fire(
                 'Updated!',
