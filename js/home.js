@@ -168,5 +168,46 @@ function displayPublishComments() {
     });
 }
 
+// mini search
+let ProductsArr=JSON.parse(localStorage.getItem('Products'));
+let subcategory = ["Dresses", "Jackets", "Tshirts","Shoeses", "Jeans"];
+document.querySelector('.suggestedtopics .row').innerHTML=`   <div class="col-5 col-md-5 d-flex align-items-center col-lg-2 ">
+                                <li class="bg-light p-2 mx-2">
+                                <a href="#" class="text-muted"><span
+                                    class="fa-solid fa-magnifying-glass"></span> ${subcategory[1]}</a>
+                              </li>
+                            </div>
+                            <div class="col-5 col-md-5 d-flex align-items-center col-lg-2 ">
+                              <li class="bg-light p-2 mx-2">
+                                <a href="#" class="text-muted"><span
+                                    class="fa-solid fa-magnifying-glass"></span> ${subcategory[2]}</a>
+                              </li>
+                            </div>
+                            <div class="col-5 col-md-5 d-flex align-items-center col-lg-2 ">
+                              <li class="bg-light p-2 mx-2">
+                                <a href="#" class="text-muted"><span
+                                    class="fa-solid fa-magnifying-glass"></span> ${subcategory[4]}</a>
+                              </li>
+                            </div>
+                            <div class="col-5 col-md-5 d-flex align-items-center col-lg-2 ">
+                              <li class="bg-light p-2 mx-2">
+                                <a href="#" class="text-muted"><span
+                                    class="fa-solid fa-magnifying-glass"></span> ${subcategory[0]}</a>
+                              </li>
+                            </div>
+                            <div class="col-5 col-md-5 d-flex align-items-center col-lg-2 ">
+                              <li class="bg-light p-2 mx-2">
+                                <a href="#" class="text-muted"><span
+                                    class="fa-solid fa-magnifying-glass"></span> ${subcategory[3]}</a>
+                              </li>
+                            </div>`;
+
+document.querySelectorAll('.suggestedtopics a').forEach((a)=>{
+a.addEventListener('click', function(e){
+e.preventDefault();
+let srchterm=encodeURIComponent(this.textContent.trim());
+window.location.href=`/srchprod.html?searchterm=${srchterm}`
+});
+})
 
  
