@@ -74,6 +74,8 @@ if (users) {
 function showDataTbl(name) {
     $('.DataTable').addClass('d-none');  
  $(`#${name}`).removeClass('d-none');
+
+ 
 }
 $('#logoutBtn').click(
 function() {
@@ -233,7 +235,9 @@ function displayCustomerComments() {
 
      <td >
       
+      <div class="d-flex justify-content-center">
         <button onclick="deleteComment(${comment.commentId},'customer')" class="btn btn-sm btn-new btn-new2 delete-btn m-1"><i class="fas fa-trash"></i></button>
+      </div>
                                        
     </td>    </tr>
         

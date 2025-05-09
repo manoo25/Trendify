@@ -139,15 +139,33 @@ function DisplayOrders() {
   }
 
   FilterOrderstArr.forEach((order) => {
-
+let color;
+      switch (order.state) {
+        case 'Pending':
+             color='bg-warning'
+           
+            break;
+        case 'inProgress':
+            color='bg-secondary'
+            break;
+        case 'Done':
+             color='bg-success'
+           
+            break;
+        case 'Cancel':
+             color='bg-danger'
+           
+            break;
      
+        
+     }
       
     OrdersContainer.innerHTML += `
          <tr>
                             <td>${order.orderId}</td>
                             <td>${order.TotalPrice}</td>
                          
-                            <td><span class="badge bg-danger">pending</span></td>
+                            <td><span class="badge ${color}">${order.state}</span></td>
                             <td >
                                 <div class="d-flex  align-items-center justify-content-center gap-2">
                                   
