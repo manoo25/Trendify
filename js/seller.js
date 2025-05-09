@@ -1,5 +1,4 @@
 
-
 // Initialize all variables at the top
 let productsArr = JSON.parse(localStorage.getItem('Products')) || [];
 let productColors = [];
@@ -9,6 +8,8 @@ let currentEditIndex = -1;
 let userName = sessionStorage.getItem('LogedUser') 
                ? JSON.parse(sessionStorage.getItem('LogedUser')).name 
                : '';
+// Set user name               
+$("#adminuserName").val(userName);
 
 // Apply styles to color swatches
 $(document).ready(function() {
@@ -23,16 +24,35 @@ $(document).ready(function() {
 
   // Set background colors
   $(".colored").each(function(index) {
-    const colors = ["red", "green", "blue"];
+   var colors = ["white","red", "blue" , "black"];
     $(this).css("background-color", colors[index]);
   });
 
+// Handle color selection
   $(".colored").click(function() {
     const value = $(this).css("background-color");
-    if (!productColors.includes(value)) {
+    const colorIndex = productColors.indexOf(value);
+
+    if (colorIndex === -1) {
       productColors.push(value);
-      $("#productColor").val(productColors.join(", "));
+    } else {
+      productColors.splice(colorIndex, 1);
     }
+
+    $("#productColor").val(productColors.map(color => {
+      switch (color) {
+        case "rgb(255, 255, 255)":
+          return "White";
+        case "rgb(255, 0, 0)":
+          return "Red";
+        case "rgb(0, 0, 255)":
+          return "Blue";
+        case "rgb(0, 0, 0)":
+          return "Black";
+        default:
+          return "";
+      }
+    }).join(", "));
   });
 
   // Update the range value
@@ -67,10 +87,14 @@ $(document).ready(function() {
 
   // Add product event
   $('#addProductBtn').on('click', function() {
-    if (currentEditIndex === -1) {
-      addProduct();
+    if ($('#productName').val() && $('#realPrice').val() && $('#productCategory').val() && $('#productDescription').val() && $('#productSubCategory').val() && $('#ratingAverage').val() && $('#productQuantity').val()) {
+      if (currentEditIndex === -1) {
+        addProduct();
+      } else {
+        updateProduct();
+      }
     } else {
-      updateProduct();
+      alert('Please fill out all required fields.');
     }
   });
 
@@ -227,28 +251,5 @@ function resetForm() {
   $('#addProductBtn').text('Add Product');
 }
 
-// function preventModalCloseIfEmpty(modalId) {
-//   var modal = $('#personalInfoModal');
-//   var inputs = modal.find('input, select, textarea');
 
-//   if (inputs.filter(function() { return $(this).val() !== ''; }).length === 0) {
-//     modal.on('hide.bs.modal', function(event) {
-//       event.preventDefault();
-//       alert('Please fill in the required fields before closing the modal.');
-//     });
-//   }
-// }
-// $('#addProductBtn').on('click', preventModalCloseIfEmpty);
 
-// // Get the form and modal elements
-// var form = document.getElementById('myForm');
-// var modal = document.getElementById('myModal');
-
-// // Add an event listener to the form submit event
-// form.addEventListener('submit', function(event) {
-//   // Check if all required fields have values
-//   if (form.checkValidity() === false) {
-//     event.preventDefault();
-//     event.stopPropagation();
-//   }
-// });
