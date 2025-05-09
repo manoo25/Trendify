@@ -206,7 +206,10 @@ async function deleteProduct(i) {
 
 // Helper functions
 function generateProductId() {
-  return Math.floor(Math.random() * 1000 * (productsArr.length + 1));
+  productsArr=JSON.parse(localStorage.getItem('Products'))
+let id=`${Math.floor(Math.random() * 1000 * (productsArr.length + 1))}`
+
+  return id;
 }
 
 function calculateEndPrice() {

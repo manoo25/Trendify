@@ -43,7 +43,229 @@
   </head>
   <body>
     <section class="py-5  graySessions mycontact">
-      <div class="container">
+       <!-- nav Local  -->
+  <nav style="background-color: var(--main-color);" class="navbar navbar-expand-lg  py-3 fixed-top px-3 px-lg-5" id="mainNavbar">
+    <div class="container-fluid ">
+      <a class="navbar-brand" href="#">Trendify</a>
+      <button
+        class="navbar-toggler d-lg-none"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#mobileMenu"
+        aria-controls="mobileMenu"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div 
+      style="background-color: transparent;border:none;max-width: 50%;"
+        class="offcanvas offcanvas-start justify-content-between"
+        tabindex="-1"
+        id="mobileMenu"
+        aria-labelledby="mobileMenuLabel"
+      >
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="mobileMenuLabel"></h5>
+        </div>
+        <div  class="offcanvas-body d-flex justify-content-between">
+          <ul class="navbar-nav me-auto mx-lg-auto mb-2 mb-lg-0">
+            <li class="nav-item ">
+              <a class="nav-link active" aria-current="page" href="./index.html"
+                ><span class="fa-solid fa-house d-lg-none"></span> Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./category.html"><span class="d-lg-none fa-brands fa-shopify"></span> Products</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#services"><span class="d-lg-none fa-solid fa-screwdriver-wrench"></span> Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./AboutUs.html"><span class="d-lg-none fa-solid fa-circle-exclamation"></span> AboutUs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><span class="d-lg-none fa-solid fa-blog"></span> Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./contact.html"><span class="d-lg-none fa-solid fa-phone"></span> ContactUs</a>
+            </li>
+          </ul>
+          <div class="mt-5">
+            <span
+              type="button"
+              class="btn-dotted mt-5 fa-solid fa-arrows-up-to-line d-lg-none"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+              style="transform:rotate(-90deg) "
+            ></span>
+          </div>
+        </div>
+      </div>
+
+      <ul class="navbar-nav mb-2 mb-lg-0 d-none d-lg-flex align-items-lg-center">
+      
+        <li class="nav-item">
+          <span
+            class="nav-link fa-solid fa-magnifying-glass"
+            role="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"
+          ></span>
+        </li> 
+         <li class="nav-item ">
+          <a class="nav-link btn log " id="logandRegBtn" href="./register&login.html"><span class="fa-solid fa-user-plus me-1"></span> Login | Register</a>
+        </li>
+          <!-- cart icon 07/05  -->
+            <li class="nav-item d-none authBtn">
+              <a href="./cart&checkout.html" class=" position-relative" >
+                <span id="CartNum" style="width: 21px; height: 21px; color: var(--bg-color); background-color:black; top:-8.2px; right: 1px; " class="badge rounded-2 position-absolute  translate-middle d-flex justify-content-center align-items-center d-none">
+                s
+                </span>
+ 
+                <span class="nav-link fa-solid fa-cart-shopping " role="button"></span>
+              </a>
+            </li>
+
+        <li class="nav-item d-none authBtn position-relative">
+          <span class="nav-link fa-regular fa-user" role="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"></span>
+          <ul style="left:-115px;" class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+            <li ><a id="ViewCPanelId" class="dropdown-item d-flex justify-content-between align-items-center " ><i class="fas fa-user me-1"></i>Profile</a></li>
+           
+            <li><hr class="dropdown-divider"></li>
+            <li><a id="LogOutandClear"  class="dropdown-item d-flex justify-content-between align-items-center" ><i class="fas fa-sign-out-alt me-1"></i>Log Out</a></li>
+        </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+<!-- ofcanvas for search icon -->
+  <div class="offcanvas offcanvas-top " tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+    <div class="offcanvas-header">
+      <button type="button" class="btn-close closee" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+       <div class="container"> 
+ <div class="row justify-content-center"> 
+  <div class="col-12 position-relative">
+  <div class="srchinp  position-relative " >
+   <div class="d-flex align-items-center">
+    <input class="search w-100 m-auto" type="search" placeholder="Search Products...." aria-label="Search" id="searchInput" >
+     <span class="fa-solid fa-magnifying-glass"></span>
+        </div>
+<!-- list from search input -->
+   <div  id="searchResults" class="search-results-box card mt-2" style="display: none; position: absolute; top: 82%; left: 0; width: 100%; z-index: 1055; max-height: 450px; overflow-y: auto;">
+   <div class="card-body">
+  <div class="row g-2">
+    <div class="trendingnow"  style="border-bottom: 1px solid #e7e7e7;">
+      <h3 class="mb-3 ">Trending now </h3>
+    </div>
+    <!-- trending buttons for suggest -->
+   <ul class="suggestedtopics  ">
+    <div class="row g-2">
+      <div class="col-5 col-md-5 d-flex align-items-center col-lg-2 "> 
+        <li class="bg-light p-2 mx-2 ">
+        <a href="#" class="text-muted"><span class="fa-solid fa-magnifying-glass"></span>MenJacets</a>
+      </li>
+    </div>
+      <div class="col-5 col-md-5 d-flex align-items-center col-lg-2 "> 
+        <li class="bg-light p-2 mx-2">
+          <a href="#" class="text-muted"><span class="fa-solid fa-magnifying-glass"></span>Pullover</a>
+        </li>
+      </div>
+      <div class="col-5 col-md-5 d-flex align-items-center col-lg-2 "> 
+        <li class="bg-light p-2 mx-2">
+          <a href="#" class="text-muted"><span class="fa-solid fa-magnifying-glass"></span>Sweatshirts</a>
+        </li>
+      </div>
+      <div class="col-5 col-md-5 d-flex align-items-center col-lg-2 "> 
+        <li class="bg-light p-2 mx-2">
+          <a href="#" class="text-muted"><span class="fa-solid fa-magnifying-glass"></span>Shirts</a>
+        </li>
+      </div>
+      <div class="col-5 col-md-5 d-flex align-items-center col-lg-2 "> 
+        <li class="bg-light p-2 mx-2">
+          <a href="#" class="text-muted"><span class="fa-solid fa-magnifying-glass"></span>Poloshirts</a>
+        </li>
+      </div>
+    </div>
+   
+    
+   
+   
+   
+   </ul>
+    <div class="catigname ">
+      <h3>Popular products</h3>
+    </div>
+    <div class="col-6 col-md-4 col-lg-3">
+<div class="card" role="button">
+<div class="pic">
+<img src="./imgs/T3.jpg" class="w-100" alt="productpic">
+</div>
+<h6 class="prodname">FSH23ACCR19822TM1 - Olive*White</h6>
+<div class="product-price d-flex">
+<div class="price">
+<del class="oldprice"> 1,499.00LE  </del>  <p class="newprice d-inline"> 449.00LE</p>
+</div>
+</div>
+</div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-3">
+<div class="card" role="button">
+<div class="pic">
+<img src="./imgs/T4.jpg" class="w-100" alt="productpic">
+</div>
+<h6 class="prodname">FSH23ACCR19822TM1 - Olive*White</h6>
+<div class="product-price d-flex">
+<div class="price">
+<del class="oldprice"> 1,499.00LE  </del>  <p class="newprice d-inline"> 449.00LE</p>
+</div>
+</div>
+</div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-3">
+<div class="card" role="button">
+<div class="pic">
+<img src="./imgs/T5.jpg" class="w-100" alt="productpic">
+</div>
+<h6 class="prodname">FSH23ACCR19822TM1 - Olive*White</h6>
+<div class="product-price d-flex">
+<div class="price">
+<del class="oldprice"> 1,499.00LE  </del>  <p class="newprice d-inline"> 449.00LE</p>
+</div>
+</div>
+</div>
+    </div>
+    <div class="col-6 col-md-4 col-lg-3">
+    <div class="card" role="button">
+<div class="pic">
+<img src="./imgs/T1.jpg" class="w-100" alt="productpic">
+</div>
+<h6 class="prodname">FSH23ACCR19822TM1 - Olive*White</h6>
+<div class="product-price d-flex">
+<div class="price">
+<del class="oldprice"> 1,499.00LE  </del>  <p class="newprice d-inline"> 449.00LE</p>
+</div>
+</div>
+    </div>
+    </div>
+
+    <div class="seeallprod w-100  text-center mt-2">
+     <a href="#" class="text-decoration-none  h3"> VIEW ALL RESULTS</a>
+    </div>
+  </div>
+
+   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- end nav  -->
+      <div style="margin-top: 15vh;" class="container">
         <div class="mb-5 title">
           <h1 class="mb-4">Contact me</h1>
           <p class=" secondd">
@@ -115,6 +337,10 @@
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
     <script src="./js/ContactME.js"></script>
+          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/home.js"></script>
+    <script type="module" src="./js/getCartNum.js"></script>
+
     
 
   </body>

@@ -34,7 +34,7 @@ async function initialize() {
       DisplayCart();
 
 
-      if (FilterCartArr.length==0) {
+ if (FilterCartArr.length==0) {
         document.getElementById('BodyOfCartPage').classList.remove('d-none')
         document.getElementById('BodyOfCartPage').innerHTML=`
         <section class="">
@@ -51,8 +51,9 @@ async function initialize() {
        
         `
       }
+
       if(FilterCartArr.length>0){
-        document.getElementById('BodyOfCartPage').classList.remove('d-none')
+        document.getElementById('BodyOfCartPage').classList.remove('d-none');
       }
   }
    if (OrdersData) {
@@ -86,8 +87,12 @@ const ProductinCarts=document.getElementById('ProductinCarts');
 
       function DisplayCart() {
       
+
+
         ProductinCarts.innerHTML='';
  FilterCartArr=CartArr.filter(item =>item.userId === userId );
+
+
 document.getElementById('CountIteminCart').innerText=FilterCartArr.length;
 // sum total price 
 const totalReal = FilterCartArr.reduce((sum, price) => sum + (price.real_price*price.qty), 0);
@@ -99,7 +104,7 @@ totalDiscountS.innerText=totalDiscount;
 DeliveryDeteP.innerText=DeliveryDete();
 OrderObj.TotalPrice=totalEndPrice;
 FilterCartArr.forEach((product,index) => {
-  
+   
 
   ProductinCarts.innerHTML+=`
   <div class="  w-100 pb-3 item  d-flex justify-content-center align-items-center " >
@@ -292,7 +297,7 @@ setTimeout(() => {
 
  
 
-console.log(FilterCartArr);
+
 
 
     
