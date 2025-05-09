@@ -1,11 +1,15 @@
 // swiper carousel
-
+// import { DeliveryDete ,DateDay } from './date.js'; 
+import { addToCartDetails } from './cart.js'; 
 
 
 // increment and decrement
+let ProCart;
 const icrementbtn = document.querySelector(".br");
 const decrementbtn = document.querySelector(".bl");
 const quantity = document.querySelector(".quantity");
+ const colorPalette = document.getElementById('color-palette');
+    const colorTextElement = document.querySelector('.maincolor span.secondcolor');
 let counter = document.querySelector(".counter");
 let counterval = parseInt(counter.textContent) || 1;
 const circs = document.querySelectorAll('.circ');
@@ -37,7 +41,7 @@ function updatePrice() {
   };
   
 
-
+  const displayElement = document.querySelector(".sizeee");
 
       // size
       document.querySelectorAll(".sizee").forEach((element) => {
@@ -52,9 +56,11 @@ function updatePrice() {
           spanElement.classList.remove("size");
           spanElement.classList.add("main");
 
-          const displayElement = document.querySelector(".sizeee");
+        
           if (displayElement) {
             displayElement.textContent = spanElement.textContent;
+            console.log(displayElement.textContent);
+            
           }
         });
       });
@@ -102,8 +108,10 @@ function updatePrice() {
     }
   
     const storeddata = JSON.parse(productsData).find(item => item.id == id);
+ProCart=storeddata;
   
     if (!storeddata) {
+      
       document.getElementById('product-section').innerHTML = '<p class="text-danger">element is not availabl in database</p>';
       return;
     }
@@ -137,8 +145,7 @@ function updatePrice() {
     });
   
     // colors
-    const colorPalette = document.getElementById('color-palette');
-    const colorTextElement = document.querySelector('.maincolor span.secondcolor');
+   
     colorPalette.innerHTML = '';
   
     storeddata.Colors.forEach((color, index) => {
@@ -206,3 +213,17 @@ function updatePrice() {
     });
   
   });
+
+  let addToCartBtnDetails=document.getElementById('addToCartBtnDetails');
+addToCartBtnDetails.addEventListener('click',async function () {
+// sizs displayElement.textContent
+// pro ProCart 
+// qty Number(counter.textContent)
+//colorTextElement.textContent
+// console.log(TextElement.textContent);
+
+addToCartDetails(ProCart,colorTextElement.textContent,displayElement.textContent,Number(counter.textContent))
+
+
+
+});

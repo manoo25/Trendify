@@ -1,5 +1,5 @@
 import indexedDB from './indexedDb.js';
-import DisCartNum from './DisplayHome.js';
+import DisCartNum from './getCartNum.js';
 import { successAlert ,RemoveAlert } from './date.js'; 
 
 
@@ -17,6 +17,7 @@ async function initialize() {
     const cartData = await indexedDB.getItem('Cart');
     if (cartData) {
         CartArr = cartData;
+        
     }
 
  const WhishListDAta = await indexedDB.getItem('WhishList');
@@ -56,6 +57,46 @@ function setupEventListeners() {
  
 }
 
+export async function addToCartDetails(pro,color,size,qty) {
+    try {
+       
+        
+        let productCartObj = {
+            userId: userId,
+            ProId: pro.id,
+            OrderId: 0,
+            id: Math.floor(Math.random() * 1000 * (userId) + 1),
+            name: pro.name,
+            real_price: pro.real_price,
+            EndPrice:pro.EndPrice,
+            imageCover: pro.imageCover,
+            qty: qty,
+            Color: color,
+            size: size,
+        };
+
+        let existPro = CartArr.some(x => x.userId == userId && x.ProId == pro.id);
+
+        if (!existPro) {
+            CartArr.push(productCartObj);
+            FilterCartArr=CartArr.filter(item =>item.userId === userId );
+            GetNumOfCart(FilterCartArr.length)
+          successAlert('added To Cart','Product added to cart successfully.')
+        } 
+        else {
+            CartArr = CartArr.filter(item => !(item.userId === userId && item.ProId === pro.id));
+            FilterCartArr=CartArr.filter(item =>item.userId === userId );
+            GetNumOfCart(FilterCartArr.length);
+           RemoveAlert('Remove From CArt',"Product Removed Successfully")
+        }
+        
+        await indexedDB.setItem('Cart', CartArr);
+
+    } 
+    catch (error) {
+        console.error('Error in addToCart:', error);
+    }
+}
 export async function addToCart(btn) {
     try {
         let pro = JSON.parse(btn.dataset.product);
@@ -70,6 +111,7 @@ export async function addToCart(btn) {
             EndPrice: pro.EndPrice,
             imageCover: pro.imageCover,
             qty: 1,
+             size: '',
             Color: pro.Colors[0],
         };
 

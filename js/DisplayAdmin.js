@@ -17,7 +17,9 @@ let UsersArr = [];
 let CommentsArr = [];
 var userId;
 let changeUserId;
+let ChangeOrderId;
 let roleInput=document.getElementById('roleInput');
+let stateInput=document.getElementById('stateInput');
 if (sessionStorage.getItem('LogedUser')) {
     userId = JSON.parse(sessionStorage.getItem('LogedUser')).userId;
 }
@@ -36,6 +38,8 @@ async function initialize() {
     
     if (OrdersData) {
         OrderstArr = OrdersData;
+        console.log(OrderstArr);
+        
 TotalsalesDash.innerText=OrderstArr.reduce((sum, order) => sum + order.TotalPrice, 0);
 NumOfOrdersDash.innerText=OrderstArr.length;
 
@@ -72,6 +76,29 @@ function DisplayOrders() {
     OrderstArr.forEach((order) => {
   let image='../imgs/user.png';
 
+
+
+  let color;
+    switch (order.state) {
+        case 'Pending':
+             color='bg-warning'
+           
+            break;
+        case 'inProgress':
+            color='bg-secondary'
+            break;
+        case 'Done':
+             color='bg-success'
+           
+            break;
+        case 'Cancel':
+             color='bg-danger'
+           
+            break;
+     
+        
+     }
+
 let user= UsersArr.filter(x=>x.userId===order.userId)[0]
 
 if(user.img){
@@ -94,11 +121,14 @@ if(user.img){
                 <td>${order.address}</td>
                 <td>${order.note}</td>
                 <td>${order.TotalPrice}</td>
-                <td><span class="badge bg-danger">${order.state}</span></td>
+                <td><span class="badge ${color}">${order.state}</span></td>
                 <td>
                     <div class="d-flex align-items-center justify-content-center gap-2">
                         <button data-orderId="${order.orderId}" class="btn btn-sm btn-new btn-new1 ShowDetailsBtn">
                             <i class="fas fa-eye"></i>
+                        </button>
+                          <button data-orderId="${order.orderId}" class="btn btn-sm btn-new btn-new3 ChangeOrderStateBtnTable" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">
+                           <i class="fa-solid fa-pen-to-square"></i>
                         </button>
                         <button class="btn btn-sm btn-new btn-new2 delete-btn DEleteOrder" data-orderId="${order.orderId}">
                             <i class="fas fa-trash"></i>
@@ -125,6 +155,26 @@ function DisplayLastOrders() {
 
         let image='../imgs/user.png';
 
+         let color;
+    switch (order.state) {
+        case 'Pending':
+             color='bg-warning'
+           
+            break;
+        case 'inProgress':
+            color='bg-secondary'
+            break;
+        case 'Done':
+             color='bg-success'
+           
+            break;
+        case 'Cancel':
+             color='bg-danger'
+           
+            break;
+     
+        
+     }
 let user= UsersArr.filter(x=>x.userId===order.userId)[0]
 
 if(user.img){
@@ -146,7 +196,7 @@ if(user.img){
                     <td>${order.phone}</td>
                     <td>${order.address}</td>
                     <td>${order.TotalPrice}</td>
-                   <td><span class="badge bg-danger">${order.state}</span></td>
+                   <td><span class="badge ${color}">${order.state}</span></td>
                     <td>${order.Date}</td>
                   </tr>
        
@@ -293,6 +343,8 @@ document.addEventListener('click', async function(e) {
          const btn = e.target.closest('.ChangeUserRoleBtn');
          changeUserId= Number(btn.dataset.userid);
     }
+
+
     if (e.target.id === 'ChangeUserRoleBtn') {
      if (roleInput.value!='') {
         
@@ -313,6 +365,39 @@ else{
         roleInput.value=''
      }
     }
+
+
+    if (e.target.closest('.ChangeOrderStateBtnTable')) {
+         const btn = e.target.closest('.ChangeOrderStateBtnTable');
+         ChangeOrderId= Number(btn.dataset.orderid);
+         console.log(btn);
+         
+    }
+
+
+    if (e.target.id === 'ChangeOrderStateBtn') {
+     if (stateInput.value!='') {
+        
+if (stateInput.value=='Pending'||stateInput.value=='inProgress'||stateInput.value=='Done') {
+    changeOrderState(stateInput.value,ChangeOrderId)
+    $('#exampleModalToggle3').modal('hide');
+}
+else{
+  
+    FailAlert("Fail Process","invalid Order State !!!");
+    stateInput.value=''
+}
+
+
+     }
+     else{
+        FailAlert("you should to choose State !!!");
+        roleInput.value=''
+     }
+    }
+
+
+
 
     if (e.target.closest('.DeleteProAdmin1')) {
         const btn = e.target.closest('.DeleteProAdmin1');
@@ -336,7 +421,7 @@ function DisplayUsers() {
     
     TableUserAdmin.innerHTML = '';
    
-    console.log(UsersArr);
+  
     
     if (UsersArr.length === 0) {
 
@@ -449,6 +534,40 @@ async function changeUserRole(role) {
     }
 }
 
+// Change Order State 
+async function changeOrderState(state,id) {
+    console.log(state,id);
+    
+    const orderIndex = OrderstArr.findIndex(order => order.orderId === id);
+    console.log(orderIndex);
+    
+    if (orderIndex !== -1) {
+        const { isConfirmed } = await Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to update this Order state?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, update it!',
+            cancelButtonText: 'Cancel'
+        });
+
+        if (isConfirmed) {
+            OrderstArr[orderIndex].state = state;
+       await  indexedDB.setItem('Orders', OrderstArr);
+          initialize();
+            Swal.fire(
+                'Updated!',
+                "Order state has been updated.",
+                'success'
+            );
+            stateInput.value=''
+          
+        }
+    }
+}
+
 
 
 
@@ -508,7 +627,42 @@ function displayProduct() {
   }
 
 
+// search in useres with email or name
 
+document.getElementById("searchInput").addEventListener('input',function(){
+    var input=this.value.toLowerCase();
+    var rows=document.querySelectorAll('#TableUserAdmin tr');
+
+    rows.forEach(function(row){
+        var name = row.querySelector('td div').textContent.toLowerCase();
+        var email=row.cells[1]?.textContent.toLowerCase();
+        if(name.includes(input) || email.includes(input)){
+            row.style.display='';
+        }else{
+            row.style.display='none';
+        }
+
+    })
+})
+
+
+
+// search in Products with  name or sub Gategory
+document.getElementById("searchInput2").addEventListener('input', function () {
+        var input = this.value.toLowerCase();
+        var rows = document.querySelectorAll('#ProductContainerAdmin tr');
+
+        rows.forEach(function (row) {
+            var name = row.cells[1]?.textContent.toLowerCase();
+            var subCategory = row.cells[3]?.textContent.toLowerCase();
+
+            if (name.includes(input) || subCategory.includes(input)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
 
 
 

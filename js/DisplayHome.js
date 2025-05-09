@@ -1,8 +1,5 @@
 import indexedDB from './indexedDb.js';
 
-
-
-
 let CartArr = [];
 let WhishListtArr = [];
 async function initialize() {
@@ -570,16 +567,7 @@ if (localStorage.getItem('Products')) {
 
 
 
-    async function GetasyncNum() {
-      const cartData = await indexedDB.getItem('Cart');
-      if (cartData) {
-        let cartd=[]
-        cartd = cartData;
-      let  FilterCartArr=cartd.filter(item =>item.userId === userId );
-      DisCartNum(FilterCartArr.length)
-      }
-  }
-  GetasyncNum();
+    
 
 
 
@@ -970,16 +958,16 @@ displayTopPiks();
 }));
 
 
-export default function DisCartNum(num){
-  if (num<1) {
-    document.getElementById('CartNum').classList.add('d-none')
-  }
-  else{
-    document.getElementById('CartNum').classList.remove('d-none')
-     document.getElementById('CartNum').innerText=num;
-  }
+// export default function DisCartNum(num){
+//   if (num<1) {
+//     document.getElementById('CartNum').classList.add('d-none')
+//   }
+//   else{
+//     document.getElementById('CartNum').classList.remove('d-none')
+//      document.getElementById('CartNum').innerText=num;
+//   }
  
-}
+// }
 
 
 document.addEventListener('click', function(e) {

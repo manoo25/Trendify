@@ -29,6 +29,10 @@
         #DashboardId .row .col-md-6{
           cursor: pointer;
         }
+        h6{
+          color: var(--main-color) !important;
+         
+        }
        
 </style>
 
@@ -248,7 +252,9 @@
 
         <!-- Users Table -->
         <div id="UserId" class="DataTable card shadow mb-4 d-none">
+          <input type="text" id="searchInput" class="form-control mb-3" placeholder="search with name or email">
             <div class="card-header py-3 ">
+              
                 <h6  class="m-0 font-weight-bold text-center ">All Users</h6>
                
             </div>
@@ -279,8 +285,9 @@
 
         <!-- Product Table -->
         <div id="ProductId" class="DataTable card shadow mb-4 d-none">
+          <input type="text" id="searchInput2" class="form-control mb-3" placeholder="search with name and sub category">
             <div class="card-header py-3 ">
-                <h6 class="m-0 font-weight-bold text-white text-center">All Products</h6>
+                <h6 class="m-0 font-weight-bold  text-center">All Products</h6>
                
             </div>
             <div class="card-body">
@@ -345,7 +352,7 @@
         <!-- Comments Table -->
         <div id="CommentsId" class="DataTable card shadow mb-4 d-none">
             <div class="card-header py-3 ">
-                <h6 class="m-0 font-weight-bold text-white text-center">All Comments</h6>
+                <h6 class="m-0 font-weight-bold  text-center">All Comments</h6>
                
             </div>
             <div id="CommentsContainerAdmin" class="card-body">
@@ -432,6 +439,28 @@
         </datalist>
         
         <button id="ChangeUserRoleBtn" type="button" class="btn btn-success px-5">Save</button>
+    </form>
+      </div>
+    </div>
+  </div>
+<!-- State Of Orders Modal  -->
+  <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <h4  style="color: var(--main-color);" class="text-center mt-3 ">Change Order State</h4>
+    
+    <form id="rolesForm"class=" px-3 pt-2 pb-2 d-flex align-items-center justify-content-between">
+    
+        <input  style="margin-top:13px;border: solid 0.1rem var(--main-color);cursor: pointer; " class="rounded-3 w-75   me-3" list="stateList" id="stateInput" name="roleInput" placeholder="Choose Order State ?">
+        
+        <datalist id="stateList">
+            <option value="Pending">Pending</option>
+            <option value="inProgress">inProgress</option>
+            <option value="Done">Done</option>
+            <option value="Cancel">Cancel</option>
+        </datalist>
+        
+        <button id="ChangeOrderStateBtn" type="button" class="btn btn-success px-5">Save</button>
     </form>
       </div>
     </div>
