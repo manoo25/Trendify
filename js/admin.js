@@ -1,8 +1,8 @@
 //change image
-const imageInput = document.getElementById('imageUpload');
-const profileImage = document.getElementById('profileImage');
+ imageInput = document.getElementById('imageUpload');
+ profileImage = document.getElementById('profileImage');
 // Get users from localStorage
-let users = JSON.parse(localStorage.getItem('usersData'));
+ users = JSON.parse(localStorage.getItem('usersData'));
 var userId;
 
 if (users) { 

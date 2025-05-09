@@ -14,7 +14,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./css/global.css">
     <link rel="stylesheet" href="./css/adminControl.css">
-
 </head>
 <style>
      #rolesForm label {
@@ -40,17 +39,30 @@
     <!-- Sidebar -->
    <nav style="max-width: 60%;"  class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
    
-    <div class="sidebar-header mt-4  ">
-            <h3 class=" pe-4 pt-2 fw-bolder">Admin Panel</h3>
+       <div class="sidebar-header d-flex flex-column justify-content-center align-items-center pt-5 ">
+            <div class="mb-3 position-relative d-inline-block">
+                <img id="profileImage" src="./imgs/beautiful-woman.jpg" alt="user" class=" rounded-circle"
+                    style="width: 80px; height: 80px;">
+                <label id="imageUploadLabel" for="imageUpload" class="  position-absolute rounded-circle p-1">
+                    <i class="fa-solid fa-pen p-1"></i></i>
+                </label>
+                <input type="file" id="imageUpload" accept="image/*" class="d-none" />
+            </div>
+
+
+            <h6 class="px-2">Hi, <span id="adminName" class="fw-bold">Admin</span></h6>
+
+
         </div>
+        <hr>
         
         <ul class="list-unstyled components">
          
             <li class="active">
-                <a href="#" onclick="showDataTbl('DashboardId')"><i class="fas fa-house"></i> Dash Board</a>
+                <a href="#" onclick="showDataTbl('DashboardId')"><i class="fa-solid fa-table-columns"></i> Dash Board</a>
             </li>
             <li >
-                <a  onclick="showDataTbl('ProductId')" href="#"><i class="fas fa-shirt "></i>View Products</a>
+                <a  onclick="showDataTbl('ProductId')" href="#"><i class="fa-solid fa-cart-flatbed"></i>View Products</a>
             </li>
              
             <li>
@@ -61,6 +73,9 @@
             </li>
             <li>
                 <a onclick="showDataTbl('CommentsId');displayComments()"  href="#"><i class="fas fa-comment"></i>View Comments</a>
+            </li>
+             <li>
+                <a  href="../index.html"><i class="fa-solid fa-house"></i>View website</a>
             </li>
           
           
