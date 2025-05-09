@@ -124,8 +124,10 @@
             <!-- cart icon 07/05  -->
             <li class="nav-item d-none authBtn">
               <a href="./cart&checkout.html" class=" position-relative" >
-                <span style="color: var(--bg-color); background-color: var(--main-color); top:-8px; right: -9px; " class="badge rounded-pill position-absolute  translate-middle">0</span>
-
+                <span id="CartNum" style="width: 21px; height: 21px; color: var(--bg-color); background-color:black; top:-8.2px; right: 1px; " class="badge rounded-2 position-absolute  translate-middle d-flex justify-content-center align-items-center d-none">
+                
+                </span>
+ 
                 <span class="nav-link fa-solid fa-cart-shopping " role="button"></span>
               </a>
             </li>
@@ -463,24 +465,25 @@
             aria-current="true" aria-label="Slide 1"></button>
           <button class="Slide2Indecators" type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1"
             aria-label="Slide 2"></button>
-          <button class="Slide2Indecators" type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="2"
-            aria-label="Slide 3"></button>
-            <button class="Slide2Indecators" type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="3"
-            aria-label="Slide 4"></button>
-            <button class="Slide2Indecators" type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="4"
-            aria-label="Slide 5"></button>
+         
           
         </div>
         <div class="carousel-inner">
-          <div style="min-height: 45vh;" class="carDiv carousel-item active" data-bs-interval="2000">
-            <img style="height: 60vh;" src="./imgs/banner.png" class="carImg d-block w-100" alt="image1">
+          <div style="min-height: 45vh;max-height:60vh ;" class="carDiv carousel-item active" data-bs-interval="2000">
+            <!-- <img style="height: 60vh;" src="./imgs/banner.png" class="carImg d-block w-100" alt="image1"> -->
+            <video autoplay muted loop playsinline class="carImg d-block w-100">
+              <source src="./video/cli2.mp4" type="video/mp4"  />
+              Your browser does not support the video tag.
+            </video>
+
+
             <div class="carousel-caption text-start">
               <h1>Upgrade your style</h1>
               <h3>Up to 50% off <br>  </h3>
               <a href="./category.html" class="btn mb-3">Shop Now </a>
             </div>
           </div>
-          <div style="min-height: 45vh;" class="carDiv carousel-item" data-bs-interval="2000">
+          <div style="min-height: 45vh;max-height:60vh ;" class="carDiv carousel-item" data-bs-interval="2000">
             <img style="height: 60vh;" src="./imgs/banner2.png" class="carImg d-block w-100" alt="image2">
             <div class="carousel-caption text-start">
               <h1>Upgrade your style</h1>
@@ -488,30 +491,7 @@
               <a href="./category.html" class="btn mb-3">Shop Now </a>
             </div>
           </div>
-          <div style="min-height: 30vh;" class="carDiv carousel-item" data-bs-interval="2000">
-            <img style="height: 60vh;" src="./imgs/banner3.png" class="carImg d-block w-100" alt="image23">
-            <div class="carousel-caption text-start">
-              <h1>Upgrade your style</h1>
-              <h3>Up to 50% off <br> </h3>
-              <a href="./category.html" class="btn mb-3">Shop Now </a>
-            </div>
-          </div>
-          <div style="min-height: 30vh;" class="carDiv carousel-item" data-bs-interval="2000">
-            <img style="height: 60vh;" src="./imgs/fr1.jpg" class="carImg d-block w-100" alt="image4">
-            <div class="carousel-caption text-start">
-              <h1>Upgrade your style</h1>
-              <h3>Up to 50% off <br> </h3>
-              <a href="./category.html" class="btn mb-3">Shop Now </a>
-            </div>
-          </div>
-          <div style="min-height: 30vh;" class="carDiv carousel-item" data-bs-interval="2000">
-            <img style="height: 60vh;" src="./imgs/fr2.jpg" class="carImg d-block w-100" alt="image5">
-            <div class="carousel-caption text-start">
-              <h1>Upgrade your style</h1>
-              <h3>Up to 50% off <br> </h3>
-              <a href="./category.html" class="btn mb-3">Shop Now </a>
-            </div>
-          </div>
+         
         </div>
 
       </div>
@@ -874,18 +854,17 @@
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  <script src="./js/home.js"></script>
     <script   src="./js/home.js"></script>   
     <script type="module" src="./js/DisplayHome.js"></script>
     <script  src="./js/admin.js"></script>
     <script type="module" src="./js/cart.js"></script>
 
   <script>displayPublishComments()</script>
-  <script type="module" src="./js/DisplayHome.js"></script>
-  <script src="./js/admin.js"></script>
+ <script src="./js/admin.js"></script>
+
   <script type="module" src="./js/cart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+ 
 
 
 </body>

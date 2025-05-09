@@ -1,5 +1,8 @@
 import indexedDB from './indexedDb.js';
 
+
+
+
 let CartArr = [];
 let WhishListtArr = [];
 async function initialize() {
@@ -76,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 let category = ["Men", "Women", "Kids"];
-let subcategory = ["Dreesses", "Jackets", "T-shirts", "Shoeses", "jeans"];
+let subcategory = ["Dresses", "Jackets", "Tshirts","Shoeses", "Jeans"];
 let ProductsArr = [
   {
    
@@ -170,7 +173,7 @@ Main Fabric Content : Cotton 59%,Viscose 13%,Polyester 28%`,
     EndPrice: 559,
     imageCover: "./imgs/products/MT43.jpg",
     images: [
-      "./imgs/products/MT41.jpg",
+      "./imgs/products/MT4.jpg",
       "./imgs/products/MT42.jpg",
       "./imgs/products/MT43.jpg",
       "./imgs/products/MT44.jpg",
@@ -194,9 +197,9 @@ Main Fabric Content : Cotton 100%`,
     EndPrice: 419,
     imageCover: "./imgs/products/MT53.jpg",
     images: [
-      "./imgs/products/MT51.jpg",
       "./imgs/products/MT52.jpg",
       "./imgs/products/MT53.jpg",
+      "./imgs/products/MT5.jpg",
       "./imgs/products/MT54.jpg",
       "./imgs/products/MT55.jpg",
     ],
@@ -219,7 +222,7 @@ Main Fabric Content : Cotton 100%`,
     EndPrice: 559,
     imageCover: "./imgs/products/MT6.jpg",
     images: [
-      "./imgs/products/MT61.jpg",
+      "./imgs/products/MT6.jpg",
       "./imgs/products/MT62.jpg",
       "./imgs/products/MT63.jpg",
       "./imgs/products/MT64.jpg",
@@ -567,6 +570,19 @@ if (localStorage.getItem('Products')) {
 
 
 
+    async function GetasyncNum() {
+      const cartData = await indexedDB.getItem('Cart');
+      if (cartData) {
+        let cartd=[]
+        cartd = cartData;
+      let  FilterCartArr=cartd.filter(item =>item.userId === userId );
+      DisCartNum(FilterCartArr.length)
+      }
+  }
+  GetasyncNum();
+
+
+
 
 //Mohamed SAlama JS
 (initialize().then(  ()=>{
@@ -601,7 +617,7 @@ if(userId){
   const WhishListClass = existWhishlist ? 'fa-solid' : 'fa-regular';
        FlashSale.innerHTML+=`
         <div class="contain-item col-lg-3 col-md-6  pb-2">
-         <div class="Product">
+         <div class="Product" data-id="${product.id}">
            <div class="pic position-relative">
              <img class="w-100" src="${product.imageCover}" />
                 <span   data-product='${JSON.stringify(product)}' class="${WhishListClass} fa-heart position-absolute"></span>
@@ -687,7 +703,7 @@ function displayNavTabsLink() {
   document.getElementById('allBestTab').innerHTML+=`
  
    <div class="contain-item col-lg-3 col-md-6 pb-2">
-       <div class="Product">
+       <div class="Product" data-id="${product.id}">
          <div class="pic position-relative">
            <img class="w-100" src="${product.imageCover}" alt="${product.name}" />
          
@@ -716,7 +732,7 @@ function displayNavTabsLink() {
    else{
      document.getElementById('allBestTab').innerHTML += `
      <div class="contain-item col-lg-3 col-md-6 pb-2">
-       <div class="Product">
+       <div class="Product" data-id="${product.id}">
          <div class="pic position-relative">
            <img class="w-100" src="${product.imageCover}" alt="${product.name}" />
            <span class="discount">-${averageDis}%</span>
@@ -786,7 +802,7 @@ if(userId){
     if(averageDis==0){
      rowtabContent.innerHTML += `
      <div class="contain-item col-lg-3 col-md-6 pb-2">
-       <div class="Product">
+       <div class="Product" data-id="${product.id}">
          <div class="pic position-relative">
            <img class="w-100" src="${product.imageCover}" alt="${product.name}" />
          
@@ -814,7 +830,7 @@ if(userId){
 else{
  rowtabContent.innerHTML += `
  <div class="contain-item col-lg-3 col-md-6 pb-2">
-   <div class="Product">
+   <div class="Product" data-id="${product.id}">
      <div class="pic position-relative">
        <img class="w-100" src="${product.imageCover}" alt="${product.name}" />
        <span class="discount">-${averageDis}%</span>
@@ -883,7 +899,7 @@ if(averageDis==0){
  TopPicksContainer.innerHTML+=`
 
 <div class="contain-item col-lg-3 col-md-6 pb-2">
-    <div class="Product">
+    <div class="Product" data-id="${product.id}">
       <div class="pic position-relative">
         <img class="w-100" src="${product.imageCover}" alt="${product.name}" />
       
@@ -912,7 +928,7 @@ if(averageDis==0){
 else{
  TopPicksContainer.innerHTML += `
   <div class="contain-item col-lg-3 col-md-6 pb-2">
-    <div class="Product">
+    <div class="Product" data-id="${product.id}">
       <div class="pic position-relative">
         <img class="w-100" src="${product.imageCover}" alt="${product.name}" />
         <span class="discount">-${averageDis}%</span>
@@ -952,3 +968,35 @@ displayTopPiks();
 
 
 }));
+
+
+export default function DisCartNum(num){
+  if (num<1) {
+    document.getElementById('CartNum').classList.add('d-none')
+  }
+  else{
+    document.getElementById('CartNum').classList.remove('d-none')
+     document.getElementById('CartNum').innerText=num;
+  }
+ 
+}
+
+
+document.addEventListener('click', function(e) {
+  // تحديد العناصر المهمة
+  const productElement = e.target.closest('.Product');
+  const heartBtn = e.target.closest('.fa-heart');
+  const cartBtn = e.target.closest('.btnAddToCart');
+  
+  if (heartBtn || cartBtn) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    return false;
+  }
+  
+  if (productElement && !heartBtn && !cartBtn) {
+    const id = productElement.dataset.id;
+    window.location.href = `./productdetails.html?id=${id}`;
+  }
+});

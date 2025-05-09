@@ -1,113 +1,90 @@
-//modal 
+
+
+// Initialize all variables at the top
+let productsArr = JSON.parse(localStorage.getItem('Products')) || [];
+let productColors = [];
+let images = [];
+let productImgSrc = '';
+let currentEditIndex = -1;
+let userName = sessionStorage.getItem('LogedUser') 
+               ? JSON.parse(sessionStorage.getItem('LogedUser')).name 
+               : '';
 
 // Apply styles to color swatches
-$(".colored").css({
-  border: "2px solid black",
-  width: "20px",
-  height: "20px",
-  margin: "10px",
-  cursor: "pointer",
-  "border-radius": "50%"
-});
-// Set background colors
-$(".colored").each(function (index) {
-  const colors = ["red", "green", "blue"];
-  $(this).css("background-color", colors[index]);
-});
-let productColors = [];
-$(".colored").click(function () {
-  const value = $(this).css("background-color");
-  // Only add if not already selected
-  if (!productColors.includes(value)) {
-    productColors.push(value);
-    // Update input with comma-separated list
-    $("#productColor").val(productColors.join(", "));
-  }
-});
+$(document).ready(function() {
+  $(".colored").css({
+    border: "2px solid black",
+    width: "20px",
+    height: "20px",
+    margin: "10px",
+    cursor: "pointer",
+    "border-radius": "50%"
+  });
 
+  // Set background colors
+  $(".colored").each(function(index) {
+    const colors = ["red", "green", "blue"];
+    $(this).css("background-color", colors[index]);
+  });
 
-// Update the range value
-$('#ratingAverage').on('input', function () {
-  var ratingAverage = $('#rangeValue').text(this.value);
-  console.log(ratingAverage);
-});
+  $(".colored").click(function() {
+    const value = $(this).css("background-color");
+    if (!productColors.includes(value)) {
+      productColors.push(value);
+      $("#productColor").val(productColors.join(", "));
+    }
+  });
 
-// read and display the image
-let productImgSrc;
-$('#productImageCover').on('change', function () {
-  file = this.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.addEventListener('load', function () {
-      productImgSrc = reader.result;
+  // Update the range value
+  $('#ratingAverage').on('input', function() {
+    $('#rangeValue').text(this.value);
+  });
 
-    });
-    reader.readAsDataURL(file);
-  }
-});
-
-//read multiple images
-let images = [];
-$('#imageInput').on('change', function () {
-  var files = this.files;
-  for (var i = 0; i < files.length; i++) {
-    var file = files[i];
+  // Read and display the main image
+  $('#productImageCover').on('change', function() {
+    const file = this.files[0];
     if (file) {
       const reader = new FileReader();
-      reader.addEventListener('load', function () {
-        images.push(reader.result);
-      });
+      reader.onload = function() {
+        productImgSrc = reader.result;
+      };
       reader.readAsDataURL(file);
     }
-  }
-});
-console.log(images);
+  });
 
+  // Read multiple images
+  $('#imageInput').on('change', function() {
+    images = []; // Reset images array
+    const files = this.files;
+    for (let i = 0; i < files.length; i++) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        images.push(e.target.result);
+      };
+      reader.readAsDataURL(files[i]);
+    }
+  });
 
+  // Add product event
+  $('#addProductBtn').on('click', function() {
+    if (currentEditIndex === -1) {
+      addProduct();
+    } else {
+      updateProduct();
+    }
+  });
 
-
-
-let productsArr = [];
-if (localStorage.getItem('Products')) {
-  productsArr = JSON.parse(localStorage.getItem('Products'));
+  // Initialize display
   displayProduct();
-
-}
-
-
-let userName;
-if (sessionStorage.getItem('LogedUser')) {
-  userName = JSON.parse(sessionStorage.getItem('LogedUser')).name;
-  console.log(userName);
-
-}
-
-//لما اضيف واعدل واحذف من ال |array اجى بعدها واخذن الداتا تاى فى localstorage 
-// localStorage.setItem('Products',JSON.stringify(productsArr))
-
-var productName = document.getElementById("productName");
-var realPrice = document.getElementById("realPrice");
-var category = document.getElementById("productCategory");
-var description = document.getElementById("productDescription");
-var productImage = document.getElementById("productImage");
-var discount = document.getElementById("productDiscount");
-var subCategory = document.getElementById("productSubCategory");
-var rating = document.getElementById("ratingAverage");
-var color = document.getElementById("productColor");
-var sellerId = document.getElementById("sellerId");
-var quantity = document.getElementById("productQuantity");
-
-$('#addProductBtn').on('click', addProduct);
+});
 
 function addProduct() {
-  
-  // console.log(productImgSrc);
-  var product = {
-    id: Math.floor(Math.random() * 1000 * (productsArr.length) + 1),
+  const product = {
+    id: generateProductId(),
     name: $('#productName').val(),
     real_price: Number($('#realPrice').val()),
     Discount: $('#productDiscount').val(),
-    EndPrice: Number(realPrice.value) - Number(discount.value),
+    EndPrice: calculateEndPrice(),
     category: $('#productCategory').val(),
     description: $('#productDescription').val(),
     imageCover: productImgSrc,
@@ -119,63 +96,135 @@ function addProduct() {
     Colors: productColors,
     Colorscode: productColors,
   };
-  clear();
 
   productsArr.push(product);
-  localStorage.setItem("Products", JSON.stringify(productsArr));
+  saveToLocalStorage();
   displayProduct();
-  console.log(productsArr);
-  //   اقفل المودال بعد كل اضافه منتج
-  const modalElement = document.getElementById("personalInfoModal");
-  const modal = bootstrap.Modal.getInstance(modalElement);
-  modal.hide();
+  resetForm();
+  $('#personalInfoModal').modal('hide');
+}
+
+function updateProduct() {
+  productsArr[currentEditIndex] = {
+    id: productsArr[currentEditIndex].id,
+    name: $('#productName').val(),
+    real_price: Number($('#realPrice').val()),
+    Discount: $('#productDiscount').val(),
+    EndPrice: calculateEndPrice(),
+    category: $('#productCategory').val(),
+    description: $('#productDescription').val(),
+    imageCover: productImgSrc || productsArr[currentEditIndex].imageCover,
+    images: images.length > 0 ? images : productsArr[currentEditIndex].images,
+    subcategory: $('#productSubCategory').val(),
+    ratingsAverage: $('#ratingAverage').val(),
+    sellerName: userName,
+    quantity: $('#productQuantity').val(),
+    Colors: productColors,
+    Colorscode: productColors,
+  };
+
+  saveToLocalStorage();
+  displayProduct();
+  resetForm();
+  currentEditIndex = -1;
+  $('#personalInfoModal').modal('hide');
 }
 
 function displayProduct() {
-  const tableBody = document.querySelector("#ordersTable tbody");
-  tableBody.innerHTML = "";
+  const tableBody = $("#ordersTable tbody");
+  tableBody.empty();
 
-  for (var i = 0; i < productsArr.length; i++) {
-    // كل مرة هعمل سطر جديد علشان المنتجات اللى هضيفها متجيش كلها فى صف واحد
-    const newRow = document.createElement("tr");
-    newRow.innerHTML = `
-        <td><img src="${productsArr[i].imageCover}" alt="product image" style="width: 100%;" /></td>
-        <td>${productsArr[i].name}</td>
-        <td>${productsArr[i].category}</td>
-        <td>${productsArr[i].EndPrice}</td>
+  productsArr.forEach((product, i) => {
+    tableBody.append(`
+      <tr>
+        <td><img src="${product.imageCover}" alt="product" style="width: 50px;" /></td>
+        <td>${product.name.split(" ",2).join(" ")}</td>
+        <td>${product.category}</td>
+        <td>${product.subcategory}</td>
+        <td>${product.EndPrice}</td>
         <td>
-          <button class="btn btn-sm btn-primary m-1"><i class="fas fa-eye"></i></button>
-          <button class="btn btn-sm btn-warning m-1" onclick="editProduct(${i})"><i class="fas fa-edit"></i></button>
-          <button class="btn btn-sm btn-danger  m-1" onclick="deleteProduct(${i})"><i class="fas fa-trash"></i></button>
+         <div class="d-flex gap-2 justify-content-center">
+          <a href="./productdetails.html?id=${product.id}" class="btn btn-sm btn-new btn-new1 m-1"><i class="fas fa-eye" ></i></a>
+          <button class="btn btn-sm btn-new btn-new3" onclick="editProduct(${i})"><i class="fas fa-edit"></i></button>
+          <button class="btn btn-sm btn-new btn-new2 " onclick="deleteProduct(${i})"><i class="fas fa-trash"></i></button>
+         </div>
         </td>
-      `;
-    tableBody.appendChild(newRow);
+      </tr>
+    `);
+  });
+}
+
+function editProduct(i) {
+  currentEditIndex = i;
+  const product = productsArr[i];
+  
+  // Set form values
+  $('#productName').val(product.name);
+  $('#realPrice').val(product.real_price);
+  $('#productDiscount').val(product.Discount);
+  $('#productCategory').val(product.category);
+  $('#productDescription').val(product.description);
+  $('#productSubCategory').val(product.subcategory);
+  $('#ratingAverage').val(product.ratingsAverage);
+  $('#productQuantity').val(product.quantity);
+  $('#productColor').val(product.Colors);
+  
+  // Set current images
+  productImgSrc = product.imageCover;
+  images = product.images;
+  productColors = product.Colors;
+  
+  $('#addProductBtn').text('Update Product');
+  $('#personalInfoModal').modal('show');
+}
+
+async function deleteProduct(i) {
+  const { isConfirmed } = await Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to Delete this Product!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'Cancel'
+  });
+
+  if (isConfirmed) {
+    productsArr.splice(i, 1);
+    saveToLocalStorage();
+    displayProduct();
+    
+    // Show success message
+    Swal.fire(
+      'Deleted!',
+      'Your product has been deleted.',
+      'success'
+    );
   }
 }
 
-// فضيلى الفورم بعد كل اضافه
-function clear() {
-  document.getElementById("productForm").reset();
+// Helper functions
+function generateProductId() {
+  return Math.floor(Math.random() * 1000 * (productsArr.length + 1));
 }
 
-function deleteProduct(idx) {
-  productsArr.splice(idx, 1);
-  localStorage.setItem("Products", JSON.stringify(productsArr));
-  displayProduct();
+function calculateEndPrice() {
+  const price = Number($('#realPrice').val());
+  const discount = Number($('#productDiscount').val()) || 0;
+  return price - discount;
 }
-function editProduct(i){
-  $('#personalInfoModal').modal('show');
 
-  $('#productName').val(productsArr[i].name);
-  $('#realPrice').val(productsArr[i].real_price);
-  $('#productDiscount').val(productsArr[i].Discount);
-  $('#productCategory').val(productsArr[i].category);
-  $('#productDescription').val(productsArr[i].description);
-// $('#productImageCover').val(productsArr[i].imageCover);
-  $('#productSubCategory').val(productsArr[i].subcategory);
-  $('#ratingAverage').val(productsArr[i].ratingsAverage);
-  $('#productQuantity').val(productsArr[i].quantity);
-  $('#productColor').val(productsArr[i].Colors);
+function saveToLocalStorage() {
+  localStorage.setItem('Products', JSON.stringify(productsArr));
+}
+
+function resetForm() {
+  $('#productForm')[0].reset();
+  productColors = [];
+  images = [];
+  productImgSrc = '';
+  $('#addProductBtn').text('Add Product');
 }
 
 // function preventModalCloseIfEmpty(modalId) {

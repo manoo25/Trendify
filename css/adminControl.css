@@ -97,9 +97,15 @@ body {
     border-bottom: 2px solid #e3e6f0;
     background-color: #f8f9fc;
     font-weight: 600;
+    text-align: center;
+}
+
+.table tbody tr {
+    text-align: center;
 }
 
 .table tbody tr:hover {
+   
     background-color: #f8f9fc;
 }
 
@@ -167,8 +173,8 @@ body {
 
 /*  added style*/
 table tr td img {
-    width: 100%;
-    height: 50px;
+    width: 150px !important; 
+    height: 100px;
     border-radius: 10px;
 }
 
@@ -293,3 +299,108 @@ input:checked+.slider:before {
     width: 80px;
     
 }
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    margin-bottom: 20px;
+    
+}
+
+.card-header {
+    background-color: #f8f9fc;
+    border-bottom: 1px solid #e3e6f0;
+    padding: 15px 20px;
+    font-weight: bold;
+    border-radius: 10px 10px 0 0 !important;
+}
+
+.table-responsive {
+    border-radius: 0 0 10px 10px;
+    overflow-x: scroll;
+   width: 100%;
+}
+
+
+/* Dashboard Style  */
+ .chart-container {
+        position: relative;
+        height: 320px;
+      }
+      .bar-container {
+        position: relative;
+        height: 320px;
+        margin-top: 20px;
+      }
+
+      .customer-img {
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 50% !important;
+        object-fit: cover !important;
+        margin-right: 10px !important;
+      }
+
+      .stat-card {
+        background-color: white;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .stat-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .stat-card-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+      }
+
+      .stat-card-icon.primary {
+        background-color: rgba(74, 107, 255, 0.1);
+        color: #4a6bff;
+      }
+
+      .stat-card-icon.success {
+        background-color: rgba(40, 167, 69, 0.1);
+        color: #28a745;
+      }
+
+      .stat-card-icon.warning {
+        background-color: rgba(255, 193, 7, 0.1);
+        color: #ffc107;
+      }
+
+      .stat-card-icon.danger {
+        background-color: rgba(220, 53, 69, 0.1);
+        color: #dc3545;
+      }
+
+      .stat-card-title {
+        font-size: 0.9rem;
+        color: #6c757d;
+      }
+
+      .stat-card-value {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin: 5px 0;
+      }
+
+      .stat-card-change {
+        font-size: 0.8rem;
+      }

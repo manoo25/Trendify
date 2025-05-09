@@ -1,10 +1,15 @@
 import indexedDB from './indexedDb.js';
+import DisCartNum from './DisplayHome.js';
+import { successAlert ,RemoveAlert } from './date.js'; 
+
+
+
 
 let userId;
 if (sessionStorage.getItem('LogedUser')) {
    userId = JSON.parse(sessionStorage.getItem('LogedUser')).userId;
 }
-
+let FilterCartArr=[];
 let CartArr = [];
 let WhishListArr = [];
 
@@ -72,43 +77,14 @@ export async function addToCart(btn) {
 
         if (!existPro) {
             CartArr.push(productCartObj);
-            Swal.fire({
-                icon: 'success',
-                title: 'added successfully !',
-                text: `added to cart successfully`,
-                showConfirmButton: false,
-                timer: 1600,
-                toast: true,
-                position: 'top-end',
-                position: 'top-end',
-                background: 'var(--card-color)', 
-                color: 'var(--main-color)',      
-                iconColor: 'var(--main-color)',  
-                customClass: {
-                  popup: 'custom-swal-popup',
-                  title: 'custom-swal-title',
-                  content: 'custom-swal-content'
-                }
-              });
+            FilterCartArr=CartArr.filter(item =>item.userId === userId );
+            GetNumOfCart(FilterCartArr.length)
+          successAlert('added To Cart','Product added to cart successfully.')
         } else {
             CartArr = CartArr.filter(item => !(item.userId === userId && item.ProId === pro.id));
-            Swal.fire({
-                icon: 'success',
-                title: 'Removed from cart',
-                text: 'Remove from cart successfully',
-                showConfirmButton: false,
-                timer: 1600,
-                toast: true,
-                position: 'top-end',
-                background: 'var(--card-color)',
-                color: 'var(--error)', // أو خليه main-color لو حابب يكون نفس الثيم
-                iconColor: 'var(--error)',
-                customClass: {
-                  popup: 'custom-swal-popup',
-                  title: 'custom-swal-title',
-                  content: 'custom-swal-content'
-                }
-              });
+            FilterCartArr=CartArr.filter(item =>item.userId === userId );
+            GetNumOfCart(FilterCartArr.length);
+           RemoveAlert('Remove From CArt',"Product Removed Successfully")
         }
         
         await indexedDB.setItem('Cart', CartArr);
@@ -130,7 +106,9 @@ export async function addToWhishList(btn) {
             name: pro.name,
             real_price: pro.real_price,
             EndPrice: pro.EndPrice,
+            Discount: pro.Discount,
             imageCover: pro.imageCover,
+            ratingsAverage: pro.ratingsAverage,
             Color: pro.Colors[0],
         };
 
@@ -138,10 +116,10 @@ export async function addToWhishList(btn) {
 
         if (!existPro) {
             WhishListArr.push(productArrObj);
-            alert('Product added to WhishList successfully');
+            successAlert('added To WhishList','Product added to WhishList successfully.')
         } else {
             WhishListArr = WhishListArr.filter(item => !(item.userId === userId && item.ProId === pro.id));
-            alert('Product removed from WhishList successfully');
+            RemoveAlert('Remove From WhishList',"Product Removed From WhishList Successfully")
         }
         
         await indexedDB.setItem('WhishList', WhishListArr);
@@ -156,5 +134,9 @@ export async function addToWhishList(btn) {
 
 // Initialize the application
 initialize();
+ 
+  function GetNumOfCart(num) {
+  
+    DisCartNum(num)
 
-
+}

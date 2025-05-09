@@ -1,4 +1,3 @@
-
 // swiper carousel
 
 
@@ -207,4 +206,3 @@ function updatePrice() {
     });
   
   });
-  

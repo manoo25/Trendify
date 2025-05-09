@@ -1,3 +1,11 @@
+import indexedDB from './indexedDb.js';
+import { successAlert ,RemoveAlert } from './date.js'; 
+initialize();
+let CartArr = [];
+let WhishListtArr = [];
+let FilterCartArr=[];
+var userId;
+
 
 let category = ["Men", "Women", "Kids"];
 let subcategory = ["Dresses", "Jackets", "Tshirts","Shoeses", "Jeans"];
@@ -478,10 +486,24 @@ Heel height: 10.5 cm / 4.1`,
   },
 ];
 
+if (sessionStorage.getItem('LogedUser')) {
+  userId=JSON.parse(sessionStorage.getItem('LogedUser')).userId;
+}
 
 
+async function initialize() {
+  const cartData = await indexedDB.getItem('Cart');
+  if (cartData) {
+      CartArr = cartData;
+      console.log(CartArr);
+      
+  }
+  const WhishListData = await indexedDB.getItem('WhishList');
+  if (WhishListData) {
+    WhishListtArr = WhishListData;
+  }
 
-
+}
 
 // set at local storage
 // mostala7 maigration
@@ -506,7 +528,23 @@ function createProductElement(product) {
     product.Discount > 0
       ? Math.round((product.Discount / product.real_price) * 100)
       : 0;
-
+      let existPro;
+      let existWhishlist;
+      if(userId){
+      
+        existPro = CartArr.some(x => 
+         x.userId.toString() === userId.toString() && 
+         x.ProId.toString() === product.id.toString()
+      );
+        existWhishlist = WhishListtArr.some(x => 
+         x.userId.toString() === userId.toString() && 
+         x.ProId.toString() === product.id.toString()
+      );
+        
+     }
+       const buttonClass = existPro ? 'fa-check' : 'fa-plus';
+       const WhishListClass = existWhishlist ? 'fa-solid' : 'fa-regular';
+ 
   return `
       <div class="contain-item col-lg-3 col-md-6 pb-2">
         <div class="Product" data-id="${product.id}">
@@ -519,7 +557,7 @@ function createProductElement(product) {
                 ? `<span class="discount">-${discountPercentage}%</span>`
                 : ""
             }
-            <span class="fa-regular fa-heart position-absolute"></span>
+            <span   class="${WhishListClass} fa-heart position-absolute" data-id="${product.id}"></span>
           </div>
           <div class="disc">
             <h3>${
@@ -623,7 +661,9 @@ function displayProducts(products, tabId , currentPage = 1 , itemsPerPage = 8) {
 
 document.addEventListener("DOMContentLoaded", function () {
 
-
+  (async () => {
+    await initialize();
+  
  //display all products
   displayProducts(ProductsArr, "nav-All");
 
@@ -644,51 +684,234 @@ document.addEventListener("DOMContentLoaded", function () {
 
   
   for(let i=0 ; i<category.length ; i++) {
-    for(element of subcategory){
+    for(let element of subcategory){
         displayProducts(
             ProductsArr.filter((p) =>  p.category.toLowerCase() === category[i].toLowerCase() && p.subcategory.toLowerCase()=== element.toLowerCase() ),
             `nav-${category[i]}-${element}`
           );
     }
   }
-// send filtered data to product details when clicked
-let filtereddata =[];
+})();
 
-  let products =document.querySelectorAll('.Product');
-  products.forEach((element) => {
-    element.addEventListener('click', function(e) {
-      let id = this.dataset.id;
-    window.location.href=`./productdetails.html?id=${id}`;
-    
-    });
-  });
-  document.querySelectorAll(".btnAddToCart").forEach((i)=>{
-    i.addEventListener('click', function(e){
-      let iid=this.dataset.id;
+// send filtered data to product details when clicked new
+
+  document.addEventListener('click', function(e) {
+    const productelement = e.target.closest('.Product');
+    const heartBtn = e.target.closest('.fa-heart') ;   
+    const cartBtn = e.target.closest('.btnAddToCart');
+    if (cartBtn||heartBtn) {
+      e.preventDefault();
       e.stopPropagation();
-      Swal.fire({
-        icon: 'success',
-        title: 'added successfully !',
-        text: `${ProductsArr.find((i) =>i.id==iid).name} added to cart `,
-        showConfirmButton: false,
-        timer: 1600,
-        toast: true,
-        position: 'top-end',
-        position: 'top-end',
-        background: 'var(--card-color)', 
-        color: 'var(--main-color)',      
-        iconColor: 'var(--main-color)',  
-        customClass: {
-          popup: 'custom-swal-popup',
-          title: 'custom-swal-title',
-          content: 'custom-swal-content'
-        }
-      });
-      })
+      const products = JSON.parse(localStorage.getItem('Products')) || [];
+      let productId;
+if (cartBtn) {
+   productId = cartBtn.dataset.id;
+}
+else{
+  productId = heartBtn.dataset.id;
+}
+
+      
+      const product = products.find(p => p.id === productId);
+      // let iid=addToCartBtn.dataset.id;
+      if(product) {
+                                     
+              if (heartBtn) {
+                  if (!sessionStorage.getItem('LogedUser') || !userId) {
+                      alert('You should login or register first!');
+                      return;
+                  }
+                   addToWhishList(product,heartBtn);
+              } 
+              else if (cartBtn) {
+                  if (!sessionStorage.getItem('LogedUser') || !userId) {
+                      alert('You should login or register first!');
+                      return;
+                  }
+                 addToCart(product,cartBtn);
+              }
+    
+    
+      }
+       else {
+        console.error('Product not found with ID:', productId);
+      }
+      return ;
+    }
+    if(productelement) {
+      let id = productelement.dataset.id;
+      window.location.href=`./productdetails.html?id=${id}`;
+      // return;
+    
+    }
+
+
   })
-
-});
-
-
  
 
+
+
+
+
+});
+// end of filtering data
+
+
+
+
+async function addToCart(product,btn) {
+  try {
+  
+    
+      let pro = product;
+      let productCartObj = {
+          userId: userId,
+          ProId: pro.id,
+          OrderId: 0,
+          id: Math.floor(Math.random() * 1000 * (userId) + 1),
+          name: pro.name,
+          real_price: pro.real_price,
+          EndPrice: pro.EndPrice,
+          imageCover: pro.imageCover,
+          qty: 1,
+          Color: pro.Colors[0],
+      };
+
+      let existPro = CartArr.some(x => x.userId == userId && x.ProId == pro.id);
+
+      if (!existPro) {
+          CartArr.push(productCartObj);
+          FilterCartArr=CartArr.filter(item =>item.userId === userId );
+          successAlert('added To Cart','Product added to cart successfully.')
+        
+      } else {
+          CartArr = CartArr.filter(item => !(item.userId === userId && item.ProId === pro.id));
+          FilterCartArr=CartArr.filter(item =>item.userId === userId );
+        
+          RemoveAlert('Remove From CArt',"Product Removed Successfully")
+      }
+      
+      await indexedDB.setItem('Cart', CartArr);
+      btn.classList.toggle('fa-plus');
+      btn.classList.toggle('fa-check');
+  } 
+  catch (error) {
+      console.error('Error in addToCart:', error);
+  }
+}
+ async function addToWhishList(product,btn) {
+  try {
+    let pro = product;
+      
+      let productArrObj = {
+          userId: userId,
+          ProId: pro.id,
+          id: Math.floor(Math.random() * 1000 * (userId) + 1),
+          name: pro.name,
+          real_price: pro.real_price,
+          EndPrice: pro.EndPrice,
+          imageCover: pro.imageCover,
+          Color: pro.Colors[0],
+      };
+
+      let existPro = WhishListtArr.some(x => x.userId == userId && x.ProId == pro.id);
+
+      if (!existPro) {
+        WhishListtArr.push(productArrObj);
+        successAlert('added To WhishList','Product added to WhishList successfully.')
+      } else {
+        WhishListtArr = WhishListtArr.filter(item => !(item.userId === userId && item.ProId === pro.id));
+        RemoveAlert('Remove From WhishList',"Product Removed From WhishList Successfully")
+      }
+      
+      await indexedDB.setItem('WhishList', WhishListtArr);
+
+    btn.classList.toggle('fa-regular');
+      btn.classList.toggle('fa-solid');
+  } 
+  catch (error) {
+      console.error('Error in WhishList:', error);
+  }
+}
+
+
+
+
+
+// End of ahmed section
+
+
+
+
+
+
+
+
+
+
+
+// send filtered data to product details when clicked old
+
+
+// let products =document.querySelectorAll('.Product');
+  // products.forEach((element) => {
+  //   element.addEventListener('click', function(e) {
+  //     let id = this.dataset.id;
+  //   window.location.href=`./productdetails.html?id=${id}`;
+    
+  //   });
+  // });
+  // document.querySelectorAll(".btnAddToCart").forEach((i)=>{
+  //   i.addEventListener('click', function(e){
+  //     let iid=this.dataset.id;
+  //     e.stopPropagation();
+  //     Swal.fire({
+  //       icon: 'success',
+  //       title: 'added successfully !',
+  //       text: `${ProductsArr.find((i) =>i.id==iid).name} added to cart `,
+  //       showConfirmButton: false,
+  //       timer: 1600,
+  //       toast: true,
+  //       position: 'top-end',
+  //       position: 'top-end',
+  //       background: 'var(--card-color)', 
+  //       color: 'var(--main-color)',      
+  //       iconColor: 'var(--main-color)',  
+  //       customClass: {
+  //         popup: 'custom-swal-popup',
+  //         title: 'custom-swal-title',
+  //         content: 'custom-swal-content'
+  //       }
+  //     });
+  //     })
+  // })
+
+
+
+
+
+
+// calculate your localstorage usage
+
+// function getLocalStorageUsage() {
+//     let total = 0;
+//     for (let key in localStorage) {
+//       if (localStorage.hasOwnProperty(key)) {
+//         let value = localStorage.getItem(key);
+//         total += key.length + value.length;
+//       }
+//     }
+
+//     // الحجم بالبايت، نحوله لكيلو بايت أو ميجا بايت
+//     let usedBytes = total;
+//     let usedKB = (usedBytes / 1024).toFixed(2);
+//     let usedMB = (usedBytes / (1024 * 1024)).toFixed(2);
+
+//     console.log(`المستخدم: ${usedKB} KB (${usedMB} MB)`);
+//     return usedMB;
+//   }
+
+//   let used = parseFloat(getLocalStorageUsage());
+// let remaining = (5 - used).toFixed(2);
+// console.log(`المتبقي: ${remaining} MB`);
+//   getLocalStorageUsage();
