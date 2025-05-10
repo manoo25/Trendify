@@ -26,17 +26,17 @@ async function initialize() {
         // Load data
         const OrdersData = await indexedDB.getItem('Orders');
         const OrdersProData = await indexedDB.getItem('OrdersProducts');
-        
+
         if (OrdersData) {
             OrderstArr = OrdersData;
-            DisplayOrders();  
+            DisplayOrders();
         }
-        
+
         if (OrdersProData) {
-            OrdersProtArr = OrdersProData;  
+            OrdersProtArr = OrdersProData;
         }
-        
-    } 
+
+    }
     catch (error) {
         console.error("Initialization error:", error);
     }
@@ -45,9 +45,9 @@ async function initialize() {
 // ====================== Order Management ======================
 function DisplayOrders() {
     if (!OrdersContainer) return;
-    
+
     OrdersContainer.innerHTML = '';
-    
+
     if (OrderstArr.length === 0) {
         TableOrdersDis.innerHTML = `
             <section class="mt-0 pt-0">
@@ -62,7 +62,7 @@ function DisplayOrders() {
     OrderstArr.forEach((order) => {
         let image = '../imgs/user.png';
         let color;
-        
+
         switch (order.state) {
             case 'Pending': color = 'bg-warning'; break;
             case 'inProgress': color = 'bg-secondary'; break;
@@ -122,18 +122,18 @@ async function deleteOrder(orderId) {
 
         if (result.isConfirmed) {
             OrderstArr = OrderstArr.filter(order => parseInt(order.orderId) !== orderId);
-            
+
             if (OrdersProtArr && OrdersProtArr.length) {
                 let OrdersPlusProtArr = OrdersProtArr.filter(item => parseInt(item.OrderId) == orderId);
                 OrdersProtArr = OrdersProtArr.filter(item => parseInt(item.OrderId) !== orderId);
-                
+
                 const products = loadProductsFromLocalStorage();
                 OrdersPlusProtArr.forEach(orderedItem => {
                     const productIndex = products.findIndex(prod => prod.id === orderedItem.ProId);
                     if (productIndex !== -1) {
                         products[productIndex].quantity += orderedItem.qty;
                         if (products[productIndex].quantity < 0) {
-                            products[productIndex].quantity = 0; 
+                            products[productIndex].quantity = 0;
                         }
                     }
                 });
@@ -165,7 +165,7 @@ async function deleteOrder(orderId) {
 async function showOrderProducts(orderId) {
     try {
         const orderProducts = OrdersProtArr.filter(item => item.OrderId == orderId);
-        
+
         if (!orderProducts || orderProducts.length === 0) {
             await Swal.fire({
                 title: "No Products!",
@@ -174,14 +174,14 @@ async function showOrderProducts(orderId) {
             });
             return;
         }
-        
+
         modalBody.innerHTML = '';
         let totalOrderPrice = 0;
-        
+
         orderProducts.forEach((product) => {
             const productTotal = product.EndPrice * product.qty;
             totalOrderPrice += productTotal;
-            
+
             modalBody.innerHTML += `
                 <tr>
                     <td>
@@ -195,17 +195,17 @@ async function showOrderProducts(orderId) {
                     <td>${productTotal.toFixed(2)} EGP</td>
                 </tr>`;
         });
-        
+
         modalBody.innerHTML += `
             <tr class="table-active">
                 <td colspan="4" class="text-end fw-bold">Total:</td>
                 <td class="fw-bold">${totalOrderPrice.toFixed(2)} EGP</td>
             </tr>`;
-        
+
         const modalElement = document.getElementById('orderProductsModal');
         const modal = new bootstrap.Modal(modalElement);
         modal.show();
-        
+
     } catch (error) {
         console.error("Error showing order products:", error);
         await Swal.fire({
@@ -218,7 +218,7 @@ async function showOrderProducts(orderId) {
 
 async function changeOrderState(state, id) {
     const orderIndex = OrderstArr.findIndex(order => order.orderId === id);
-    
+
     if (orderIndex !== -1) {
         const { isConfirmed } = await Swal.fire({
             title: 'Are you sure?',
@@ -235,7 +235,7 @@ async function changeOrderState(state, id) {
             OrderstArr[orderIndex].state = state;
             await indexedDB.setItem('Orders', OrderstArr);
             await initialize();
-            
+
             Swal.fire(
                 'Updated!',
                 "Order state has been updated.",
@@ -247,7 +247,7 @@ async function changeOrderState(state, id) {
 }
 
 // ====================== Event Listeners ======================
-document.addEventListener('click', async function(e) {
+document.addEventListener('click', async function (e) {
     if (e.target.closest('.DEleteOrder')) {
         const btn = e.target.closest('.DEleteOrder');
         const orderId = btn.dataset.orderid;
@@ -259,13 +259,13 @@ document.addEventListener('click', async function(e) {
         const orderId = btn.dataset.orderid;
         await showOrderProducts(orderId);
     }
-    
+
     if (e.target.closest('.DeleteUserBtn')) {
         const btn = e.target.closest('.DeleteUserBtn');
         const userDelId = Number(btn.dataset.userid);
         deleteUser(userDelId);
     }
-    
+
     if (e.target.closest('.ChangeUserRoleBtn')) {
         const btn = e.target.closest('.ChangeUserRoleBtn');
         changeUserId = Number(btn.dataset.userid);
@@ -288,12 +288,12 @@ document.addEventListener('click', async function(e) {
 
     if (e.target.closest('.ChangeOrderStateBtnTable')) {
         const btn = e.target.closest('.ChangeOrderStateBtnTable');
-        ChangeOrderId = Number(btn.dataset.orderid);   
+        ChangeOrderId = Number(btn.dataset.orderid);
     }
 
     if (e.target.id === 'ChangeOrderStateBtn') {
         if (stateInput.value) {
-            if (stateInput.value === 'Pending' || stateInput.value === 'inProgress' || 
+            if (stateInput.value === 'Pending' || stateInput.value === 'inProgress' ||
                 stateInput.value === 'Done' || stateInput.value === 'Cancel') {
                 changeOrderState(stateInput.value, ChangeOrderId);
                 $('#exampleModalToggle3').modal('hide');
@@ -313,6 +313,123 @@ document.addEventListener('click', async function(e) {
         deleteProduct(ProId);
     }
 });
-    initialize();
+initialize();
 
 // ====================== Initialize Application ======================
+
+// ====================== search in product table ======================
+$(document).ready(function () {
+
+    $("#searchInput").on("keyup", function () {
+        let value = $(this).val().toLowerCase();
+        let rowCount = 0;
+
+        $("#ordersTable tbody tr").each(function () {
+            let productName = $(this).find("td:eq(1)").text().toLowerCase();
+            if (productName.indexOf(value) > -1) {
+                $(this).show();
+                rowCount++;
+            } else {
+                $(this).hide();
+            }
+        });
+
+        if (rowCount === 0) {
+            $(".no-results").show();
+        } else {
+            $(".no-results").hide();
+        }
+    });
+
+});
+
+ // ====================== sort in product table ======================
+document.addEventListener('DOMContentLoaded', function() {
+    const sortIcons = document.querySelectorAll('.sort-icon');
+    let currentSort = {
+        column: null,
+        direction: 'asc' // 'asc' or 'desc'
+    };
+    
+    // Add click event to each sort icon
+    sortIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+            const column = this.getAttribute('data-column');
+            
+            // Toggle sort direction if clicking the same column
+            if (currentSort.column === column) {
+                currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+            } else {
+                currentSort.column = column;
+                currentSort.direction = 'asc';
+            }
+            
+            // Update UI to show current sort state
+            updateSortIcons(column, currentSort.direction);
+            
+            // Sort the table
+            sortTable(column, currentSort.direction);
+        });
+    });
+    
+    function updateSortIcons(activeColumn, direction) {
+        sortIcons.forEach(icon => {
+            const column = icon.getAttribute('data-column');
+            if (column === activeColumn) {
+                // Update active sort icon
+                icon.classList.remove('fa-sort');
+                icon.classList.add(direction === 'asc' ? 'fa-sort-up' : 'fa-sort-down');
+            } else {
+                // Reset other icons
+                icon.classList.remove('fa-sort-up', 'fa-sort-down');
+                icon.classList.add('fa-sort');
+            }
+        });
+    }
+    
+    function sortTable(column, direction) {
+        const table = document.getElementById('ordersTable');
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        
+        rows.sort((a, b) => {
+            const aValue = getCellValue(a, column);
+            const bValue = getCellValue(b, column);
+            
+            // Handle numeric sorting for quantity and price
+            if (column === 'quantity' || column === 'price') {
+                const numA = parseFloat(aValue.replace(/[^0-9.-]/g, ''));
+                const numB = parseFloat(bValue.replace(/[^0-9.-]/g, ''));
+                return direction === 'asc' ? numA - numB : numB - numA;
+            }
+            
+            // Default text sorting
+            if (aValue < bValue) return direction === 'asc' ? -1 : 1;
+            if (aValue > bValue) return direction === 'asc' ? 1 : -1;
+            return 0;
+        });
+        
+        // Remove all existing rows
+        while (tbody.firstChild) {
+            tbody.removeChild(tbody.firstChild);
+        }
+        
+        // Re-add the sorted rows
+        rows.forEach(row => tbody.appendChild(row));
+    }
+    
+    function getCellValue(row, column) {
+        // This assumes your table cells are in a specific order
+        // You may need to adjust the indexes based on your actual table structure
+        const cells = row.querySelectorAll('td');
+        switch (column) {
+            case 'name': return cells[1].textContent.trim();
+            case 'category': return cells[2].textContent.trim();
+            case 'subcategory': return cells[3].textContent.trim();
+            case 'quantity': return cells[4].textContent.trim();
+            case 'price': return cells[5].textContent.trim();
+            case 'process': return cells[6].textContent.trim();
+            default: return '';
+        }
+    }
+});
