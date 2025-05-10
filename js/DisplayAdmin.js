@@ -15,6 +15,8 @@ let OrderstArr = [];
 let OrdersProtArr = [];
 let UsersArr = [];
 let CommentsArr = [];
+let staticsChartArr=[]
+let SalesChartArr=[]
 var userId;
 let changeUserId;
 let ChangeOrderId;
@@ -38,13 +40,38 @@ async function initialize() {
     
     if (OrdersData) {
         OrderstArr = OrdersData;
-        console.log(OrderstArr);
-        
-TotalsalesDash.innerText=OrderstArr.reduce((sum, order) => sum + order.TotalPrice, 0);
-NumOfOrdersDash.innerText=OrderstArr.length;
-
-        DisplayOrders();
+ DisplayOrders();
         DisplayLastOrders();
+const monthlySales = [1, 2, 3, 4, 5, 6,7,8,9,10,11,12].map(month => {
+    return OrderstArr
+        .filter(order => 
+            order.state === 'Done' && 
+            new Date(order.Date).getMonth() + 1 === month
+        )
+        .reduce((sum, order) => sum + order.TotalPrice, 0);
+});
+const monthlySalesAll = [1, 2, 3, 4, 5, 6,7,8,9,10,11,12].map(month => {
+    return OrderstArr
+        .filter(order => 
+            new Date(order.Date).getMonth() + 1 === month
+        )
+        .reduce((sum, order) => sum + order.TotalPrice, 0);
+});
+DisplayStaticsCharts(monthlySales,monthlySalesAll);
+
+
+       
+TotalsalesDash.innerText=OrderstArr.filter(x=>x.state=='Done').reduce((sum, order) => sum + order.TotalPrice, 0);
+NumOfOrdersDash.innerText=OrderstArr.length;
+    
+let pendingCount=OrderstArr.filter(x=>x.state=='Pending').length;
+let CancelCount=OrderstArr.filter(x=>x.state=='Cancel').length;
+let CompleteCount=OrderstArr.filter(x=>x.state=='Done').length;
+let inProgressCount=OrderstArr.filter(x=>x.state=='inProgress').length;
+
+SalesChartArr=[CompleteCount,pendingCount,CancelCount,inProgressCount];
+
+DisplaySaleCharts(SalesChartArr)
     }
   
     
@@ -369,16 +396,14 @@ else{
 
     if (e.target.closest('.ChangeOrderStateBtnTable')) {
          const btn = e.target.closest('.ChangeOrderStateBtnTable');
-         ChangeOrderId= Number(btn.dataset.orderid);
-         console.log(btn);
-         
+         ChangeOrderId= Number(btn.dataset.orderid);   
     }
 
 
     if (e.target.id === 'ChangeOrderStateBtn') {
      if (stateInput.value!='') {
         
-if (stateInput.value=='Pending'||stateInput.value=='inProgress'||stateInput.value=='Done') {
+if (stateInput.value=='Pending'||stateInput.value=='inProgress'||stateInput.value=='Done'||stateInput.value=='Cancel') {
     changeOrderState(stateInput.value,ChangeOrderId)
     $('#exampleModalToggle3').modal('hide');
 }
@@ -404,6 +429,7 @@ else{
      const  ProId=btn.dataset.proid;
         deleteProduct(ProId);
    }
+   
 
 });
 
@@ -536,10 +562,9 @@ async function changeUserRole(role) {
 
 // Change Order State 
 async function changeOrderState(state,id) {
-    console.log(state,id);
+   
     
     const orderIndex = OrderstArr.findIndex(order => order.orderId === id);
-    console.log(orderIndex);
     
     if (orderIndex !== -1) {
         const { isConfirmed } = await Swal.fire({
@@ -563,9 +588,10 @@ async function changeOrderState(state,id) {
                 'success'
             );
             stateInput.value=''
-          
+       
         }
-    }
+    }  
+     initialize();
 }
 
 
@@ -664,7 +690,73 @@ document.getElementById("searchInput2").addEventListener('input', function () {
         });
     });
 
+function DisplayStaticsCharts(arr, arr2) {
+  const barCtx = document.getElementById("barChart").getContext("2d");
+  new Chart(barCtx, {
+    type: "bar",
+    data: {
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      datasets: [
+        {
+          label: "Sales",
+          backgroundColor: "#007bff",
+          data: arr,
+        },
+        {
+          label: "Orders",
+          backgroundColor: "#fd7e14",
+          data: arr2,
+        },
+      ],
+    },
+    options: { 
+      responsive: true, 
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          labels: {
+            usePointStyle: true,    // يجعل شكل الـ legend دائريًا
+            pointStyle: 'circle',   // يحدد أن الشكل دائري بالضبط
+            padding: 20,            // يضيف مسافة حول الـ label
+            font: {
+              size: 12             // حجم الخط
+            }
+          }
+        }
+      }
+    },
+  });
+}
 
-
-
-
+function DisplaySaleCharts(arr) {
+  // Pie Chart
+  const pieCtx = document.getElementById("pieChart").getContext("2d");
+  new Chart(pieCtx, {
+    type: "doughnut",
+    data: {
+      labels: ["Completed", "Pending", "Cancelled", "inProgress"],
+      datasets: [
+        {
+          backgroundColor: ["#28A745", "#F3C623", "#FF2929", "gray"],
+          data: arr,
+        },
+      ],
+    },
+    options: { 
+      responsive: true, 
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          labels: {
+            usePointStyle: true, // This makes the legend use point style (circles)
+            pointStyle: 'circle', // Explicitly set to circle
+            padding: 20, // Add some padding
+            font: {
+              size: 12 // Adjust font size if needed
+            }
+          }
+        }
+      }
+    },
+  });
+}

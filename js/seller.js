@@ -83,7 +83,7 @@ function addProduct() {
     id: generateProductId(),
     name: $('#productName').val(),
     real_price: Number($('#realPrice').val()),
-    Discount: $('#productDiscount').val(),
+    Discount:Number( $('#productDiscount').val()),
     EndPrice: calculateEndPrice(),
     category: $('#productCategory').val(),
     description: $('#productDescription').val(),
@@ -92,7 +92,7 @@ function addProduct() {
     subcategory: $('#productSubCategory').val(),
     ratingsAverage: $('#ratingAverage').val(),
     sellerName: userName,
-    quantity: $('#productQuantity').val(),
+    quantity: Number($('#productQuantity').val()),
     Colors: productColors,
     Colorscode: productColors,
   };
