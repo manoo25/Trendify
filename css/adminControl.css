@@ -458,3 +458,6 @@ table thead th {
 .sort-icon:hover {
     color: #4e73df;
 }
+#searchInput, #searchInput2{
+    padding-left: 35px;
+}
