@@ -44,6 +44,18 @@ const TableOrdersDis = document.getElementById('TableOrdersDis');
 
 
 
+function loadProductsFromLocalStorage() {
+  const productsData = localStorage.getItem('Products');
+  return productsData ? JSON.parse(productsData) : [];
+}
+
+
+function saveProductsToLocalStorage(products) {
+  localStorage.setItem('Products', JSON.stringify(products));
+}
+
+
+
 // Display Whish list 
 function DisplayWhishlist() {
   if (!WhishlistContainer) return;
@@ -203,7 +215,23 @@ async function deleteOrder(orderId) {
             OrderstArr = OrderstArr.filter(order => parseInt(order.orderId) !== orderId);
             
             if (OrdersProtArr && OrdersProtArr.length) {
+                  let  OrdersPlusProtArr = OrdersProtArr.filter(item => parseInt(item.OrderId)== orderId);
+             
                 OrdersProtArr = OrdersProtArr.filter(item => parseInt(item.OrderId) !== orderId);
+          
+                
+    const products = loadProductsFromLocalStorage();
+
+      OrdersPlusProtArr.forEach(orderedItem => {
+        const productIndex = products.findIndex(prod => prod.id === orderedItem.ProId);
+        if (productIndex !== -1) {
+          products[productIndex].quantity += orderedItem.qty;
+          if (products[productIndex].quantity < 0) {
+            products[productIndex].quantity = 0; 
+          }
+        }
+      });
+      saveProductsToLocalStorage(products);
             }
 
 

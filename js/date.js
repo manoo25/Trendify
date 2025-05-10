@@ -8,7 +8,7 @@ const day = String(date.getDate()).padStart(2, '0'); // يوم مع صفر أم�
 const month = date.toLocaleString('en-US', { month: 'short' }); // اسم الشهر المختصر (May)
 const year = date.getFullYear(); // السنة
 
-const formattedDate = `${day} ${month}, ${year}`;
+const formattedDate = `${day-2} ${month}, ${year} - ${day} ${month}, ${year}`;
 return formattedDate;
 }
 export function DateDay() {

@@ -52,9 +52,43 @@ const SubBtn=document.getElementById('SubBtn');
             }
             CommentsArr.push(comentObj);
             localStorage.setItem('Comments',JSON.stringify(CommentsArr))
+            Swal.fire({
+        icon: 'success',
+        title: "Send Message",
+        text:"Your Message Send Successfully",
+        showConfirmButton: false,
+        timer: 1600,
+        toast: true,
+        position: 'top-end',
+        position: 'top-end',
+        background: 'var(--card-color)', 
+        color: 'var(--main-color)',      
+        iconColor: 'var(--main-color)',  
+        customClass: {
+          popup: 'custom-swal-popup',
+          title: 'custom-swal-title',
+          content: 'custom-swal-content'
+        }
+      });
         }
         else{
-            window.location.replace('./register&login.html')
+ Swal.fire({
+        icon: 'error',
+        title: "User Login !",
+        text: "You shold To be login !!",
+        showConfirmButton: false,
+        timer: 1600,
+        toast: true,
+        position: 'top-end',
+        background: 'var(--card-color)',
+        color: 'var(--error)', 
+        iconColor: 'var(--error)',
+        customClass: {
+          popup: 'custom-swal-popup',
+          title: 'custom-swal-title',
+          content: 'custom-swal-content'
+        }
+      });
         }
     }
 

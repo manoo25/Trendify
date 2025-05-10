@@ -1,5 +1,5 @@
 import indexedDB from './indexedDb.js';
-import { successAlert, RemoveAlert, FailAlert } from './date.js'; 
+// import { successAlert, RemoveAlert, FailAlert } from './date.js'; 
 const TableOrdersDis = document.getElementById('TableOrdersDis');
 const OrdersContainer = document.getElementById('tOrdersContainer');
 const LastOrdersChart = document.getElementById('LastOrdersChart');
@@ -243,7 +243,15 @@ if(user.img){
 }
 
 
+function loadProductsFromLocalStorage() {
+  const productsData = localStorage.getItem('Products');
+  return productsData ? JSON.parse(productsData) : [];
+}
 
+
+function saveProductsToLocalStorage(products) {
+  localStorage.setItem('Products', JSON.stringify(products));
+}
 
 
 async function deleteOrder(orderId) {
@@ -257,34 +265,49 @@ async function deleteOrder(orderId) {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!",
+            
         });
 
+
         if (result.isConfirmed) {
+
             OrderstArr = OrderstArr.filter(order => parseInt(order.orderId) !== orderId);
             
             if (OrdersProtArr && OrdersProtArr.length) {
+                  let  OrdersPlusProtArr = OrdersProtArr.filter(item => parseInt(item.OrderId)== orderId);
+             
                 OrdersProtArr = OrdersProtArr.filter(item => parseInt(item.OrderId) !== orderId);
+          
+                
+    const products = loadProductsFromLocalStorage();
+
+      OrdersPlusProtArr.forEach(orderedItem => {
+        const productIndex = products.findIndex(prod => prod.id === orderedItem.ProId);
+        if (productIndex !== -1) {
+          products[productIndex].quantity += orderedItem.qty;
+          if (products[productIndex].quantity < 0) {
+            products[productIndex].quantity = 0; 
+          }
+        }
+      });
+      saveProductsToLocalStorage(products);
             }
+
 
             await indexedDB.setItem('Orders', OrderstArr);
             if (OrdersProtArr) {
                 await indexedDB.setItem('OrdersProducts', OrdersProtArr);
             }
 
-            await initialize();
-
             await Swal.fire({
                 title: "Deleted!",
                 text: "Your order has been deleted.",
                 icon: "success"
             });
+          await initialize(); 
         }
-    } catch (error) {
-        await Swal.fire({
-            title: "Error!",
-            text: "Failed to delete the order.",
-            icon: "error"
-        });
+    } catch {
+      
     }
 }
 
@@ -487,7 +510,7 @@ if(userImg){
 
                                <td>
                     <div class="d-flex align-items-center justify-content-center gap-2">
-                        <button data-userid="${user.userId}" class="btn btn-sm btn-new btn-new1 ChangeUserRoleBtn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">
+                        <button data-userid="${user.userId}" class="btn btn-sm btn-new btn-new3 ChangeUserRoleBtn" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">
                            <i class="fa-solid fa-pen-to-square"></i>
                         </button>
                    <button data-userid="${user.userId}" class="btn btn-sm btn-new btn-new2 delete-btn DeleteUserBtn">
@@ -610,6 +633,7 @@ function displayProduct() {
           <td>${product.name.split(" ",2).join(" ")}</td>
           <td>${product.category}</td>
           <td>${product.subcategory}</td>
+          <td>${product.quantity}</td>
           <td>${product.EndPrice}</td>
           <td>
            <div class="d-flex gap-2 justify-content-center">
@@ -760,3 +784,53 @@ function DisplaySaleCharts(arr) {
     },
   });
 }
+//change image
+const imageInput = document.getElementById('imageUpload');
+const profileImage = document.getElementById('profileImage');
+// Get users from localStorage
+let users = JSON.parse(localStorage.getItem('usersData'));
+var userId;
+
+if (users) { 
+    // Get id from session storage
+    userId = JSON.parse(sessionStorage.getItem('LogedUser')).userId;
+}
+
+function displyProfileImg(){
+    const user = users.find(user => user.userId === userId);
+    if (user) {
+        profileImage.src = user.img;
+    }
+}
+displyProfileImg();
+imageInput.addEventListener('change', function () {
+    const file = this.files[0];
+    if (file) {
+        const reader = new FileReader();
+
+        reader.addEventListener('load', function () {
+            console.log('reader updated');
+            profileImage.src = reader.result;
+            // Find index of current user in localStorage
+            const userIndex = users.findIndex(user => user.userId === userId);
+            if (userIndex !== -1) {
+                let reply = confirm('Are you sure you want to update your image?');
+
+                if (reply) {
+
+                    users[userIndex].img = profileImage.src; // Update image in localStorage
+                    localStorage.setItem('usersData', JSON.stringify(users)); // Save back to localStorage
+                    console.log( users[userIndex].img);
+                    displyProfileImg();
+                }
+
+            }
+            
+
+        });
+
+        reader.readAsDataURL(file);
+    }
+});
+
+$('#userName').text(JSON.parse(sessionStorage.getItem('LogedUser')).name);

@@ -90,41 +90,6 @@ document.addEventListener('DOMContentLoaded',function (){
 });
 
 
-// $('#LogOutandClear').click( function() {
-//   sessionStorage.removeItem('LogedUser');
-//   checkLogedUser();
-// })
-
-// $('#ViewCPanelId').click(function(){
-//   const role=sessionStorage.getItem('userRole');
-//   console.log(role);
-  
-//   switch (role) {
-
-//     case 'customer':window.location=('./UserControl.html')
-//       break;
-
-//     case 'seller':window.location=('./SellerControl.html')
-//       break;
-//     case 'admin':window.location=('./AdminControl.html')
-//       break;
-//   }
-  
-// })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Display Publish comments
 const CommentsContainer=document.getElementById('CommentsContainer');
 let  PublishCommentsArr=[];

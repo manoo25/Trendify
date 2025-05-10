@@ -41,12 +41,25 @@
    
     
 
-    <!-- Sidebar -->
+   <!-- Sidebar -->
    <nav style="max-width: 60%;"  class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
    
-    <div class="sidebar-header mt-4  ">
-            <h3 class=" pe-4 pt-2 fw-bolder">Admin Panel</h3>
-        </div>
+      <div class="sidebar-header d-flex flex-column justify-content-center align-items-center pt-5 ">
+     <div class="mb-3 position-relative d-inline-block">
+         <img id="profileImage" src="./imgs/beautiful-woman.jpg" alt="user" class=" rounded-circle"
+             style="width: 80px; height: 80px;">
+         <label id="imageUploadLabel" for="imageUpload" class="  position-absolute rounded-circle p-1">
+             <i class="fa-solid fa-pen p-1"></i></i>
+         </label>
+         <input type="file" id="imageUpload" accept="image/*" class="d-none" />
+     </div>
+
+
+     <h6 id="userName" class="px-2"> </h6>
+
+
+ </div>
+        <hr>
         
         <ul class="list-unstyled components">
          
@@ -65,6 +78,9 @@
             </li>
             <li>
                 <a onclick="showDataTbl('CommentsId');displayComments()"  href="#"><i class="fas fa-comment initForm"></i>View Comments</a>
+            </li>
+             <li>
+                <a  href="../index.html"><i class="fa-solid fa-house"></i>View website</a>
             </li>
           
           
@@ -284,6 +300,7 @@
                                 <th> Name </th>
                                 <th> Category </th>
                                 <th> Sub Category </th>
+                                <th> Quantity </th>
                                 <th> Price </th>
                                 <th> Process </th>
                             </tr>
@@ -342,10 +359,10 @@
             </div>
             <div id="CommentsContainerAdmin" class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover  " id="ordersTable" width="100%" cellspacing="0">
+                    <table class="table table-striped  " id="ordersTable" width="100%" cellspacing="0">
                         <thead  >
                             <tr>
-                                <th> Name </th>
+                                <th class="text-start ps3"> User Profile </th>
                                 <th> Phone </th>
                                 <th> Comment </th>
                                 <th> Publish </th>
