@@ -285,10 +285,12 @@
 
         <!-- Product Table -->
         <div id="ProductId" class="DataTable card shadow mb-4 d-none">
-          <input type="text" id="searchInput2" class="form-control mb-3" placeholder="search with name and sub category">
-            <div class="card-header py-3 ">
-                <h6 class="m-0 font-weight-bold  text-center">All Products</h6>
-               
+           <div class="card-header py-3 ">
+                <h6 class="m-0 font-weight-bold text-center fs-4">All Products</h6>
+                <div class="search-container mt-3">
+                    <span class="search-icon "><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" id="searchInput2" class="form-control " placeholder="Search by product name or sub category...">
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -296,12 +298,12 @@
                         <thead  >
                             <tr>
                                 <th style="width:200px ;"> Image </th>
-                                <th> Name </th>
-                                <th> Category </th>
-                                <th> Sub Category </th>
-                                <th> Quantity </th>
-                                <th> Price </th>
-                                <th> Process </th>
+                                <th> Name <i class="fa-solid fa-sort ms-3 sort-icon" data-column="name"></i></th>
+                                <th> Category <i class="fa-solid fa-sort ms-3 sort-icon" data-column="category"></i> </th>
+                                <th> Sub Category <i class="fa-solid fa-sort ms-3 sort-icon" data-column="subcategory"></i></th>
+                                <th> Quantity <i class="fa-solid fa-sort ms-3 sort-icon" data-column="quantity"></i></th>
+                                <th> Price <i class="fa-solid fa-sort ms-3 sort-icon" data-column="price"></i></th>
+                                <th> Process</i> </th>
                             </tr>
                         </thead>
                         <tbody id="ProductContainerAdmin">
@@ -311,10 +313,11 @@
                         </tbody>
                     </table>
                     
+                </div> 
                 
-                </div>
-            </div>
+            </div>  
         </div>
+        <!--end  Product Table -->
         <!-- Orders Table -->
      <div id="OrdersId" class="DataTable card shadow mb-4 d-none">
         <div class="card-header py-3 ">
@@ -343,9 +346,10 @@
                        
                     </tbody>
                 </table>
+                 
                 
             
-            </div>
+            </div> 
         </div>
     </div>
 

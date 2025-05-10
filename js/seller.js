@@ -47,6 +47,7 @@ function DisplayOrders() {
     if (!OrdersContainer) return;
 
     OrdersContainer.innerHTML = '';
+    
 
     if (OrderstArr.length === 0) {
         TableOrdersDis.innerHTML = `

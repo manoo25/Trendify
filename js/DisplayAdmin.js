@@ -784,3 +784,76 @@ function DisplaySaleCharts(arr) {
     },
   });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const sortIcons = document.querySelectorAll('.sort-icon');
+    
+    sortIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+            const column = this.getAttribute('data-column');
+            const isAscending = !this.classList.contains('fa-sort-up');
+            
+            // Reset all sort icons to default state
+            sortIcons.forEach(i => {
+                i.classList.remove('fa-sort-up', 'fa-sort-down');
+                i.classList.add('fa-sort');
+            });
+            
+            // Set the current icon to up or down
+            this.classList.remove('fa-sort');
+            this.classList.add(isAscending ? 'fa-sort-up' : 'fa-sort-down');
+            
+            // Sort the table
+            sortTable(column, isAscending);
+        });
+    });
+    
+    function sortTable(column, isAscending) {
+        const table = document.getElementById('ordersTable');
+        const tbody = document.getElementById('ProductContainerAdmin');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        
+        rows.sort((a, b) => {
+            let aValue, bValue;
+            
+            // Get the cell values based on column
+            switch(column) {
+                case 'name':
+                    aValue = a.cells[1].textContent.trim();
+                    bValue = b.cells[1].textContent.trim();
+                    return isAscending ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+                
+                case 'category':
+                    aValue = a.cells[2].textContent.trim();
+                    bValue = b.cells[2].textContent.trim();
+                    return isAscending ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+                
+                case 'subcategory':
+                    aValue = a.cells[3].textContent.trim();
+                    bValue = b.cells[3].textContent.trim();
+                    return isAscending ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+                
+                case 'quantity':
+                    aValue = parseInt(a.cells[4].textContent.trim());
+                    bValue = parseInt(b.cells[4].textContent.trim());
+                    return isAscending ? aValue - bValue : bValue - aValue;
+                
+                case 'price':
+                    aValue = parseFloat(a.cells[5].textContent.trim().replace(/[^\d.]/g, ''));
+                    bValue = parseFloat(b.cells[5].textContent.trim().replace(/[^\d.]/g, ''));
+                    return isAscending ? aValue - bValue : bValue - aValue;
+                
+                default:
+                    return 0;
+            }
+        });
+        
+        // Remove all existing rows
+        while (tbody.firstChild) {
+            tbody.removeChild(tbody.firstChild);
+        }
+        
+        // Add the sorted rows
+        rows.forEach(row => tbody.appendChild(row));
+    }
+});

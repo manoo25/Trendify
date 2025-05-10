@@ -441,7 +441,7 @@ table thead th {
     pointer-events: none;
 }
 
-#searchInput {
+#searchInput, #searchInput2{
     padding-left: 35px;
 }
 
