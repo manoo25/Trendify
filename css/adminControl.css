@@ -173,8 +173,8 @@ body {
 
 /*  added style*/
 table tr td img {
-    width: 150px !important; 
-    height: 100px;
+    width: 100px !important; 
+    height: 80px;
     border-radius: 10px;
 }
 

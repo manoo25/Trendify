@@ -63,20 +63,20 @@
         <ul class="list-unstyled components">
          
             <li class="active">
-                <a href="#" onclick="showDataTbl('DashboardId')"><i class="fa-solid fa-table-columns"></i> Dash Board</a>
+                <a href="./AdminControl.html" onclick="showDataTbl('DashboardId')"><i class="fas fa-house initForm"></i> Dash Board</a>
             </li>
             <li >
-                <a  onclick="showDataTbl('ProductId')" href="#"><i class="fa-solid fa-cart-flatbed"></i>View Products</a>
+                <a  onclick="showDataTbl('ProductId')" href="#"><i class="fas fa-shirt  initForm"></i>View Products</a>
             </li>
              
             <li>
-                <a onclick="showDataTbl('OrdersId')" href="#"><i class="fas fa-shopping-cart"></i>View Orders</a>
+                <a onclick="showDataTbl('OrdersId')" href="#"><i class="fas fa-shopping-cart initForm"></i>View Orders</a>
             </li>
             <li>
-                <a onclick="showDataTbl('UserId')"  href="#"><i class="fas fa-users"></i>View Users</a>
+                <a onclick="showDataTbl('UserId')"  href="#"><i class="fas fa-users initForm"></i>View Users</a>
             </li>
             <li>
-                <a onclick="showDataTbl('CommentsId');displayComments()"  href="#"><i class="fas fa-comment"></i>View Comments</a>
+                <a onclick="showDataTbl('CommentsId');displayComments()"  href="#"><i class="fas fa-comment initForm"></i>View Comments</a>
             </li>
              <li>
                 <a  href="../index.html"><i class="fa-solid fa-house"></i>View website</a>
@@ -263,7 +263,7 @@
                     <table   class="table table-striped   " id="ordersTable" width="100%" cellspacing="0">
                         <thead  >
                             <tr>
-                                <th> Name </th>
+                                <th class="text-start ps3"> User account </th>
                                 <th> Phone </th>
                                 <th> Role </th>
                                 <th> Process </th>
@@ -317,7 +317,7 @@
         <!-- Orders Table -->
      <div id="OrdersId" class="DataTable card shadow mb-4 d-none">
         <div class="card-header py-3 ">
-            <h6  class="m-0 font-weight-bold text-center ">All Orders</h6>
+            <h6  class="m-0 font-weight-bold text-center  ">All Orders</h6>
            
         </div>
         <div class="card-body">
@@ -325,7 +325,7 @@
                 <table   class="table table-striped   " id="ordersTable" width="100%" cellspacing="0">
                     <thead  >
                         <tr >
-                            <th> Name </th>
+                            <th class="text-start ps3">User account </th>
                             <th> Phone </th>
                             <th> Address </th>
                             <th> Note </th>
@@ -537,7 +537,6 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./js/admin.js"></script>
     <script type="module" src="./js/DisplayAdmin.js"></script>
-    <script  src="./js/dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module">
         import { accessPage } from './js/auth.js'; 
