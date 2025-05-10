@@ -43,11 +43,11 @@
                 <label id="imageUploadLabel" for="imageUpload" class="  position-absolute rounded-circle p-1">
                     <i class="fa-solid fa-pen p-1"></i></i>
                 </label>
-                <input type="file" accept=".jpg,.png,.webp,.jpeg" id="imageUpload" accept="image/*" class="d-none" />
+                <input type="file" id="imageUpload" accept="image/*" class="d-none" />
             </div>
 
 
-            <h6 class="px-2">Hi, <span id="userName" class="fw-bold">Samar</span></h6>
+            <h6 id="userName" class="px-2"></h6>
 
 
         </div>
@@ -56,16 +56,21 @@
 
             <li>
                 <a data-bs-toggle="modal" data-bs-target="#personalInfoModal" href="#"><i
-                        class="fas fa-shopping-cart"></i>Add Product</a>
+                        class="fa-solid fa-cart-arrow-down"></i></i>Add Product</a>
             </li>
             <li class="active">
-                <a onclick="showDataTbl('ProductId')" href="#"><i class="fas fa-shirt "></i>View Products</a>
+                <a onclick="showDataTbl('ProductId')" href="#"><i class="fa-solid fa-cart-flatbed"></i>View Products</a>
             </li>
 
             <li>
                 <a onclick="showDataTbl('OrdersId')" href="#"><i class="fas fa-shopping-cart"></i>View Orders</a>
             </li>
-
+            <li>
+                <a href="../index.html"><i class="fa-solid fa-house"></i>View website</a>
+            </li>
+             <li>
+                <a id ="logOut" href="../register&login.html"> <i class="fa-solid fa-arrow-right-from-bracket"></i>Log Out</a>
+            </li>
 
 
         </ul>
@@ -85,144 +90,132 @@
         </header>
         <!-- End head btns  -->
 
-       
-<div class="modal fade" id="personalInfoModal" tabindex="-1" aria-labelledby="personalInfoModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-lg">
-                        <div class="modal-content p-3 rounded-4 text-center">
-                            <div class="modal-header border-0 title">
-                                <h1 class="modal-title w-100 text-center fw-bold" id="personalInfoModalLabel">
-                                    Add New Product
-                                </h1>
+        <!--- Add Product Modal -->
+        <div class="modal fade" id="personalInfoModal" tabindex="-1" aria-labelledby="personalInfoModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content p-3 rounded-4 text-center">
+                    <div class="modal-header border-0 title">
+                        <h1 class="modal-title w-100 text-center fw-bold" id="personalInfoModalLabel">
+                            Add New Product
+                        </h1>
 
-                                <button type="button"
-                                    class="btn-close position-absolute end-0 me-3 border rounded-circle "
-                                    data-bs-dismiss="modal" aria-label="Close"
-                                    style="background-color: var(--main-color);"></button>
-                            </div>
-                            <div class="modal-body text-center">
-
-
-                                <!-- Form -->
-                                <form id="productForm" class="text-start">
-                                    <div class="row mb-3 mt-1">
-                                        <div class="mb-3 col-md-6">
-                                            <label class="form-label modelText" for="productName">Product Name</label>
-                                            <input type="text" id="productName" class="form-control" required />
-                                        </div>
-                                        <div class="mb-3 col-md-6">
-                                            <label class="form-label modelText" for="realPrice">Product Real
-                                                Price</label>
-                                            <input type="number" id="realPrice" class="form-control" required />
-                                        </div>
-                                        <div class="mb-3 col-md-6 ">
-                                            <label class="form-label modelText" for="productCategory">Product
-                                                Category</label>
-                                            <select id="productCategory" class="form-control" required>
-                                                <option value="" disabled selected hidden>select category</option>
-                                                <option value="Women">Women</option>
-                                                <option value="Men">Men</option>
-                                                <option value="Kids">Kids</option>
-
-                                            </select>
-                                        </div>
-
-                                        <div class="mb-3 col-md-6">
-                                            <label class="form-label modelText" for="productDiscount">Discount
-                                                Available</label>
-                                            <input type="number" id="productDiscount" class="form-control" required />
-                                        </div>
-                                        <div class="mb-3 col-md-6">
-                                            <label class="form-label modelText" for="productSubCategory">Product Sub
-                                                Category</label>
-                                            <select id="productSubCategory" class="form-control" required>
-                                                <option value="" disabled selected hidden>select sub category</option>
-                                                <option value="Shoeses">Shoeses</option>
-                                                <option value="T-Shirts">Tshirts</option>
-                                                <option value="Jackets">Jackets</option>
-                                                <option value="Jeans">Jeans</option>
-                                                <option value="Dresses">Dresses</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="mb-3 col-md-6">
-
-                                            <label for="myRange" class="form-label modelText" for="ratingAverage">Rating
-                                                Average : <span id="rangeValue" class="range-value">4.0</span></label>
-                                            <input type="range" class="form-range" min="0.0" max="5.0" step="0.1"
-                                                value="4.0" id="ratingAverage" aria-label="Adjustable rating Average"
-                                                required>
-
-                                        </div>
-                                        <div class="mb-3 col-md-6">
-                                            <label class="form-label modelText"
-                                                for="productDescription">Description</label>
-                                            <textarea type="text" id="productDescription" class="form-control" rows="4"
-                                                required></textarea>
-                                        </div>
-                                        <div class="mb-3 col-md-6">
-                                            <label class="form-label modelText" for="productQuantity">Quantity</label>
-                                            <input type="number" id="productQuantity" class="form-control" required />
-                                        </div>
-                                        <div class="mb-3 col-md-6">
-                                            <label class="form-label modelText" for="productImageCover">Image Cover of
-                                                Product</label>
-                                            <input type="file" accept=".jpg,.png,.webp,.jpeg" id="productImageCover" class="form-control" required />
-                                        </div>
-
-                                        <div class="mb-3 col-md-6">
-                                            <label for="imagesInput" class="form-label modelText">Upload Images</label>
-                                            <input type="file" accept=".jpg,.png,.webp,.jpeg" class="form-control" id="imageInput" multiple
-                                                aria-label="Upload multiple images">
-                                        </div>
-                                        <div class="mb-3 col-md-6">
-                                            <label class="form-label modelText" for="productColor">Selected Color of
-                                                Product</label>
-                                            <div class=" d-flex color-swatches mb-3 col-md-6 ">
-                                                <div class="colored" data-color="red"></div>
-                                                <div class="colored" data-color="green"></div>
-                                                <div class="colored" data-color="blue"></div>
-                                            </div>
-
-                                            <input type="text" id="productColor" class="form-control" disabled />
-                                        </div>
+                        <button type="button" class="btn-close position-absolute end-0 me-3 border rounded-circle "
+                            data-bs-dismiss="modal" aria-label="Close"
+                            style="background-color: var(--main-color);"></button>
+                    </div>
+                    <div class="modal-body text-center">
 
 
-                                        <!-- <div class="mb-3 col-md-6">
-                                            <label class="form-label">Seller ID</label>
-                                            <input type="number" id="sellerId" class="form-control" />
-                                        </div> -->
+                        <!-- Form -->
+                        <form id="productForm" class="text-start">
+                            <div class="row mb-3 mt-1">
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label modelText" for="productName">Product Name</label>
+                                    <input type="text" id="productName" class="form-control" required />
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label modelText" for="realPrice">Product Real
+                                        Price</label>
+                                    <input type="number" id="realPrice" class="form-control" required />
+                                </div>
+                                <div class="mb-3 col-md-6 ">
+                                    <label class="form-label modelText" for="productCategory">Product
+                                        Category</label>
+                                    <select id="productCategory" class="form-control" required>
+                                        <option value="" disabled selected hidden>select category</option>
+                                        <option value="Women">Women</option>
+                                        <option value="Men">Men</option>
+                                        <option value="Kids">Kids</option>
+
+                                    </select>
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label modelText" for="productDiscount">Discount
+                                        Available</label>
+                                    <input type="number" id="productDiscount" class="form-control" required />
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label modelText" for="productSubCategory">Product Sub
+                                        Category</label>
+                                    <select id="productSubCategory" class="form-control" required>
+                                        <option value="" disabled selected hidden>select sub category</option>
+                                        <option value="Shoeses">Shoeses</option>
+                                        <option value="T-Shirts">Tshirts</option>
+                                        <option value="Jackets">Jackets</option>
+                                        <option value="Jeans">Jeans</option>
+                                        <option value="Dresses">Dresses</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+
+                                    <label for="myRange" class="form-label modelText" for="ratingAverage">Rating
+                                        Average : <span id="rangeValue" class="range-value">4.0</span></label>
+                                    <input type="range" class="form-range" min="0.0" max="5.0" step="0.1" value="4.0"
+                                        id="ratingAverage" aria-label="Adjustable rating Average" required>
+
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label modelText" for="productDescription">Description</label>
+                                    <textarea type="text" id="productDescription" class="form-control" rows="4"
+                                        required></textarea>
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label modelText" for="productQuantity">Quantity</label>
+                                    <input type="number" id="productQuantity" class="form-control" required />
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label modelText" for="productImageCover">Image Cover of
+                                        Product</label>
+                                    <input type="file" accept=".jpg,.png,.webp,.jpeg" id="productImageCover"
+                                        class="form-control" required />
+                                </div>
+
+                                <div class="mb-3 col-md-6">
+                                    <label for="imagesInput" class="form-label modelText">Upload Images</label>
+                                    <input type="file" accept=".jpg,.png,.webp,.jpeg" class="form-control"
+                                        id="imageInput" multiple aria-label="Upload multiple images">
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label modelText" for="productColor">Selected Color of
+                                        Product</label>
+                                    <div class=" d-flex color-swatches mb-3 col-md-6 ">
+                                        <div class="colored " data-color="red"></div>
+                                        <div class="colored " data-color="green"></div>
+                                        <div class="colored " data-color="blue"></div>
+                                        <div class="colored" data-color="black"></div>
                                     </div>
-
-                                    <!-- <div class="mb-3 col-md-6">
-                                        <label class="form-label">Product Size</label>
-                                        <input type="text" id="productSize" class="form-control" />
-                                    </div> -->
-
-                                    <div class="mb-3 px-5 d-flex col-md-12 justify-content-between  ">
-                                        <button type="button" id="addProductBtn" class=" btn headBtn rounded-3" >
-                                            Add
-                                        </button>
-                                        <button type="button" id="cancelProductBtn" data-bs-dismiss="modal"
-                                            class=" btn headBtn rounded-3">
-                                            Cancel
-                                        </button>
-                                    </div>
-
-
-
-
-                                </form>
-
+                                    <input type="text" id="productColor" class="form-control" disabled />
+                                </div>
                             </div>
-                        </div>
+
+                            <div class="mb-3 px-5 d-flex col-md-12 justify-content-between  ">
+                                <button type="button" id="addProductBtn" class=" btn headBtn rounded-3">
+                                    Add
+                                </button>
+                                <button type="button" id="cancelProductBtn" data-bs-dismiss="modal"
+                                    class=" btn headBtn rounded-3">
+                                    Cancel
+                                </button>
+                            </div>
+
+
+
+
+                        </form>
+
                     </div>
                 </div>
+            </div>
+        </div>
+        <!--end Add Product Modal-->
+
         <!-- Product Table -->
         <div class="card-body">
-            <div  class="table-responsive">
-                <table  class="table table-striped  " id="ordersTable" width="100%"
-                    cellspacing="0">
+            <div class="table-responsive">
+                <table class="table table-striped  " id="ordersTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th style="width:200px ;"> Image </th>
@@ -355,149 +348,165 @@
 
         </div>
         Eng/ Asmaa Nahed, [09/05/2025 02:17 ص]
-<div class="card-body ">
-                <div class="table-responsive">
-                    <table class="table table-striped   overflow-hidden" id="ordersTable" width="100%" cellspacing="0">
-                        <thead  >
-                            <tr>
-                                <th> Name </th>
-                                <th> Products Qty </th>
-                                <th> Total Price </th>
-                                <th> State </th>
-                                <th> Process </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>3</td>
-                             
-                                <td>550</td>
-                                <td><span class="badge bg-secondary myprog">in progress</span></td>
-                                <td >
-                                    <div class="d-flex justify-content-center align-items-center gap-2">
-                                        <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
-                                        <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-sm btn-new btn-new2 delete-btn"><i class="fas fa-trash"></i></button>
-                                      </div>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>3</td>
-                             
-                                <td>550</td>
-                                <td><span class="badge bg-danger myprog">Cancel</span></td>
-                                <td >
-                                    <div class="d-flex justify-content-center align-items-center gap-2">
-                                        <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
-                                        <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-sm btn-new btn-new2 delete-btn"><i class="fas fa-trash"></i></button>
-                                      </div>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>3</td>
-                             
-                                <td>550</td>
-                                <td><span class="badge bg-warning myprog">Pending</span></td>
-                                <td >
-                                    <div class="d-flex justify-content-center align-items-center gap-2">
-                                        <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
-                                        <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-sm btn-new btn-new2 delete-btn"><i class="fas fa-trash"></i></button>
-                                      </div>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>3</td>
-                             
-                                <td>550</td>
-                                <td><span class="badge bg-success myprog">Done</span></td>
+        <div class="card-body ">
+            <div class="table-responsive">
+                <table class="table table-striped   overflow-hidden" id="ordersTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th> Name </th>
+                            <th> Products Qty </th>
+                            <th> Total Price </th>
+                            <th> State </th>
+                            <th> Process </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mohamed Salama</td>
+                            <td>3</td>
 
-Eng/ Asmaa Nahed, [09/05/2025 02:17 ص]
-<td >
-                                    <div class="d-flex justify-content-center align-items-center gap-2">
-                                        <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
-                                        <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-sm btn-new btn-new2 delete-btn"><i class="fas fa-trash"></i></button>
-                                      </div>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>3</td>
-                             
-                                <td>550</td>
-                                <td><span class="badge bg-secondary myprog">in progress</span></td>
-                                <td >
-                                    <div class="d-flex justify-content-center align-items-center gap-2">
-                                        <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
-                                        <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-sm btn-new btn-new2 delete-btn"><i class="fas fa-trash"></i></button>
-                                      </div>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>3</td>
-                             
-                                <td>550</td>
-                                <td><span class="badge bg-danger myprog">Cancel</span></td>
-                                <td >
-                                    <div class="d-flex justify-content-center align-items-center gap-2">
-                                        <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
-                                        <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-sm btn-new btn-new2 delete-btn"><i class="fas fa-trash"></i></button>
-                                      </div>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>3</td>
-                             
-                                <td>550</td>
-                                <td><span class="badge bg-warning myprog">Pending</span></td>
-                                <td >
-                                    <div class="d-flex justify-content-center align-items-center gap-2">
-                                        <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
-                                        <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-sm btn-new btn-new2 delete-btn"><i class="fas fa-trash"></i></button>
-                                      </div>
-                                   
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mohamed Salama</td>
-                                <td>3</td>
+                            <td>550</td>
+                            <td><span class="badge bg-secondary myprog">in progress</span></td>
+                            <td>
+                                <div class="d-flex justify-content-center align-items-center gap-2">
+                                    <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i
+                                            class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i
+                                            class="fas fa-trash"></i></button>
+                                </div>
 
-Eng/ Asmaa Nahed, [09/05/2025 02:17 ص]
-<td>550</td>
-                                <td><span class="badge bg-success myprog">Done</span></td>
-                                <td >
-                                    <div class="d-flex justify-content-center align-items-center gap-2">
-                                        <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
-                                        <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-sm btn-new btn-new2 delete-btn"><i class="fas fa-trash"></i></button>
-                                      </div>
-                                   
-                                </td>
-                            </tr>
-                           
-                        </tbody>
-                    </table>
-                    
-                
-                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mohamed Salama</td>
+                            <td>3</td>
+
+                            <td>550</td>
+                            <td><span class="badge bg-danger myprog">Cancel</span></td>
+                            <td>
+                                <div class="d-flex justify-content-center align-items-center gap-2">
+                                    <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i
+                                            class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i
+                                            class="fas fa-trash"></i></button>
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mohamed Salama</td>
+                            <td>3</td>
+
+                            <td>550</td>
+                            <td><span class="badge bg-warning myprog">Pending</span></td>
+                            <td>
+                                <div class="d-flex justify-content-center align-items-center gap-2">
+                                    <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i
+                                            class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i
+                                            class="fas fa-trash"></i></button>
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mohamed Salama</td>
+                            <td>3</td>
+
+                            <td>550</td>
+                            <td><span class="badge bg-success myprog">Done</span></td>
+
+                            Eng/ Asmaa Nahed, [09/05/2025 02:17 ص]
+                            <td>
+                                <div class="d-flex justify-content-center align-items-center gap-2">
+                                    <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i
+                                            class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i
+                                            class="fas fa-trash"></i></button>
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mohamed Salama</td>
+                            <td>3</td>
+
+                            <td>550</td>
+                            <td><span class="badge bg-secondary myprog">in progress</span></td>
+                            <td>
+                                <div class="d-flex justify-content-center align-items-center gap-2">
+                                    <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i
+                                            class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i
+                                            class="fas fa-trash"></i></button>
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mohamed Salama</td>
+                            <td>3</td>
+
+                            <td>550</td>
+                            <td><span class="badge bg-danger myprog">Cancel</span></td>
+                            <td>
+                                <div class="d-flex justify-content-center align-items-center gap-2">
+                                    <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i
+                                            class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i
+                                            class="fas fa-trash"></i></button>
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mohamed Salama</td>
+                            <td>3</td>
+
+                            <td>550</td>
+                            <td><span class="badge bg-warning myprog">Pending</span></td>
+                            <td>
+                                <div class="d-flex justify-content-center align-items-center gap-2">
+                                    <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i
+                                            class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i
+                                            class="fas fa-trash"></i></button>
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mohamed Salama</td>
+                            <td>3</td>
+
+                            Eng/ Asmaa Nahed, [09/05/2025 02:17 ص]
+                            <td>550</td>
+                            <td><span class="badge bg-success myprog">Done</span></td>
+                            <td>
+                                <div class="d-flex justify-content-center align-items-center gap-2">
+                                    <button class="btn btn-sm btn-new btn-new1"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-warning m-1 btn-new btn-new3"><i
+                                            class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-new btn-new2 delete-btn"><i
+                                            class="fas fa-trash"></i></button>
+                                </div>
+
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+
             </div>
+        </div>
         <!-- <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered table-hover  overflow-hidden" id="ordersTable" width="100%"

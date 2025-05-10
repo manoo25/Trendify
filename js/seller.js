@@ -1,3 +1,55 @@
+//change image
+const imageInput = document.getElementById('imageUpload');
+const profileImage = document.getElementById('profileImage');
+// Get users from localStorage
+let users = JSON.parse(localStorage.getItem('usersData'));
+var userId;
+
+if (users) {
+  // Get id from session storage
+  userId = JSON.parse(sessionStorage.getItem('LogedUser')).userId;
+}
+
+function displyProfileImg() {
+  const user = users.find(user => user.userId === userId);
+  if (user) {
+    console.log(imageInput);
+    profileImage.src = user.img;
+  }
+}
+displyProfileImg();
+imageInput.addEventListener('change', function () {
+  console.log(' updated');
+  const file = this.files[0];
+  if (file) {
+    const reader = new FileReader();
+
+    reader.addEventListener('load', function () {
+      console.log('reader updated');
+      profileImage.src = reader.result;
+      // Find index of current user in localStorage
+      const userIndex = users.findIndex(user => user.userId === userId);
+      if (userIndex !== -1) {
+        let reply = confirm('Are you sure you want to update your image?');
+
+        if (reply) {
+
+          users[userIndex].img = profileImage.src; // Update image in localStorage
+          localStorage.setItem('usersData', JSON.stringify(users)); // Save back to localStorage
+          console.log(users[userIndex].img);
+          displyProfileImg();
+        }
+
+      }
+
+
+    });
+
+    reader.readAsDataURL(file);
+  }
+});
+
+$('#userName').text(JSON.parse(sessionStorage.getItem('LogedUser')).name);
 
 // Initialize all variables at the top
 let productsArr = JSON.parse(localStorage.getItem('Products')) || [];
@@ -5,67 +57,73 @@ let productColors = [];
 let images = [];
 let productImgSrc = '';
 let currentEditIndex = -1;
-let userName = sessionStorage.getItem('LogedUser') 
-               ? JSON.parse(sessionStorage.getItem('LogedUser')).name 
-               : '';
+let userName = sessionStorage.getItem('LogedUser')
+  ? JSON.parse(sessionStorage.getItem('LogedUser')).name
+  : '';
 // Set user name               
 $("#adminuserName").val(userName);
 
 // Apply styles to color swatches
-$(document).ready(function() {
+$(document).ready(function () {
   $(".colored").css({
     border: "2px solid black",
-    width: "20px",
-    height: "20px",
-    margin: "10px",
+    width: "30px",
+    height: "30px",
+    margin: "5px",
     cursor: "pointer",
     "border-radius": "50%"
   });
 
   // Set background colors
-  $(".colored").each(function(index) {
-   var colors = ["white","red", "blue" , "black"];
+  $(".colored").each(function (index) {
+    var colors = ["white", "red", "blue", "black"];
     $(this).css("background-color", colors[index]);
   });
 
-// Handle color selection
-  $(".colored").click(function() {
+
+  // Handle color selection
+  $(".colored").click(function () {
     const value = $(this).css("background-color");
-    const colorIndex = productColors.indexOf(value);
+    let colorName = "";
+    switch (value) {
+      case "rgb(255, 255, 255)":
+        colorName = "White";
+        break;
+      case "rgb(255, 0, 0)":
+        colorName = "Red";
+        break;
+      case "rgb(0, 0, 255)":
+        colorName = "Blue";
+        break;
+      case "rgb(0, 0, 0)":
+        colorName = "Black";
+        break;
+      default:
+        colorName = "";
+    }
+    const colorIndex = productColors.indexOf(colorName);
 
     if (colorIndex === -1) {
-      productColors.push(value);
+      productColors.push(colorName);
     } else {
       productColors.splice(colorIndex, 1);
     }
 
-    $("#productColor").val(productColors.map(color => {
-      switch (color) {
-        case "rgb(255, 255, 255)":
-          return "White";
-        case "rgb(255, 0, 0)":
-          return "Red";
-        case "rgb(0, 0, 255)":
-          return "Blue";
-        case "rgb(0, 0, 0)":
-          return "Black";
-        default:
-          return "";
-      }
-    }).join(", "));
+    $("#productColor").val(productColors.join(", "));
+
   });
 
   // Update the range value
-  $('#ratingAverage').on('input', function() {
+  $('#ratingAverage').on('input', function () {
     $('#rangeValue').text(this.value);
   });
 
   // Read and display the main image
-  $('#productImageCover').on('change', function() {
+  $('#productImageCover').on('change', function () {
     const file = this.files[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = function() {
+      reader.onload = function () {
         productImgSrc = reader.result;
       };
       reader.readAsDataURL(file);
@@ -73,12 +131,12 @@ $(document).ready(function() {
   });
 
   // Read multiple images
-  $('#imageInput').on('change', function() {
+  $('#imageInput').on('change', function () {
     images = []; // Reset images array
     const files = this.files;
     for (let i = 0; i < files.length; i++) {
       const reader = new FileReader();
-      reader.onload = function(e) {
+      reader.onload = function (e) {
         images.push(e.target.result);
       };
       reader.readAsDataURL(files[i]);
@@ -86,7 +144,7 @@ $(document).ready(function() {
   });
 
   // Add product event
-  $('#addProductBtn').on('click', function() {
+  $('#addProductBtn').on('click', function () {
     if ($('#productName').val() && $('#realPrice').val() && $('#productCategory').val() && $('#productDescription').val() && $('#productSubCategory').val() && $('#ratingAverage').val() && $('#productQuantity').val()) {
       if (currentEditIndex === -1) {
         addProduct();
@@ -107,7 +165,7 @@ function addProduct() {
     id: generateProductId(),
     name: $('#productName').val(),
     real_price: Number($('#realPrice').val()),
-    Discount:Number( $('#productDiscount').val()),
+    Discount: Number($('#productDiscount').val()),
     EndPrice: calculateEndPrice(),
     category: $('#productCategory').val(),
     description: $('#productDescription').val(),
@@ -162,7 +220,7 @@ function displayProduct() {
     tableBody.append(`
       <tr>
         <td><img src="${product.imageCover}" alt="product" style="width: 50px;" /></td>
-        <td>${product.name.split(" ",2).join(" ")}</td>
+        <td>${product.name.split(" ", 2).join(" ")}</td>
         <td>${product.category}</td>
         <td>${product.subcategory}</td>
         <td>${product.EndPrice}</td>
@@ -181,7 +239,7 @@ function displayProduct() {
 function editProduct(i) {
   currentEditIndex = i;
   const product = productsArr[i];
-  
+
   // Set form values
   $('#productName').val(product.name);
   $('#realPrice').val(product.real_price);
@@ -192,12 +250,12 @@ function editProduct(i) {
   $('#ratingAverage').val(product.ratingsAverage);
   $('#productQuantity').val(product.quantity);
   $('#productColor').val(product.Colors);
-  
+
   // Set current images
   productImgSrc = product.imageCover;
   images = product.images;
   productColors = product.Colors;
-  
+
   $('#addProductBtn').text('Update Product');
   $('#personalInfoModal').modal('show');
 }
@@ -218,7 +276,7 @@ async function deleteProduct(i) {
     productsArr.splice(i, 1);
     saveToLocalStorage();
     displayProduct();
-    
+
     // Show success message
     Swal.fire(
       'Deleted!',
@@ -230,8 +288,8 @@ async function deleteProduct(i) {
 
 // Helper functions
 function generateProductId() {
-  productsArr=JSON.parse(localStorage.getItem('Products'))
-let id=`${Math.floor(Math.random() * 1000 * (productsArr.length + 1))}`
+  productsArr = JSON.parse(localStorage.getItem('Products'))
+  let id = `${Math.floor(Math.random() * 1000 * (productsArr.length + 1))}`
 
   return id;
 }
@@ -255,4 +313,9 @@ function resetForm() {
 }
 
 
+//remove account
+$('#logoutBtn').on('click', function() {
+  sessionStorage.removeItem('LogedUser');
+  window.location = './login&register.html';
+ });
 

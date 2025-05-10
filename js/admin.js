@@ -1,14 +1,19 @@
 //change image
- imageInput = document.getElementById('imageUpload');
- profileImage = document.getElementById('profileImage');
+const imageInput = document.getElementById('imageUpload');
+const profileImage = document.getElementById('profileImage');
 // Get users from localStorage
- users = JSON.parse(localStorage.getItem('usersData'));
+let users = JSON.parse(localStorage.getItem('usersData'));
 var userId;
 
 if (users) { 
     // Get id from session storage
     userId = JSON.parse(sessionStorage.getItem('LogedUser')).userId;
 }
+
+const Img2Pro = document.getElementById('Img2Pro');
+const userName = document.getElementById('userName');
+const userName2 = document.getElementById('userName2');
+userName.textContent = userName2.textContent = JSON.parse(sessionStorage.getItem('LogedUser')).userName;
 function displyProfileImg(){
     const user = users.find(user => user.userId === userId);
     if (user) {
@@ -50,21 +55,7 @@ imageInput.addEventListener('change', function () {
     // Initialize variables
     let currentRowToDelete = null;
     
-//change image
-const imageInput = document.getElementById('imageUpload');
-const profileImage = document.getElementById('profileImage');
-const Img2Pro = document.getElementById('Img2Pro');
-const userName = document.getElementById('userName');
-const userName2 = document.getElementById('userName2');
-// Get users from localStorage
-let users = JSON.parse(localStorage.getItem('usersData'));
-var userId;
 
-if (users) { 
-    // Get id from session storage
-    userId = JSON.parse(sessionStorage.getItem('LogedUser')).userId;
-}
-    
     // Delete button click handler
     $('.delete-btn').on('click', function() {
         currentRowToDelete = $(this).closest('tr');
