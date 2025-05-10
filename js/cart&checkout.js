@@ -228,72 +228,88 @@ DisplayCart();
   });
 
 
- 
 
-
-
-
-  // Form validation
-  $('.needs-validation').each(function () {
-    $(this).on('submit', function (e) {
-        if (!this.checkValidity()) {
-            e.preventDefault();
-            e.stopPropagation();
-        } 
-        else {
-          initialize();
-         
-            e.preventDefault();
-            const form = $(this); // Store as jQuery object
-            
-            $("#congratMsg").removeClass("d-none");
-            $("#reviwe").hide();
-            OrderObj.orderId = Math.floor(Math.random() * 1000 * (OrderstArr.length) + 1);
-            OrderObj.name = customerName.value;
-            OrderObj.address = customerAddress.value;
-            OrderObj.phone = customerPhone.value;
-            OrderObj.note = NotesOrder.value;   
-            OrderstArr.push(OrderObj);
-            
-FilterCartArr.forEach(pro => {
-  pro.OrderId=OrderObj.orderId;
-  OrdersProtArr.push(pro)
-}); 
-
- AddOrderDb();
-
-            async function AddOrderDb() {
-              const done1 =await indexedDB.setItem('Orders',OrderstArr);
-             const done2 = await indexedDB.setItem('OrdersProducts',OrdersProtArr);
-              CartArr=CartArr.filter(item =>item.userId !== userId );
-             const done3 = await indexedDB.setItem('Cart',CartArr);
-
-              if (done1&&done2&&done3) {
-                  initialize();
-
-              }
-
-             }
-
-
-
-
-          $('.fa-spinner').removeClass('d-none')
-setTimeout(() => {
-  $('.fa-spinner').addClass('d-none')
-  successAlert('Conferm Order','Order Added Successfully.')
-
-}, 600);
-      setTimeout(() => {  
-        window.location.replace('../index.html')
-      }, 2000);
-
-    
+function loadProductsFromLocalStorage() {
+  const productsData = localStorage.getItem('Products');
+  return productsData ? JSON.parse(productsData) : [];
 }
-        
-        $(this).addClass('was-validated');
-    });
+
+
+function saveProductsToLocalStorage(products) {
+  localStorage.setItem('Products', JSON.stringify(products));
+}
+
+// Form validation
+$('.needs-validation').each(function () {
+  $(this).on('submit', function (e) {
+    if (!this.checkValidity()) {
+      e.preventDefault();
+      e.stopPropagation();
+    } else {
+      initialize();
+      e.preventDefault();
+
+      const form = $(this); // Store as jQuery object
+
+      $("#congratMsg").removeClass("d-none");
+      $("#reviwe").hide();
+
+ 
+      OrderObj.orderId = Math.floor(Math.random() * 1000 * (OrderstArr.length) + 1);
+      OrderObj.name = customerName.value;
+      OrderObj.address = customerAddress.value;
+      OrderObj.phone = customerPhone.value;
+      OrderObj.note = NotesOrder.value;
+      OrderstArr.push(OrderObj);
+      FilterCartArr.forEach(pro => {
+        pro.OrderId = OrderObj.orderId;
+        OrdersProtArr.push(pro);
+      });
+
+
+      const products = loadProductsFromLocalStorage();
+
+      FilterCartArr.forEach(orderedItem => {
+        const productIndex = products.findIndex(prod => prod.id === orderedItem.ProId);
+        if (productIndex !== -1) {
+          products[productIndex].quantity -= orderedItem.qty;
+          if (products[productIndex].quantity < 0) {
+            products[productIndex].quantity = 0; 
+          }
+        }
+      });
+      saveProductsToLocalStorage(products); 
+
+      async function AddOrderDb() {
+        const done1 = await indexedDB.setItem('Orders', OrderstArr);
+        const done2 = await indexedDB.setItem('OrdersProducts', OrdersProtArr);
+        CartArr = CartArr.filter(item => item.userId !== userId);
+        const done3 = await indexedDB.setItem('Cart', CartArr);
+
+        if (done1 && done2 && done3) {
+          initialize();
+        }
+      }
+
+      AddOrderDb();
+
+
+      $('.fa-spinner').removeClass('d-none');
+      setTimeout(() => {
+        $('.fa-spinner').addClass('d-none');
+        successAlert('Conferm Order', 'Order Added Successfully.');
+      }, 600);
+
+      setTimeout(() => {
+        window.location.replace('../index.html');
+      }, 2000);
+    }
+
+    $(this).addClass('was-validated');
+  });
 });
+
+
 
  
 

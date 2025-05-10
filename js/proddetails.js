@@ -1,9 +1,11 @@
 // swiper carousel
-// import { DeliveryDete ,DateDay } from './date.js'; 
+import { DeliveryDete ,DateDay } from './date.js'; 
 import { addToCartDetails } from './cart.js'; 
 
 
 // increment and decrement
+
+document.getElementById('DeliveryDateinDetails').innerText=DeliveryDete();
 let ProCart;
 const icrementbtn = document.querySelector(".br");
 const decrementbtn = document.querySelector(".bl");

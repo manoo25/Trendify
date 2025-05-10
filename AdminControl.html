@@ -40,7 +40,7 @@
    
     
 
-    <!-- Sidebar -->
+   <!-- Sidebar -->
    <nav style="max-width: 60%;"  class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
    
       <div class="sidebar-header d-flex flex-column justify-content-center align-items-center pt-5 ">
@@ -136,7 +136,7 @@
             <div class="stat-card-header">
               <div>
                 <div class="stat-card-title">Total Comments</div>
-                <div id="CommentsLength" class="stat-card-value">1,245</div>
+                <div id="CommentsLength" class="stat-card-value">0</div>
               </div>
               <div class="stat-card-icon primary">
                 <i class="fas fa-comment"></i>
@@ -150,7 +150,7 @@
             <div class="stat-card-header">
               <div>
                 <div class="stat-card-title">Customers</div>
-                <div id="NumOfCustomer" class="stat-card-value">3200</div>
+                <div id="NumOfCustomer" class="stat-card-value">0</div>
               </div>
               <div class="stat-card-icon success">
                 <i class="fa-solid fa-users"></i>
@@ -164,7 +164,7 @@
             <div class="stat-card-header">
               <div>
                 <div class="stat-card-title">Sales</div>
-                <div id="TotalsalesDash" class="stat-card-value">1250</div>
+                <div id="TotalsalesDash" class="stat-card-value">0</div>
               </div>
               <div class="stat-card-icon primary">
                 <i class="fas fa-dollar-sign"></i>
@@ -178,7 +178,7 @@
             <div class="stat-card-header">
               <div>
                 <div class="stat-card-title">Total Orders</div>
-                <div id="NumOfOrdersDash" class="stat-card-value">$4,520</div>
+                <div id="NumOfOrdersDash" class="stat-card-value">0</div>
               </div>
               <div class="stat-card-icon danger">
                 <i class="fas fa-shopping-cart"></i>
@@ -299,6 +299,7 @@
                                 <th> Name </th>
                                 <th> Category </th>
                                 <th> Sub Category </th>
+                                <th> Quantity </th>
                                 <th> Price </th>
                                 <th> Process </th>
                             </tr>
@@ -357,10 +358,10 @@
             </div>
             <div id="CommentsContainerAdmin" class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover  " id="ordersTable" width="100%" cellspacing="0">
+                    <table class="table table-striped  " id="ordersTable" width="100%" cellspacing="0">
                         <thead  >
                             <tr>
-                                <th> Name </th>
+                                <th class="text-start ps3"> User Profile </th>
                                 <th> Phone </th>
                                 <th> Comment </th>
                                 <th> Publish </th>
