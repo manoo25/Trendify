@@ -246,7 +246,7 @@ function displayCustomerComments() {
 
 async function deleteComment(comId, role) {
     try {
-        // عرض تنبيه تأكيد الحذف
+
         const result = await Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to Delete this!",
@@ -378,15 +378,29 @@ imageInput.addEventListener('change', function () {
             // Find index of current user in localStorage
             const userIndex = users.findIndex(user => user.userId === userId);
             if (userIndex !== -1) {
-                let reply = confirm('Are you sure you want to update your image?');
-
-                if (reply) {
-
-                    users[userIndex].img = profileImage.src; // Update image in localStorage
+                Swal.fire({
+        icon: 'success',
+        title: "Change Profile Image",
+        text:"Profile Image Changed Succesfully",
+        showConfirmButton: false,
+        timer: 1600,
+        toast: true,
+        position: 'top-end',
+        position: 'top-end',
+        background: 'var(--card-color)', 
+        color: 'var(--main-color)',      
+        iconColor: 'var(--main-color)',  
+        customClass: {
+          popup: 'custom-swal-popup',
+          title: 'custom-swal-title',
+          content: 'custom-swal-content'
+        }
+      });
+    users[userIndex].img = profileImage.src; // Update image in localStorage
                     localStorage.setItem('usersData', JSON.stringify(users)); // Save back to localStorage
                     console.log( users[userIndex].img);
                     displyProfileImg();
-                }
+
 
             }
             

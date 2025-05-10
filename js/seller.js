@@ -3,30 +3,16 @@ import indexedDB from './indexedDb.js';
 // ====================== DOM Elements ======================
 const TableOrdersDis = document.getElementById('TableOrdersDis');
 const OrdersContainer = document.getElementById('tOrdersContainer');
-const modalBody = document.getElementById('modalProductsBody');
-const profileImage = document.getElementById('profileImage');
-const imageInput = document.getElementById('imageUpload');
 const stateInput = document.getElementById('stateInput');
 const roleInput = document.getElementById('roleInput');
+const modalBody = document.getElementById('modalProductsBody');
 
-// ====================== Global Variables ======================
-let productsArr = JSON.parse(localStorage.getItem('Products')) || [];
-let productColors = [];
-let images = [];
-let productImgSrc = '';
-let currentEditIndex = -1;
-let userName = sessionStorage.getItem('LogedUser') 
-               ? JSON.parse(sessionStorage.getItem('LogedUser')).name 
-               : '';
 let OrderstArr = [];
 let OrdersProtArr = [];
 let UsersArr = [];
 let ChangeOrderId;
-let changeUserId;
 let userId;
-let barChart, pieChart, lineChart; // Chart instances
 
-// Initialize user data
 if (sessionStorage.getItem('LogedUser')) {
     userId = JSON.parse(sessionStorage.getItem('LogedUser')).userId;
 }
@@ -37,9 +23,6 @@ if (localStorage.getItem('usersData')) {
 // ====================== Initialization ======================
 async function initialize() {
     try {
-        // Destroy existing charts
-        destroyCharts();
-        
         // Load data
         const OrdersData = await indexedDB.getItem('Orders');
         const OrdersProData = await indexedDB.getItem('OrdersProducts');
@@ -53,18 +36,10 @@ async function initialize() {
             OrdersProtArr = OrdersProData;  
         }
         
-        // Initialize other components
-        displyProfileImg();
-        $('#userName').text(JSON.parse(sessionStorage.getItem('LogedUser')).name);
-    } catch (error) {
+    } 
+    catch (error) {
         console.error("Initialization error:", error);
     }
-}
-
-function destroyCharts() {
-    if (barChart) barChart.destroy();
-    if (pieChart) pieChart.destroy();
-    if (lineChart) lineChart.destroy();
 }
 
 // ====================== Order Management ======================
@@ -271,185 +246,6 @@ async function changeOrderState(state, id) {
     }
 }
 
-// ====================== Product Management ======================
-function displayProduct() {
-    const tableBody = $("#ordersTable tbody");
-    tableBody.empty();
-
-    const sortedProducts = [...productsArr].sort((a, b) => a.quantity - b.quantity);
-
-    sortedProducts.forEach((product, i) => {
-        const rowColor = product.quantity < 5 ? "table-danger" : "";
-
-        tableBody.append(`
-            <tr class="${rowColor}">
-                <td><img src="${product.imageCover}" alt="product" style="width: 50px;" /></td>
-                <td>${product.name.split(" ", 2).join(" ")}</td>
-                <td>${product.category}</td>
-                <td>${product.subcategory}</td>
-                <td>${product.quantity}</td>
-                <td>${product.EndPrice}</td>
-                <td>
-                    <div class="d-flex gap-2 justify-content-center">
-                        <a href="./productdetails.html?id=${product.id}" class="btn btn-sm btn-new btn-new1 m-1">
-                            <i class="fas fa-eye"></i>
-                        </a>
-                        <button class="btn btn-sm btn-new btn-new3" onclick="editProduct(${i})">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="btn btn-sm btn-new btn-new2" onclick="deleteProduct(${i})">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-        `);
-    });
-
-    if ($.fn.DataTable.isDataTable("#ordersTable")) {
-        $("#ordersTable").DataTable().destroy();
-    }
-
-    $("#ordersTable").DataTable({
-        order: [[4, 'asc']],
-    });
-}
-
-displayProduct();
-
-function addProduct() {
-    const product = {
-        id: generateProductId(),
-        name: $('#productName').val(),
-        real_price: Number($('#realPrice').val()),
-        Discount: Number($('#productDiscount').val()),
-        EndPrice: calculateEndPrice(),
-        category: $('#productCategory').val(),
-        description: $('#productDescription').val(),
-        imageCover: productImgSrc,
-        images: images,
-        subcategory: $('#productSubCategory').val(),
-        ratingsAverage: $('#ratingAverage').val(),
-        sellerName: userName,
-        quantity: Number($('#productQuantity').val()),
-        Colors: productColors,
-        Colorscode: productColors,
-    };
-
-    productsArr.push(product);
-    saveToLocalStorage();
-    displayProduct();
-    resetForm();
-    $('#personalInfoModal').modal('hide');
-}
-
-function editProduct(i) {
-    currentEditIndex = i;
-    const product = productsArr[i];
-    
-    $('#productName').val(product.name);
-    $('#realPrice').val(product.real_price);
-    $('#productDiscount').val(product.Discount);
-    $('#productCategory').val(product.category);
-    $('#productDescription').val(product.description);
-    $('#productSubCategory').val(product.subcategory);
-    $('#ratingAverage').val(product.ratingsAverage);
-    $('#productQuantity').val(product.quantity);
-    $('#productColor').val(product.Colors);
-    
-    productImgSrc = product.imageCover;
-    images = product.images;
-    productColors = product.Colors;
-    
-    $('#addProductBtn').text('Update Product');
-    $('#personalInfoModal').modal('show');
-}
-
-async function deleteProduct(i) {
-    const { isConfirmed } = await Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to Delete this Product!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'Cancel'
-    });
-
-    if (isConfirmed) {
-        productsArr.splice(i, 1);
-        saveToLocalStorage();
-        displayProduct();
-        
-        Swal.fire(
-            'Deleted!',
-            'Your product has been deleted.',
-            'success'
-        );
-    }
-}
-
-// ====================== User Management ======================
-function displyProfileImg() {
-    const user = UsersArr.find(user => user.userId === userId);
-    if (user && user.img) {
-        profileImage.src = user.img;
-    }
-}
-
-imageInput.addEventListener('change', function() {
-    const file = this.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.addEventListener('load', () => {
-            profileImage.src = reader.result;
-            const userIndex = UsersArr.findIndex(user => user.userId === userId);
-            if (userIndex !== -1) {
-                let reply = confirm('Are you sure you want to update your image?');
-                if (reply) {
-                    UsersArr[userIndex].img = profileImage.src;
-                    localStorage.setItem('usersData', JSON.stringify(UsersArr));
-                    displyProfileImg();
-                }
-            }
-        });
-        reader.readAsDataURL(file);
-    }
-});
-
-// ====================== Helper Functions ======================
-function generateProductId() {
-    productsArr = JSON.parse(localStorage.getItem('Products')) || [];
-    return `${Math.floor(Math.random() * 1000 * (productsArr.length + 1))}`;
-}
-
-function calculateEndPrice() {
-    const price = Number($('#realPrice').val());
-    const discount = Number($('#productDiscount').val()) || 0;
-    return price - discount;
-}
-
-function saveToLocalStorage() {
-    localStorage.setItem('Products', JSON.stringify(productsArr));
-}
-
-function resetForm() {
-    $('#productForm')[0].reset();
-    productColors = [];
-    images = [];
-    productImgSrc = '';
-    $('#addProductBtn').text('Add Product');
-}
-
-function loadProductsFromLocalStorage() {
-    return JSON.parse(localStorage.getItem('Products')) || [];
-}
-
-function saveProductsToLocalStorage(products) {
-    localStorage.setItem('Products', JSON.stringify(products));
-}
-
 // ====================== Event Listeners ======================
 document.addEventListener('click', async function(e) {
     if (e.target.closest('.DEleteOrder')) {
@@ -511,78 +307,12 @@ document.addEventListener('click', async function(e) {
         }
     }
 
-    if (e.target.closest('.DeleteProAdmin1')) {
-        const btn = e.target.closest('.DeleteProAdmin1');
+    if (e.target.closest('.DeleteBroSeller')) {
+        const btn = e.target.closest('.DeleteBroSeller');
         const ProId = btn.dataset.proid;
         deleteProduct(ProId);
     }
 });
+    initialize();
 
 // ====================== Initialize Application ======================
-$(document).ready(function() {
-    // Apply styles to color swatches
-    $(".colored").css({
-        border: "2px solid black",
-        width: "20px",
-        height: "20px",
-        margin: "10px",
-        cursor: "pointer",
-        "border-radius": "50%"
-    });
-
-    // Set background colors
-    $(".colored").each(function(index) {
-        const colors = ["red", "green", "blue"];
-        $(this).css("background-color", colors[index]);
-    });
-
-    $(".colored").click(function() {
-        const value = $(this).css("background-color");
-        if (!productColors.includes(value)) {
-            productColors.push(value);
-            $("#productColor").val(productColors.join(", "));
-        }
-    });
-
-    // Update the range value
-    $('#ratingAverage').on('input', function() {
-        $('#rangeValue').text(this.value);
-    });
-
-    // Read and display the main image
-    $('#productImageCover').on('change', function() {
-        const file = this.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function() {
-                productImgSrc = reader.result;
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-
-    // Read multiple images
-    $('#imageInput').on('change', function() {
-        images = [];
-        const files = this.files;
-        for (let i = 0; i < files.length; i++) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                images.push(e.target.result);
-            };
-            reader.readAsDataURL(files[i]);
-        }
-    });
-
-    // Add product event
-    $('#addProductBtn').on('click', function() {
-        if (currentEditIndex === -1) {
-            addProduct();
-        } else {
-            updateProduct();
-        }
-    });
-
-    // Initialize the application
-    initialize();
-});
