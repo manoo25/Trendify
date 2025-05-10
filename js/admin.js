@@ -449,3 +449,9 @@ imageInput.addEventListener('change', function () {
         reader.readAsDataURL(file);
     }
 });
+
+//logout
+$('#logout').on('click', function () {
+    localStorage.removeItem('LogedUser');
+    window.location.href = 'index.html';
+});

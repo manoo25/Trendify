@@ -5,6 +5,23 @@ const profileImage = document.getElementById('profileImage');
 let users = JSON.parse(localStorage.getItem('usersData'));
 var userId;
 
+$('#userName').text(JSON.parse(sessionStorage.getItem('LogedUser')).name);
+
+// Initialize all variables at the top
+let productsArr =[] 
+if (localStorage.getItem('Products')) {
+   productsArr = JSON.parse(localStorage.getItem('Products'));
+}
+let productColors = [];
+let images = [];
+let productImgSrc = '';
+let currentEditIndex = -1;
+let userName = sessionStorage.getItem('LogedUser')
+  ? JSON.parse(sessionStorage.getItem('LogedUser')).name
+  : '';
+// Set user name               
+$("#adminuserName").val(userName);
+
 if (users) {
   // Get id from session storage
   userId = JSON.parse(sessionStorage.getItem('LogedUser')).userId;
@@ -13,7 +30,7 @@ if (users) {
 function displyProfileImg() {
   const user = users.find(user => user.userId === userId);
   if (user) {
-    console.log(imageInput);
+    // console.log(imageInput);
     profileImage.src = user.img;
   }
 }
@@ -64,19 +81,6 @@ imageInput.addEventListener('change', function () {
   }
 });
 
-$('#userName').text(JSON.parse(sessionStorage.getItem('LogedUser')).name);
-
-// Initialize all variables at the top
-let productsArr = JSON.parse(localStorage.getItem('Products')) || [];
-let productColors = [];
-let images = [];
-let productImgSrc = '';
-let currentEditIndex = -1;
-let userName = sessionStorage.getItem('LogedUser')
-  ? JSON.parse(sessionStorage.getItem('LogedUser')).name
-  : '';
-// Set user name               
-$("#adminuserName").val(userName);
 
 // Apply styles to color swatches
 $(document).ready(function () {
@@ -177,7 +181,7 @@ $(document).ready(function () {
 
 function addProduct() {
   const product = {
-    id: generateProductId(),
+    id: `${Math.floor(Math.random() * 1000 * (productsArr.length + 1))}`,
     name: $('#productName').val(),
     real_price: Number($('#realPrice').val()),
     Discount: Number($('#productDiscount').val()),
@@ -193,9 +197,11 @@ function addProduct() {
     Colors: productColors,
     Colorscode: productColors,
   };
-
+ console.log(product);
   productsArr.push(product);
-  saveToLocalStorage();
+  console.log(productsArr);
+  
+localStorage.setItem("Products",JSON.stringify(productsArr));
   displayProduct();
   resetForm();
   $('#personalInfoModal').modal('hide');
@@ -317,6 +323,9 @@ function calculateEndPrice() {
 }
 
 function saveToLocalStorage() {
+  console.log(productsArr);
+  console.log(JSON.parse(localStorage.getItem("Products")));
+  
   localStorage.setItem('Products', JSON.stringify(productsArr));
 }
 
@@ -336,3 +345,172 @@ $('#logoutBtn').on('click', function() {
   window.location = './login&register.html';
  });
 
+
+
+
+// ====================== search in product table ======================
+$(document).ready(function () {
+
+    $("#searchInput").on("keyup", function () {
+        let value = $(this).val().toLowerCase();
+        let rowCount = 0;
+
+        $("#ordersTable tbody tr").each(function () {
+            let productName = $(this).find("td:eq(1)").text().toLowerCase();
+            if (productName.indexOf(value) > -1) {
+                $(this).show();
+                rowCount++;
+            } else {
+                $(this).hide();
+            }
+        });
+
+        if (rowCount === 0) {
+            $(".no-results").show();
+        } else {
+            $(".no-results").hide();
+        }
+    });
+
+});
+
+ // ====================== sort in product table ======================
+document.addEventListener('DOMContentLoaded', function() {
+    const sortIcons = document.querySelectorAll('.sort-icon');
+    let currentSort = {
+        column: null,
+        direction: 'asc' // 'asc' or 'desc'
+    };
+    
+    // Add click event to each sort icon
+    sortIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+            const column = this.getAttribute('data-column');
+            
+            // Toggle sort direction if clicking the same column
+            if (currentSort.column === column) {
+                currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+            } else {
+                currentSort.column = column;
+                currentSort.direction = 'asc';
+            }
+            
+            // Update UI to show current sort state
+            updateSortIcons(column, currentSort.direction);
+            
+            // Sort the table
+            sortTable(column, currentSort.direction);
+        });
+    });
+    
+    function updateSortIcons(activeColumn, direction) {
+        sortIcons.forEach(icon => {
+            const column = icon.getAttribute('data-column');
+            if (column === activeColumn) {
+                // Update active sort icon
+                icon.classList.remove('fa-sort');
+                icon.classList.add(direction === 'asc' ? 'fa-sort-up' : 'fa-sort-down');
+            } else {
+                // Reset other icons
+                icon.classList.remove('fa-sort-up', 'fa-sort-down');
+                icon.classList.add('fa-sort');
+            }
+        });
+    }
+    
+    function sortTable(column, direction) {
+        const table = document.getElementById('ordersTable');
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        
+        rows.sort((a, b) => {
+            const aValue = getCellValue(a, column);
+            const bValue = getCellValue(b, column);
+            
+            // Handle numeric sorting for quantity and price
+            if (column === 'quantity' || column === 'price') {
+                const numA = parseFloat(aValue.replace(/[^0-9.-]/g, ''));
+                const numB = parseFloat(bValue.replace(/[^0-9.-]/g, ''));
+                return direction === 'asc' ? numA - numB : numB - numA;
+            }
+            
+            // Default text sorting
+            if (aValue < bValue) return direction === 'asc' ? -1 : 1;
+            if (aValue > bValue) return direction === 'asc' ? 1 : -1;
+            return 0;
+        });
+        
+        // Remove all existing rows
+        while (tbody.firstChild) {
+            tbody.removeChild(tbody.firstChild);
+        }
+        
+        // Re-add the sorted rows
+        rows.forEach(row => tbody.appendChild(row));
+    }
+    
+    function getCellValue(row, column) {
+        // This assumes your table cells are in a specific order
+        // You may need to adjust the indexes based on your actual table structure
+        const cells = row.querySelectorAll('td');
+        switch (column) {
+            case 'name': return cells[1].textContent.trim();
+            case 'category': return cells[2].textContent.trim();
+            case 'subcategory': return cells[3].textContent.trim();
+            case 'quantity': return cells[4].textContent.trim();
+            case 'price': return cells[5].textContent.trim();
+            case 'process': return cells[6].textContent.trim();
+            default: return '';
+        }
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//  function addProduct() {
+//   const product = {
+//     id: `${Math.floor(Math.random() * 1000 * (productsArr.length + 1))}`,
+//     name: $('#productName').val(),
+//     real_price: Number($('#realPrice').val()),
+//     Discount: Number($('#productDiscount').val()),
+//     EndPrice: calculateEndPrice(),
+//     category: $('#productCategory').val(),
+//     description: $('#productDescription').val(),
+//     imageCover: productImgSrc,
+//     images: images,
+//     subcategory: $('#productSubCategory').val(),
+//     ratingsAverage: $('#ratingAverage').val(),
+//     sellerName: userName,
+//     quantity: Number($('#productQuantity').val()),
+//     Colors: productColors,
+//     Colorscode: productColors,
+//   };
+//  console.log(product);
+//   productsArr.push(product);
+//   console.log(productsArr);
+  
+// localStorage.setItem("Products",JSON.stringify(productsArr));
+//   displayProduct();
+//   resetForm();
+//   $('#personalInfoModal').modal('hide');
+// }

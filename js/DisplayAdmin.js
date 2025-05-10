@@ -1,5 +1,8 @@
 import indexedDB from './indexedDb.js';
 // import { successAlert, RemoveAlert, FailAlert } from './date.js'; 
+
+document.getElementById('AdminUserName').textContent=JSON.parse(sessionStorage.getItem('LogedUser')).name;
+
 const TableOrdersDis = document.getElementById('TableOrdersDis');
 const OrdersContainer = document.getElementById('tOrdersContainer');
 const LastOrdersChart = document.getElementById('LastOrdersChart');
@@ -8,7 +11,6 @@ const NumOfCustomer = document.getElementById('NumOfCustomer');
 const CommentsLength = document.getElementById('CommentsLength');
 const TotalsalesDash = document.getElementById('TotalsalesDash');
 const NumOfOrdersDash = document.getElementById('NumOfOrdersDash');
-
 
 let productsArr = JSON.parse(localStorage.getItem('Products')) || [];
 let OrderstArr = [];
@@ -677,42 +679,76 @@ function displayProduct() {
   }
 
 
+
 // search in useres with email or name
 
 document.getElementById("searchInput").addEventListener('input',function(){
     var input=this.value.toLowerCase();
     var rows=document.querySelectorAll('#TableUserAdmin tr');
-
+let rowCount = 0;
     rows.forEach(function(row){
         var name = row.querySelector('td div').textContent.toLowerCase();
         var email=row.cells[1]?.textContent.toLowerCase();
         if(name.includes(input) || email.includes(input)){
             row.style.display='';
+            rowCount++;
         }else{
             row.style.display='none';
         }
+    });
+    if(rowCount===0){
+        $(".no-results").show();
+    }else{
+        $(".no-results").hide();
+    }       
 
     })
-})
-
-
 
 // search in Products with  name or sub Gategory
 document.getElementById("searchInput2").addEventListener('input', function () {
         var input = this.value.toLowerCase();
         var rows = document.querySelectorAll('#ProductContainerAdmin tr');
-
+let rowCount = 0;
         rows.forEach(function (row) {
             var name = row.cells[1]?.textContent.toLowerCase();
             var subCategory = row.cells[3]?.textContent.toLowerCase();
 
             if (name.includes(input) || subCategory.includes(input)) {
                 row.style.display = '';
+                rowCount++;
             } else {
                 row.style.display = 'none';
             }
         });
+        if (rowCount === 0) {
+            $(".no-results").show();
+        } else {
+            $(".no-results").hide();
+        }
     });
+
+// search in Orders with  name or state
+document.getElementById("searchInput3").addEventListener('input', function () {
+            var input = this.value.toLowerCase();
+        var rows = document.querySelectorAll('#tOrdersContainer tr');
+let rowCount = 0;
+        rows.forEach(function (row) {
+            var name = row.cells[1]?.textContent.toLowerCase();
+            var state = row.cells[6]?.textContent.toLowerCase();
+
+            if (name.includes(input) || state.includes(input)) {
+                row.style.display = '';
+                rowCount++;
+            } else {
+                row.style.display = 'none';
+            }
+        });
+        if (rowCount === 0) {
+            $(".no-results").show();
+        } else {
+            $(".no-results").hide();
+        }
+})    
 
 function DisplayStaticsCharts(arr, arr2) {
   const barCtx = document.getElementById("barChart").getContext("2d");
@@ -785,6 +821,7 @@ function DisplaySaleCharts(arr) {
   });
 }
 
+// sort product table
 document.addEventListener('DOMContentLoaded', function() {
     const sortIcons = document.querySelectorAll('.sort-icon');
     
@@ -856,4 +893,57 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add the sorted rows
         rows.forEach(row => tbody.appendChild(row));
     }
+});
+
+//set image
+const imageInput = document.getElementById('imageUpload');
+const profileImage = document.getElementById('profileImage');
+function displyProfileImg() {
+  const user = users.find(user => user.userId === userId);
+  if (user) {
+    // console.log(imageInput);
+    profileImage.src = user.img;
+  }
+}
+displyProfileImg();
+imageInput.addEventListener('change', function () {
+  console.log(' updated');
+  const file = this.files[0];
+  if (file) {
+    const reader = new FileReader();
+
+    reader.addEventListener('load', function () {
+      console.log('reader updated');
+      profileImage.src = reader.result;
+      // Find index of current user in localStorage
+      const userIndex = users.findIndex(user => user.userId === userId);
+      if (userIndex !== -1) {
+      
+ Swal.fire({
+        icon: 'success',
+        title: "Change Profile Image",
+        text:"Profile Image Changed Succesfully",
+        showConfirmButton: false,
+        timer: 1600,
+        toast: true,
+        position: 'top-end',
+        position: 'top-end',
+        background: 'var(--card-color)', 
+        color: 'var(--main-color)',      
+        iconColor: 'var(--main-color)',  
+        customClass: {
+          popup: 'custom-swal-popup',
+          title: 'custom-swal-title',
+          content: 'custom-swal-content'
+        }
+      });
+          users[userIndex].img = profileImage.src; // Update image in localStorage
+          localStorage.setItem('usersData', JSON.stringify(users)); // Save back to localStorage
+          console.log(users[userIndex].img);
+          displyProfileImg();
+      }
+    });
+
+    reader.readAsDataURL(file);
+  }
 });

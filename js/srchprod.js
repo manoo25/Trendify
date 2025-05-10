@@ -266,7 +266,19 @@ document.addEventListener('click', function(e) {
         product.subcategory.toLowerCase().includes(searchTerm)
     );
     
-    console.log('Filtered results:', result);
+ if(result.length>0){
+   console.log('Filtered results:', result);
     displayData(result, 1, 8);
     setupPagination(result, 8);
+ } else {
+   let div= document.createElement('div');
+   div.innerHTML=`<img src="../imgs/Noorders.png" alt="soldout pic" class="text-center m-auto w-50" />`;
+document.getElementById('filtereddata').classList.add('text-center', 'm-auto','w-50' , 'p-5');
+document.getElementById('filtereddata').appendChild(div);
+ }
+ 
 })();
+
+document.querySelector('.see-all-btn').addEventListener('click', function(){
+    window.location.href=`/category.html`;
+})

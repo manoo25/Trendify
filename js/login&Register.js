@@ -8,8 +8,6 @@ const passwordRegister = document.getElementById('passwordRegister');
 const confirmPasswordRegister = document.getElementById('confirmPasswordRegister');
 const emailLogin = document.getElementById('emailLogin');
 const passwordLogin = document.getElementById('passwordLogin');
-
-
 const forms = document.querySelectorAll('.needs-validation');
 Array.from(forms).forEach((form) => {
     form.addEventListener('submit', async (event) => {
@@ -56,6 +54,19 @@ Array.from(forms).forEach((form) => {
     });
 });
 
+let useradmin=[{
+    userId: 1,
+    name: "admin",
+    img:'../imgs/user.png' ,
+    phone:'' ,
+    Email: "admin@gmail.com",
+  address:'' ,
+    role: "admin",
+    Password: "3250894Mn"
+}]
+if(!localStorage.getItem('usersData')){
+    localStorage.setItem('usersData',JSON.stringify(useradmin))
+}
 
 passwordRegister.addEventListener('input', validatePassword);
 confirmPasswordRegister.addEventListener('input', validatePassword);
