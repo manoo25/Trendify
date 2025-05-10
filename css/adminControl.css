@@ -404,3 +404,57 @@ input:checked+.slider:before {
       .stat-card-change {
         font-size: 0.8rem;
       }
+
+
+      /* style for search on product table */
+
+table thead th {
+  color: var(--bg-color) !important;
+  font-weight: bold;
+  font-size: 1.1rem;
+  background-color: var(--main-color)!important;
+}
+.w-200 {
+        width: 200px !important;
+    }
+    .w-equal {
+        width: calc((100% - 200px) / 6) !important;
+    }
+
+/* search */
+.search-container {
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto 20px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+    font-size: 18px;
+    pointer-events: none;
+}
+
+#searchInput {
+    padding-left: 35px;
+}
+
+.no-results {
+    display: none;
+    text-align: center;
+    color: #6c757d;
+    padding: 20px;
+}
+
+/* //sort */
+.sort-icon {
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.sort-icon:hover {
+    color: #4e73df;
+}
