@@ -473,6 +473,7 @@ table thead th {
 .sort-icon:hover {
     color: #4e73df;
 }
+<<<<<<< HEAD
 
 /* Mobile */
 @media (max-width: 767px) {
@@ -487,4 +488,8 @@ table thead th {
     body {
         font-size: 16px !important;
     }
+=======
+#searchInput, #searchInput2{
+    padding-left: 35px;
+>>>>>>> 7f907b6bdda3b5cded88b5dad4a8d882294fe2b1
 }
