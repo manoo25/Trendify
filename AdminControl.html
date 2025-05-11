@@ -41,52 +41,60 @@
    
     
 
-   <!-- Sidebar -->
-   <nav style="max-width: 60%;"  class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
-   
-      <div class="sidebar-header d-flex flex-column justify-content-center align-items-center pt-5 ">
-     <div class="mb-3 position-relative d-inline-block">
-         <img id="profileImage" src="./imgs/user.png" alt="user" class=" rounded-circle"
-             style="width: 80px; height: 80px;">
-         <label id="imageUploadLabel" for="imageUpload" class="  position-absolute rounded-circle p-1">
-             <i class="fa-solid fa-pen p-1"></i></i>
-         </label>
-         <input type="file" id="imageUpload" accept="image/*" class="d-none" />
-     </div>
+
+  <!-- Sidebar -->
+  <nav style="max-width: 60%;" class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft"
+    aria-labelledby="offcanvasLeftLabel">
+
+    <div class="sidebar-header d-flex flex-column justify-content-center align-items-center pt-5 ">
+      <div class="mb-3 position-relative d-inline-block">
+        <img id="profileImage" src="./imgs/user.png" alt="user" class=" rounded-circle"
+          style="width: 80px; height: 80px;">
+        <label id="imageUploadLabel" for="imageUpload" class="  position-absolute rounded-circle p-1">
+          <i class="fa-solid fa-pen p-1"></i></i>
+        </label>
+        <input type="file" id="imageUpload" accept="image/*" class="d-none" />
+      </div>
 
 
-   <h6 id="AdminUserName"  class="m-0 font-weight-bold text-center   fs-4 ">All Orders</h6>
+      <h6 id="AdminUserName" class="m-0 font-weight-bold text-center fs-4 text-white"></h6>
 
 
- </div>
-        <hr>
-        
-        <ul class="list-unstyled components">
-         
-            <li class="active">
-                <a href="./AdminControl.html" onclick="showDataTbl('DashboardId')"><i class="fas fa-house initForm"></i> Dash Board</a>
-            </li>
-            <li >
-                <a  onclick="showDataTbl('ProductId')" href="#"><i class="fas fa-shirt  initForm"></i>View Products</a>
-            </li>
-             
-            <li>
-                <a onclick="showDataTbl('OrdersId')" href="#"><i class="fas fa-shopping-cart initForm"></i>View Orders</a>
-            </li>
-            <li>
-                <a onclick="showDataTbl('UserId')"  href="#"><i class="fas fa-users initForm"></i>View Users</a>
-            </li>
-            <li>
-                <a onclick="showDataTbl('CommentsId');displayComments()"  href="#"><i class="fas fa-comment initForm"></i>View Comments</a>
-            </li>
-             <li>
-                <a  href="../index.html"><i class="fa-solid fa-house"></i>View website</a>
-            </li>
-          
-          
-        </ul>
-    </nav> 
-<!-- end Sidebar -->
+    </div>
+    <hr>
+
+    <ul class="list-unstyled components">
+
+      <li class="active">
+        <a href="./AdminControl.html" onclick="showDataTbl('DashboardId')"><i class="fas fa-house initForm"></i> Dash
+          Board</a>
+      </li>
+      <li>
+        <a onclick="showDataTbl('ProductId')" href="#"><i class="fas fa-shirt  initForm"></i>View Products</a>
+      </li>
+
+      <li>
+        <a onclick="showDataTbl('OrdersId')" href="#"><i class="fas fa-shopping-cart initForm"></i>View Orders</a>
+      </li>
+      <li>
+        <a onclick="showDataTbl('UserId')" href="#"><i class="fas fa-users initForm"></i>View Users</a>
+      </li>
+      <li>
+        <a onclick="showDataTbl('CommentsId');displayComments()" href="#"><i class="fas fa-comment initForm"></i>View
+          Comments</a>
+      </li>
+      <li>
+        <a href="../index.html"><i class="fa-solid fa-house"></i>View website</a>
+      </li>
+      <li>
+        <a id="logOut" href="../register&login.html"> <i class="fa-solid fa-arrow-right-from-bracket"></i>Log
+          Out</a>
+      </li>
+
+
+    </ul>
+  </nav>
+  <!-- end Sidebar -->
 
 
 
@@ -252,102 +260,116 @@
     </div>
 
         <!-- Users Table -->
-        <div id="UserId" class="DataTable card shadow mb-4 d-none">
-          <input type="text" id="searchInput" class="form-control mb-3" placeholder="search with name or email">
-            <div class="card-header py-3 ">
-              
-                <h6  class="m-0 font-weight-bold text-center ">All Users</h6>
-               
-            </div>
-            <div class="card-body">
-                <div  id="ContainerTableUserAdmin" class="table-responsive">
-                    <table   class="table table-striped   " id="ordersTable" width="100%" cellspacing="0">
-                        <thead  >
-                            <tr>
-                                <th class="text-start ps3"> User account </th>
-                                <th> Phone </th>
-                                <th> Role </th>
-                                <th> Process </th>
-                            </tr>
-                        </thead>
-                        <tbody id="TableUserAdmin">
-                           
-                        
-                         
-                          
-                           
-                        </tbody>
-                    </table>
-                    
-                
-                </div>
-            </div>
+    <div id="UserId" class="DataTable card shadow mb-4 d-none">
+
+      <div class="card-header pt-3 ">
+        <h6 class="m-0 font-weight-bold text-center fs-4">All Users</h6>
+        <div class="search-container mt-3">
+          <span class="search-icon "><i class="fa-solid fa-magnifying-glass"></i></span>
+          <input type="text" id="searchInput" class="form-control " placeholder="Search by name or role...">
+        </div>
+      </div>
+      <div class="card-body">
+        <div id="ContainerTableUserAdmin" class="table-responsive">
+          <table class="table table-striped   " id="ordersTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th class="ps3 text-start"> User account </th>
+                <th> Email </th>
+                <th> Role </th>
+                <th> Process </th>
+              </tr>
+            </thead>
+            <tbody id="TableUserAdmin">
+
+
+
+
+
+            </tbody>
+          </table>
+          <p class="no-results">No users found.</p>
+
+        </div>
+      </div>
+    </div>
+
+      <!-- Product Table -->
+    <div id="ProductId" class="DataTable card shadow mb-4 d-none">
+      <div class="card-header py-3 ">
+        <h6 class="m-0 font-weight-bold text-center fs-4">All Products</h6>
+        <div class="search-container mt-3">
+          <span class="search-icon "><i class="fa-solid fa-magnifying-glass"></i></span>
+          <input type="text" id="searchInput2" class="form-control "
+            placeholder="Search by product name or sub category...">
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped  " id="ordersTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th style="width:200px ;"> Image </th>
+                <th> Name <i class="fa-solid fa-sort ms-3 sort-icon" data-column="name"></i></th>
+                <th> Category <i class="fa-solid fa-sort ms-3 sort-icon" data-column="category"></i> </th>
+                <th> Sub Category <i class="fa-solid fa-sort ms-3 sort-icon" data-column="subcategory"></i></th>
+                <th> Quantity <i class="fa-solid fa-sort ms-3 sort-icon" data-column="quantity"></i></th>
+                <th> Price <i class="fa-solid fa-sort ms-3 sort-icon" data-column="price"></i></th>
+                <th> Process</i> </th>
+              </tr>
+            </thead>
+            <tbody id="ProductContainerAdmin">
+
+
+
+            </tbody>
+          </table>
+          <p class="no-results">No products found.</p>
+
         </div>
 
-        <!-- Product Table -->
-        <div id="ProductId" class="DataTable card shadow mb-4 d-none">
-          <input type="text" id="searchInput2" class="form-control mb-3" placeholder="search with name and sub category">
-            <div class="card-header py-3 ">
-                <h6 class="m-0 font-weight-bold  text-center">All Products</h6>
-               
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-striped  " id="ordersTable" width="100%" cellspacing="0">
-                        <thead  >
-                            <tr>
-                                <th style="width:200px ;"> Image </th>
-                                <th> Name </th>
-                                <th> Category </th>
-                                <th> Sub Category </th>
-                                <th> Quantity </th>
-                                <th> Price </th>
-                                <th> Process </th>
-                            </tr>
-                        </thead>
-                        <tbody id="ProductContainerAdmin">
-                           
-                          
-                           
-                        </tbody>
-                    </table>
-                    
-                
-                </div>
-            </div>
+      </div>
+    </div>
+    <!--end  Product Table -->
+
+
+
+    <!-- Orders Table -->
+    <div id="OrdersId" class="DataTable card shadow mb-4 d-none">
+      <div class="card-header py-3 ">
+        <h6 class="m-0 font-weight-bold text-center fs-4">All Orders</h6>
+        <div class="search-container mt-3">
+          <span class="search-icon "><i class="fa-solid fa-magnifying-glass"></i></span>
+          <input type="text" id="searchInput3" class="form-control " placeholder="Search by order name or state...">
         </div>
-        <!-- Orders Table -->
-     <div id="OrdersId" class="DataTable card shadow mb-4 d-none">
-        <div class="card-header py-3 ">
-            <h6  class="m-0 font-weight-bold text-center  ">All Orders</h6>
-           
+      </div>
+      <div class="card-body">
+        <div id="TableOrdersDis" class="table-responsive">
+          <table class="table table-striped   " id="ordersTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th class=" ps3">User account </th>
+                <th> Phone </th>
+                <th> Address </th>
+                <th> Note </th>
+                <th> Total Price </th>
+                <th> State </th>
+                <th> Process </th>
+              </tr>
+            </thead>
+            <tbody id="tOrdersContainer">
+
+
+
+
+
+            </tbody>
+          </table>
+
+
+
         </div>
-        <div class="card-body">
-            <div  id="TableOrdersDis" class="table-responsive">
-                <table   class="table table-striped   " id="ordersTable" width="100%" cellspacing="0">
-                    <thead  >
-                        <tr >
-                            <th class="text-start ps3">User account </th>
-                            <th> Phone </th>
-                            <th> Address </th>
-                            <th> Note </th>
-                            <th> Total Price </th>
-                            <th> State </th>
-                            <th> Process </th>
-                        </tr>
-                    </thead>
-                    <tbody id="tOrdersContainer">
-                       
-                    
-                     
-                      
-                       
-                    </tbody>
-                </table>
-                
-            
-            </div>
-        </div>
+      </div>
     </div>
 
 

@@ -259,9 +259,9 @@ function displayProduct() {
 }
 
 function editProduct(i) {
+
   currentEditIndex = i;
   const product = productsArr[i];
-
   // Set form values
   $('#productName').val(product.name);
   $('#realPrice').val(product.real_price);
@@ -272,14 +272,19 @@ function editProduct(i) {
   $('#ratingAverage').val(product.ratingsAverage);
   $('#productQuantity').val(product.quantity);
   $('#productColor').val(product.Colors);
-
   // Set current images
   productImgSrc = product.imageCover;
   images = product.images;
   productColors = product.Colors;
-
+  
   $('#addProductBtn').text('Update Product');
   $('#personalInfoModal').modal('show');
+  
+  $('#cancelProductBtn').on('click', () => {
+    $('#addProductBtn').text('Add Product');
+    resetForm();
+  });
+
 }
 
 async function deleteProduct(i) {
@@ -338,7 +343,7 @@ function resetForm() {
 }
 
 
-//remove account
+// ====================== logout ======================
 $('#logoutBtn').on('click', function() {
    sessionStorage.removeItem('LogedUser');
    sessionStorage.removeItem('userRole');
@@ -348,7 +353,7 @@ $('#logoutBtn').on('click', function() {
 
 
 
-// ====================== search in product table ======================
+// ====================== search in product table and order table ======================
 $(document).ready(function () {
 
     $("#searchInput").on("keyup", function () {
@@ -372,7 +377,26 @@ $(document).ready(function () {
         }
     });
 
+        $('#searchRol').on('input', function () {
+          let value = $(this).val().toLowerCase();
+       $("#ordersTable2 tbody tr").each(function () {
+            let roleName = $(this).find("td:eq(5)").text().toLowerCase();
+            if (roleName.indexOf(value) > -1) {
+                $(this).show();
+              
+            } else {
+                $(this).hide();
+            }
+        });
+        if ($(this).val() === '') {
+            $('.no-results').hide();
+        }
+    });
+
 });
+
+
+
 
  // ====================== sort in product table ======================
 document.addEventListener('DOMContentLoaded', function() {

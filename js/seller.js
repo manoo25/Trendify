@@ -127,7 +127,8 @@ async function deleteOrder(orderId) {
                 let OrdersPlusProtArr = OrdersProtArr.filter(item => parseInt(item.OrderId) == orderId);
                 OrdersProtArr = OrdersProtArr.filter(item => parseInt(item.OrderId) !== orderId);
                 
-                const products = loadProductsFromLocalStorage();
+                const products = JSON.parse(localStorage.getItem("Products"));
+              
                 OrdersPlusProtArr.forEach(orderedItem => {
                     const productIndex = products.findIndex(prod => prod.id === orderedItem.ProId);
                     if (productIndex !== -1) {
@@ -137,7 +138,7 @@ async function deleteOrder(orderId) {
                         }
                     }
                 });
-                saveProductsToLocalStorage(products);
+              localStorage.setItem("Products",JSON.stringify(products))
             }
 
             await indexedDB.setItem('Orders', OrderstArr);
